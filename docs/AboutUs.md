@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Kota Sudarshan Karanth
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sudarshan2401.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sudarshan2401)]
+[[portfolio](team/sudarshan2401.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality & Deliverables
