@@ -21,16 +21,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Donovan Chan Jia Jun
 
 <img src="images/donovanjj.png" width="200px">
@@ -38,8 +28,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/donovanjj)]
 [[portfolio](team/donovanjj.md)]
 
+* Role: Team Lead
+* Responsibilities: UI
+
+### Johnny Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
 * Role: Developer
-* Responsibilities: Testing, Scheduling and tracking
+* Responsibilities: Data
 
 ### Jean Doe
 
