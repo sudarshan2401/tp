@@ -5,7 +5,7 @@ title: "Donovan Chan Jia Jun's Project Portfolio Page"
 
 ### Project: EduTrack
 
-EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization
 Given below are my contributions to the project.
 
