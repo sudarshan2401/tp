@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/revdrag.png" width="200px">
 
 [[github](http://github.com/revdrag)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/revdrag.md)]
 
 * Role: Developer
 * Responsibilities: Integration
