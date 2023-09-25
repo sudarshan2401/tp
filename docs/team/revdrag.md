@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Credits:
 * **Project Management**: *to be added*
 * **Enhancements to existing features**: *to be added*
-* **Documentation**: 
+* **Documentation**:
   * User Guide: *to be added*
   * Developer Guide: *to be added*
 * **Community**: *to be added*
