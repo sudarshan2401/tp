@@ -51,7 +51,7 @@ Coming soon...
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help` 
+### Viewing help : `help`
 
 _Coming soon_
 
@@ -75,7 +75,7 @@ add /c cs2103t
 “CLASS_NAME” already exists
 Class Name not specified
 
-### Adding a list of students : `add` 
+### Adding a list of students : `add`
 _Coming soon_
 
 ### Removing a student : `remove`
@@ -83,9 +83,9 @@ _Coming soon_
 Removes an existing student from a class.
 
 **Command Format**: `remove /s STUDENT_NAME /c CLASS_NAME`
-* STUDENT_NAME and CLASS_NAME are compulsory parameters 
-* CLASS_NAME is case-insensitive 
-* STUDENT_NAME only accepts Alphabets 
+* STUDENT_NAME and CLASS_NAME are compulsory parameters
+* CLASS_NAME is case-insensitive
+* STUDENT_NAME only accepts Alphabets
 * Student must have been added into the class to be removed
 
 

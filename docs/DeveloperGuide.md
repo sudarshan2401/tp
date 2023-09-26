@@ -301,8 +301,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to remove a student from a class. 
-2. User requests to delete a specific student in a class. 
+1. User chooses to remove a student from a class.
+2. User requests to delete a specific student in a class.
 3. EduTrack deletes the student from that class.
 
     Use case ends.
@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. User did not specify the class.
   * 2a1. EduTrack informs user that class name is not specified in request.
   * 2a2. EduTrack terminates the request.
-  
+
     Use case ends.
 
 * 2b. EduTrack detects that the student is not found in the class.
