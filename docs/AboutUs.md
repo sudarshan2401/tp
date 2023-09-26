@@ -21,16 +21,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Donovan Chan Jia Jun
 
 <img src="images/donovanjj.png" width="200px">
@@ -39,24 +29,33 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/donovanjj.md)]
 
 * Role: Developer
-* Responsibilities: Testing, Scheduling and tracking
+* Responsibilities: Testing & Scheduling
 
-### Jean Doe
+### Trinh Hoai Song Thu (Sarah)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/songgthu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/songgthu)] [[portfolio](team/songgthu.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
+
+### Wang Helin
+
+<img src="images/revdrag.png" width="200px">
+
+[[github](http://github.com/revdrag)]
+[[portfolio](team/revdrag.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Kota Sudarshan Karanth
+
+<img src="images/sudarshan2401.png" width="200px">
+
+[[github](http://github.com/sudarshan2401)]
+[[portfolio](team/sudarshan2401.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality & Deliverables
