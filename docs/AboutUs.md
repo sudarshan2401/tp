@@ -28,8 +28,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/donovanjj)]
 [[portfolio](team/donovanjj.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing & Scheduling
 
 ### Trinh Hoai Song Thu (Sarah)
 
