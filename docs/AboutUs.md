@@ -31,32 +31,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Trinh Hoai Song Thu (Sarah)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/songgthu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Testing, Scheduling and tracking
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/songgthu)] [[portfolio](team/songgthu.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Wang Helin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/revdrag.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/revdrag)]
+[[portfolio](team/revdrag.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
+
+### Kota Sudarshan Karanth
+
+<img src="images/sudarshan2401.png" width="200px">
+
+[[github](http://github.com/sudarshan2401)]
+[[portfolio](team/sudarshan2401.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality & Deliverables
