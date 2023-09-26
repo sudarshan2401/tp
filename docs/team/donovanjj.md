@@ -1,5 +1,17 @@
 ---
 layout: default.md
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+title: "John Doe's Project Portfolio Page"
+---
+
+### Project: AddressBook Level 3
+
+AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+
+=======
+>>>>>>> AboutUs
 title: "Donovan Chan Jia Jun's Project Portfolio Page"
 ---
 
@@ -7,6 +19,10 @@ title: "Donovan Chan Jia Jun's Project Portfolio Page"
 
 EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> AboutUs
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
@@ -42,3 +58,60 @@ Given below are my contributions to the project.
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+* _{you can add/remove categories in the list above}_
+
+[//]: # (<style>)
+
+[//]: # (  .header {)
+
+[//]: # (    display: flex;)
+
+[//]: # (    justify-content: space-between;)
+
+[//]: # (  })
+
+[//]: # (  .header a {)
+
+[//]: # (    color: black;)
+
+[//]: # (    text-decoration: none;)
+
+[//]: # (    font-size: 2rem;)
+
+[//]: # (  })
+
+[//]: # (  .header .product-name {)
+
+[//]: # (      font-size: 2.5rem;)
+
+[//]: # (  })
+
+[//]: # (  .header a:hover {)
+
+[//]: # (    color: #007acc; /* Change the color on hover to a different color */)
+
+[//]: # (  })
+
+[//]: # (</style>)
+
+[//]: # ()
+[//]: # (<div class = "header">)
+
+[//]: # (    <span class = "product-name">EduTrack</span>)
+
+[//]: # (    <a href="https://www.google.com" >User Guide</a>)
+
+[//]: # (    <a href="https://www.google.com">Developer Guide</a>)
+
+[//]: # (    <a href="https://www.google.com">About Us</a>)
+
+[//]: # (    <a href="https://github.com/AY2324S1-CS2103T-T15-3/tp">Github</a>)
+
+[//]: # (</div>)
+=======
+>>>>>>> master
+>>>>>>> AboutUs
