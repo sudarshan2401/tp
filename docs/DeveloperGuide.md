@@ -269,7 +269,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-University tutors who:
+University tutor who:
 
 * has a need to manage classes with a significant number of students
 * prefer desktop apps over other types
