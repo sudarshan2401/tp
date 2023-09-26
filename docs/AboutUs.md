@@ -11,14 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Sean Phua
+### Sean Phua Zeng Kiat
 
-<img src="images/sean.png" width="200px">
+<img src="images/seanpzk.png" width="200px">
 
 [[github](https://github.com/seanpzk)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Project Coordination
 
 ### Donovan Chan Jia Jun
 

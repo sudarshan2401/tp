@@ -1,6 +1,6 @@
 ---
 layout: default.md
-title: "Sean Phua's Project Portfolio Page"
+title: "Sean Phua Zeng Kiat's Project Portfolio Page"
 ---
 
 ### Project: EduTrack
