@@ -17,11 +17,11 @@ You should expect **EduTrack** to be able to manage:
 * Run it!
 
 ### Sample usage:
-Create a class
+Creating a class
 ```
 add /c cs2103t
 ```
-Add a new student to the class
+Adding a new student to the class
 ```
 add /s John /c cs2103t
 ```
