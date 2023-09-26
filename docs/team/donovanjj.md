@@ -1,5 +1,6 @@
 ---
 layout: default.md
+<<<<<<< HEAD
 title: "John Doe's Project Portfolio Page"
 ---
 
@@ -7,6 +8,15 @@ title: "John Doe's Project Portfolio Page"
 
 AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
+=======
+title: "Donovan Chan Jia Jun's Project Portfolio Page"
+---
+
+### Project: EduTrack
+
+EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization
+>>>>>>> master
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
@@ -42,6 +52,7 @@ Given below are my contributions to the project.
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo
+<<<<<<< HEAD
 
 * _{you can add/remove categories in the list above}_
 
@@ -93,3 +104,5 @@ Given below are my contributions to the project.
 [//]: # (    <a href="https://github.com/AY2324S1-CS2103T-T15-3/tp">Github</a>)
 
 [//]: # (</div>)
+=======
+>>>>>>> master
