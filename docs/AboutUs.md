@@ -11,12 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sean Phua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sean.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/seanpzk)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
