@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3c1. EduTrack informs user that information to be updated is empty.
 
-        Use case ends.
+      Use case ends.
 
 **Use case: Take attendance in a lesson**
 
@@ -385,6 +385,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  User repeats step 3 for mutiple times
 7.  User requests to end the lesson 
 8.  EduTrack ends the lesson and saves the data automatically
+
+**Use case: Remove a student**
+
+**MSS**
+
+1. User chooses to remove a student from a class.
+2. User requests to delete a specific student in a class.
+3. EduTrack deletes the student from that class.
 
     Use case ends.
 
@@ -408,7 +416,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
+* 2a. User did not specify the class.
+  * 2a1. EduTrack informs user that class name is not specified in request.
+  * 2a2. EduTrack terminates the request.
+
+    Use case ends.
+
+* 2b. EduTrack detects that the student is not found in the class.
+    * 2b1. EduTrack informs user that student is not found in class.
+    * 2b2. EduTrack terminates the request.
+
+      Use case ends.
+
+* 2c. EduTrack detects that the class does not exist.
+    * 2c1. EduTrack informs user that the class does not exist.
+    * 2c2. EduTrack terminates the request.
+
+      Use case ends.
+
+**Use case: Update a class**
+
+**MSS**
+1. User requests to modify an existing student record in a class.
+2. EduTrack responds with a list of categories for user to choose to modify.
+3. User chooses a category to modify.
+4. EduTrack requests for new input in the category.
+5. User enters the new input for the category.
+6. EduTrack updates and displays the new student record.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. EduTrack detects that student or class does not exist.
+    * 1a1. EduTrack informs the user that the student or the class does not exist.
+    * 1a2. EduTrack terminates the request.
+
+      Use case ends.
+
+**Use case: Use auto-save feature**
+
+**MSS**
+1. User makes any form of request that alters the database.
+2. EduTrack updates the database directly.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -431,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Database**: A storage for all data to be stored in.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
