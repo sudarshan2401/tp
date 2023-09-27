@@ -560,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 2a. User did not specify the class.
-    * 2a1. EduTrack informs user that class name is not specified in request.
+    * 2a1. EduTrack informs user that class name is not specified in the request.
     * 2a2. EduTrack terminates the request.
 
       Use case ends.
