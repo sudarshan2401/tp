@@ -60,6 +60,27 @@ add /c cs2103t
 “CLASS_NAME” already exists
 Class Name not specified
 
+### Updating a Class
+[Coming Soon...]
+
+### Updating a Student Profile
+[Coming Soon...]
+
+### Taking attendance for a lesson
+[Coming Soon...]
+
+### Updating a Class note
+[Coming Soon...]
+
+### Adding a lesson to a Class Schedule
+[Coming Soon...]
+
+### Removing a lesson from a Class Schedule
+[Coming Soon...]
+
+### Finding the profile of a Student from a Class
+[Coming Soon...]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ

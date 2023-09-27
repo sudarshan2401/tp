@@ -367,14 +367,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Adding a lesson for a Class**
+**Use case: Adding a lesson to a Class Schedule**
 **MSS**
 
 1.  User requests to view the list of classes
 2.  EduTrack shows a list of classes
 3.  User requests to add a lesson for a particular class
 4.  EduTrack appends to the Class schedule of that particular class
-5.  EduTrack informs that user that the lesson was added to the class schedule
+5.  EduTrack informs the user that the lesson was added to the class schedule
 
     Use case ends.
 
@@ -399,6 +399,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3d. Lesson details was of invalid format.
   * 3d1. EduTrack informs the user he should enter a lesson of the correct format
   
+      Use case ends.
+
+**Use case: Removing a lesson from a class schedule**
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User provides the lesson id to remove it from the class schedule
+4.  EduTrack removes from the Class schedule of that particular class
+5.  EduTrack informs the user that the lesson was removed from the class schedule
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+      Use case ends.
+* 3c. No lesson id was specified.
+    * 3c1. EduTrack informs the user that a lesson id wasn't specified.
+
+      Use case ends.
+* 3d. Lesson id is of invalid format or does not exist.
+    * 3d1. EduTrack informs the user that the lesson does not exist.
+
       Use case ends.
 
 ---
