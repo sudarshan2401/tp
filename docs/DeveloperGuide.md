@@ -295,16 +295,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EduTrack` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+**Use case: Remove a class**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view the list of classes 
+2.  EduTrack shows a list of classes
+3.  User requests to delete a specific class in the list
+4.  EduTrack request for confirmation and waits for y/n response from user
+5.  User confirms
+6.  EduTrack deletes the class 
+7.  EduTrack informs the user that the class is successfully deleted
 
     Use case ends.
 
@@ -312,13 +317,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+  
+    Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+  
+    Use case ends.
 
-      Use case resumes at step 2.
+* 4a. User does not confirm, provides a `n` input
+    * 4a1. EduTrack confirms that the cancellation is successful
+  
+    Use case ends.
+
+---
+
+**Use case: Updating a Class note**
+**MSS** 
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User requests to update the Class notes of a particular class
+4.  EduTrack overwrites the Class notes of that particular class
+5.  EduTrack informs that user that the was successfully updated
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+    Use case ends
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+      Use case ends.
+* 3c. No note details was specified.
+  * 3c1. EduTrack informs the user that no note was specified.
+      
+      Use case ends.
+
+---
+
+**Use case: Adding a lesson for a Class**
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User requests to add a lesson for a particular class
+4.  EduTrack appends to the Class schedule of that particular class
+5.  EduTrack informs that user that the lesson was added to the class schedule
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends
+* 3a. The given class name is invalid.
+
+    * 3a1. EduTrack shows an error message.
+  
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+  
+      Use case ends.
+* 3c. No lesson details was specified.
+    * 3c1. EduTrack informs the user that a lesson wasn't specified.
+  
+      Use case ends.
+* 3d. Lesson details was of invalid format.
+  * 3d1. EduTrack informs the user he should enter a lesson of the correct format
+  
+      Use case ends.
+
+---
 
 *{More to be added}*
 
