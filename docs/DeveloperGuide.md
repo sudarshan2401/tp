@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to view the list of classes
 2.  EduTrack shows a list of classes
 3.  User requests to delete a specific class in the list
-4.  EduTrack request for confirmation and waits for y/n response from user
+4.  EduTrack requests for confirmation and waits for y/n response from user
 5.  User confirms
 6.  EduTrack deletes the class
 7.  EduTrack informs the user that the class is successfully deleted
