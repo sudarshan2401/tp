@@ -24,7 +24,7 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start 
+## Quick start
 
 Coming soon...
 

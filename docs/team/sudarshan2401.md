@@ -10,10 +10,10 @@ EduTrack is a  product is for teaching assistants in universities who type fast 
 Given below are my contributions to the project.
 
 * **New Feature**: to be added
-    * What it does: 
-    * Justification: 
-    * Highlights: 
-    * Credits: 
+    * What it does:
+    * Justification:
+    * Highlights:
+    * Credits:
 
 * **Code contributed**: to be added [RepoSense link]()
 
@@ -26,7 +26,5 @@ Given below are my contributions to the project.
 * **Documentation**:
 
 * **Community**:
-  
-* **Tools**:
-    
 
+* **Tools**:
