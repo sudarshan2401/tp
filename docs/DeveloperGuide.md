@@ -313,13 +313,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  EduTrack adds the class to the list of classes
 3.  EduTrack shows the updated list of classes
 
-    Use case ends.
-
 **Extensions**
 
 * 1a. Class name is not specified.
 
-    * 1a1. EduTrack informs user that class name is empty.
+  * 1a1. EduTrack informs user that class name is empty.
 
       Use case ends.
 
@@ -328,6 +326,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EduTrack informs user that class already exists.
 
       Use case ends.
+
+---
+
+**Use case: Remove a class**
+
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User requests to delete a specific class in the list
+4.  EduTrack requests for confirmation and waits for y/n response from user
+5.  User confirms
+6.  EduTrack deletes the class
+7.  EduTrack informs the user that the class is successfully deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Class name is not specified.
+
+    Use case ends.
+
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+
+    Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+    Use case ends.
+
+* 4a. User does not confirm, provides a `n` input
+    * 4a1. EduTrack confirms that the cancellation is successful
+
+    Use case ends.
+
+---
+
+**Use case: Updating a Class note**
+
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User requests to update the Class notes of a particular class
+4.  EduTrack overwrites the Class notes of that particular class
+5.  EduTrack informs that user that the was successfully updated
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+      Use case ends.
+
+* 3c. No note details was specified.
+    * 3c1. EduTrack informs the user that no note was specified.
+
+      Use case ends.
+
+---
 
 **Use case: Update a class**
 
@@ -342,7 +410,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 1a. Class name is not specified.
 
     * 1a1. EduTrack informs user that class name is empty.
@@ -373,6 +440,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+---
+
+**Use case: Adding a lesson to a Class Schedule**
+
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User requests to add a lesson for a particular class
+4.  EduTrack appends to the Class schedule of that particular class
+5.  EduTrack informs the user that the lesson was added to the class schedule
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+* 3a. The given class name is invalid.
+
+    * 3a1. EduTrack shows an error message.
+
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+      Use case ends.
+* 3c. No lesson details was specified.
+    * 3c1. EduTrack informs the user that a lesson wasn't specified.
+
+      Use case ends.
+* 3d. Lesson details was of invalid format.
+    * 3d1. EduTrack informs the user he should enter a lesson of the correct format
+
+      Use case ends.
+
+---
+
+**Use case: Removing a lesson from a class schedule**
+
+**MSS**
+
+1.  User requests to view the list of classes
+2.  EduTrack shows a list of classes
+3.  User provides the lesson id to remove it from the class schedule
+4.  EduTrack removes from the Class schedule of that particular class
+5.  EduTrack informs the user that the lesson was removed from the class schedule
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends
+* 3a. The given class name is invalid.
+    * 3a1. EduTrack shows an error message.
+
+      Use case ends.
+
+* 3b. No class name specified.
+    * 3b1. EduTrack informs the user he should enter a class field
+
+      Use case ends.
+* 3c. No lesson id was specified.
+    * 3c1. EduTrack informs the user that a lesson id wasn't specified.
+
+      Use case ends.
+* 3d. Lesson id is of invalid format or does not exist.
+    * 3d1. EduTrack informs the user that the lesson does not exist.
+
+      Use case ends.
+
+---
+
 **Use case: Take attendance in a lesson**
 
 **MSS**
@@ -385,6 +526,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  User repeats step 3 for mutiple times
 7.  User requests to end the lesson 
 8.  EduTrack ends the lesson and saves the data automatically
+
+---
 
 **Use case: Remove a student**
 
@@ -411,16 +554,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 4a. Student does not exist
-    
+
     * 4a1. EduTrack informs user that student is not found.
 
       Use case ends.
 
 * 2a. User did not specify the class.
-  * 2a1. EduTrack informs user that class name is not specified in request.
-  * 2a2. EduTrack terminates the request.
+    * 2a1. EduTrack informs user that class name is not specified in the request.
+    * 2a2. EduTrack terminates the request.
 
-    Use case ends.
+      Use case ends.
 
 * 2b. EduTrack detects that the student is not found in the class.
     * 2b1. EduTrack informs user that student is not found in class.
@@ -433,6 +576,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c2. EduTrack terminates the request.
 
       Use case ends.
+
+---
 
 **Use case: Update a class**
 
@@ -454,6 +599,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+---
+
 **Use case: Use auto-save feature**
 
 **MSS**
@@ -462,6 +609,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+---
 
 ### Non-Functional Requirements
 

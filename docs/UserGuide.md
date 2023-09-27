@@ -71,6 +71,36 @@ add /c cs2103t
 “CLASS_NAME” already exists
 Class Name not specified
 
+### Removing a class : `remove`
+
+Remove a specific class from your list of classes.
+
+**Command Format:** `remove /c CLASS_NAME`
+
+* Confirmation is required to remove your class:
+
+  <span style="color:red;">
+    Are you sure you want to remove class "CLASS_NAME"
+  <br>
+    This action cannot be undone
+  <br>
+    Type 'y' to confirm and 'n' to cancel
+  </span>
+
+  `y` to proceed, `n` to cancel
+
+* CLASS_NAME is not case-sensitive
+
+**Example:**
+`remove /c cs2103t`
+
+**Successful Output:**
+“CLASS_NAME” has been removed
+
+**Unsuccessful Output:**
+* “CLASS_NAME” does not exist
+* Class Name not specified
+
 ### Adding a list of students : `add`
 _Coming soon_
 
@@ -106,6 +136,27 @@ Format: `exit`
 ### Saving the data
 
 EduTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Updating a Class
+[Coming Soon...]
+
+### Updating a Student Profile
+[Coming Soon...]
+
+### Taking attendance for a lesson
+[Coming Soon...]
+
+### Updating a Class note
+[Coming Soon...]
+
+### Adding a lesson to a Class Schedule
+[Coming Soon...]
+
+### Removing a lesson from a Class Schedule
+[Coming Soon...]
+
+### Finding the profile of a Student from a Class
+[Coming Soon...]
 
 --------------------------------------------------------------------------------------------------------------------
 
