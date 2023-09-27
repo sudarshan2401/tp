@@ -297,6 +297,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EduTrack` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: View all the information about a class**
+
+**MSS**
+
+1. User chooses a class out of all the classes they are teaching.
+2. User requests to view all the information about that class.
+3. EduTrack displays all the information about that class. (e.g. name, students, attendance, notes, etc)
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User did not specify the class.
+  * 2a1. EduTrack informs user that class name is not specified in request.
+  * 2a2. EduTrack terminates the request.
+
+    Use case ends.
+
+* 2b. EduTrack detects that the class does not exist.
+  * 2b1. EduTrack informs user that the class does not exist.
+  * 2b2. EduTrack terminates the request.
+
+    Use case ends.
+
+**Use case: See the app populated with sample data**
+
+**MSS**
+
+1. User launches the app for the first time.
+2. EduTrack populates the app with sample data for a class.
+3. User accesses the sample data to see how the app works.
+
+    Use case ends.
+
 **Use case: Remove a student**
 
 **MSS**
