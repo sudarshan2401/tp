@@ -127,6 +127,23 @@ Remove /s John /c CS2103T
 “STUDENT_NAME is not found in CLASS_NAME”
 “CLASS_NAME does not exist”
 
+### Viewing a class : `view`
+Prints out the detailed information (class name, class schedule, enrolled student list) about a specific class.
+**Command Format**: `view /c CLASS_NAME`
+* CLASS_NAME is not case-sensitive
+* Class must have been created to be viewed
+
+**Examples**:
+view CS2103T
+view cs2103t
+
+**Successful Output:**
+“CLASS_NAME”:
+Enrolled students: (...)
+
+**Unsuccessful Output:**
+“CLASS_NAME” does not exist
+
 ### Exiting the program : `exit`
 
 Exits the program.
