@@ -358,7 +358,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Class name is not specified.
 
     Use case ends.
-    
 * 2a. User did not specify the class.
   * 2a1. EduTrack informs user that class name is not specified in request.
   * 2a2. EduTrack terminates the request.
@@ -662,8 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Database**: A storage for all data to be stored in.
 --------------------------------------------------------------------------------------------------------------------
 
