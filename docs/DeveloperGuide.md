@@ -277,7 +277,7 @@ University tutor who:
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Each tutor has multiple groups of students where each group can be large, keeping track of students and records would become a hassle. Our product provides a centralised system that would help to organise all student records for easy and quick access. 
+**Value proposition**: Each tutor has multiple groups of students where each group can be large, keeping track of students and records would become a hassle. Our product provides a centralised system that would help to organise all student records for easy and quick access.
 
 
 ### User stories
@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to view the class to be updated
 2.  EduTrack shows the class
 3.  User requests to update a field in the class
-4.  EduTrack updates the field of the class 
+4.  EduTrack updates the field of the class
 5.  EduTrack shows the updated list of classes
 
     Use case ends.
@@ -556,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  User enters attendance of a student
 5.  EduTrack updates the attendance field of the student
 6.  User repeats step 3 for mutiple times
-7.  User requests to end the lesson 
+7.  User requests to end the lesson
 8.  EduTrack ends the lesson and saves the data automatically
 
 ---
@@ -645,13 +645,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  **Environment requirement:** 
+1.  **Environment requirement:**
    - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
- 
-2.  **Scalability:** 
+
+2.  **Scalability:**
    - Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
- 
-3.  **Usability:** 
+
+3.  **Usability:**
    - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
    - The user interface should be intuitive and user-friendly to minimize the learning curve for TAs.
 
@@ -671,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless> 
+<box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 

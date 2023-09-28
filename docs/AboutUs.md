@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/seanpzk.png" width="200px">
 
 [[github](https://github.com/seanpzk)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/seanpzk.md)]
 
 * Role: Team Lead
 * Responsibilities: Project Coordination
