@@ -101,8 +101,26 @@ Remove a specific class from your list of classes.
 * “CLASS_NAME” does not exist
 * Class Name not specified
 
-### Adding a list of students : `add`
-_Coming soon_
+### Adding a student : `add`
+
+Adds a new student to an existing class.
+
+**Command Format**: `add /s STUDENT_NAME /c CLASS_NAME`
+* STUDENT_NAME and CLASS_NAME are compulsory parameters
+* CLASS_NAME is case-insensitive
+* STUDENT_NAME only accepts alphabetical characters
+* Class must have been created to add a student inside that class
+
+**Example**:
+`add /s John /c cs2103t`
+
+**Successful Output**:
+"STUDENT_NAME has been added to CS2103T"
+
+**Unsuccessful Output**:
+* "Class name was not specified"
+* "CLASS_NAME does not exist"
+
 
 ### Removing a student : `remove`
 
@@ -153,6 +171,9 @@ Format: `exit`
 ### Saving the data
 
 EduTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Adding a list of students
+[Coming soon...]
 
 ### Updating a Class
 [Coming Soon...]
