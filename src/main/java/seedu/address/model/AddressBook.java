@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.UniqueClassList;
+import seedu.address.model.module.Class;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -28,6 +30,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
+    private final UniqueClassList classes;
+
+    {
+        classes = new UniqueClassList();
+    }
+
     public AddressBook() {}
 
     /**
@@ -46,6 +54,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }
+
+    public void setClasses(List<Class> classes) {
+        this.classes.setClasses(classes);
     }
 
     /**
@@ -94,6 +106,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void addClass(Class c) {
+        classes.add(c);
+    }
+
+    public boolean hasClass(Class c) {
+        requireNonNull(c);
+        return classes.contains(c);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +127,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Class> getClassList() {
+        return classes.asUnmodifiableObservableList();
     }
 
     @Override
