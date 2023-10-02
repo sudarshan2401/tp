@@ -48,4 +48,5 @@ public class ClassName {
     public int hashCode() {
         return className.hashCode();
     }
+
 }

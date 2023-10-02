@@ -42,4 +42,5 @@ public class UniqueClassListTest {
     public void setClasses_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.setClasses(null));
     }
+
 }

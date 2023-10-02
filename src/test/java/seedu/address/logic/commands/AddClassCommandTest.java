@@ -64,4 +64,5 @@ class AddClassCommandTest {
 
         assertEquals(command1, command2);
     }
+
 }

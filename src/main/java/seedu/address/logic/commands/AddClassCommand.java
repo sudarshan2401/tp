@@ -65,4 +65,5 @@ public class AddClassCommand extends Command {
                 .add("class", c)
                 .toString();
     }
+
 }

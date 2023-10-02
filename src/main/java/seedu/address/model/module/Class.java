@@ -55,4 +55,5 @@ public class Class {
                 .add("class name", className)
                 .toString();
     }
+
 }
