@@ -81,10 +81,10 @@ Adds a new class to the list of classes.
 * `add /c cs2103t`
 
 **Successful Output:**
-* “CLASS_NAME” has been added
+* CLASS_NAME has been added
 
 **Unsuccessful Output:**
-* “CLASS_NAME” already exists
+* CLASS_NAME already exists
 * Class name not specified
 
 ### Removing a class : `remove`
@@ -105,10 +105,10 @@ Removes an existing class from the list of classes.
 * `remove /c cs2103t`
 
 **Successful Output:**
-* “CLASS_NAME” has been removed
+* CLASS_NAME has been removed
 
 **Unsuccessful Output:**
-* “CLASS_NAME” does not exist
+* CLASS_NAME does not exist
 * Class name not specified
 
 ### Viewing a class : `view`
@@ -124,10 +124,10 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 * `view cs2103t`
 
 **Successful Output:**
-* “CLASS_NAME”: Enrolled students: (...)
+* CLASS_NAME: Enrolled students: (...)
 
 **Unsuccessful Output:**
-* “CLASS_NAME” does not exist
+* CLASS_NAME does not exist
 
 ### Adding a student : `add`
 
