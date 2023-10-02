@@ -610,7 +610,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Update a class**
+**Use case: Modify an existing student records**
 
 **MSS**
 1. User requests to modify an existing student record in a class.
