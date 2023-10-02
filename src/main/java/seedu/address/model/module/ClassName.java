@@ -17,7 +17,7 @@ public class ClassName {
     public ClassName(String className) {
         requireNonNull(className);
         checkArgument(isValidClassName(className), MESSAGE_CONSTRAINTS);
-        this.className = className;
+        this.className = className.toUpperCase();
     }
 
     public static boolean isValidClassName(String test) {

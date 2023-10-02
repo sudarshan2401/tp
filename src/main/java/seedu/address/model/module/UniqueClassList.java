@@ -3,7 +3,6 @@ package seedu.address.model.module;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateClassException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,10 +24,9 @@ public class UniqueClassList implements Iterable<Class> {
     public void add(Class toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClassException();
         }
         internalList.add(toAdd);
-        System.out.println(internalList);
     }
 
     public void setClasses(List<Class> classes) {

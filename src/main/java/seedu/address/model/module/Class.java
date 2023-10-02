@@ -5,10 +5,13 @@ import seedu.address.model.person.Person;
 
 import java.util.Objects;
 
+import static java.util.Objects.requireNonNull;
+
 public class Class {
     private final ClassName className;
 
     public Class(ClassName className) {
+        requireNonNull(className);
         this.className = className;
     }
 
@@ -32,7 +35,7 @@ public class Class {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Class)) {
             return false;
         }
 

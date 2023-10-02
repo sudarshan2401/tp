@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,8 +24,6 @@ public class AddClassCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s has been added";
 
     public static final String MESSAGE_DUPLICATE_CLASS = "%1$s already exists";
-
-    public static final String MESSAGE_EMPTY_CLASSNAME = "Class name not specified";
 
     private final Class c;
 
@@ -58,5 +57,12 @@ public class AddClassCommand extends Command {
 
         AddClassCommand e = (AddClassCommand) other;
         return c.equals(e.c);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("class", c)
+                .toString();
     }
 }
