@@ -46,5 +46,4 @@ public class ClassNameTest {
         // different values -> returns false
         assertFalse(className.equals(new Name("cs2100")));
     }
-
 }

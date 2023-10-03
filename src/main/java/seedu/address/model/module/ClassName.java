@@ -1,14 +1,12 @@
 package seedu.address.model.module;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ClassName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Class name is compulsory.\n" +
-            "Class name should only contains alphanumeric characters, and it should not contain spaces.";
+            "Class name is compulsory.\n"
+            + "Class name should only contains alphanumeric characters, and it should not contain spaces.";
 
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
 

@@ -1,9 +1,8 @@
 package seedu.address.model.module;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-
 import java.util.Objects;
+
+import seedu.address.commons.util.ToStringBuilder;
 
 import static java.util.Objects.requireNonNull;
 

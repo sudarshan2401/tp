@@ -32,5 +32,4 @@ class ClassTest {
         // different values -> returns false
         assertFalse(c.equals(new Class(new ClassName("def"))));
     }
-
 }
