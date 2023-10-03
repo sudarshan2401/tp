@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String className} into a {@code ClassName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
     public static ClassName parseClassName(String className) throws ParseException {
         String trimmedClassName = className.trim();
 

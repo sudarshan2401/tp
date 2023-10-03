@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Adds a class to the list of classes
  */
 public class AddClassCommand extends Command {
 
@@ -26,6 +26,9 @@ public class AddClassCommand extends Command {
 
     private final Class c;
 
+    /**
+     * Creates an AddClassCommand to add the specified {@code Class}
+     */
     public AddClassCommand(Class c) {
         requireAllNonNull(c);
         this.c = c;

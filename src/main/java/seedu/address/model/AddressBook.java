@@ -6,8 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.UniqueClassList;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.UniqueClassList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -56,10 +56,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setClasses(List<Class> classes) {
-        this.classes.setClasses(classes);
-    }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -106,10 +102,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Adds a class to EduTrack.
+     * The person must not already exist in EduTrack.
+     */
     public void addClass(Class c) {
         classes.add(c);
     }
 
+    /**
+     * Returns true if a class with the same identity as {@code c} exists in EduTrack.
+     */
     public boolean hasClass(Class c) {
         requireNonNull(c);
         return classes.contains(c);

@@ -1,27 +1,50 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A list of classes that enforces uniqueness between its elements and does not allow nulls.
+ * A class is considered unique by comparing using {@code Class#isSameClass(Class)}. As such, adding and updating of
+ * classes uses Class#isSameClass(Class) for equality to ensure that the class being added or updated is
+ * unique in terms of identity in the UniqueClassList. However, the removal of a class uses Class#equals(Object)
+ * to ensure that the class with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Class#isSameClass(Class)
+ */
 public class UniqueClassList implements Iterable<Class> {
 
     private final ObservableList<Class> internalList = FXCollections.observableArrayList();
     private final ObservableList<Class> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent class as the given argument.
+     *
+     * @param toCheck The class to check for in the list.
+     * @return True if the list contains an equivalent class, false otherwise.
+     */
     public boolean contains(Class toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClass);
     }
 
+    /**
+     * Adds a class to the list.
+     * The class must not already exist in the list.
+     *
+     * @param toAdd The class to add.
+     * @throws DuplicateClassException If adding the class would result in duplicate classes.
+     */
     public void add(Class toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -30,6 +53,13 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the contents of this list with another list of classes.
+     * The classes in the argument list must be unique.
+     *
+     * @param classes The list of classes to set.
+     * @throws DuplicateClassException If setting the classes would result in duplicate classes.
+     */
     public void setClasses(List<Class> classes) {
         requireAllNonNull(classes);
         if (!classesAreUnique(classes)) {
@@ -39,6 +69,11 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.setAll(classes);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of classes.
+     *
+     * @return An unmodifiable view of the list of classes.
+     */
     public ObservableList<Class> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
