@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -7,6 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 class ClassTest {
+    private final Class c = new Class(new ClassName("abc"));
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Class(null));
@@ -14,8 +17,6 @@ class ClassTest {
 
     @Test
     public void equals() {
-        Class c = new Class(new ClassName("abc"));
-
         // same values -> returns true
         assertTrue(c.equals(new Class(new ClassName("abc"))));
 
@@ -30,5 +31,11 @@ class ClassTest {
 
         // different values -> returns false
         assertFalse(c.equals(new Class(new ClassName("def"))));
+    }
+
+    @Test
+    public void toStringMethod() {
+        String expected = Class.class.getCanonicalName() + "{class name=" + c.getClassName() + "}";
+        assertEquals(expected, c.toString());
     }
 }

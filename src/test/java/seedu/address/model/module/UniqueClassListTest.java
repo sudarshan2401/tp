@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -10,7 +11,8 @@ import seedu.address.model.module.exceptions.DuplicateClassException;
 
 public class UniqueClassListTest {
     private final UniqueClassList uniqueClassList = new UniqueClassList();
-    private final Class sampleClass = new Class(new ClassName("cs2103t"));
+    private final ClassName sampleClassName = new ClassName("cs2103t");
+    private final Class sampleClass = new Class(sampleClassName);
 
     @Test
     public void contains_nullClass_throwsNullPointerException() {
@@ -29,6 +31,13 @@ public class UniqueClassListTest {
     }
 
     @Test
+    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueClassList.add(sampleClass);
+        Class c = new Class(sampleClassName);
+        assertTrue(uniqueClassList.contains(c));
+    }
+
+    @Test
     public void add_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.add(null));
     }
@@ -40,8 +49,8 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void setClasses_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClassList.setClasses(null));
+    public void toStringMethod() {
+        assertEquals(uniqueClassList.asUnmodifiableObservableList().toString(), uniqueClassList.toString());
     }
 
 }

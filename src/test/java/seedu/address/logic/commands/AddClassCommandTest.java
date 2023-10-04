@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -57,12 +59,39 @@ class AddClassCommandTest {
 
     @Test
     public void equals() {
+        ClassName className1 = new ClassName("CS2103T");
+        ClassName className2 = new ClassName("CS2100");
+        Class sampleClass1 = new Class(className1);
+        Class sampleClass2 = new Class(className2);
+
+        AddClassCommand command1 = new AddClassCommand(sampleClass1);
+        AddClassCommand command2 = new AddClassCommand(sampleClass1);
+        AddClassCommand command3 = new AddClassCommand(sampleClass2);
+
+        // same object -> returns true
+        assertTrue(command1.equals(command1));
+
+        // same values -> returns true
+        assertTrue(command1.equals(command2));
+
+        // different types -> returns false
+        assertFalse(command1.equals(1));
+
+        // null -> returns false
+        assertFalse(command1.equals(null));
+
+        // different person -> returns false
+        assertFalse(command1.equals(command3));
+    }
+
+    @Test
+    public void toStringMethod() {
         ClassName className = new ClassName("CS2103T");
-        Class classToAdd = new Class(className);
+        Class sampleClass = new Class(className);
 
-        AddClassCommand command1 = new AddClassCommand(classToAdd);
-        AddClassCommand command2 = new AddClassCommand(classToAdd);
+        AddClassCommand command = new AddClassCommand(sampleClass);
 
-        assertEquals(command1, command2);
+        String expected = AddClassCommand.class.getCanonicalName() + "{class=" + sampleClass + "}";
+        assertEquals(expected, command.toString());
     }
 }

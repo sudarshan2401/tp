@@ -1,10 +1,8 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,22 +52,6 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
-     * Replaces the contents of this list with another list of classes.
-     * The classes in the argument list must be unique.
-     *
-     * @param classes The list of classes to set.
-     * @throws DuplicateClassException If setting the classes would result in duplicate classes.
-     */
-    public void setClasses(List<Class> classes) {
-        requireAllNonNull(classes);
-        if (!classesAreUnique(classes)) {
-            throw new DuplicateClassException();
-        }
-
-        internalList.setAll(classes);
-    }
-
-    /**
      * Returns an unmodifiable view of the list of classes.
      *
      * @return An unmodifiable view of the list of classes.
@@ -106,17 +88,6 @@ public class UniqueClassList implements Iterable<Class> {
     @Override
     public String toString() {
         return internalList.toString();
-    }
-
-    private boolean classesAreUnique(List<Class> classes) {
-        for (int i = 0; i < classes.size() - 1; i++) {
-            for (int j = i + 1; j < classes.size(); j++) {
-                if (classes.get(i).isSameClass(classes.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
 }

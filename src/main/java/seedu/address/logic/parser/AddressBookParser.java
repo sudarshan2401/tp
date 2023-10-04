@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddClassCommand;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -27,8 +28,38 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private static final Pattern BASIC_COMMAND_FORMAT1 = Pattern
+            .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)\\s(?<arguments>.*)");
+
+    private static final Pattern BASIC_COMMAND_FORMAT2 = Pattern
+            .compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+
+    // Identifies the class of object (if any) on whether it is student or class when using commands that require
+    // additional parameter. Eg: add /s , add /c
+    /**
+     * Identifies the class of object (if any) when using commands that require
+     * additional parameters, such as adding a student (/s) or a class (/c).
+     *
+     * @param input The input string containing the user input.
+     * @return A string representing the first argument of the command, including leading and trailing whitespace.
+     */
+    public static String extractObjectClass(String input) {
+        // Split the input string by whitespace
+        String[] parts = input.split("\\s");
+
+        // Check if there are at least two parts (words) separated by whitespace
+        if (parts.length >= 2) {
+            // Return the second part (index 1)
+            return " " + parts[1] + " ";
+        } else {
+            // Handle the case where there are not enough words
+            System.out.println("There is no additional parameter to indicate class of object after command word");
+            return null; // or throw an exception, return a default value, etc.
+        }
+    }
 
     /**
      * Parses user input into command for execution.
@@ -38,20 +69,32 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        String objectClass = "";
+        final Matcher matcher;
+        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput.trim());
+        if (tempMatcher.matches()) {
+            objectClass = extractObjectClass(userInput);
+            matcher = tempMatcher;
+        } else {
+            matcher = BASIC_COMMAND_FORMAT2.matcher(userInput.trim());
+            if (!matcher.matches()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            }
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = objectClass + matcher.group("arguments");
 
-        // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
+        // Note to developers: Change the log level in config.json to enable lower level
+        // (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-
+        System.out.println("Command word: " + commandWord);
+        System.out.println("Arguments: " + arguments);
         switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);
@@ -82,5 +125,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

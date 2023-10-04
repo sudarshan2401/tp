@@ -14,7 +14,7 @@ import seedu.address.model.module.Class;
  */
 public class AddClassCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add /c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new class to the list of classes.\n"
             + "Parameters: "

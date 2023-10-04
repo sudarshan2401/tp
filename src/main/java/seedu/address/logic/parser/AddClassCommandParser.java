@@ -31,7 +31,6 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-
         Class c = new Class(className);
 
         return new AddClassCommand(c);
