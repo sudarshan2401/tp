@@ -2,11 +2,15 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.*;
 
-public abstract class RemoveCommand {
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+
+public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified type of object from its respective storage"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes a specified type of object from its respective storage"
             // Removing a student from a class
             + "\n"
             + "To remove a student from a class:\n"
@@ -27,6 +31,10 @@ public abstract class RemoveCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLASS + "cs2103t";
 
-
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    }
 
 }
