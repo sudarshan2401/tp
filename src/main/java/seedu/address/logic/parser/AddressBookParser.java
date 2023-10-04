@@ -30,15 +30,13 @@ public class AddressBookParser {
      */
 
     private static final Pattern BASIC_COMMAND_FORMAT1 = Pattern
-            .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)\\s(?<arguments>.*)");
+            .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)(?:\\s(?<arguments>.*))?");
 
     private static final Pattern BASIC_COMMAND_FORMAT2 = Pattern
             .compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
-    // Identifies the class of object (if any) on whether it is student or class when using commands that require
-    // additional parameter. Eg: add /s , add /c
     /**
      * Identifies the class of object (if any) when using commands that require
      * additional parameters, such as adding a student (/s) or a class (/c).
@@ -83,15 +81,15 @@ public class AddressBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = objectClass + matcher.group("arguments");
+        final String arguments = matcher.group("arguments") == null ? objectClass
+                : objectClass + matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level
         // (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-        System.out.println("Command word: " + commandWord);
-        System.out.println("Arguments: " + arguments);
+
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
