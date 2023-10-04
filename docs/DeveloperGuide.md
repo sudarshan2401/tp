@@ -314,6 +314,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to view all the information about that class.
 3. EduTrack displays all the information about that class. (e.g. name, students, attendance, notes, etc)
 
+---
+
 **Use case: Add a class**
 
 **MSS**
