@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
@@ -28,16 +29,16 @@ public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveStudentCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT, PREFIX_CLASS);
 
         // ensures that student name and class name is provided
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLASS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_CLASS);
-        Name studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);
+        Name studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_STUDENT).get());
 //        TempClass studentClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
         TempClass studentClassPlaceholder = new TempClass();
         return new RemoveStudentCommand(studentName, studentClassPlaceholder);

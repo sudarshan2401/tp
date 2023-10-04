@@ -26,10 +26,10 @@ public class RemoveCommand extends Command {
             // Removing a class
             + "To remove a class: \n"
             + "Parameters:"
-            + PREFIX_CLASS + "CLASS_NAME"
+            + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CLASS + "cs2103t";
+            + PREFIX_CLASS + " cs2103t";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
