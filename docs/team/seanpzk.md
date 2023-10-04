@@ -31,7 +31,7 @@ Given below are my contributions to the project.
         3. Tweaked documentation of command format from original [UserGuide.md](https://github.com/nus-cs2103-AY2324S1/tp/blob/master/docs/UserGuide.md): [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
     * Developer Guide:
       * ##### v1.1
-        1. Added use cases for `Remove a student`, `Modify an existing student record`, `Use auto-save feature`: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
+        1. Added use cases for `Remove a student`, `Modify an existing student record` and `Use auto-save feature`: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
         2. Added `Database` definition under glossary: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
 
 * **Community**: _To be updated_
