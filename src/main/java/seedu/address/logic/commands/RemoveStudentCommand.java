@@ -29,7 +29,7 @@ public class RemoveStudentCommand extends RemoveCommand {
             + COMMAND_WORD + " John Doe "
             + PREFIX_CLASS + " cs2103t";
 
-    public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed Student: %s";
+    public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "%s has been removed from %s ";
 
      private final Name studentName;
     private final TempClass studentClass;
@@ -43,7 +43,7 @@ public class RemoveStudentCommand extends RemoveCommand {
         requireNonNull(model);
 //        List<Class> classList = model.get?
         model.deleteStudentFromClass(studentName, studentClass);
-        return new CommandResult(String.format("placeholder for command result of RemoveStudentCommand"));
+        return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, studentClass.toString()));
     }
 
 }
