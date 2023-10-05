@@ -27,17 +27,17 @@ public class RemoveStudentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
 
-
     @Test
-    public void execute_removeCommand_success() {
+    public void execute_validStudentName_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Name studentName = studentToDelete.getName();
-        RemoveCommand removeCommand = new RemoveStudentCommand(studentName, CLASSNAME_STUB);
+        RemoveStudentCommand removeStudentCommand = new RemoveStudentCommand(studentName, CLASSNAME_STUB);
         String expectedMessage = String.format(RemoveStudentCommand.MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, CLASSNAME_STUB.toString());
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStudentFromClass(studentName, CLASSNAME_STUB);
 
-        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeStudentCommand, model, expectedMessage, expectedModel);
     }
 
+    // MORE TESTS TO BE WRITTEN AFTER IMPLEMENTATION OF "CLASS" CLASS
 }
