@@ -34,9 +34,15 @@ public class AddressBookParser {
             .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)\\s(?<arguments>.*)");
     private static final Pattern BASIC_COMMAND_FORMAT2 = Pattern
             .compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
-    // Identifies the class of object (if any) on whether it is student or class when using commands that require additional parameter
-    // eg: add /s , add /c
+    /**
+     * Identifies the class of object (if any) on whether it is student or
+     * class when using commands that require additional parameter.
+     * eg: add /s , add /c
+     * @param input String for extraction.
+     * @return Prefix representation of the object's class.
+     */
     public static String extractObjectClass(String input) {
         // Split the input string by whitespace
         String[] parts = input.split("\\s");
@@ -51,8 +57,6 @@ public class AddressBookParser {
             return null; // or throw an exception, return a default value, etc.
         }
     }
-
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -75,51 +79,51 @@ public class AddressBookParser {
             }
         }
 
-            final String commandWord = matcher.group("commandWord");
-            final String arguments = objectClass + matcher.group("arguments");
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = objectClass + matcher.group("arguments");
 
-            // Note to developers: Change the log level in config.json to enable lower level
-            // (i.e., FINE, FINER and lower)
-            // log messages such as the one below.
-            // Lower level log messages are used sparingly to minimize noise in the code.
-            logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-            System.out.println("Command word: " + commandWord);
-            System.out.println("Arguments: " + arguments);
-            switch (commandWord) {
+        // Note to developers: Change the log level in config.json to enable lower level
+        // (i.e., FINE, FINER and lower)
+        // log messages such as the one below.
+        // Lower level log messages are used sparingly to minimize noise in the code.
+        logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        System.out.println("Command word: " + commandWord);
+        System.out.println("Arguments: " + arguments);
+        switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case RemoveCommand.COMMAND_WORD:
-                return new RemoveCommandParser().parse(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
-            case RemoveStudentCommand.COMMAND_WORD:
-                return new RemoveStudentCommandParser().parse(arguments);
+        case RemoveStudentCommand.COMMAND_WORD:
+            return new RemoveStudentCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
+}

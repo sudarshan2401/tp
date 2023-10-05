@@ -125,12 +125,4 @@ public class ParserUtil {
         return tagSet;
     }
 
-//    public static Class parseClass(String className) throws ParseException {
-//        requireNonNull(className);
-//        String trimmedName = className.trim();
-////        if (!Class.isValidName(trimmedName)) {
-////            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-////        }
-//        return class;
-//    }
 }
