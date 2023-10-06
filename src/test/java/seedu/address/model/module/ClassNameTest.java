@@ -16,8 +16,6 @@ public class ClassNameTest {
         assertThrows(NullPointerException.class, () -> ClassName.isValidClassName(null));
 
         // invalid name
-        assertFalse(ClassName.isValidClassName("")); // empty string
-        assertFalse(ClassName.isValidClassName(" ")); // spaces only
         assertFalse(ClassName.isValidClassName("^")); // only non-alphanumeric characters
         assertFalse(ClassName.isValidClassName("cs2103*t")); // contains non-alphanumeric characters
         assertFalse(ClassName.isValidClassName("cs 2103t")); // contains spaces
@@ -26,6 +24,18 @@ public class ClassNameTest {
         assertTrue(ClassName.isValidClassName("abc")); // alphabets only
         assertTrue(ClassName.isValidClassName("123")); // numbers only
         assertTrue(ClassName.isValidClassName("cs2103t")); // alphanumeric characters
+    }
+
+    @Test
+    public void isEmptyClassName() {
+        assertThrows(NullPointerException.class, () -> ClassName.isEmptyClassName(null));
+
+        assertTrue(ClassName.isEmptyClassName("")); // empty string
+        assertTrue(ClassName.isEmptyClassName(" ")); // spaces only
+
+        assertFalse(ClassName.isEmptyClassName("abc")); // alphabets only
+        assertFalse(ClassName.isEmptyClassName("123")); // numbers only
+        assertFalse(ClassName.isEmptyClassName("cs2103t")); // alphanumeric characters
     }
 
     @Test

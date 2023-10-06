@@ -131,7 +131,9 @@ public class ParserUtil {
      */
     public static ClassName parseClassName(String className) throws ParseException {
         String trimmedClassName = className.trim();
-
+        if (ClassName.isEmptyClassName(trimmedClassName)) {
+            throw new ParseException(ClassName.MESSAGE_EMPTY_CLASS_NAME);
+        }
         if (!ClassName.isValidClassName(trimmedClassName)) {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
