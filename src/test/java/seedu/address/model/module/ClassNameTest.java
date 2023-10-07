@@ -16,13 +16,12 @@ public class ClassNameTest {
         assertThrows(NullPointerException.class, () -> ClassName.isValidClassName(null));
 
         // invalid name
-        assertFalse(ClassName.isValidClassName("^")); // only non-alphanumeric characters
-        assertFalse(ClassName.isValidClassName("cs2103*t")); // contains non-alphanumeric characters
         assertFalse(ClassName.isValidClassName("cs 2103t")); // contains spaces
 
         // valid name
         assertTrue(ClassName.isValidClassName("abc")); // alphabets only
         assertTrue(ClassName.isValidClassName("123")); // numbers only
+        assertTrue(ClassName.isValidClassName("cs2103_t")); // contains special characters
         assertTrue(ClassName.isValidClassName("cs2103t")); // alphanumeric characters
     }
 

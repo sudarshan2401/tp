@@ -12,7 +12,7 @@ import seedu.address.model.module.ClassName;
 
 public class JsonAdaptedClassTest {
 
-    private static final String INVALID_CLASS_NAME = "c$2103t";
+    private static final String INVALID_CLASS_NAME = "cs 2103t";
 
     @Test
     public void toModelType_validClassDetails_returnsClass() throws Exception {

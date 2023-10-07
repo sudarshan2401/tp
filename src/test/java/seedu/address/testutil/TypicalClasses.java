@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduTrack;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 
@@ -20,14 +20,14 @@ public class TypicalClasses {
     private TypicalClasses() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code EduTrack} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static EduTrack getTypicalEduTrack() {
+        EduTrack et = new EduTrack();
         for (Class c : getTypicalClasses()) {
-            ab.addClass(c);
+            et.addClass(c);
         }
-        return ab;
+        return et;
     }
 
     public static List<Class> getTypicalClasses() {

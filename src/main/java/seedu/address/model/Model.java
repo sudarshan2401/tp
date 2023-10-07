@@ -38,20 +38,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduTrackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduTrackFilePath(Path eduTrackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduTrack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduTrack(ReadOnlyEduTrack eduTrack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduTrack */
+    ReadOnlyEduTrack getEduTrack();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

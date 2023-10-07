@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduTrack;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +25,7 @@ class AddClassCommandTest {
 
     final Class c = new Class(className);
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEduTrack(), new UserPrefs());
 
     @Test
     public void constructor_nullClass_throwsNullPointerException() {
@@ -36,7 +36,7 @@ class AddClassCommandTest {
     public void execute_addClass_success() {
         AddClassCommand addClassCommand = new AddClassCommand(c);
         String expectedMessage = String.format(AddClassCommand.MESSAGE_SUCCESS, CLASSNAME_STUB.toUpperCase());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
 
         assertCommandSuccess(addClassCommand, model, expectedMessage, expectedModel);
     }

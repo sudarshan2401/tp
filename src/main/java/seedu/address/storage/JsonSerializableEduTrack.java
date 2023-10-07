@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.EduTrack;
+import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.module.Class;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable EduTrack that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "edutrack")
+class JsonSerializableEduTrack {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -29,47 +29,47 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableEduTrack} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("classes") List<JsonAdaptedClass> classes) {
+    public JsonSerializableEduTrack(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("classes") List<JsonAdaptedClass> classes) {
         this.persons.addAll(persons);
         this.classes.addAll(classes);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyEduTrack} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableEduTrack}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableEduTrack(ReadOnlyEduTrack source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code EduTrack} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public EduTrack toModelType() throws IllegalValueException {
+        EduTrack eduTrack = new EduTrack();
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
             Class c = jsonAdaptedClass.toModelType();
-            if (addressBook.hasClass(c)) {
+            if (eduTrack.hasClass(c)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLASS);
             }
-            addressBook.addClass(c);
+            eduTrack.addClass(c);
         }
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (eduTrack.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            eduTrack.addPerson(person);
         }
-        return addressBook;
+        return eduTrack;
     }
 
 }

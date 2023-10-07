@@ -17,9 +17,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 
-public class AddressBookParserTest {
+public class EduTrackParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final EduTrackParser parser = new EduTrackParser();
 
     @Test
     public void parseCommand_addClass() throws Exception {
