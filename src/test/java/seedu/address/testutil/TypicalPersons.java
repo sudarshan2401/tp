@@ -60,7 +60,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code EduTrack} with all the typical persons.
      */
     public static EduTrack getTypicalEduTrack() {
         EduTrack ab = new EduTrack();

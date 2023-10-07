@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.EduTrackBuilder;
 
 public class ModelManagerTest {
 
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setEduTrackFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setEduTrackFilePath(Paths.get("edu/track/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setEduTrackFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setEduTrackFilePath(Paths.get("new/edu/track/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,13 +61,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setEduTrackFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setEduTrackFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setEduTrackFilePath_validPath_setsEduTrackFilePath() {
+        Path path = Paths.get("edu/track/file/path");
         modelManager.setEduTrackFilePath(path);
         assertEquals(path, modelManager.getEduTrackFilePath());
     }
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInEduTrack_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInEduTrack_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        EduTrack eduTrack = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        EduTrack eduTrack = new EduTrackBuilder().withPerson(ALICE).withPerson(BENSON).build();
         EduTrack differentEduTrack = new EduTrack();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,7 +113,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different eduTrack -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentEduTrack, userPrefs)));
 
         // different filteredList -> returns false
