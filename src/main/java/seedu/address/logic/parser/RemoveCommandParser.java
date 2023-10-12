@@ -14,7 +14,6 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * DeleteCommand
      * and returns a DeleteCommand object for execution.
-<<<<<<< HEAD
      * 
      * @throws ParseException if the user input does not conform the expected format
      */
