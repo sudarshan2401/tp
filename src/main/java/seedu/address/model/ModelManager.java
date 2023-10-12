@@ -103,7 +103,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudentFromClass(Name studentName, TempClass studentClass) {
+    public void deleteStudentFromClass(Student student, TempClass studentClass) {
         // code logic from class
     }
 

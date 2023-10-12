@@ -38,10 +38,11 @@ public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);
-        Name studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_STUDENT).get());
-//        TempClass studentClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
+        Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
+        // TempClass studentClass =
+        // ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
         TempClass studentClassPlaceholder = new TempClass();
-        return new RemoveStudentCommand(studentName, studentClassPlaceholder);
+        return new RemoveStudentCommand(studentIndex, studentClassPlaceholder);
 
     }
 

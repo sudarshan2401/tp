@@ -31,18 +31,24 @@ public class RemoveStudentCommand extends RemoveCommand {
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "%s has been removed from %s ";
 
-     private final Name studentName;
+     private final Index studentIndex;
     private final TempClass studentClass;
-    public RemoveStudentCommand(Name studentName, TempClass studentClass) {
-        this.studentName = studentName;
+    public RemoveStudentCommand(Index index, TempClass studentClass) {
+        this.studentIndex= index;
         this.studentClass = studentClass;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Student> lastShownList = model.getFilteredStudentList();
+        if (studentIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Student studentToDelete = lastShownList.get(studentIndex.getZeroBased());
+        Name studentName = studentToDelete.getName();
 //        List<Class> classList = model.get?
-        model.deleteStudentFromClass(studentName, studentClass);
+        model.deleteStudentFromClass(studentToDelete, studentClass);
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, studentClass.toString()));
     }
 

@@ -32,10 +32,10 @@ public class RemoveStudentCommandTest {
     public void execute_removeCommand_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Name studentName = studentToDelete.getName();
-        RemoveCommand removeCommand = new RemoveStudentCommand(studentName, CLASSNAME_STUB);
+        RemoveCommand removeCommand = new RemoveStudentCommand(INDEX_FIRST_PERSON, CLASSNAME_STUB);
         String expectedMessage = String.format(RemoveStudentCommand.MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, CLASSNAME_STUB.toString());
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteStudentFromClass(studentName, CLASSNAME_STUB);
+        expectedModel.deleteStudentFromClass(studentToDelete, CLASSNAME_STUB);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }

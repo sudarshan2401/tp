@@ -146,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteStudentFromClass(Name target, TempClass studentClass) {
+        public void deleteStudentFromClass(Student student, TempClass studentClass) {
             // to be filled after implementation of class' delete student function
         }
 

@@ -2,13 +2,9 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.
@@ -22,28 +18,17 @@ public class Student {
 
     // Data fields
 
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
+    public Student(Name name) {
+        requireAllNonNull(name);
         this.name = name;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws
-     * {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -75,21 +60,19 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return name.equals(otherStudent.name)
-                && tags.equals(otherStudent.tags);
+        return name.equals(otherStudent.name);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("tags", tags)
                 .toString();
     }
 
