@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 
+
 /**
  * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated,
@@ -25,6 +26,7 @@ public class Student {
     public Student(Name name) {
         requireAllNonNull(name);
         this.name = name;
+
     }
 
     public Name getName() {
@@ -32,6 +34,7 @@ public class Student {
     }
 
     /**
+
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
