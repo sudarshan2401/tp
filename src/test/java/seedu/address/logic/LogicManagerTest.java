@@ -55,7 +55,7 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseExceptionxw(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
@@ -106,6 +106,7 @@ public class LogicManagerTest {
      * Executes the command, confirms that a ParseException is thrown and that the
      * result message is correct.
      * @see #assertCommandFailure(String, Class, String, Model)
+     */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }

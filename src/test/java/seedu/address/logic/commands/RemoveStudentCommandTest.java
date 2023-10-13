@@ -31,11 +31,7 @@ public class RemoveStudentCommandTest {
     public void execute_validStudentName_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Name studentName = studentToDelete.getName();
-<<<<<<< HEAD
-        RemoveCommand removeCommand = new RemoveStudentCommand(INDEX_FIRST_PERSON, CLASSNAME_STUB);
-=======
-        RemoveStudentCommand removeStudentCommand = new RemoveStudentCommand(studentName, CLASSNAME_STUB);
->>>>>>> aaf26d114e4d59c24f52891b7635686d3eba592c
+        RemoveCommand removeStudentCommand = new RemoveStudentCommand(INDEX_FIRST_PERSON, CLASSNAME_STUB);
         String expectedMessage = String.format(RemoveStudentCommand.MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, CLASSNAME_STUB.toString());
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStudentFromClass(studentToDelete, CLASSNAME_STUB);

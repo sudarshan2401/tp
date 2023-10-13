@@ -14,16 +14,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
-public class PersonTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Student person = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
-    }
+public class StudentTest {
 
     @Test
     public void isSameStudent() {
@@ -73,27 +66,11 @@ public class PersonTest {
         // different name -> returns false
         Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName() + ", tags=" + ALICE.getTags()
+        String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + "}";
         assertEquals(expected, ALICE.toString());
     }
