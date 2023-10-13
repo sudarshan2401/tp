@@ -22,10 +22,10 @@ import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
-import seedu.address.model.module.Class;
 
 public class AddCommandTest {
 
