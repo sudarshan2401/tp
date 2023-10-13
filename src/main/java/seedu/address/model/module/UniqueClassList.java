@@ -11,8 +11,6 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of classes that enforces uniqueness between its elements and does not allow nulls.
@@ -20,7 +18,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  * classes uses Class#isSameClass(Class) for equality to ensure that the class being added or updated is
  * unique in terms of identity in the UniqueClassList. However, the removal of a class uses Class#equals(Object)
  * to ensure that the class with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Class#isSameClass(Class)

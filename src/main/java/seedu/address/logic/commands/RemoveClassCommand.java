@@ -10,7 +10,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a Class identified using it's unique name from the EduTrack.
  */
 public class RemoveClassCommand extends Command {
 
@@ -26,6 +26,11 @@ public class RemoveClassCommand extends Command {
 
     private final Class c;
 
+    /**
+     * Constructor for the Remove Class Command.
+     *
+     * @param c Class to remove from the Class unique list
+     */
     public RemoveClassCommand(Class c) {
         requireNonNull(c);
         this.c = c;

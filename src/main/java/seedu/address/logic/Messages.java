@@ -49,6 +49,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code class} for display to the user.
+     */
     public static String formatClass(Class c) {
         final StringBuilder builder = new StringBuilder();
         builder.append(c.getClassName())
