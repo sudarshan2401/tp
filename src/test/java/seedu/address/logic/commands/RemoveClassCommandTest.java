@@ -55,7 +55,7 @@ class RemoveClassCommandTest {
     public void equals() {
         RemoveClassCommand firstRemoveClassCommand = new RemoveClassCommand(validClass);
         RemoveClassCommand secondRemoveClassCommand = new RemoveClassCommand(
-                new Class (new ClassName("secondClassname")));
+                new Class(new ClassName("secondClassname")));
         // same object -> returns true
         assertTrue(firstRemoveClassCommand.equals(firstRemoveClassCommand));
 
