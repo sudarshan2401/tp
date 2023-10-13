@@ -1,0 +1,11 @@
+{
+  "persons": [],
+  "classes": [ {
+    "className": "CS2103T"
+  }, {
+    "className": "CS2100"
+  }, {
+    "className": "CS2103T"
+  }
+  ]
+}

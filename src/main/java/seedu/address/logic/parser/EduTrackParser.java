@@ -24,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class EduTrackParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -35,7 +35,7 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT2 = Pattern
             .compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static final Logger logger = LogsCenter.getLogger(EduTrackParser.class);
 
     /**
      * Identifies the class of object (if any) when using commands that require
@@ -67,7 +67,6 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-
         String objectClass = "";
         final Matcher matcher;
         Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput.trim());
@@ -126,5 +125,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

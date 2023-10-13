@@ -8,12 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidClassName(String)}
  */
 public class ClassName {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Class name is compulsory.\n"
-                    + "Class name should only contains alphanumeric characters, and it should not contain spaces.";
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
-
+    public static final String MESSAGE_CONSTRAINTS = "Class name should not contain spaces.";
+    public static final String MESSAGE_EMPTY_CLASS_NAME = "Class name not specified.";
+    public static final String VALIDATION_REGEX = "^[^\\s]*$";
     public final String className;
 
     /**
@@ -35,7 +33,17 @@ public class ClassName {
      * @return True if the string is a valid class name, false otherwise.
      */
     public static boolean isValidClassName(String test) {
-        return !test.trim().isEmpty() && test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is not empty string.
+     *
+     * @param test The string to test.
+     * @return True if the string is not empty, false otherwise.
+     */
+    public static boolean isEmptyClassName(String test) {
+        return test.trim().isEmpty();
     }
 
     @Override
@@ -68,4 +76,5 @@ public class ClassName {
     public int hashCode() {
         return className.hashCode();
     }
+
 }

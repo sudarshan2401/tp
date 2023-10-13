@@ -68,4 +68,12 @@ public class Class {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(className);
     }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("class name", className)
+                .toString();
+    }
+
 }

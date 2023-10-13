@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
@@ -38,20 +39,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduTrackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduTrackFilePath(Path eduTrackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduTrack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduTrack(ReadOnlyEduTrack eduTrack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduTrack */
+    ReadOnlyEduTrack getEduTrack();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -90,6 +91,6 @@ public interface Model {
 
     boolean hasClass(Class c);
 
-    void removeClass(Class c);
+    void removeClass(Class c) throws ClassNotFoundException;
 
 }

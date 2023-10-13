@@ -1,13 +1,18 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of classes that enforces uniqueness between its elements and does not allow nulls.
@@ -59,12 +64,25 @@ public class UniqueClassList implements Iterable<Class> {
      * @param toRemove The class to remove.
      * @throws ClassNotFoundException If the class to be removed is not found in the existing list.
      */
-    public void remove(Class toRemove) {
+    public void remove(Class toRemove) throws ClassNotFoundException {
         requireNonNull(toRemove);
         if (!this.contains(toRemove)) {
             throw new ClassNotFoundException();
         }
         this.internalList.remove(toRemove);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
+     */
+    public void setClasses(List<Class> classes) {
+        requireAllNonNull(classes);
+        if (!classesAreUnique(classes)) {
+            throw new DuplicateClassException();
+        }
+
+        internalList.setAll(classes);
     }
 
     /**
@@ -104,5 +122,19 @@ public class UniqueClassList implements Iterable<Class> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    /**
+     * Returns true if {@code classes} contains only unique classes.
+     */
+    private boolean classesAreUnique(List<Class> classes) {
+        for (int i = 0; i < classes.size() - 1; i++) {
+            for (int j = i + 1; j < classes.size(); j++) {
+                if (classes.get(i).isSameClass(classes.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

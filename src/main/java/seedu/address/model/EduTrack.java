@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.UniqueClassList;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,7 +16,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class EduTrack implements ReadOnlyEduTrack {
 
     private final UniquePersonList persons;
 
@@ -36,12 +37,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         classes = new UniqueClassList();
     }
 
-    public AddressBook() {}
+    public EduTrack() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an EduTrack using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public EduTrack(ReadOnlyEduTrack toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -57,12 +58,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Replaces the contents of the class list with {@code classes}.
+     * {@code classess} must not contain duplicate class.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void setClasses(List<Class> classes) {
+        this.classes.setClasses(classes);
+    }
+
+    /**
+     * Resets the existing data of this {@code EduTrack} with {@code newData}.
+     */
+    public void resetData(ReadOnlyEduTrack newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setClasses(newData.getClassList());
     }
 
     //// person-level operations
@@ -95,7 +105,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code EduTrack}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -121,7 +131,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes a class from EduTrack.
      * The person must exist in EduTrack
      */
-    public void removeClass(Class c) {
+    public void removeClass(Class c) throws ClassNotFoundException {
         this.classes.remove(c);
     }
 
@@ -151,12 +161,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof EduTrack)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        EduTrack otherEduTrack = (EduTrack) other;
+        return persons.equals(otherEduTrack.persons);
     }
 
     @Override

@@ -7,7 +7,7 @@ import seedu.address.model.person.Person;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyEduTrack {
 
     /**
      * Returns an unmodifiable view of the persons list.
@@ -16,5 +16,4 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     ObservableList<Class> getClassList();
-
 }
