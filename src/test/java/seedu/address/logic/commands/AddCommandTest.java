@@ -22,8 +22,8 @@ import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.TempClass;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.model.module.Class;
 
@@ -146,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteStudentFromClass(Student student, TempClass studentClass) {
+        public void deleteStudentFromClass(Student student, Class studentClass) {
             // to be filled after implementation of class' delete student function
         }
 
@@ -167,6 +167,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasClass(Class c) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Class getClass(ClassName className) {
             throw new AssertionError("This method should not be called.");
         }
 

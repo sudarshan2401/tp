@@ -3,17 +3,17 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.function.Predicate;
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.TempClass;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final EduTrack eduTrack;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
 
     /**
      * Initializes a ModelManager with the given eduTrack and userPrefs.
@@ -35,7 +35,15 @@ public class ModelManager implements Model {
 
         this.eduTrack = new EduTrack(eduTrack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.eduTrack.getStudentList());
+        filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
+
+        // IMPORTANT!! to be removed after `add student` is implemented
+        // current classStub share the same file as EduTrack.json under data folder
+        // this automatically always a create a class called classStub
+        ClassName classNameStub = new ClassName("classStub");
+        Class classStub = new Class(classNameStub);
+        classStub.setStudents(eduTrack.getStudentList());
+        this.addClass(classStub);
     }
 
     public ModelManager() {
@@ -102,8 +110,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudentFromClass(Student student, TempClass studentClass) {
-        // code logic from class
+    public void deleteStudentFromClass(Student student, Class studentClass) {
+        studentClass.removeStudentFromClass(student);
     }
 
     @Override
@@ -123,6 +131,11 @@ public class ModelManager implements Model {
         return eduTrack.hasClass(c);
     }
 
+    public Class getClass(ClassName className) {
+        requireNonNull(className);
+        return eduTrack.getClass(className);
+    }
+
     @Override
     public void setStudent(Student target, Student editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -139,13 +152,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
-        return filteredPersons;
+        return filteredStudents;
     }
 
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -162,7 +175,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return eduTrack.equals(otherModelManager.eduTrack)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredStudents.equals(otherModelManager.filteredStudents);
     }
 
 }

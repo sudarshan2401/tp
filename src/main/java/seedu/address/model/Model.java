@@ -5,9 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.TempClass;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Student;
+
 
 /**
  * The API of the Model component.
@@ -70,7 +71,7 @@ public interface Model {
      * Deletes the given student from class.
      * The person must exist in the class.
      */
-    void deleteStudentFromClass(Student student, TempClass studentClass);
+    void deleteStudentFromClass(Student student, Class studentClass);
 
     /**
      * Adds the given person.
@@ -99,4 +100,6 @@ public interface Model {
     void addClass(Class c);
 
     boolean hasClass(Class c);
+
+    Class getClass(ClassName className);
 }

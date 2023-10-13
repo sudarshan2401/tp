@@ -6,10 +6,11 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.module.UniqueClassList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
-import seedu.address.model.module.Class;
-import seedu.address.model.module.UniqueClassList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +18,7 @@ import seedu.address.model.module.UniqueClassList;
  */
 public class EduTrack implements ReadOnlyEduTrack {
 
-    private final UniqueStudentList students;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -29,6 +30,8 @@ public class EduTrack implements ReadOnlyEduTrack {
      * ways to avoid duplication
      * among constructors.
      */
+    private final UniqueStudentList students;
+
     {
         students = new UniqueStudentList();
     }
@@ -125,6 +128,17 @@ public class EduTrack implements ReadOnlyEduTrack {
         return classes.contains(c);
     }
 
+
+    public Class getClass(ClassName className) {
+        for (Class c : classes) {
+            System.out.println(c.toString());
+            if (c.getClassName().equals(className)) {
+                return c;
+            }
+        }
+        // if no matching className, class do not exist in unique class list
+        return null;
+    }
     //// util methods
 
     @Override

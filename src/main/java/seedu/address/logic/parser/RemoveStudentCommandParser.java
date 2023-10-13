@@ -10,8 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ClassName;
 
-import seedu.address.model.student.TempClass;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -34,10 +34,8 @@ public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);
         Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
-        // TempClass studentClass =
-        // ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-        TempClass studentClassPlaceholder = new TempClass();
-        return new RemoveStudentCommand(studentIndex, studentClassPlaceholder);
+        ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
+        return new RemoveStudentCommand(studentIndex, className);
 
 
     }

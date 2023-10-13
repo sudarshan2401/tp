@@ -88,7 +88,7 @@ public class EduTrackTest {
 
     @Test
     public void toStringMethod() {
-        String expected = EduTrack.class.getCanonicalName() + "{persons=" + eduTrack.getStudentList() + "}";
+        String expected = EduTrack.class.getCanonicalName() + "{students=" + eduTrack.getStudentList() + "}";
         assertEquals(expected, eduTrack.toString());
     }
 

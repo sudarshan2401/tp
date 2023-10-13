@@ -34,7 +34,6 @@ public class Student {
     }
 
     /**
-
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
