@@ -11,6 +11,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 
+/**
+ * Parses input from the user and creates a RemoveClassCommand.
+ */
 public class RemoveClassCommandParser implements Parser<RemoveClassCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveClassCommand
