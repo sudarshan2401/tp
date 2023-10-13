@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.testutil.StudentBuilder;
@@ -92,23 +94,59 @@ public class EduTrackTest {
         assertEquals(expected, eduTrack.toString());
     }
 
+    @Test
+    public void addStudent_listSizeIncreasesByOne_returnsTrue() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        int originalSize = eduTrack.getStudentList().size();
+        Name studentNameStub = new Name("studentNameStub");
+        Student studentStub = new Student(studentNameStub);
+        eduTrack.addStudent(studentStub);
+        int newSize = eduTrack.getStudentList().size();
+        int diff = newSize - originalSize;
+        assertEquals(diff, 1);
+    }
+
+    // This test needs to be refined but just putting here for now to increase coverage to push PR
+    // for others to start working.
+    @Test
+    public void removeStudent_listSizeDecreasesByOne_returnsTrue() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        int originalSize = eduTrack.getStudentList().size();
+        Name studentNameStub = new Name("studentNameStub");
+        Student studentStub = new Student(studentNameStub);
+        eduTrack.addStudent(studentStub);
+        eduTrack.removeStudent(studentStub);
+        int newSize = eduTrack.getStudentList().size();
+        int diff = newSize - originalSize;
+        assertEquals(diff, 0);
+    }
+
+    @Test
+    public void getClass_eduTrackWithNoClass_returnsFalse() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        ClassName classNameStub = new ClassName("classNameStub");
+        assertEquals(eduTrack.getClass(classNameStub), null);
+    }
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface
      * constraints.
      */
 
     private static class EduTrackStub implements ReadOnlyEduTrack {
-        private final ObservableList<Student> persons = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
         private final ObservableList<Class> classes = FXCollections.observableArrayList();
 
         EduTrackStub(Collection<Student> students) {
-            this.persons.setAll(students);
+            this.students.setAll(students);
         }
 
         @Override
         public ObservableList<Student> getStudentList() {
-            return persons;
+            return students;
         }
 
         @Override
