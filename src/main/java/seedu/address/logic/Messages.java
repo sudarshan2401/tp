@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.module.Class;
 import seedu.address.model.person.Person;
 
 /**
@@ -47,5 +48,13 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
+
+    public static String formatClass(Class c) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(c.getClassName())
+                .append("!");
+        return builder.toString();
+    }
+
 
 }

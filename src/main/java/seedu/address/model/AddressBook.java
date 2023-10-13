@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.UniqueClassList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -26,6 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+    }
+
+    private final UniqueClassList classes;
+
+    {
+        classes = new UniqueClassList();
     }
 
     public AddressBook() {}
@@ -93,6 +101,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+    /**
+     * Adds a class to EduTrack.
+     * The person must not already exist in EduTrack.
+     */
+    public void addClass(Class c) {
+        classes.add(c);
+    }
+
+    /**
+     * Returns true if a class with the same identity as {@code c} exists in EduTrack.
+     */
+    public boolean hasClass(Class c) {
+        requireNonNull(c);
+        return classes.contains(c);
+    }
+
+    /**
+     * Removes a class from EduTrack.
+     * The person must exist in EduTrack
+     */
+    public void removeClass(Class c) {
+        this.classes.remove(c);
+    }
 
     //// util methods
 
@@ -106,6 +137,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Class> getClassList() {
+        return classes.asUnmodifiableObservableList();
     }
 
     @Override
