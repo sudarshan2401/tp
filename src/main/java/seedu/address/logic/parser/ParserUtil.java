@@ -13,6 +13,8 @@ import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.module.ClassName;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -97,13 +99,20 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-//    public static Class parseClass(String className) throws ParseException {
-//        requireNonNull(className);
-//        String trimmedName = className.trim();
-////        if (!Class.isValidName(trimmedName)) {
-////            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-////        }
-//        return class;
-//    }
-
+    /**
+     * Parses a {@code String className} into a {@code ClassName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static ClassName parseClassName(String className) throws ParseException {
+        String trimmedClassName = className.trim();
+        if (ClassName.isEmptyClassName(trimmedClassName)) {
+            throw new ParseException(ClassName.MESSAGE_EMPTY_CLASS_NAME);
+        }
+        if (!ClassName.isValidClassName(trimmedClassName)) {
+            throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
+        }
+        return new ClassName(trimmedClassName);
+    }
 }

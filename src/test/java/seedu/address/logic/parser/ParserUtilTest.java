@@ -18,6 +18,7 @@ import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.module.ClassName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,6 +26,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_CLASSNAME = "cs 2103t";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -32,6 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_CLASSNAME = "cs2103t";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -147,4 +150,26 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+    @Test
+    public void parseClassName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClassName((String) null));
+    }
+
+    @Test
+    public void parseClassName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClassName(INVALID_CLASSNAME));
+    }
+
+    @Test
+    public void parseClassName_validValueWithoutWhitespace_returnsName() throws Exception {
+        ClassName expectedClassName = new ClassName(VALID_CLASSNAME);
+        assertEquals(expectedClassName, ParserUtil.parseClassName(VALID_CLASSNAME));
+    }
+
+    @Test
+    public void parseClassName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String classNameWithWhitespace = WHITESPACE + VALID_CLASSNAME + WHITESPACE;
+        ClassName expectedClassName = new ClassName(VALID_CLASSNAME);
+        assertEquals(expectedClassName, ParserUtil.parseClassName(classNameWithWhitespace));
+    }
 }

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.getTypicalEduTrack;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,26 +21,27 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.module.Class;
 
-public class AddressBookTest {
+public class EduTrackTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final EduTrack eduTrack = new EduTrack();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), eduTrack.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> eduTrack.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        assertEquals(newData, eduTrack);
     }
 
     @Test
@@ -48,61 +49,71 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
+        EduTrackStub newData = new EduTrackStub(newPersons);
+
+        assertThrows(DuplicateStudentException.class, () -> eduTrack.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> eduTrack.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(eduTrack.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        eduTrack.addStudent(ALICE);
+        assertTrue(eduTrack.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+
+        eduTrack.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(eduTrack.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> eduTrack.getStudentList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = EduTrack.class.getCanonicalName() + "{persons=" + eduTrack.getStudentList() + "}";
+        assertEquals(expected, eduTrack.toString());
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface
      * constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+
+    private static class EduTrackStub implements ReadOnlyEduTrack {
         private final ObservableList<Student> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> persons) {
-            this.persons.setAll(persons);
+        private final ObservableList<Class> classes = FXCollections.observableArrayList();
+
+        EduTrackStub(Collection<Student> students) {
+            this.persons.setAll(students);
         }
 
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Class> getClassList() {
+            return classes;
         }
     }
 

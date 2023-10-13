@@ -1,16 +1,13 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
+import seedu.address.model.EduTrack;
+import seedu.address.model.ReadOnlyEduTrack;
+
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code EduTrack} with sample data.
  */
 public class SampleDataUtil {
         public static Student[] getSamplePersons() {
@@ -24,13 +21,12 @@ public class SampleDataUtil {
                 };
         }
 
-        public static ReadOnlyAddressBook getSampleAddressBook() {
-                AddressBook sampleAb = new AddressBook();
+        public static ReadOnlyEduTrack getSampleEduTrack() {
+                EduTrack sampleAb = new EduTrack();
                 for (Student samplePerson : getSamplePersons()) {
-                        sampleAb.addPerson(samplePerson);
+                        sampleAb.addStudent(samplePerson);
                 }
                 return sampleAb;
         }
-
 
 }

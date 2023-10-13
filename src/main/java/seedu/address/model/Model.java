@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TempClass;
+import seedu.address.model.module.Class;
 
 /**
  * The API of the Model component.
@@ -38,20 +39,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduTrackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduTrackFilePath(Path eduTrackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduTrack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduTrack(ReadOnlyEduTrack eduTrack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduTrack */
+    ReadOnlyEduTrack getEduTrack();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in
@@ -94,4 +95,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void addClass(Class c);
+
+    boolean hasClass(Class c);
 }

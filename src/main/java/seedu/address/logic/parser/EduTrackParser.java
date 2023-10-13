@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -24,24 +25,26 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class EduTrackParser {
 
     /**
      * Used for initial separation of command word and args.
      */
 
     private static final Pattern BASIC_COMMAND_FORMAT1 = Pattern
-            .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)\\s(?<arguments>.*)");
+            .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)(?:\\s(?<arguments>.*))?");
+
     private static final Pattern BASIC_COMMAND_FORMAT2 = Pattern
             .compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+
+    private static final Logger logger = LogsCenter.getLogger(EduTrackParser.class);
 
     /**
-     * Identifies the class of object (if any) on whether it is student or
-     * class when using commands that require additional parameter.
-     * eg: add /s , add /c
-     * @param input String for extraction.
-     * @return Prefix representation of the object's class.
+     * Identifies the class of object (if any) when using commands that require
+     * additional parameters, such as adding a student (/s) or a class (/c).
+     *
+     * @param input The input string containing the user input.
+     * @return A string representing the first argument of the command, including leading and trailing whitespace.
      */
     public static String extractObjectClass(String input) {
         // Split the input string by whitespace
@@ -80,7 +83,8 @@ public class AddressBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = objectClass + matcher.group("arguments");
+        final String arguments = matcher.group("arguments") == null ? objectClass
+                : objectClass + matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level
         // (i.e., FINE, FINER and lower)
@@ -90,9 +94,11 @@ public class AddressBookParser {
         System.out.println("Command word: " + commandWord);
         System.out.println("Arguments: " + arguments);
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddClassCommand.COMMAND_WORD:
+            return new AddClassCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

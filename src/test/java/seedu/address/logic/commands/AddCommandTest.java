@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalStudents.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TempClass;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.module.Class;
 
 public class AddCommandTest {
 
@@ -111,12 +111,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getEduTrackFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setEduTrackFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,12 +126,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setEduTrack(ReadOnlyEduTrack newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyEduTrack getEduTrack() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,6 +162,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClass(Class c) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClass(Class c) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -203,8 +213,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyEduTrack getEduTrack() {
+            return new EduTrack();
         }
     }
 
