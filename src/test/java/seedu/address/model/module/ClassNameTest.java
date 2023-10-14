@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
 
 public class ClassNameTest {
 
@@ -54,6 +53,6 @@ public class ClassNameTest {
         assertFalse(className.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(className.equals(new Name("cs2100")));
+        assertFalse(className.equals(new ClassName("cs2100")));
     }
 }

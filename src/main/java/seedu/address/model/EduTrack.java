@@ -7,9 +7,10 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
 import seedu.address.model.module.UniqueClassList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,18 +18,24 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class EduTrack implements ReadOnlyEduTrack {
 
-    private final UniquePersonList persons;
+
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
+    private final UniqueStudentList students;
+
     {
-        persons = new UniquePersonList();
+        students = new UniqueStudentList();
     }
+
 
     private final UniqueClassList classes;
 
@@ -39,7 +46,7 @@ public class EduTrack implements ReadOnlyEduTrack {
     public EduTrack() {}
 
     /**
-     * Creates an EduTrack using the Persons in the {@code toBeCopied}
+     * Creates an EduTrack using the Students in the {@code toBeCopied}
      */
     public EduTrack(ReadOnlyEduTrack toBeCopied) {
         this();
@@ -49,11 +56,11 @@ public class EduTrack implements ReadOnlyEduTrack {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -69,51 +76,54 @@ public class EduTrack implements ReadOnlyEduTrack {
      */
     public void resetData(ReadOnlyEduTrack newData) {
         requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
+      
+        setStudents(newData.getStudentList());
         setClasses(newData.getClassList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in
+     * the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with
+     * {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another
+     * existing student in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedPerson);
+        students.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code EduTrack}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
     }
 
     /**
      * Adds a class to EduTrack.
-     * The person must not already exist in EduTrack.
+     * The student must not already exist in EduTrack.
      */
     public void addClass(Class c) {
         classes.add(c);
@@ -127,18 +137,29 @@ public class EduTrack implements ReadOnlyEduTrack {
         return classes.contains(c);
     }
 
+
+    public Class getClass(ClassName className) {
+        for (Class c : classes) {
+            System.out.println(c.toString());
+            if (c.getClassName().equals(className)) {
+                return c;
+            }
+        }
+        // if no matching className, class do not exist in unique class list
+        return null;
+    }
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("students", students)
                 .toString();
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
@@ -158,11 +179,11 @@ public class EduTrack implements ReadOnlyEduTrack {
         }
 
         EduTrack otherEduTrack = (EduTrack) other;
-        return persons.equals(otherEduTrack.persons);
+        return students.equals(otherEduTrack.students);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }

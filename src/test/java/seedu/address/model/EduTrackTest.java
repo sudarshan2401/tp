@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduTrack;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.getTypicalEduTrack;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,9 +19,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Class;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.testutil.StudentBuilder;
 
 public class EduTrackTest {
 
@@ -29,7 +31,7 @@ public class EduTrackTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), eduTrack.getPersonList());
+        assertEquals(Collections.emptyList(), eduTrack.getStudentList());
     }
 
     @Test
@@ -47,64 +49,104 @@ public class EduTrackTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+
+        List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
         EduTrackStub newData = new EduTrackStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> eduTrack.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> eduTrack.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> eduTrack.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> eduTrack.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(eduTrack.hasPerson(ALICE));
+        assertFalse(eduTrack.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        eduTrack.addPerson(ALICE);
-        assertTrue(eduTrack.hasPerson(ALICE));
+        eduTrack.addStudent(ALICE);
+        assertTrue(eduTrack.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        eduTrack.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+
+        eduTrack.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(eduTrack.hasPerson(editedAlice));
+        assertTrue(eduTrack.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> eduTrack.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> eduTrack.getStudentList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = EduTrack.class.getCanonicalName() + "{persons=" + eduTrack.getPersonList() + "}";
+        String expected = EduTrack.class.getCanonicalName() + "{students=" + eduTrack.getStudentList() + "}";
         assertEquals(expected, eduTrack.toString());
     }
 
+    @Test
+    public void addStudent_listSizeIncreasesByOne_returnsTrue() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        int originalSize = eduTrack.getStudentList().size();
+        Name studentNameStub = new Name("studentNameStub");
+        Student studentStub = new Student(studentNameStub);
+        eduTrack.addStudent(studentStub);
+        int newSize = eduTrack.getStudentList().size();
+        int diff = newSize - originalSize;
+        assertEquals(diff, 1);
+    }
+
+    // This test needs to be refined but just putting here for now to increase coverage to push PR
+    // for others to start working.
+    @Test
+    public void removeStudent_listSizeDecreasesByOne_returnsTrue() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        int originalSize = eduTrack.getStudentList().size();
+        Name studentNameStub = new Name("studentNameStub");
+        Student studentStub = new Student(studentNameStub);
+        eduTrack.addStudent(studentStub);
+        eduTrack.removeStudent(studentStub);
+        int newSize = eduTrack.getStudentList().size();
+        int diff = newSize - originalSize;
+        assertEquals(diff, 0);
+    }
+
+    @Test
+    public void getClass_eduTrackWithNoClass_returnsFalse() {
+        EduTrack newData = getTypicalEduTrack();
+        eduTrack.resetData(newData);
+        ClassName classNameStub = new ClassName("classNameStub");
+        assertEquals(eduTrack.getClass(classNameStub), null);
+    }
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose persons list can violate interface
+     * constraints.
      */
+
     private static class EduTrackStub implements ReadOnlyEduTrack {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
         private final ObservableList<Class> classes = FXCollections.observableArrayList();
 
-        EduTrackStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        EduTrackStub(Collection<Student> students) {
+            this.students.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getStudentList() {
+            return students;
         }
 
         @Override

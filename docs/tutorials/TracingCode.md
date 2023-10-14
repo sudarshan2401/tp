@@ -241,7 +241,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(
-            source.getPersonList()
+            source.getStudentList()
                   .stream()
                   .map(JsonAdaptedPerson::new)
                   .collect(Collectors.toList()));
