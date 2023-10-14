@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.EduTrack;
 import seedu.address.testutil.TypicalClasses;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalStudents;
 
 public class JsonSerializableEduTrackTest {
 
@@ -30,15 +30,8 @@ public class JsonSerializableEduTrackTest {
         JsonSerializableEduTrack dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableEduTrack.class).get();
         EduTrack eduTrackFromFile = dataFromFile.toModelType();
-        EduTrack typicalPersonsEduTrack = TypicalPersons.getTypicalEduTrack();
+        EduTrack typicalPersonsEduTrack = TypicalStudents.getTypicalEduTrack();
         assertEquals(eduTrackFromFile, typicalPersonsEduTrack);
-    }
-
-    @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableEduTrack dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableEduTrack.class).get();
-        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test

@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduTrack;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.HOON;
+import static seedu.address.testutil.TypicalStudents.IDA;
+import static seedu.address.testutil.TypicalStudents.getTypicalEduTrack;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +72,14 @@ public class JsonEduTrackStorageTest {
         assertEquals(original, new EduTrack(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonEduTrackStorage.saveEduTrack(original, filePath);
         readBack = jsonEduTrackStorage.readEduTrack(filePath).get();
         assertEquals(original, new EduTrack(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonEduTrackStorage.saveEduTrack(original); // file path not specified
         readBack = jsonEduTrackStorage.readEduTrack().get(); // file path not specified
         assertEquals(original, new EduTrack(readBack));
