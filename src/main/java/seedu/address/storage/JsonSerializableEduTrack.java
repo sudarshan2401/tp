@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.EduTrack;
 import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.module.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * An Immutable EduTrack that is serializable to JSON format.
@@ -24,17 +24,17 @@ class JsonSerializableEduTrack {
 
     public static final String MESSAGE_DUPLICATE_CLASS = "Class list contains duplicate classes.";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     private final List<JsonAdaptedClass> classes = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableEduTrack} with the given persons.
+     * Constructs a {@code JsonSerializableEduTrack} with the given students.
      */
     @JsonCreator
-    public JsonSerializableEduTrack(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableEduTrack(@JsonProperty("students") List<JsonAdaptedStudent> students,
                                     @JsonProperty("classes") List<JsonAdaptedClass> classes) {
-        this.persons.addAll(persons);
+        this.students.addAll(students);
         this.classes.addAll(classes);
     }
 
@@ -44,7 +44,7 @@ class JsonSerializableEduTrack {
      * @param source future changes to this will not affect the created {@code JsonSerializableEduTrack}.
      */
     public JsonSerializableEduTrack(ReadOnlyEduTrack source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         classes.addAll(source.getClassList().stream().map(JsonAdaptedClass::new).collect(Collectors.toList()));
     }
 
@@ -62,12 +62,12 @@ class JsonSerializableEduTrack {
             }
             eduTrack.addClass(c);
         }
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (eduTrack.hasPerson(person)) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (eduTrack.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            eduTrack.addPerson(person);
+            eduTrack.addStudent(student);
         }
         return eduTrack;
     }

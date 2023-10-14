@@ -6,14 +6,16 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Student;
+
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -54,39 +56,50 @@ public interface Model {
     ReadOnlyEduTrack getEduTrack();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasStudent(Student person);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteStudent(Student target);
+
+    /**
+     * Deletes the given student from class.
+     * The person must exist in the class.
+     */
+    void deleteStudentFromClass(Student student, Class studentClass);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addStudent(Student person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setStudent(Student target, Student editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
     void addClass(Class c);
 
     boolean hasClass(Class c);
+
+    Class getClass(ClassName className);
 }

@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.EduTrack;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class to help with building EduTrack objects.
@@ -23,8 +23,8 @@ public class EduTrackBuilder {
     /**
      * Adds a new {@code Person} to the {@code EduTrack} that we are building.
      */
-    public EduTrackBuilder withPerson(Person person) {
-        eduTrack.addPerson(person);
+    public EduTrackBuilder withPerson(Student student) {
+        eduTrack.addStudent(student);
         return this;
     }
 
