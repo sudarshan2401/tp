@@ -11,8 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.UniqueClassList;
 import seedu.address.model.student.Student;
 
 /**
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final EduTrack eduTrack;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Class> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given eduTrack and userPrefs.
@@ -36,6 +39,7 @@ public class ModelManager implements Model {
         this.eduTrack = new EduTrack(eduTrack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
+        filteredClasses = new FilteredList<>(this.eduTrack.getClassList());
 
         // IMPORTANT!! to be removed after `add student` is implemented
         // current classStub share the same file as EduTrack.json under data folder
@@ -134,6 +138,15 @@ public class ModelManager implements Model {
     public Class getClass(ClassName className) {
         requireNonNull(className);
         return eduTrack.getClass(className);
+    }
+
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return eduTrack.getClassByIndex(classIndex);
+    }
+
+    public int getClassListSize() {
+        return eduTrack.getClassListSize();
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
@@ -102,4 +103,8 @@ public interface Model {
     boolean hasClass(Class c);
 
     Class getClass(ClassName className);
+
+    Class getClassByIndex(Index classIndex);
+
+    int getClassListSize();
 }

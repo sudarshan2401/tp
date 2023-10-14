@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
@@ -138,6 +139,15 @@ public class EduTrack implements ReadOnlyEduTrack {
         }
         // if no matching className, class do not exist in unique class list
         return null;
+    }
+
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return classes.get(classIndex);
+    }
+
+    public int getClassListSize() {
+        return classes.size();
     }
     //// util methods
 

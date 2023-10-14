@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
 /**
@@ -52,6 +53,19 @@ public class UniqueClassList implements Iterable<Class> {
     }
 
     /**
+     * Returns the class at the specified index in the list.
+     * The index must be within the bounds of the list.
+     * @param index The index of the class to retrieve.
+     */
+    public Class get(Index index) {
+        requireNonNull(index);
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return internalList.get(index.getZeroBased());
+    }
+
+    /**
      * Returns an unmodifiable view of the list of classes.
      *
      * @return An unmodifiable view of the list of classes.
@@ -90,4 +104,7 @@ public class UniqueClassList implements Iterable<Class> {
         return internalList.toString();
     }
 
+    public int size() {
+        return internalList.size();
+    }
 }
