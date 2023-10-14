@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.person.Person;
@@ -92,5 +94,7 @@ public interface Model {
     boolean hasClass(Class c);
 
     void removeClass(Class c) throws ClassNotFoundException;
+
+    Class retrieveClass(Index classListIndex) throws CommandException;
 
 }

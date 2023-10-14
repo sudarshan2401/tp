@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
@@ -29,15 +31,14 @@ public class RemoveClassCommandParser implements Parser<RemoveClassCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveClassCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
-        Class c = null;
+
         try {
-            ClassName classname = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-            c = new Class(classname);
+            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
+            return new RemoveClassCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveClassCommand.MESSAGE_USAGE), pe);
         }
-        return new RemoveClassCommand(c);
     }
 
     /**

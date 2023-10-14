@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -80,10 +81,8 @@ public class EduTrackParserTest {
 
     @Test
     public void parseCommand_removeClass() throws Exception {
-        ClassName className = new ClassName("cs2102");
-        Class c = new Class(className);
-        RemoveClassCommand command = (RemoveClassCommand) parser.parseCommand("remove /c cs2102");
-        assertEquals(new RemoveClassCommand(c), command);
+        RemoveClassCommand command = (RemoveClassCommand) parser.parseCommand("remove /c 1");
+        assertEquals(new RemoveClassCommand(Index.fromOneBased(1)), command);
     }
 
     @Test

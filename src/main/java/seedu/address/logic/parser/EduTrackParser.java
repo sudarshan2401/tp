@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -95,7 +96,7 @@ public class EduTrackParser {
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);
 
-        case seedu.address.logic.commands.RemoveClassCommand.COMMAND_WORD:
+        case RemoveClassCommand.COMMAND_WORD:
             return new RemoveClassCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:

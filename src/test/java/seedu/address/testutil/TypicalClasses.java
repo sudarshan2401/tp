@@ -30,6 +30,13 @@ public class TypicalClasses {
         return et;
     }
 
+    /**
+     * returns an {@code EduTrack} with no classes inside.
+     */
+    public static EduTrack getEmptyEduTrack() {
+        return new EduTrack();
+    }
+
     public static List<Class> getTypicalClasses() {
         return new ArrayList<>(Arrays.asList(CS2102, CS2105, CS2040));
     }

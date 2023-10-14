@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.person.Person;
 
@@ -127,6 +130,19 @@ public class ModelManager implements Model {
     public void removeClass(Class c) {
         requireNonNull(c);
         eduTrack.removeClass(c);
+    }
+
+    @Override
+    public Class retrieveClass(Index targetClassIndex) throws CommandException {
+        ObservableList<Class> classList = this.eduTrack.getClassList();
+        if (classList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_CLASS_LIST);
+        }
+        if (targetClassIndex.getZeroBased() >= classList.size()) {
+            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+        }
+
+        return classList.get(targetClassIndex.getZeroBased());
     }
 
     //=========== Filtered Person List Accessors =============================================================
