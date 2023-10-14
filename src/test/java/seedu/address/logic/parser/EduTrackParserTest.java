@@ -13,6 +13,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
@@ -75,6 +76,14 @@ public class EduTrackParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_removeClass() throws Exception {
+        ClassName className = new ClassName("cs2102");
+        Class c = new Class(className);
+        RemoveClassCommand command = (RemoveClassCommand) parser.parseCommand("remove /c cs2102");
+        assertEquals(new RemoveClassCommand(c), command);
     }
 
     @Test
