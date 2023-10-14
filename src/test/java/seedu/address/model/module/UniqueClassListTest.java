@@ -1,18 +1,26 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
+
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class UniqueClassListTest {
     private final UniqueClassList uniqueClassList = new UniqueClassList();
-    private final ClassName sampleClassName = new ClassName("cs2103t");
-    private final Class sampleClass = new Class(sampleClassName);
+    private final ClassName sampleClassName1 = new ClassName("cs2103t");
+    private final ClassName sampleClassName2 = new ClassName("cs2105");
+    private final Class sampleClass1 = new Class(sampleClassName1);
+    private final Class sampleClass2 = new Class(sampleClassName2);
 
     @Test
     public void contains_nullClass_throwsNullPointerException() {
@@ -21,19 +29,19 @@ public class UniqueClassListTest {
 
     @Test
     public void contains_classNotInList_returnsFalse() {
-        assertFalse(uniqueClassList.contains(sampleClass));
+        assertFalse(uniqueClassList.contains(sampleClass1));
     }
 
     @Test
     public void contains_classInList_returnsTrue() {
-        uniqueClassList.add(sampleClass);
-        assertTrue(uniqueClassList.contains(sampleClass));
+        uniqueClassList.add(sampleClass1);
+        assertTrue(uniqueClassList.contains(sampleClass1));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueClassList.add(sampleClass);
-        Class c = new Class(sampleClassName);
+        uniqueClassList.add(sampleClass1);
+        Class c = new Class(sampleClassName1);
         assertTrue(uniqueClassList.contains(c));
     }
 
@@ -44,8 +52,41 @@ public class UniqueClassListTest {
 
     @Test
     public void add_duplicateClass_throwsDuplicateClassException() {
-        uniqueClassList.add(sampleClass);
-        assertThrows(DuplicateClassException.class, () -> uniqueClassList.add(sampleClass));
+        uniqueClassList.add(sampleClass1);
+        assertThrows(DuplicateClassException.class, () -> uniqueClassList.add(sampleClass1));
+    }
+
+    @Test
+    public void remove_existingClass_success() {
+        uniqueClassList.add(sampleClass1);
+        Assertions.assertDoesNotThrow(() -> uniqueClassList.remove(sampleClass1));
+    }
+
+    @Test
+    public void remove_notExistingClass_throwClassNotFoundException() {
+        assertThrows(ClassNotFoundException.class, () -> uniqueClassList.remove(sampleClass1));
+    }
+
+    @Test
+    public void setClasses_emptyClasses_success() {
+        assertDoesNotThrow(() -> uniqueClassList.setClasses(new ArrayList<Class>()));
+    }
+
+    @Test
+    public void setClasses_nonEmptyClasses_success() {
+        ArrayList<Class> classListToAdd = new ArrayList<>();
+        classListToAdd.add(sampleClass1);
+        classListToAdd.add(sampleClass2);
+        assertDoesNotThrow(() -> uniqueClassList.setClasses(classListToAdd));
+    }
+
+    @Test
+    public void setClasses_duplicateClasses_throwDuplicateClassException() {
+        ArrayList<Class> classListToAdd = new ArrayList<>();
+        classListToAdd.add(sampleClass1);
+        classListToAdd.add(sampleClass1);
+        classListToAdd.add(sampleClass2);
+        assertThrows(DuplicateClassException.class, () -> uniqueClassList.setClasses(classListToAdd));
     }
 
     @Test

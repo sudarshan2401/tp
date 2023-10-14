@@ -129,7 +129,7 @@ public class EduTrack implements ReadOnlyEduTrack {
 
     /**
      * Removes a class from EduTrack.
-     * The person must exist in EduTrack
+     * The class must exist in EduTrack
      */
     public void removeClass(Class c) throws ClassNotFoundException {
         this.classes.remove(c);
