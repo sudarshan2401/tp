@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
@@ -107,4 +108,8 @@ public interface Model {
     Class getClassByIndex(Index classIndex);
 
     int getClassListSize();
+
+    ObservableList<Class> getFilteredClassList();
+
+    void updateFilteredClassList(Predicate<Class> predicate);
 }

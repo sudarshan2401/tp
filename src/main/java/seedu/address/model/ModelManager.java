@@ -175,6 +175,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<Class> predicate) {
+        requireNonNull(predicate);
+        filteredClasses.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
