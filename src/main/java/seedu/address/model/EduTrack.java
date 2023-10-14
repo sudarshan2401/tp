@@ -64,12 +64,20 @@ public class EduTrack implements ReadOnlyEduTrack {
     }
 
     /**
+     * Replaces the contents of the class list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
+     */
+    public void setClasses(List<Class> classes) {
+        this.classes.setClasses(classes);
+    }
+
+    /**
      * Resets the existing data of this {@code EduTrack} with {@code newData}.
      */
     public void resetData(ReadOnlyEduTrack newData) {
         requireNonNull(newData);
-
         setStudents(newData.getStudentList());
+        setClasses(newData.getClassList());
     }
 
     //// student-level operations

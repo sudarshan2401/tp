@@ -40,10 +40,10 @@ public class ModelManager implements Model {
         // IMPORTANT!! to be removed after `add student` is implemented
         // current classStub share the same file as EduTrack.json under data folder
         // this automatically always a create a class called classStub
-        ClassName classNameStub = new ClassName("classStub");
-        Class classStub = new Class(classNameStub);
-        classStub.setStudents(eduTrack.getStudentList());
-        this.addClass(classStub);
+        //        ClassName classNameStub = new ClassName("classStub");
+        //        Class classStub = new Class(classNameStub);
+        //        classStub.setStudents(eduTrack.getStudentList());
+        //        this.addClass(classStub);
     }
 
     public ModelManager() {
