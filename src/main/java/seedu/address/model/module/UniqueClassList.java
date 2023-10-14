@@ -1,8 +1,10 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +53,24 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.add(toAdd);
     }
 
+    public void setClasses(UniqueClassList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
+     */
+    public void setClasses(List<Class> classes) {
+        requireAllNonNull(classes);
+        if (!classesAreUnique(classes)) {
+            throw new DuplicateClassException();
+        }
+
+        internalList.setAll(classes);
+    }
+
     /**
      * Returns an unmodifiable view of the list of classes.
      *
@@ -90,4 +110,17 @@ public class UniqueClassList implements Iterable<Class> {
         return internalList.toString();
     }
 
+    /**
+     * Returns true if {@code classes} contains only unique classes.
+     */
+    private boolean classesAreUnique(List<Class> classes) {
+        for (int i = 0; i < classes.size() - 1; i++) {
+            for (int j = i + 1; j < classes.size(); j++) {
+                if (classes.get(i).isSameClass(classes.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

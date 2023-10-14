@@ -4,6 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalClasses.CS2040;
+import static seedu.address.testutil.TypicalClasses.CS2102;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,14 +37,14 @@ public class UniqueClassListTest {
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_classWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClassList.add(sampleClass);
         Class c = new Class(sampleClassName);
         assertTrue(uniqueClassList.contains(c));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullClass_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClassList.add(null));
     }
 
@@ -48,6 +54,40 @@ public class UniqueClassListTest {
         assertThrows(DuplicateClassException.class, () -> uniqueClassList.add(sampleClass));
     }
 
+    @Test
+    public void setClasses_nullUniqueClassList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.setClasses((List<Class>) null));
+    }
+
+    @Test
+    public void setClasses_uniqueClassList_replacesOwnListWithProvidedUniqueClassList() {
+        uniqueClassList.add(CS2040);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(CS2102);
+        uniqueClassList.setClasses(expectedUniqueClassList);
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void setClasses_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.setClasses((List<Class>) null));
+    }
+
+    @Test
+    public void setClasses_list_replacesOwnListWithProvidedList() {
+        uniqueClassList.add(CS2040);
+        List<Class> classList = Collections.singletonList(CS2102);
+        uniqueClassList.setClasses(classList);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(CS2102);
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void setClasses_listWithDuplicateClasses_throwsDuplicateClassException() {
+        List<Class> listWithDuplicateClasses = Arrays.asList(CS2040, CS2040);
+        assertThrows(DuplicateClassException.class, () -> uniqueClassList.setClasses(listWithDuplicateClasses));
+    }
     @Test
     public void toStringMethod() {
         assertEquals(uniqueClassList.asUnmodifiableObservableList().toString(), uniqueClassList.toString());
