@@ -67,7 +67,6 @@ public class UniqueClassList implements Iterable<Class> {
         }
         this.internalList.remove(toRemove);
     }
-    
     public void setClasses(UniqueClassList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
