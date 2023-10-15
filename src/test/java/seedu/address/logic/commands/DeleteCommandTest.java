@@ -33,7 +33,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(studentToDelete));
+                Messages.formatStudent(studentToDelete));
 
 
         ModelManager expectedModel = new ModelManager(model.getEduTrack(), new UserPrefs());
@@ -58,7 +58,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.formatStudent(personToDelete));
 
         Model expectedModel = new ModelManager(model.getEduTrack(), new UserPrefs());
         expectedModel.deleteStudent(personToDelete);

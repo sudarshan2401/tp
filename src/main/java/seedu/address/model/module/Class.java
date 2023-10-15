@@ -52,6 +52,10 @@ public class Class {
                 && otherClass.getClassName().equals(getClassName());
     }
 
+    public void addStudentToClass(Student toAdd) {
+        students.add(toAdd);
+    }
+
     public void removeStudentFromClass(Student s) {
         students.remove(s);
     }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
 
 /**
@@ -15,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_CLASS_DISPLAYED_INDEX = "The class index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified for the following single-valued "
             + "field(s): ";
@@ -32,12 +34,20 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code student} for display to the user.
      */
-    public static String format(Student person) {
+    public static String formatStudent(Student student) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName());
+        builder.append(student.getName());
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code class} for display to the user.
+     */
+    public static String formatClass(Class classToDisplay) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(classToDisplay.getClassName());
+        return builder.toString();
+    }
 }

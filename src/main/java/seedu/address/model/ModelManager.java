@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final EduTrack eduTrack;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Class> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given eduTrack and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.eduTrack = new EduTrack(eduTrack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
+        filteredClasses = new FilteredList<>(this.eduTrack.getClassList());
 
         // IMPORTANT!! to be removed after `add student` is implemented
         // current classStub share the same file as EduTrack.json under data folder
@@ -121,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addStudentToClass(Student student, Class studentClass) {
+        studentClass.addStudentToClass(student);
+    }
+
+    @Override
     public void addClass(Class c) {
         eduTrack.addClass(c);
     }
@@ -153,6 +160,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
+    }
+    @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
     }
 
     @Override

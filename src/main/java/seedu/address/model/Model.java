@@ -80,6 +80,12 @@ public interface Model {
     void addStudent(Student person);
 
     /**
+     * Adds the given student to the class.
+     * The person must not already exist in the class.
+     */
+    void addStudentToClass(Student student, Class studentClass);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another
@@ -87,8 +93,11 @@ public interface Model {
      */
     void setStudent(Student target, Student editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the filtered class list */
+    ObservableList<Class> getFilteredClassList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given
