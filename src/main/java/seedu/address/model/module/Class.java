@@ -17,19 +17,16 @@ import seedu.address.model.student.UniqueStudentList;
 public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
-    {
-        students = new UniqueStudentList();
-    }
 
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
      */
-    public Class(ClassName className) {
+    public Class(ClassName className, UniqueStudentList students) {
         requireNonNull(className);
         this.className = className;
-
+        this.students = students;
     }
 
 
