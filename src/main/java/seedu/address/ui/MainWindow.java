@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -41,6 +42,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane classListPanelPlaceholder;
@@ -110,15 +114,20 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void displayListPanel(Node listPanel) {
+        listPanelPlaceholder.getChildren().setAll(listPanel);
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        classListPanel = new ClassListPanel(logic.getFilteredClassList());
-        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
+//        classListPanel = new ClassListPanel(logic.getFilteredClassList());
+//        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
+//
+//        personListPanel = new StudentListPanel(logic.getFilteredPersonList());
+//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        personListPanel = new StudentListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -194,13 +203,20 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isView()) {
+                //remove the class list panel
+
+                //add the person list panel
                 personListPanel = new StudentListPanel(logic.getFilteredPersonList());
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                displayListPanel(personListPanel.getRoot());
             }
 
-            if (commandResult.isRemoveStudent()) {
-                personListPanel = new StudentListPanel(logic.getFilteredPersonList());
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            if (commandResult.isList()) {
+                //hide the person list panel
+
+
+                //add the class list panel
+                classListPanel = new ClassListPanel(logic.getFilteredClassList());
+                displayListPanel(classListPanel.getRoot());
             }
 
             return commandResult;
