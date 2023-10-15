@@ -9,9 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
-import seedu.address.model.person.Person;
-
-import java.util.List;
 
 /**
  * Deletes a Class identified using it's unique name from the EduTrack.

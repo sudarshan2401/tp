@@ -2,9 +2,13 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * Represents a Class in EduTrack.
@@ -12,6 +16,10 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class Class {
     private final ClassName className;
+    private final UniqueStudentList students;
+    {
+        students = new UniqueStudentList();
+    }
 
     /**
      * Constructs a {@code Class} object.
@@ -21,7 +29,9 @@ public class Class {
     public Class(ClassName className) {
         requireNonNull(className);
         this.className = className;
+
     }
+
 
     public ClassName getClassName() {
         return className;
@@ -42,6 +52,16 @@ public class Class {
                 && otherClass.getClassName().equals(getClassName());
     }
 
+    public void removeStudentFromClass(Student s) {
+        students.remove(s);
+    }
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
+    }
     /**
      * Checks if this class is equal to another object.
      *
