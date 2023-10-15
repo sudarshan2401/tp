@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
@@ -50,5 +51,19 @@ public class ViewCommand extends Command {
             }
         });
         return new CommandResult(String.format(MESSAGE_SUCCESS, classToView.getClassName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && classIndex.equals(((ViewCommand) other).classIndex)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder("ViewCommand")
+                .add("classIndex", classIndex)
+                .toString();
     }
 }
