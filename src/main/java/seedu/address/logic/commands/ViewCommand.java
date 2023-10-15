@@ -39,7 +39,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // get the class object and get the unique student list
-        if (classIndex.getZeroBased() >= model.getClassListSize()) {
+        if (classIndex.getZeroBased() >= model.getClassListSize() || classIndex.getZeroBased() < 0) {
             throw new CommandException(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
 

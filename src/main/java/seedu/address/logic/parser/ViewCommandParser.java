@@ -27,6 +27,12 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
+        //ensures that the index provided is more than 0
+        if (Integer.parseInt(argMultimap.getValue(PREFIX_CLASS).get()) <= 0) {
+            throw new ParseException(String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
+                    ViewCommand.MESSAGE_USAGE));
+        }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
         Index classIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
 

@@ -40,13 +40,13 @@ public class ModelManager implements Model {
         filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
         filteredClasses = new FilteredList<>(this.eduTrack.getClassList());
 
-//        // IMPORTANT!! to be removed after `add student` is implemented
-//        // current classStub share the same file as EduTrack.json under data folder
-//        // this automatically always a create a class called classStub
-//        ClassName classNameStub = new ClassName("classStub");
-//        Class classStub = new Class(classNameStub);
-//        classStub.setStudents(this.eduTrack.getStudentList());
-//        this.addClass(classStub);
+        // IMPORTANT!! to be removed after `add student` is implemented
+        // current classStub share the same file as EduTrack.json under data folder
+        // this automatically always a create a class called classStub
+        //        ClassName classNameStub = new ClassName("classStub");
+        //        Class classStub = new Class(classNameStub);
+        //        classStub.setStudents(this.eduTrack.getStudentList());
+        //        this.addClass(classStub);
     }
 
     public ModelManager() {
