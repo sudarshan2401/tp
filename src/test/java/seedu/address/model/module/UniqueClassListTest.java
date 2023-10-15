@@ -14,11 +14,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.module.exceptions.DuplicateClassException;
+import seedu.address.model.student.UniqueStudentList;
 
 public class UniqueClassListTest {
     private final UniqueClassList uniqueClassList = new UniqueClassList();
     private final ClassName sampleClassName = new ClassName("cs2103t");
-    private final Class sampleClass = new Class(sampleClassName);
+    private final Class sampleClass = new Class(sampleClassName, new UniqueStudentList());
 
     @Test
     public void contains_nullClass_throwsNullPointerException() {
@@ -39,7 +40,7 @@ public class UniqueClassListTest {
     @Test
     public void contains_classWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClassList.add(sampleClass);
-        Class c = new Class(sampleClassName);
+        Class c = new Class(sampleClassName, new UniqueStudentList());
         assertTrue(uniqueClassList.contains(c));
     }
 

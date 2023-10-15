@@ -16,6 +16,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 
 class AddClassCommandTest {
 
@@ -23,7 +24,7 @@ class AddClassCommandTest {
 
     final ClassName className = new ClassName(CLASSNAME_STUB);
 
-    final Class c = new Class(className);
+    final Class c = new Class(className, new UniqueStudentList());
 
     private Model model = new ModelManager(getTypicalEduTrack(), new UserPrefs());
 
@@ -61,8 +62,8 @@ class AddClassCommandTest {
     public void equals() {
         ClassName className1 = new ClassName("CS2103T");
         ClassName className2 = new ClassName("CS2100");
-        Class sampleClass1 = new Class(className1);
-        Class sampleClass2 = new Class(className2);
+        Class sampleClass1 = new Class(className1, new UniqueStudentList());
+        Class sampleClass2 = new Class(className2, new UniqueStudentList());
 
         AddClassCommand command1 = new AddClassCommand(sampleClass1);
         AddClassCommand command2 = new AddClassCommand(sampleClass1);
@@ -87,7 +88,7 @@ class AddClassCommandTest {
     @Test
     public void toStringMethod() {
         ClassName className = new ClassName("CS2103T");
-        Class sampleClass = new Class(className);
+        Class sampleClass = new Class(className, new UniqueStudentList());
 
         AddClassCommand command = new AddClassCommand(sampleClass);
 

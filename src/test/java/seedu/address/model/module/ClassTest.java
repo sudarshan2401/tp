@@ -7,18 +7,20 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.UniqueStudentList;
+
 class ClassTest {
-    private final Class c = new Class(new ClassName("abc"));
+    private final Class c = new Class(new ClassName("abc"), new UniqueStudentList());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Class(null));
+        assertThrows(NullPointerException.class, () -> new Class(null, new UniqueStudentList()));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        assertTrue(c.equals(new Class(new ClassName("abc"))));
+        assertTrue(c.equals(new Class(new ClassName("abc"), new UniqueStudentList())));
 
         // same object -> returns true
         assertTrue(c.equals(c));
@@ -30,7 +32,7 @@ class ClassTest {
         assertFalse(c.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(c.equals(new Class(new ClassName("def"))));
+        assertFalse(c.equals(new Class(new ClassName("def"), new UniqueStudentList())));
     }
 
     @Test

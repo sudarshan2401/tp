@@ -13,6 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 //import seedu.address.model.student.Name;
 //import seedu.address.model.student.Student;
 
@@ -21,7 +22,7 @@ public class RemoveStudentCommandTest {
 
     final ClassName classNameStub = new ClassName(CLASSNAME_STUB);
 
-    final Class classStub = new Class(classNameStub);
+    final Class classStub = new Class(classNameStub, new UniqueStudentList());
 
     private Model model = new ModelManager(getTypicalEduTrack(), new UserPrefs());
 

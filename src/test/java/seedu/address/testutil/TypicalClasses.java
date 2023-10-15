@@ -7,15 +7,16 @@ import java.util.List;
 import seedu.address.model.EduTrack;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalClasses {
 
-    public static final Class CS2102 = new Class(new ClassName("cs2102"));
-    public static final Class CS2105 = new Class(new ClassName("cs2105"));
-    public static final Class CS2040 = new Class(new ClassName("cs2040"));
+    public static final Class CS2102 = new Class(new ClassName("cs2102"), new UniqueStudentList());
+    public static final Class CS2105 = new Class(new ClassName("cs2105"), new UniqueStudentList());
+    public static final Class CS2040 = new Class(new ClassName("cs2040"), new UniqueStudentList());
 
     private TypicalClasses() {} // prevents instantiation
 
