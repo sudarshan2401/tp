@@ -182,10 +182,14 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeClass(Class c) { throw new AssertionError("This method should not be called."); }
+        public void removeClass(Class c) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public Class retrieveClass(Index classListIndex) { throw new AssertionError("This method should not be called"); }
+        public Class retrieveClass(Index classListIndex) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

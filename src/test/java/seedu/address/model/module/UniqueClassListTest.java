@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClasses.CS2040;
 import static seedu.address.testutil.TypicalClasses.CS2102;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
-
-import java.util.ArrayList;
 
 public class UniqueClassListTest {
     private final UniqueClassList uniqueClassList = new UniqueClassList();

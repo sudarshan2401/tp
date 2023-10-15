@@ -79,9 +79,9 @@ class RemoveClassCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index IndexToRemove = Index.fromOneBased(1);
-        RemoveClassCommand removeClassCommand = new RemoveClassCommand(IndexToRemove);
-        String expected = RemoveClassCommand.class.getCanonicalName() + "{classIndex=" + IndexToRemove.toString() + "}";
+        Index indexToRemove = Index.fromOneBased(1);
+        RemoveClassCommand removeClassCommand = new RemoveClassCommand(indexToRemove);
+        String expected = RemoveClassCommand.class.getCanonicalName() + "{classIndex=" + indexToRemove.toString() + "}";
         assertEquals(expected, removeClassCommand.toString());
     }
 }
