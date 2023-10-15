@@ -2,11 +2,9 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.Class;
-import seedu.address.model.student.Student;
 
 /**
  * A UI component that displays information of a {@code Class}.

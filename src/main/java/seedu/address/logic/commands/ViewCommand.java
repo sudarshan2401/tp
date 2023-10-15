@@ -1,54 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
-import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
-
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all students in the specified class to the user.
  */
 public class ViewCommand extends Command {
-
-//        public static final String COMMAND_WORD = "view /c";
-//
-//        public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all students in the specified class.\n"
-//                + "Parameters: CLASS_NAME\n"
-//                + "Example: " + COMMAND_WORD + " CS2103T";
-//
-//        public static final String MESSAGE_SUCCESS = "Listed all students in %1$s";
-//
-//        private final ClassName className;
-//
-//        /**
-//        * Creates an ViewCommand to list the students in the specified class.
-//        */
-//        public ViewCommand(ClassName className) {
-//            requireNonNull(className);
-//            this.className = className;
-//        }
-//        @Override
-//        public CommandResult execute(Model model) {
-//            requireNonNull(model);
-//            // get the class object and get the unique student list
-//            Class classToView = model.getClass(className);
-//            classToView.getStudentList().forEach(student -> {
-//                model.updateFilteredStudentList(new Predicate<Student>() {
-//                    @Override
-//                    public boolean test(Student student) {
-//                        return student.isSameStudent(new Student(student.getName()));
-//                    }
-//                });
-//            });
-//            return new CommandResult(String.format(MESSAGE_SUCCESS, className));
-//        }
-
     public static final String COMMAND_WORD = "view /c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all students in the specified class.\n"

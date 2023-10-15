@@ -1,18 +1,17 @@
 package seedu.address.logic.parser;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.RemoveCommand;
-import seedu.address.logic.commands.RemoveStudentCommand;
-import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ClassName;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewCommand object
+ */
 public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
