@@ -79,4 +79,11 @@ public class CommandResult {
                 .toString();
     }
 
+    public boolean isView() {
+        return this.feedbackToUser.contains("Listed all students in");
+    }
+
+    public boolean isRemoveStudent() {
+        return this.feedbackToUser.contains("has been removed from");
+    }
 }

@@ -78,13 +78,11 @@ public class ViewCommand extends Command {
         }
 
         Class classToView = model.getClassByIndex(classIndex);
-        classToView.getStudentList().forEach(student -> {
-            model.updateFilteredStudentList(new Predicate<Student>() {
-                @Override
-                public boolean test(Student student) {
-                    return student.isSameStudent(new Student(student.getName()));
-                }
-            });
+        model.updateFilteredStudentList(new Predicate<Student>() {
+            @Override
+            public boolean test(Student student) {
+                return classToView.getStudentList().contains(student);
+            }
         });
         return new CommandResult(String.format(MESSAGE_SUCCESS, classToView.getClassName()));
     }

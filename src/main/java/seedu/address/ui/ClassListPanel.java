@@ -19,16 +19,11 @@ import seedu.address.model.module.Class;
 
 public class ClassListPanel extends UiPart<Region> {
     private static final String FXML = "ClassListPanel.fxml";
-
     private final Logger logger = LogsCenter.getLogger(ClassListPanel.class);
+
+    @FXML
     private ListView<Class> classListView;
 
-    @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
     /**
      * Creates a {@code ClassListPanel} with the given {@code ObservableList}.
      */

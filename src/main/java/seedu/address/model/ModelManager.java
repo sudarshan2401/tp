@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.UniqueClassList;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
@@ -44,9 +46,11 @@ public class ModelManager implements Model {
         // IMPORTANT!! to be removed after `add student` is implemented
         // current classStub share the same file as EduTrack.json under data folder
         // this automatically always a create a class called classStub
+//        addStudent(new Student(new Name("studentStub1")));
+//        addStudent(new Student(new Name("studentStub2")));
         ClassName classNameStub = new ClassName("classStub");
         Class classStub = new Class(classNameStub);
-        classStub.setStudents(eduTrack.getStudentList());
+        classStub.setStudents(this.eduTrack.getStudentList());
         this.addClass(classStub);
     }
 
@@ -127,6 +131,7 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class c) {
         eduTrack.addClass(c);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
     }
 
     @Override

@@ -114,8 +114,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-//        classListPanel = new ClassListPanel(logic.getFilteredClassList());
-//        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
+        classListPanel = new ClassListPanel(logic.getFilteredClassList());
+        classListPanelPlaceholder.getChildren().add(classListPanel.getRoot());
 
         personListPanel = new StudentListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -191,6 +191,16 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                personListPanel = new StudentListPanel(logic.getFilteredPersonList());
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+
+            if (commandResult.isRemoveStudent()) {
+                personListPanel = new StudentListPanel(logic.getFilteredPersonList());
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             }
 
             return commandResult;
