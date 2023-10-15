@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.EduTrack;
@@ -177,6 +178,26 @@ public class AddCommandTest {
 
         @Override
         public void addClass(Class c) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Class getClassByIndex(Index classIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getClassListSize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Class> getFilteredClassList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClassList(Predicate<Class> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
