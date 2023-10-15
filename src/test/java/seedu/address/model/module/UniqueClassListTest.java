@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class UniqueClassListTest {

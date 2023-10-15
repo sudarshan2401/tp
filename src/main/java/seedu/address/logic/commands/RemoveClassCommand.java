@@ -37,10 +37,6 @@ public class RemoveClassCommand extends Command {
         this.targetClassIndex = classIndex;
     }
 
-//    public Class obtainClass() {
-//        return this.c;
-//    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

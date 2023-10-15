@@ -7,11 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Class;
-import seedu.address.model.module.ClassName;
 
 /**
  * Parses input from the user and creates a RemoveClassCommand.
