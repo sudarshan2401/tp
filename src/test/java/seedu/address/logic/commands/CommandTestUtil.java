@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -131,4 +132,19 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredStudentList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the class at the given
+     * {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+
+    public static void showClassAtIndex(Model model, Index targetIndex) {
+        model.getClassListSize();
+        assertTrue(targetIndex.getZeroBased() < model.getClassListSize());
+
+        Class classToView = model.getClassByIndex(targetIndex);
+        model.updateFilteredStudentList(student -> classToView.getStudentList().contains(student));
+
+        assertEquals(classToView.getStudentList().size(), model.getFilteredStudentList().size());
+    }
 }

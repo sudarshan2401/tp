@@ -1,8 +1,10 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,5 +108,66 @@ public class UniqueClassList implements Iterable<Class> {
 
     public int size() {
         return internalList.size();
+    }
+
+    /**
+     * Sets the class at the specified index in the list to the specified class.
+     * @param index The index of the class to set.
+     * @param classToSet The class to set.
+     */
+
+    public void setClass(Index index, Class classToSet) {
+        requireNonNull(classToSet);
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        internalList.set(index.getZeroBased(), classToSet);
+    }
+
+    /**
+     * Removes the class at the specified index in the list.
+     * The index must be within the bounds of the list.
+     * @param index The index of the class to remove.
+     */
+    public void remove(Index index) {
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        internalList.remove(index.getZeroBased());
+    }
+
+    /**
+     * Sets the contents of this list to {@code classes}.
+     * @param replacement The list of classes to set.
+     */
+    public void setClasses(UniqueClassList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code classes}.
+     * {@code classes} must not contain duplicate classes.
+     */
+    public void setClasses(List<Class> classes) {
+        requireAllNonNull(classes);
+        if (!classesAreUnique(classes)) {
+            throw new DuplicateClassException();
+        }
+        internalList.setAll(classes);
+    }
+
+    /**
+     * Returns true if {@code classes} contains only unique classes.
+     */
+    public boolean classesAreUnique(List<Class> classes) {
+        for (int i = 0; i < classes.size() - 1; i++) {
+            for (int j = i + 1; j < classes.size(); j++) {
+                if (classes.get(i).isSameClass(classes.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
