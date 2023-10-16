@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * and returns an ViewCommand object for execution.
+     * and returns a ViewCommand object for execution.
      * @throws ParseException if the user input does not follow the expected format
      */
     public ViewCommand parse(String args) throws ParseException {

@@ -28,7 +28,7 @@ public class ViewCommand extends Command {
     private final Index classIndex;
 
     /**
-     * Creates an ViewCommand to list the students in the specified class.
+     * Creates a ViewCommand to list the students in the specified class.
      */
     public ViewCommand(Index classIndex) {
         requireNonNull(classIndex);
