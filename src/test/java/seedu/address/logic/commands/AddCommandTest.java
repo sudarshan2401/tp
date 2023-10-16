@@ -183,7 +183,10 @@ public class AddCommandTest {
 
         @Override
         public Class getClassByIndex(Index classIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
         public void removeClass(Class c) {
             throw new AssertionError("This method should not be called.");
         }
@@ -201,6 +204,9 @@ public class AddCommandTest {
         @Override
         public void updateFilteredClassList(Predicate<Class> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Class retrieveClass(Index classListIndex) {
             throw new AssertionError("This method should not be called");
         }
@@ -247,5 +253,4 @@ public class AddCommandTest {
             return new EduTrack();
         }
     }
-
 }

@@ -169,7 +169,6 @@ public class ModelManager implements Model {
     public int getClassListSize() {
         return eduTrack.getClassListSize();
     }
-  
     //=========== Filtered Person List Accessors =============================================================
 
     @Override

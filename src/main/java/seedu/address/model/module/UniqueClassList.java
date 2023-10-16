@@ -68,6 +68,19 @@ public class UniqueClassList implements Iterable<Class> {
         }
         this.internalList.remove(toRemove);
     }
+
+    /**
+     * Removes the class at the specified index in the list.
+     * The index must be within the bounds of the list.
+     * @param index The index of the class to remove.
+     */
+    public void remove(Index index) {
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        internalList.remove(index.getZeroBased());
+    }
+
     public void setClasses(UniqueClassList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -155,20 +168,6 @@ public class UniqueClassList implements Iterable<Class> {
         }
         internalList.set(index.getZeroBased(), classToSet);
     }
-
-    /**
-     * Removes the class at the specified index in the list.
-     * The index must be within the bounds of the list.
-     * @param index The index of the class to remove.
-     */
-    public void remove(Index index) {
-        if (index.getZeroBased() >= internalList.size()) {
-            throw new IndexOutOfBoundsException();
-        }
-        internalList.remove(index.getZeroBased());
-    }
-
-
     /**
      * Returns true if {@code classes} contains only unique classes.
      */

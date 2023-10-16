@@ -163,18 +163,18 @@ public class UniqueClassListTest {
 
     @Test
     public void setClass_nullClass_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(null, sampleClass));
+        assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(null, sampleClass1));
     }
 
     @Test
     public void setClass_indexOutOfBounds_throwsIndexOutOfBoundsException() {
         assertThrows(IndexOutOfBoundsException.class, ()
-                        -> uniqueClassList.setClass(Index.fromOneBased(1), sampleClass));
+                        -> uniqueClassList.setClass(Index.fromOneBased(1), sampleClass1));
     }
 
     @Test
     public void setClass_validClass_success() {
-        uniqueClassList.add(sampleClass);
+        uniqueClassList.add(sampleClass1);
         uniqueClassList.setClass(Index.fromOneBased(1), CS2040);
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
         expectedUniqueClassList.add(CS2040);
@@ -183,7 +183,7 @@ public class UniqueClassListTest {
 
     @Test
     public void remove_nullClass_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClassList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueClassList.remove((Class) null));
     }
 
     @Test
@@ -193,7 +193,7 @@ public class UniqueClassListTest {
 
     @Test
     public void remove_validClass_success() {
-        uniqueClassList.add(sampleClass);
+        uniqueClassList.add(sampleClass1);
         uniqueClassList.remove(Index.fromOneBased(1));
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
         assertEquals(expectedUniqueClassList, uniqueClassList);
@@ -201,17 +201,17 @@ public class UniqueClassListTest {
 
     @Test
     public void testEquals() {
-        uniqueClassList.add(sampleClass);
+        uniqueClassList.add(sampleClass1);
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
-        expectedUniqueClassList.add(sampleClass);
+        expectedUniqueClassList.add(sampleClass1);
         assertTrue(uniqueClassList.equals(expectedUniqueClassList));
     }
 
     @Test
     public void testHashCode() {
-        uniqueClassList.add(sampleClass);
+        uniqueClassList.add(sampleClass1);
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
-        expectedUniqueClassList.add(sampleClass);
+        expectedUniqueClassList.add(sampleClass1);
         assertEquals(uniqueClassList.hashCode(), expectedUniqueClassList.hashCode());
     }
 }
