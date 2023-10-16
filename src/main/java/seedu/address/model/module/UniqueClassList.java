@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
 /**
@@ -17,7 +18,6 @@ import seedu.address.model.module.exceptions.DuplicateClassException;
  * classes uses Class#isSameClass(Class) for equality to ensure that the class being added or updated is
  * unique in terms of identity in the UniqueClassList. However, the removal of a class uses Class#equals(Object)
  * to ensure that the class with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Class#isSameClass(Class)
@@ -54,6 +54,20 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Removes a class from the list
+     * The Class must already exist in the list.
+     *
+     * @param toRemove The class to remove.
+     * @throws ClassNotFoundException If the class to be removed is not found in the existing list.
+     */
+    public void remove(Class toRemove) throws ClassNotFoundException {
+        requireNonNull(toRemove);
+        if (!this.contains(toRemove)) {
+            throw new ClassNotFoundException();
+        }
+        this.internalList.remove(toRemove);
+    }
     public void setClasses(UniqueClassList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
