@@ -23,7 +23,6 @@ public class ViewCommandTest {
     @Test
     public void execute_viewClass_success() {
         ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
-        // expected is seedu.address.logic.commands.CommandResult{feedbackToUser=Listed all students in CS2102, showHelp=false, exit=false}
         String expectedClass = model.getClassByIndex(Index.fromOneBased(1)).getClassName().toString();
         String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, expectedClass);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
