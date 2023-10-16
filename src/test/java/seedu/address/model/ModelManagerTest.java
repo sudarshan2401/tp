@@ -3,8 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalClasses.CS2102;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 
@@ -15,6 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EduTrackBuilder;
 
@@ -92,6 +95,48 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredClassList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClassList().remove(0));
+    }
+
+    @Test
+    public void getClassByIndex_validIndex_success() {
+        modelManager.addClass(CS2102);
+        assertEquals(modelManager.getClassByIndex(Index.fromOneBased(1)),
+                CS2102);
+    }
+
+    @Test
+    public void getClassByIndex_invalidIndex_throwsIndexOutOfBoundsException() {
+        modelManager.addClass(CS2102);
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getClassByIndex(Index.fromOneBased(2)));
+    }
+
+    @Test
+    public void getClassListSize_validIndex_success() {
+        modelManager.addClass(CS2102);
+        assertEquals(modelManager.getClassListSize(), 1);
+    }
+
+    @Test
+    public void getClassListSize_invalidIndex_throwsIndexOutOfBoundsException() {
+        modelManager.addClass(CS2102);
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getClassByIndex(Index.fromOneBased(2)));
+    }
+
+    @Test
+    public void updateFilteredClassList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredClassList(null));
+    }
+
+    @Test
+    public void updateFilteredClassList_validPredicate_success() {
+        modelManager.addClass(CS2102);
+        modelManager.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
+        assertEquals(modelManager.getFilteredClassList().size(), 1);
     }
 
     @Test
