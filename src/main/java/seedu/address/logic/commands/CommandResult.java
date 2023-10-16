@@ -83,10 +83,6 @@ public class CommandResult {
         return this.feedbackToUser.contains("Listed all students in");
     }
 
-    public boolean isRemoveStudent() {
-        return this.feedbackToUser.contains("has been removed from");
-    }
-
     public boolean isList() {
         return this.feedbackToUser.contains("Listed all classes");
     }

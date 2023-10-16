@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
 public class UniqueClassListTest {
@@ -93,4 +94,58 @@ public class UniqueClassListTest {
         assertEquals(uniqueClassList.asUnmodifiableObservableList().toString(), uniqueClassList.toString());
     }
 
+    /**
+     * Test for classesAreUnique method
+     */
+
+    @Test
+    public void classesAreUnique_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.classesAreUnique(null));
+    }
+
+    @Test
+    public void classesAreUnique_listWithDuplicateClasses_returnsFalse() {
+        List<Class> listWithDuplicateClasses = Arrays.asList(CS2040, CS2040);
+        assertFalse(uniqueClassList.classesAreUnique(listWithDuplicateClasses));
+    }
+
+    /**
+     * Test for size method
+     */
+
+    @Test
+    public void classesSize() {
+        assertEquals(uniqueClassList.asUnmodifiableObservableList().size(), uniqueClassList.size());
+    }
+
+    /**
+     * Test for setClass method
+     */
+
+    @Test
+    public void setClass_nullClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(null, sampleClass));
+    }
+
+    @Test
+    public void setClass_validClass_success() {
+        uniqueClassList.add(sampleClass);
+        uniqueClassList.setClass(Index.fromOneBased(1), CS2040);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(CS2040);
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void remove_nullClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.remove(null));
+    }
+
+    @Test
+    public void remove_validClass_success() {
+        uniqueClassList.add(sampleClass);
+        uniqueClassList.remove(Index.fromOneBased(1));
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
 }

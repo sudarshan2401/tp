@@ -60,4 +60,20 @@ public class CommandResultTest {
                 + ", exit=" + commandResult.isExit() + "}";
         assertEquals(expected, commandResult.toString());
     }
+
+    @Test
+    public void testViewFeedback() {
+        CommandResult commandResult = new CommandResult("Listed all students in CS2103T");
+        assertEquals(commandResult.isView(), true);
+        assertEquals(commandResult.isList(), false);
+        assertEquals(commandResult.isExit(), false);
+    }
+
+    @Test
+    public void testListFeedback() {
+        CommandResult commandResult = new CommandResult("Listed all classes");
+        assertEquals(commandResult.isView(), false);
+        assertEquals(commandResult.isList(), true);
+        assertEquals(commandResult.isExit(), false);
+    }
 }
