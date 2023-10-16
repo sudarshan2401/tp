@@ -90,6 +90,15 @@ public class Class {
         return Objects.hash(className);
     }
 
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in
+     * the class.
+     */
+    public boolean hasStudentInClass(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

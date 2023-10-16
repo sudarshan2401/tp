@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,7 +20,6 @@ import seedu.address.model.student.Student;
 public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add /s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to a specified class. "
             + "Parameters: "
             + PREFIX_STUDENT + "STUDENT NAME "
@@ -27,12 +27,8 @@ public class AddStudentCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT + "John Doe "
             + PREFIX_CLASS + "CS2103T-T15";
-
-
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New student added: %1$s to the class: %2$s";
-
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
-
     private final Student toAdd;
     private final Index classIndex;
 
@@ -56,7 +52,7 @@ public class AddStudentCommand extends Command {
 
         Class classToAddStudent = lastShownClassList.get(classIndex.getZeroBased());
 
-        if (classToAddStudent.getStudentList().contains(this.toAdd)) {
+        if (classToAddStudent.hasStudentInClass(this.toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
@@ -64,5 +60,28 @@ public class AddStudentCommand extends Command {
         model.addStudentToClass(this.toAdd, classToAddStudent);
         return new CommandResult(String.format(MESSAGE_ADD_STUDENT_SUCCESS,
                 Messages.formatStudent(this.toAdd), Messages.formatClass(classToAddStudent)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddStudentCommand)) {
+            return false;
+        }
+
+        AddStudentCommand otherAddStudentCommand = (AddStudentCommand) other;
+        return toAdd.equals(otherAddStudentCommand.toAdd) && classIndex.equals(otherAddStudentCommand.classIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("toAdd", toAdd)
+                .add("classIndex", classIndex)
+                .toString();
     }
 }
