@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -18,28 +17,21 @@ import seedu.address.model.module.ClassName;
 import seedu.address.testutil.TypicalClasses;
 
 public class ViewCommandTest {
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        expectedModel = new ModelManager(model.getEduTrack(), new UserPrefs());
-    }
+    private Model model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
 
     @Test
     public void execute_viewClass_success() {
-        ClassName className = new ClassName("cs2103");
-        Class classToView = new Class(className);
-        model.addClass(classToView);
         ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
-        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, className);
+        // expected is seedu.address.logic.commands.CommandResult{feedbackToUser=Listed all students in CS2102, showHelp=false, exit=false}
+        String expectedClass = model.getClassByIndex(Index.fromOneBased(1)).getClassName().toString();
+        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, expectedClass);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_viewClass_failure() {
-        ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
+        ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(100));
         assertThrows(CommandException.class, () -> viewCommand.execute(model));
     }
 
