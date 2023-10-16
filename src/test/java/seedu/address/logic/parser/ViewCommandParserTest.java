@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -11,14 +14,8 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.testutil.TypicalClasses;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
 public class ViewCommandParserTest {
     private ViewCommandParser parser = new ViewCommandParser();
-
-//    private final Index invalidClassIndex = Index.fromOneBased(0);
-
     private final Index validClassIndex = Index.fromOneBased(1);
 
 
