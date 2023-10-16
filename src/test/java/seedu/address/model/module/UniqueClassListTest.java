@@ -16,6 +16,7 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
@@ -132,4 +133,85 @@ public class UniqueClassListTest {
         assertEquals(uniqueClassList.asUnmodifiableObservableList().toString(), uniqueClassList.toString());
     }
 
+    /**
+     * Test for classesAreUnique method
+     */
+
+    @Test
+    public void classesAreUnique_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.classesAreUnique(null));
+    }
+
+    @Test
+    public void classesAreUnique_listWithDuplicateClasses_returnsFalse() {
+        List<Class> listWithDuplicateClasses = Arrays.asList(CS2040, CS2040);
+        assertFalse(uniqueClassList.classesAreUnique(listWithDuplicateClasses));
+    }
+
+    /**
+     * Test for size method
+     */
+
+    @Test
+    public void classesSize() {
+        assertEquals(uniqueClassList.asUnmodifiableObservableList().size(), uniqueClassList.size());
+    }
+
+    /**
+     * Test for setClass method
+     */
+
+    @Test
+    public void setClass_nullClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.setClass(null, sampleClass1));
+    }
+
+    @Test
+    public void setClass_indexOutOfBounds_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, ()
+                        -> uniqueClassList.setClass(Index.fromOneBased(1), sampleClass1));
+    }
+
+    @Test
+    public void setClass_validClass_success() {
+        uniqueClassList.add(sampleClass1);
+        uniqueClassList.setClass(Index.fromOneBased(1), CS2040);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(CS2040);
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void remove_nullClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClassList.remove((Class) null));
+    }
+
+    @Test
+    public void remove_indexOutOfBounds_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> uniqueClassList.remove(Index.fromOneBased(1)));
+    }
+
+    @Test
+    public void remove_validClass_success() {
+        uniqueClassList.add(sampleClass1);
+        uniqueClassList.remove(Index.fromOneBased(1));
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void testEquals() {
+        uniqueClassList.add(sampleClass1);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(sampleClass1);
+        assertTrue(uniqueClassList.equals(expectedUniqueClassList));
+    }
+
+    @Test
+    public void testHashCode() {
+        uniqueClassList.add(sampleClass1);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(sampleClass1);
+        assertEquals(uniqueClassList.hashCode(), expectedUniqueClassList.hashCode());
+    }
 }

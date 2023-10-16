@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final EduTrack eduTrack;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Class> filteredClasses;
 
     /**
      * Initializes a ModelManager with the given eduTrack and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.eduTrack = new EduTrack(eduTrack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
+        filteredClasses = new FilteredList<>(this.eduTrack.getClassList());
 
         // IMPORTANT!! to be removed after `add student` is implemented
         // current classStub share the same file as EduTrack.json under data folder
@@ -126,6 +128,7 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class c) {
         eduTrack.addClass(c);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
     }
 
     @Override
@@ -158,6 +161,14 @@ public class ModelManager implements Model {
         return eduTrack.getClass(className);
     }
 
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return eduTrack.getClassByIndex(classIndex);
+    }
+
+    public int getClassListSize() {
+        return eduTrack.getClassListSize();
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     @Override
@@ -183,6 +194,17 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<Class> predicate) {
+        requireNonNull(predicate);
+        filteredClasses.setPredicate(predicate);
     }
 
     @Override

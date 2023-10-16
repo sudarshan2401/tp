@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel personListPanel;
+    private ClassListPanel classListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -40,6 +42,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane listPanelPlaceholder;
+
+    @FXML
+    private StackPane classListPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -106,12 +114,16 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void displayListPanel(Node listPanel) {
+        listPanelPlaceholder.getChildren().setAll(listPanel);
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new StudentListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        classListPanel = new ClassListPanel(logic.getFilteredClassList());
+        listPanelPlaceholder.getChildren().add(classListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -184,6 +196,18 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                //add the person list panel
+                personListPanel = new StudentListPanel(logic.getFilteredPersonList());
+                displayListPanel(personListPanel.getRoot());
+            }
+
+            if (commandResult.isList()) {
+                //add the class list panel
+                classListPanel = new ClassListPanel(logic.getFilteredClassList());
+                displayListPanel(classListPanel.getRoot());
             }
 
             return commandResult;
