@@ -5,10 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.UniqueClassList;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -65,7 +67,7 @@ public class EduTrack implements ReadOnlyEduTrack {
 
     /**
      * Replaces the contents of the class list with {@code classes}.
-     * {@code classes} must not contain duplicate classes.
+     * {@code classess} must not contain duplicate class.
      */
     public void setClasses(List<Class> classes) {
         this.classes.setClasses(classes);
@@ -119,7 +121,6 @@ public class EduTrack implements ReadOnlyEduTrack {
     public void removeStudent(Student key) {
         students.remove(key);
     }
-
     /**
      * Adds a class to EduTrack.
      * The student must not already exist in EduTrack.
@@ -136,6 +137,13 @@ public class EduTrack implements ReadOnlyEduTrack {
         return classes.contains(c);
     }
 
+    /**
+     * Removes a class from EduTrack.
+     * The class must exist in EduTrack
+     */
+    public void removeClass(Class c) throws ClassNotFoundException {
+        this.classes.remove(c);
+    }
 
     public Class getClass(ClassName className) {
         for (Class c : classes) {
@@ -146,6 +154,15 @@ public class EduTrack implements ReadOnlyEduTrack {
         }
         // if no matching className, class do not exist in unique class list
         return null;
+    }
+
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return classes.get(classIndex);
+    }
+
+    public int getClassListSize() {
+        return classes.size();
     }
     //// util methods
 

@@ -17,6 +17,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_CLASS_DISPLAYED_INDEX = "The class index provided is invalid";
+    public static final String MESSAGE_INDEX_INPUT_TOO_LARGE = "The class index provided is invalid";
+    public static final String MESSAGE_EMPTY_CLASS_LIST = "There are no classes available at the moment! Create one!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified for the following single-valued "
             + "field(s): ";
@@ -45,9 +47,11 @@ public class Messages {
     /**
      * Formats the {@code class} for display to the user.
      */
-    public static String formatClass(Class classToDisplay) {
+    public static String formatClass(Class c) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(classToDisplay.getClassName());
+        builder.append(c.getClassName())
+                .append("");
         return builder.toString();
     }
+
 }
