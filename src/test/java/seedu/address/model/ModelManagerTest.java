@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,6 +16,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EduTrackBuilder;
 
@@ -87,6 +92,25 @@ public class ModelManagerTest {
     public void hasPerson_personInEduTrack_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
+    }
+
+    @Test
+    public void retrieveClass_emptyClassList_throwsCommandException() {
+        assertThrows(CommandException.class, () -> modelManager.retrieveClass(Index.fromOneBased(1)));
+    }
+
+    @Test
+    public void retrieveClass_indexLargerThanClassList_throwsCommandException() {
+        modelManager.addClass(new Class(new ClassName("class1")));
+        modelManager.addClass(new Class(new ClassName("class2")));
+        assertThrows(CommandException.class, () -> modelManager.retrieveClass(Index.fromOneBased(3)));
+    }
+
+    @Test
+    public void retrieveClass_validIndexInClassList_success() {
+        modelManager.addClass(new Class(new ClassName("class1")));
+        modelManager.addClass(new Class(new ClassName("class2")));
+        assertDoesNotThrow(() -> modelManager.retrieveClass(Index.fromOneBased(1)));
     }
 
     @Test

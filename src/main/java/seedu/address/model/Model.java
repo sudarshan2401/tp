@@ -5,10 +5,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-
 
 /**
  * The API of the Model component.
@@ -100,6 +102,10 @@ public interface Model {
     void addClass(Class c);
 
     boolean hasClass(Class c);
+
+    void removeClass(Class c) throws ClassNotFoundException;
+
+    Class retrieveClass(Index classListIndex) throws CommandException;
 
     Class getClass(ClassName className);
 }

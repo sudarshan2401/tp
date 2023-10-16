@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,7 +31,6 @@ public class EduTrackParser {
     /**
      * Used for initial separation of command word and args.
      */
-
     private static final Pattern BASIC_COMMAND_FORMAT1 = Pattern
             .compile("(?<commandWord>\\S+(?:\\s/\\S+)?)(?:\\s(?<arguments>.*))?");
 
@@ -81,7 +81,6 @@ public class EduTrackParser {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
             }
         }
-
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments") == null ? objectClass
                 : objectClass + matcher.group("arguments");
@@ -99,6 +98,9 @@ public class EduTrackParser {
 
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);
+
+        case RemoveClassCommand.COMMAND_WORD:
+            return new RemoveClassCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
