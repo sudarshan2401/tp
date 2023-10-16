@@ -45,7 +45,7 @@ public class ModelManager implements Model {
         // this automatically always a create a class called classStub
         //        ClassName classNameStub = new ClassName("classStub");
         //        Class classStub = new Class(classNameStub);
-        //        classStub.setStudents(this.eduTrack.getStudentList());
+        //        classStub.setStudents(eduTrack.getStudentList());
         //        this.addClass(classStub);
     }
 

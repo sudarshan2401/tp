@@ -77,8 +77,8 @@ public class EduTrack implements ReadOnlyEduTrack {
      */
     public void resetData(ReadOnlyEduTrack newData) {
         requireNonNull(newData);
-        setClasses(newData.getClassList());
         setStudents(newData.getStudentList());
+        setClasses(newData.getClassList());
     }
 
     //// student-level operations
