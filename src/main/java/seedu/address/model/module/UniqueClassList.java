@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 
 /**
@@ -16,7 +18,6 @@ import seedu.address.model.module.exceptions.DuplicateClassException;
  * classes uses Class#isSameClass(Class) for equality to ensure that the class being added or updated is
  * unique in terms of identity in the UniqueClassList. However, the removal of a class uses Class#equals(Object)
  * to ensure that the class with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Class#isSameClass(Class)
@@ -53,6 +54,33 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Removes a class from the list
+     * The Class must already exist in the list.
+     *
+     * @param toRemove The class to remove.
+     * @throws ClassNotFoundException If the class to be removed is not found in the existing list.
+     */
+    public void remove(Class toRemove) throws ClassNotFoundException {
+        requireNonNull(toRemove);
+        if (!this.contains(toRemove)) {
+            throw new ClassNotFoundException();
+        }
+        this.internalList.remove(toRemove);
+    }
+
+    /**
+     * Removes the class at the specified index in the list.
+     * The index must be within the bounds of the list.
+     * @param index The index of the class to remove.
+     */
+    public void remove(Index index) {
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        internalList.remove(index.getZeroBased());
+    }
+
     public void setClasses(UniqueClassList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -69,6 +97,19 @@ public class UniqueClassList implements Iterable<Class> {
         }
 
         internalList.setAll(classes);
+    }
+
+    /**
+     * Returns the class at the specified index in the list.
+     * The index must be within the bounds of the list.
+     * @param index The index of the class to retrieve.
+     */
+    public Class get(Index index) {
+        requireNonNull(index);
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return internalList.get(index.getZeroBased());
     }
 
     /**
@@ -110,10 +151,27 @@ public class UniqueClassList implements Iterable<Class> {
         return internalList.toString();
     }
 
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
+     * Sets the class at the specified index in the list to the specified class.
+     * @param index The index of the class to set.
+     * @param classToSet The class to set.
+     */
+
+    public void setClass(Index index, Class classToSet) {
+        requireNonNull(classToSet);
+        if (index.getZeroBased() >= internalList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        internalList.set(index.getZeroBased(), classToSet);
+    }
     /**
      * Returns true if {@code classes} contains only unique classes.
      */
-    private boolean classesAreUnique(List<Class> classes) {
+    public boolean classesAreUnique(List<Class> classes) {
         for (int i = 0; i < classes.size() - 1; i++) {
             for (int j = i + 1; j < classes.size(); j++) {
                 if (classes.get(i).isSameClass(classes.get(j))) {

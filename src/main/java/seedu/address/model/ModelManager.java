@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
@@ -131,6 +134,7 @@ public class ModelManager implements Model {
     @Override
     public void addClass(Class c) {
         eduTrack.addClass(c);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
     }
 
     @Override
@@ -140,10 +144,38 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeClass(Class c) {
+        requireNonNull(c);
+        eduTrack.removeClass(c);
+    }
+
+    @Override
+    public Class retrieveClass(Index targetClassIndex) throws CommandException {
+        ObservableList<Class> classList = this.eduTrack.getClassList();
+        if (classList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_CLASS_LIST);
+        }
+        if (targetClassIndex.getZeroBased() >= classList.size()) {
+            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+        }
+
+        return classList.get(targetClassIndex.getZeroBased());
+    }
+
     public Class getClass(ClassName className) {
         requireNonNull(className);
         return eduTrack.getClass(className);
     }
+
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return eduTrack.getClassByIndex(classIndex);
+    }
+
+    public int getClassListSize() {
+        return eduTrack.getClassListSize();
+    }
+    //=========== Filtered Person List Accessors =============================================================
 
     @Override
     public void setStudent(Student target, Student editedPerson) {
@@ -172,6 +204,17 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<Class> predicate) {
+        requireNonNull(predicate);
+        filteredClasses.setPredicate(predicate);
     }
 
     @Override

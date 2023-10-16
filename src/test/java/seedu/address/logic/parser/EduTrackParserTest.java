@@ -8,11 +8,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveClassCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
@@ -79,6 +82,12 @@ public class EduTrackParserTest {
     }
 
     @Test
+    public void parseCommand_removeClass() throws Exception {
+        RemoveClassCommand command = (RemoveClassCommand) parser.parseCommand("remove /c 1");
+        assertEquals(new RemoveClassCommand(Index.fromOneBased(1)), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
@@ -88,4 +97,18 @@ public class EduTrackParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_viewCommand() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + "1");
+        assertEquals(new ViewCommand(Index.fromOneBased(1)), command);
+    }
+
+    @Test
+    public void parseCommand_viewCommandInvalidIndex_throwsParseException() {
+        assertThrows(ParseException.class, ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX, () -> parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + "0"));
+    }
+
 }

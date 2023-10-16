@@ -61,6 +61,7 @@ public class RemoveStudentCommand extends RemoveCommand {
 
         model.deleteStudentFromClass(studentToDelete, studentClass);
 
+
         Name studentName = studentToDelete.getName();
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
                 Messages.formatClass(studentClass)));

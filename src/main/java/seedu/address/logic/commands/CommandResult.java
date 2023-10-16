@@ -79,4 +79,11 @@ public class CommandResult {
                 .toString();
     }
 
+    public boolean isView() {
+        return this.feedbackToUser.contains("Listed all students in");
+    }
+
+    public boolean isList() {
+        return this.feedbackToUser.contains("Listed all classes");
+    }
 }

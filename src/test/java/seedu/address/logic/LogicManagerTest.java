@@ -180,4 +180,14 @@ public class LogicManagerTest {
         expectedModel.addStudent(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void testGetFilteredClassList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClassList().remove(0));
+    }
+
+    @Test
+    public void getFilteredClassList_noClasses_returnsEmptyList() {
+        assertEquals(logic.getFilteredClassList().size(), 0);
+    }
 }

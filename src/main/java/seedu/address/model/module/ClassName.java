@@ -8,6 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidClassName(String)}
  */
 public class ClassName {
+
     public static final String MESSAGE_CONSTRAINTS = "Class name should not contain spaces.";
     public static final String MESSAGE_EMPTY_CLASS_NAME = "Class name not specified.";
     public static final String VALIDATION_REGEX = "^[^\\s]*$";

@@ -5,10 +5,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-
 
 /**
  * The API of the Model component.
@@ -16,6 +18,8 @@ import seedu.address.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Class> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -110,5 +114,17 @@ public interface Model {
 
     boolean hasClass(Class c);
 
+    void removeClass(Class c) throws ClassNotFoundException;
+
+    Class retrieveClass(Index classListIndex) throws CommandException;
+
     Class getClass(ClassName className);
+
+    Class getClassByIndex(Index classIndex);
+
+    int getClassListSize();
+
+    ObservableList<Class> getFilteredClassList();
+
+    void updateFilteredClassList(Predicate<Class> predicate);
 }
