@@ -20,13 +20,13 @@ import seedu.address.model.student.Student;
 public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add /s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to a specified class. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to a specified class index. "
             + "Parameters: "
-            + PREFIX_STUDENT + "STUDENT NAME "
-            + PREFIX_CLASS + "CLASS \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT + "John Doe "
-            + PREFIX_CLASS + "CS2103T-T15";
+            + PREFIX_STUDENT + " STUDENT NAME "
+            + PREFIX_CLASS + " CLASS INDEX \n"
+            + "Example: " + COMMAND_WORD
+            + " John Doe "
+            + PREFIX_CLASS + " 1";
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New student added: %1$s to the class: %2$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     private final Student toAdd;
