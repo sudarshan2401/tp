@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -45,5 +46,13 @@ public class ViewCommandTest {
         assertFalse(viewCommand.equals(viewCommandDiff));
         assertFalse(viewCommand.equals(null));
         assertFalse(viewCommand.equals(new AddClassCommand(new Class(className))));
+    }
+
+    @Test
+    public void toStringTest() {
+        ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
+        // expected : ViewCommand{classIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=0}}
+        String expected = ViewCommand.class.getSimpleName() + "{classIndex=" + Index.fromOneBased(1) + "}";
+        assertEquals(expected, viewCommand.toString());
     }
 }

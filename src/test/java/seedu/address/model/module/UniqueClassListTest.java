@@ -128,6 +128,12 @@ public class UniqueClassListTest {
     }
 
     @Test
+    public void setClass_indexOutOfBounds_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, ()
+                        -> uniqueClassList.setClass(Index.fromOneBased(1), sampleClass));
+    }
+
+    @Test
     public void setClass_validClass_success() {
         uniqueClassList.add(sampleClass);
         uniqueClassList.setClass(Index.fromOneBased(1), CS2040);
@@ -142,10 +148,31 @@ public class UniqueClassListTest {
     }
 
     @Test
+    public void remove_indexOutOfBounds_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> uniqueClassList.remove(Index.fromOneBased(1)));
+    }
+
+    @Test
     public void remove_validClass_success() {
         uniqueClassList.add(sampleClass);
         uniqueClassList.remove(Index.fromOneBased(1));
         UniqueClassList expectedUniqueClassList = new UniqueClassList();
         assertEquals(expectedUniqueClassList, uniqueClassList);
+    }
+
+    @Test
+    public void testEquals() {
+        uniqueClassList.add(sampleClass);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(sampleClass);
+        assertTrue(uniqueClassList.equals(expectedUniqueClassList));
+    }
+
+    @Test
+    public void testHashCode() {
+        uniqueClassList.add(sampleClass);
+        UniqueClassList expectedUniqueClassList = new UniqueClassList();
+        expectedUniqueClassList.add(sampleClass);
+        assertEquals(uniqueClassList.hashCode(), expectedUniqueClassList.hashCode());
     }
 }

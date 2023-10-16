@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -33,5 +34,11 @@ public class ViewCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, " /c " + "0",
                 String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX));
+    }
+
+    @Test
+    public void parse_prefixMissing_failure() {
+        assertParseFailure(parser, "1",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 }
