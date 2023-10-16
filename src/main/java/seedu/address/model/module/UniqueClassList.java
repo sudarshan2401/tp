@@ -154,26 +154,6 @@ public class UniqueClassList implements Iterable<Class> {
         internalList.remove(index.getZeroBased());
     }
 
-    /**
-     * Sets the contents of this list to {@code classes}.
-     * @param replacement The list of classes to set.
-     */
-    public void setClasses(UniqueClassList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code classes}.
-     * {@code classes} must not contain duplicate classes.
-     */
-    public void setClasses(List<Class> classes) {
-        requireAllNonNull(classes);
-        if (!classesAreUnique(classes)) {
-            throw new DuplicateClassException();
-        }
-        internalList.setAll(classes);
-    }
 
     /**
      * Returns true if {@code classes} contains only unique classes.
