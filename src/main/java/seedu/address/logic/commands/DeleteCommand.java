@@ -42,7 +42,7 @@ public class DeleteCommand extends Command {
 
         Student personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.formatStudent(personToDelete)));
     }
 
     @Override

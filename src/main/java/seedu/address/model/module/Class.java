@@ -17,19 +17,16 @@ import seedu.address.model.student.UniqueStudentList;
 public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
-    {
-        students = new UniqueStudentList();
-    }
 
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
      */
-    public Class(ClassName className) {
+    public Class(ClassName className, UniqueStudentList students) {
         requireNonNull(className);
         this.className = className;
-
+        this.students = students;
     }
 
 
@@ -50,6 +47,10 @@ public class Class {
 
         return otherClass != null
                 && otherClass.getClassName().equals(getClassName());
+    }
+
+    public void addStudentToClass(Student toAdd) {
+        students.add(toAdd);
     }
 
     public void removeStudentFromClass(Student s) {
@@ -87,6 +88,15 @@ public class Class {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(className);
+    }
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in
+     * the class.
+     */
+    public boolean hasStudentInClass(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
     }
 
     @Override

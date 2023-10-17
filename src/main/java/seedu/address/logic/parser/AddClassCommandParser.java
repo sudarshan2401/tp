@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * Parses input arguments and creates a new AddClassCommand object
@@ -31,7 +32,8 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-        Class c = new Class(className);
+        UniqueStudentList emptyStudentList = new UniqueStudentList();
+        Class c = new Class(className, emptyStudentList);
 
         return new AddClassCommand(c);
     }

@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 
 public class EduTrackParserTest {
 
@@ -27,7 +28,7 @@ public class EduTrackParserTest {
     @Test
     public void parseCommand_addClass() throws Exception {
         ClassName className = new ClassName("test");
-        Class c = new Class(className);
+        Class c = new Class(className, new UniqueStudentList());
         AddClassCommand command = (AddClassCommand) parser.parseCommand("add /c test");
         assertEquals(new AddClassCommand(c), command);
     }

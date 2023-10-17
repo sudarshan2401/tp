@@ -63,7 +63,8 @@ public class RemoveStudentCommand extends RemoveCommand {
 
 
         Name studentName = studentToDelete.getName();
-        return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName, studentClass.toString()));
+        return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
+                Messages.formatClass(studentClass)));
     }
 
 }

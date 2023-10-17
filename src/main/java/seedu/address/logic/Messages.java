@@ -16,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_CLASS_DISPLAYED_INDEX = "The class index provided is invalid";
     public static final String MESSAGE_INDEX_INPUT_TOO_LARGE = "The class index provided is invalid";
     public static final String MESSAGE_EMPTY_CLASS_LIST = "There are no classes available at the moment! Create one!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
@@ -35,11 +36,11 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code student} for display to the user.
      */
-    public static String format(Student person) {
+    public static String formatStudent(Student student) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName());
+        builder.append(student.getName());
         return builder.toString();
     }
 
@@ -52,6 +53,5 @@ public class Messages {
                 .append("");
         return builder.toString();
     }
-
 
 }

@@ -15,6 +15,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.testutil.TypicalClasses;
 
 public class ViewCommandTest {
@@ -45,7 +46,7 @@ public class ViewCommandTest {
         assertTrue(viewCommand.equals(viewCommandCopy));
         assertFalse(viewCommand.equals(viewCommandDiff));
         assertFalse(viewCommand.equals(null));
-        assertFalse(viewCommand.equals(new AddClassCommand(new Class(className))));
+        assertFalse(viewCommand.equals(new AddClassCommand(new Class(className, new UniqueStudentList()))));
     }
 
     @Test

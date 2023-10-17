@@ -122,7 +122,13 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student person) {
         eduTrack.addStudent(person);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        //    updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addStudentToClass(Student student, Class studentClass) {
+        studentClass.addStudentToClass(student);
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
     @Override

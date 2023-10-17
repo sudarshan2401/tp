@@ -42,7 +42,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.formatStudent(validPerson)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -149,6 +149,11 @@ public class AddCommandTest {
         @Override
         public void deleteStudentFromClass(Student student, Class studentClass) {
             // to be filled after implementation of class' delete student function
+        }
+
+        @Override
+        public void addStudentToClass(Student student, Class classToAdd) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
