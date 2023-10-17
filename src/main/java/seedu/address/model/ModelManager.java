@@ -122,7 +122,7 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student person) {
         eduTrack.addStudent(person);
-//        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        //    updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
