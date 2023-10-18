@@ -1,0 +1,11 @@
+{
+  "students": [],
+  "classes": [ {
+    "className": "CS2103-T"
+  }, {
+    "className": "cs 2100"
+  }, {
+    "className": "ST2334"
+  }
+  ]
+}

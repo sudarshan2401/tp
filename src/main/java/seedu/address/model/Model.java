@@ -5,14 +5,21 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
+import seedu.address.model.student.Student;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Class> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +44,85 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduTrackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduTrackFilePath(Path eduTrackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduTrack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduTrack(ReadOnlyEduTrack eduTrack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduTrack */
+    ReadOnlyEduTrack getEduTrack();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasStudent(Student person);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteStudent(Student target);
+
+    /**
+     * Deletes the given student from class.
+     * The person must exist in the class.
+     */
+    void deleteStudentFromClass(Student student, Class studentClass);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addStudent(Student person);
+
+    /**
+     * Adds the given student to the class.
+     * The person must not already exist in the class.
+     */
+    void addStudentToClass(Student student, Class studentClass);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setStudent(Student target, Student editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the filtered class list */
+    ObservableList<Class> getFilteredClassList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void addClass(Class c);
+
+    boolean hasClass(Class c);
+
+    void removeClass(Class c) throws ClassNotFoundException;
+
+    Class retrieveClass(Index classListIndex) throws CommandException;
+
+    Class getClass(ClassName className);
+
+    Class getClassByIndex(Index classIndex);
+
+    int getClassListSize();
+
+    void updateFilteredClassList(Predicate<Class> predicate);
 }

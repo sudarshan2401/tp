@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,28 +24,39 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final EduTrack eduTrack;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Class> filteredClasses;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given eduTrack and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyEduTrack eduTrack, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(eduTrack, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + eduTrack + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.eduTrack = new EduTrack(eduTrack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStudents = new FilteredList<>(this.eduTrack.getStudentList());
+        filteredClasses = new FilteredList<>(this.eduTrack.getClassList());
+
+        // IMPORTANT!! to be removed after `add student` is implemented
+        // current classStub share the same file as EduTrack.json under data folder
+        // this automatically always a create a class called classStub
+        //        ClassName classNameStub = new ClassName("classStub");
+        //        Class classStub = new Class(classNameStub);
+        //        classStub.setStudents(eduTrack.getStudentList());
+        //        this.addClass(classStub);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new EduTrack(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -65,67 +81,136 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getEduTrackFilePath() {
+        return userPrefs.getEduTrackFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setEduTrackFilePath(Path eduTrackFilePath) {
+        requireNonNull(eduTrackFilePath);
+        userPrefs.setEduTrackFilePath(eduTrackFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== EduTrack ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setEduTrack(ReadOnlyEduTrack eduTrack) {
+        this.eduTrack.resetData(eduTrack);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public ReadOnlyEduTrack getEduTrack() {
+        return eduTrack;
+    }
+
+    @Override
+    public boolean hasStudent(Student person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return eduTrack.hasStudent(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteStudent(Student target) {
+        eduTrack.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteStudentFromClass(Student student, Class studentClass) {
+        studentClass.removeStudentFromClass(student);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void addStudent(Student person) {
+        eduTrack.addStudent(person);
+        //    updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addStudentToClass(Student student, Class studentClass) {
+        studentClass.addStudentToClass(student);
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
+    public void addClass(Class c) {
+        eduTrack.addClass(c);
+        updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
+    }
+
+    @Override
+    public boolean hasClass(Class c) {
+        requireNonNull(c);
+        return eduTrack.hasClass(c);
+    }
+
+    @Override
+    public void removeClass(Class c) {
+        requireNonNull(c);
+        eduTrack.removeClass(c);
+    }
+
+    @Override
+    public Class retrieveClass(Index targetClassIndex) throws CommandException {
+        ObservableList<Class> classList = this.eduTrack.getClassList();
+        if (classList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_CLASS_LIST);
+        }
+        if (targetClassIndex.getZeroBased() >= classList.size()) {
+            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+        }
+
+        return classList.get(targetClassIndex.getZeroBased());
+    }
+
+    public Class getClass(ClassName className) {
+        requireNonNull(className);
+        return eduTrack.getClass(className);
+    }
+
+    public Class getClassByIndex(Index classIndex) {
+        requireNonNull(classIndex);
+        return eduTrack.getClassByIndex(classIndex);
+    }
+
+    public int getClassListSize() {
+        return eduTrack.getClassListSize();
+    }
+    //=========== Filtered Person List Accessors =============================================================
+
+    @Override
+    public void setStudent(Student target, Student editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        eduTrack.setStudent(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedEduTrack}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Class> getFilteredClassList() {
+        return filteredClasses;
+    }
+
+    @Override
+    public void updateFilteredClassList(Predicate<Class> predicate) {
+        requireNonNull(predicate);
+        filteredClasses.setPredicate(predicate);
     }
 
     @Override
@@ -140,9 +225,9 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return eduTrack.equals(otherModelManager.eduTrack)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredStudents.equals(otherModelManager.filteredStudents);
     }
 
 }

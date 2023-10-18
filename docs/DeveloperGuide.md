@@ -9,19 +9,19 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -29,35 +29,36 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
-* At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
-* At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+
+- At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+- At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app's work is done by the following four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -77,10 +78,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -111,21 +112,22 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
@@ -135,7 +137,6 @@ The `Model` component,
 
 </box>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -143,15 +144,16 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -163,9 +165,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -192,7 +194,6 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
 
 <box type="info" seamless>
 
@@ -235,14 +236,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -250,18 +252,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -271,40 +272,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 University tutor who:
 
-* has a need to manage classes with a significant number of students
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- has a need to manage classes with a significant number of students
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: Each tutor has multiple groups of students where each group can be large, keeping track of students and records would become a hassle. Our product provides a centralised system that would help to organise all student records for easy and quick access.
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​  | I want to …​                              | So that I can…​                                                   |
-|---------|----------|-------------------------------------------|-------------------------------------------------------------------|
-| `* * *` | TA       | add a class                               | -                                                                 |
-| `* * *` | TA       | remove a class                            | -                                                                 |
-| `* * *` | TA       | view a class                              | view all students of a specific class                             |
-| `* * *` | TA       | add a student                             | -                                                                 |
-| `* * *` | TA       | remove a student                          | -                                                                 |
-| `* * *` | TA       | save the data automatically               | ensure that my data is not lost when I forget to save             |
-| `* *`   | TA       | update a class                            | keep the class information up to date                             |
-| `* *`   | TA       | update a student                          | keep the student record up to date                                |
-| `* *`   | TA       | take attendance in a lesson               | spend more time teaching                                          |
-| `* *`   | TA       | monitor a lesson of a class               | keep track of administrative information for each lesson          |
-| `* *`   | TA       | find a specific student by using a filter | quickly update their record such as attendance when they are late |
-| `* *`   | new user | see the app populated with sample data    | easily see what the app looks like when it is in use              |
+| -------- | -------- | ----------------------------------------- | ----------------------------------------------------------------- |
+| `* * *`  | TA       | add a class                               | -                                                                 |
+| `* * *`  | TA       | remove a class                            | -                                                                 |
+| `* * *`  | TA       | view a class                              | view all students of a specific class                             |
+| `* * *`  | TA       | add a student                             | -                                                                 |
+| `* * *`  | TA       | remove a student                          | -                                                                 |
+| `* * *`  | TA       | save the data automatically               | ensure that my data is not lost when I forget to save             |
+| `* *`    | TA       | update a class                            | keep the class information up to date                             |
+| `* *`    | TA       | update a student                          | keep the student record up to date                                |
+| `* *`    | TA       | take attendance in a lesson               | spend more time teaching                                          |
+| `* *`    | TA       | monitor a lesson of a class               | keep track of administrative information for each lesson          |
+| `* *`    | TA       | find a specific student by using a filter | quickly update their record such as attendance when they are late |
+| `* *`    | new user | see the app populated with sample data    | easily see what the app looks like when it is in use              |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
 (For all use cases below, the **System** is the `EduTrack` and the **Actor** is the `user`, unless specified otherwise)
-
 
 **Use case: View all the information about a class**
 
@@ -313,6 +312,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses a class out of all the classes they are teaching.
 2. User requests to view all the information about that class.
 3. EduTrack displays all the information about that class. (e.g. name, students, attendance, notes, etc)
+
+---
 
 **Use case: Add a class**
 
@@ -324,17 +325,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Class name is not specified.
+- 1a. Class name is not specified.
 
-  * 1a1. EduTrack informs user that class name is empty.
+  - 1a1. EduTrack informs user that class name is empty.
 
-      Use case ends.
+    Use case ends.
 
-* 1b. Class name already exists.
+- 1b. Class name already exists.
 
-    * 1a1. EduTrack informs user that class already exists.
+  - 1a1. EduTrack informs user that class already exists.
 
-      Use case ends.
+    Use case ends.
 
 ---
 
@@ -350,40 +351,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  EduTrack deletes the class
 7.  EduTrack informs the user that the class is successfully deleted
 
-
     Use case ends.
 
 **Extensions**
 
-* 1a. Class name is not specified.
+- 1a. Class name is not specified.
 
-    Use case ends.
-* 2a. User did not specify the class.
-  * 2a1. EduTrack informs user that class name is not specified in request.
-  * 2a2. EduTrack terminates the request.
+  Use case ends.
 
-    Use case ends.
+- 2a. User did not specify the class.
 
-* 2b. EduTrack detects that the class does not exist.
-  * 2b1. EduTrack informs user that the class does not exist.
-  * 2b2. EduTrack terminates the request.
+  - 2a1. EduTrack informs user that class name is not specified in request.
+  - 2a2. EduTrack terminates the request.
 
     Use case ends.
 
-* 3a. The given class name is invalid.
-    * 3a1. EduTrack shows an error message.
+- 2b. EduTrack detects that the class does not exist.
+
+  - 2b1. EduTrack informs user that the class does not exist.
+  - 2b2. EduTrack terminates the request.
 
     Use case ends.
 
-* 3b. No class name specified.
-    * 3b1. EduTrack informs the user he should enter a class field
+- 3a. The given class name is invalid.
 
-    Use case ends.
+  - 3a1. EduTrack shows an error message.
 
-* 4a. User does not confirm, provides a `n` input
-    * 4a1. EduTrack confirms that the cancellation is successful
+  Use case ends.
 
-    Use case ends.
+- 3b. No class name specified.
+
+  - 3b1. EduTrack informs the user he should enter a class field
+
+  Use case ends.
+
+- 4a. User does not confirm, provides a `n` input
+
+  - 4a1. EduTrack confirms that the cancellation is successful
+
+  Use case ends.
 
 ---
 
@@ -395,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. EduTrack populates the app with sample data for a class.
 3. User accesses the sample data to see how the app works.
 
-    Use case ends.
+   Use case ends.
 
 **Use case: Updating a Class note**
 
@@ -408,23 +414,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  EduTrack informs that user that the was successfully updated
 
 **Extensions**
-* 2a. The list is empty.
+
+- 2a. The list is empty.
 
   Use case ends
-* 3a. The given class name is invalid.
-    * 3a1. EduTrack shows an error message.
 
-      Use case ends.
+- 3a. The given class name is invalid.
 
-* 3b. No class name specified.
-    * 3b1. EduTrack informs the user he should enter a class field
+  - 3a1. EduTrack shows an error message.
 
-      Use case ends.
+    Use case ends.
 
-* 3c. No note details was specified.
-    * 3c1. EduTrack informs the user that no note was specified.
+- 3b. No class name specified.
 
-      Use case ends.
+  - 3b1. EduTrack informs the user he should enter a class field
+
+    Use case ends.
+
+- 3c. No note details was specified.
+
+  - 3c1. EduTrack informs the user that no note was specified.
+
+    Use case ends.
 
 ---
 
@@ -441,35 +452,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. Class name is not specified.
 
-    * 1a1. EduTrack informs user that class name is empty.
+- 1a. Class name is not specified.
 
-      Use case ends.
+  - 1a1. EduTrack informs user that class name is empty.
 
-* 1b. Class name already exists.
+    Use case ends.
 
-    * 1a1. EduTrack informs user that class already exists.
+- 1b. Class name already exists.
 
-      Use case ends.
+  - 1a1. EduTrack informs user that class already exists.
 
-* 3a. Class field is not specified.
+    Use case ends.
 
-    * 3a1. EduTrack informs user that class field is empty.
+- 3a. Class field is not specified.
 
-      Use case ends.
+  - 3a1. EduTrack informs user that class field is empty.
 
-* 3b. Class field does not exist.
+    Use case ends.
 
-    * 3b1. EduTrack informs user that class field does not exist.
+- 3b. Class field does not exist.
 
-      Use case ends.
+  - 3b1. EduTrack informs user that class field does not exist.
 
-* 3c. Updated information is not specified.
+    Use case ends.
 
-    * 3c1. EduTrack informs user that information to be updated is empty.
+- 3c. Updated information is not specified.
 
-      Use case ends.
+  - 3c1. EduTrack informs user that information to be updated is empty.
+
+    Use case ends.
 
 ---
 
@@ -487,27 +499,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends
-* 3a. The given class name is invalid.
 
-    * 3a1. EduTrack shows an error message.
+- 3a. The given class name is invalid.
 
-      Use case ends.
+  - 3a1. EduTrack shows an error message.
 
-* 3b. No class name specified.
-    * 3b1. EduTrack informs the user he should enter a class field
+    Use case ends.
 
-      Use case ends.
-* 3c. No lesson details was specified.
-    * 3c1. EduTrack informs the user that a lesson wasn't specified.
+- 3b. No class name specified.
 
-      Use case ends.
-* 3d. Lesson details was of invalid format.
-    * 3d1. EduTrack informs the user he should enter a lesson of the correct format
+  - 3b1. EduTrack informs the user he should enter a class field
 
-      Use case ends.
+    Use case ends.
+
+- 3c. No lesson details was specified.
+
+  - 3c1. EduTrack informs the user that a lesson wasn't specified.
+
+    Use case ends.
+
+- 3d. Lesson details was of invalid format.
+
+  - 3d1. EduTrack informs the user he should enter a lesson of the correct format
+
+    Use case ends.
 
 ---
 
@@ -522,26 +540,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  EduTrack informs the user that the lesson was removed from the class schedule
 
 **Extensions**
-* 2a. The list is empty.
+
+- 2a. The list is empty.
 
   Use case ends
-* 3a. The given class name is invalid.
-    * 3a1. EduTrack shows an error message.
 
-      Use case ends.
+- 3a. The given class name is invalid.
 
-* 3b. No class name specified.
-    * 3b1. EduTrack informs the user he should enter a class field
+  - 3a1. EduTrack shows an error message.
 
-      Use case ends.
-* 3c. No lesson id was specified.
-    * 3c1. EduTrack informs the user that a lesson id wasn't specified.
+    Use case ends.
 
-      Use case ends.
-* 3d. Lesson id is of invalid format or does not exist.
-    * 3d1. EduTrack informs the user that the lesson does not exist.
+- 3b. No class name specified.
 
-      Use case ends.
+  - 3b1. EduTrack informs the user he should enter a class field
+
+    Use case ends.
+
+- 3c. No lesson id was specified.
+
+  - 3c1. EduTrack informs the user that a lesson id wasn't specified.
+
+    Use case ends.
+
+- 3d. Lesson id is of invalid format or does not exist.
+
+  - 3d1. EduTrack informs the user that the lesson does not exist.
+
+    Use case ends.
 
 ---
 
@@ -560,6 +586,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+**Use case: Add a student**
+
+**MSS**
+
+1. User chooses to add a student to an existing class.
+2. User requests to add a new student to an existing class.
+3. EduTrack adds the student into the specified class.
+
+**Extensions**
+
+- 1a. Student name is not specified.
+
+  - 1a1. EduTrack informs user that the student name is empty.
+
+    Use case ends.
+
+- 1b. Class name is not specified.
+
+  - 1b1. EduTrack informs user that the class name is empty.
+
+    Use case ends.
+
+- 2a. Student name already exists.
+
+  - 2a1. EduTrack informs user that student name already exists.
+  - 2a2. EduTrack terminates the request.
+
+    Use case ends.
+
+- 2b. Class does not exist.
+
+  - 2b1. EduTrack informs user that the class is not found.
+  - 2b2. EduTrack terminates the request.
+
+    Use case ends.
+
+---
+
 **Use case: Remove a student**
 
 **MSS**
@@ -568,51 +632,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to delete a specific student in a class.
 3. EduTrack deletes the student from that class.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. Class name is not specified.
+- 1a. Class name is not specified.
 
-    * 1a1. EduTrack informs user that class name is empty.
+  - 1a1. EduTrack informs user that class name is empty.
 
-      Use case ends.
+    Use case ends.
 
-* 1b. Class name already exists.
+- 1b. Class name already exists.
 
-    * 1a1. EduTrack informs user that class already exists.
+  - 1a1. EduTrack informs user that class already exists.
 
-      Use case ends.
+    Use case ends.
 
-* 4a. Student does not exist
+- 4a. Student does not exist
 
-    * 4a1. EduTrack informs user that student is not found.
+  - 4a1. EduTrack informs user that student is not found.
 
-      Use case ends.
+    Use case ends.
 
-* 2a. User did not specify the class.
-    * 2a1. EduTrack informs user that class name is not specified in the request.
-    * 2a2. EduTrack terminates the request.
+- 2a. User did not specify the class.
 
-      Use case ends.
+  - 2a1. EduTrack informs user that class name is not specified in the request.
+  - 2a2. EduTrack terminates the request.
 
-* 2b. EduTrack detects that the student is not found in the class.
-    * 2b1. EduTrack informs user that student is not found in class.
-    * 2b2. EduTrack terminates the request.
+    Use case ends.
 
-      Use case ends.
+- 2b. EduTrack detects that the student is not found in the class.
 
-* 2c. EduTrack detects that the class does not exist.
-    * 2c1. EduTrack informs user that the class does not exist.
-    * 2c2. EduTrack terminates the request.
+  - 2b1. EduTrack informs user that student is not found in class.
+  - 2b2. EduTrack terminates the request.
 
-      Use case ends.
+    Use case ends.
+
+- 2c. EduTrack detects that the class does not exist.
+
+  - 2c1. EduTrack informs user that the class does not exist.
+  - 2c2. EduTrack terminates the request.
+
+    Use case ends.
 
 ---
 
-**Use case: Update a class**
+**Use case: Modify an existing student records**
 
 **MSS**
+
 1. User requests to modify an existing student record in a class.
 2. EduTrack responds with a list of categories for user to choose to modify.
 3. User chooses a category to modify.
@@ -620,21 +688,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. User enters the new input for the category.
 6. EduTrack updates and displays the new student record.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. EduTrack detects that student or class does not exist.
-    * 1a1. EduTrack informs the user that the student or the class does not exist.
-    * 1a2. EduTrack terminates the request.
+- 1a. EduTrack detects that student or class does not exist.
 
-      Use case ends.
+  - 1a1. EduTrack informs the user that the student or the class does not exist.
+  - 1a2. EduTrack terminates the request.
+
+    Use case ends.
 
 ---
 
 **Use case: Use auto-save feature**
 
 **MSS**
+
 1. User makes any form of request that alters the database.
 2. EduTrack updates the database directly.
 
@@ -645,25 +715,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  **Environment requirement:**
-   - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+
+- Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
 2.  **Scalability:**
-   - Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+
+- Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 
 3.  **Usability:**
-   - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-   - The user interface should be intuitive and user-friendly to minimize the learning curve for TAs.
+
+- A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+- The user interface should be intuitive and user-friendly to minimize the learning curve for TAs.
 
 4.  **Performance**
-   - The system should respond to user requests within a reasonable time frame (i.e. under 2 seconds).
 
-*{More to be added}*
+- The system should respond to user requests within a reasonable time frame (i.e. under 2 seconds).
+
+_{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, macOS
-* **Database**: A storage for all data to be stored in.
---------------------------------------------------------------------------------------------------------------------
+- **Mainstream OS**: Windows, Linux, Unix, macOS
+- **Database**: A storage for all data to be stored in.
+
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -671,10 +746,9 @@ Given below are instructions to test the app manually.
 
 <box type="info" seamless>
 
-**Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
+**Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 
 </box>
-
 
 ### Launch and shutdown
 
@@ -689,7 +763,7 @@ Given below are instructions to test the app manually.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

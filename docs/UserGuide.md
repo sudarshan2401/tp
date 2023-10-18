@@ -6,10 +6,7 @@ pageNav: 3
 
 # EduTrack User Guide
 
-EduTrack is a **desktop app for managing classes designed for tutors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization.
-
-<!-- * Table of Contents -->
-<page-nav-print />
+EduTrack is a **desktop app for managing classes designed for tutors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Whether you are managing multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -17,10 +14,22 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
 
 1. [Quick start](#quick-start)
 2. [Features](#features)
-    - [Viewing help](#viewing-help--help-coming-in-v13)
-    - [Adding a class](#adding-a-class--add)
-    - [Adding a list of students](#adding-a-list-of-students--add)
-    - [Removing a student](#removing-a-student--remove)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a class : `add`](#adding-a-class--add)
+    - [Removing a class : `remove`](#removing-a-class--remove)
+    - [Viewing a class : `view`](#viewing-a-class--view)
+    - [Adding a student : `add`](#adding-a-student--add)
+    - [Removing a student : `remove`](#removing-a-student--remove)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
+    - [Updating a class : `coming in v1.3`](#updating-a-class--coming-in-v13)
+    - [Updating a class note : `coming in v1.3`](#updating-a-class-note--coming-in-v13)
+    - [Updating a student : `coming in v1.3`](#updating-a-student--coming-in-v13)
+    - [Adding a lesson : `coming in v1.3`](#adding-a-lesson--coming-in-v13)
+    - [Removing a lesson : `coming in v1.3`](#removing-a-lesson--coming-in-v13)
+    - [Taking attendance : `coming in v1.3`](#taking-attendance--coming-in-v13)
+    - [Finding a student : `coming in v1.3`](#finding-a-student--coming-in-v13)
 3. [FAQ](#faq)
 4. [Known issues](#known-issues)
 5. [Command summary](#command-summary)
@@ -39,7 +48,7 @@ Coming soon...
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
   e.g. in `add /c CLASS_NAME`, `CLASS_NAME` is a parameter which can be used as `add /c CS2103T-T15-3`.
 
 * Parameters can be in any order.<br>
@@ -50,6 +59,16 @@ Coming soon...
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
+<<<<<<< HEAD
+=======
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+**Command Format:** `help`
+
+>>>>>>> 8bdfe9ae344274bdbb9796c33c40471b0704bcf9
 
 ### Adding a class : `add`
 
@@ -61,139 +80,130 @@ Adds a new class to the list of classes.
 
 * CLASS_NAME must be unique (cannot have two classes with the same name)
 
-**Example:**
-add /c cs2103t
+**Examples:**
+* `add /c cs2103t`
 
 **Successful Output:**
-“CLASS_NAME” has been added
+* CLASS_NAME has been added
 
 **Unsuccessful Output:**
-“CLASS_NAME” already exists
-Class Name not specified
+* CLASS_NAME already exists
+* Class name not specified
 
 ### Removing a class : `remove`
 
-Remove a specific class from your list of classes.
+Removes an existing class from the list of classes.
 
 **Command Format:** `remove /c CLASS_NAME`
 
-* Confirmation is required to remove your class:
-
-  <span style="color:red;">
-    Are you sure you want to remove class "CLASS_NAME"
-  <br>
-    This action cannot be undone
-  <br>
-    Type 'y' to confirm and 'n' to cancel
-  </span>
-
-  `y` to proceed, `n` to cancel
-
 * CLASS_NAME is not case-sensitive
+* Class must already exist
 
-**Example:**
-`remove /c cs2103t`
+> [!Confirmation is required to remove your class]\
+> Are you sure you want to remove class "CLASS_NAME?"\
+> This action cannot be undone\
+> Type 'y' to confirm and 'n' to cancel
+
+**Examples:**
+* `remove /c cs2103t`
 
 **Successful Output:**
-“CLASS_NAME” has been removed
+* CLASS_NAME has been removed
 
 **Unsuccessful Output:**
-* “CLASS_NAME” does not exist
-* Class Name not specified
+* CLASS_NAME does not exist
+* Class name not specified
+
+### Viewing a class : `view`
+
+Prints out the detailed information (class name, class schedule, enrolled student list) about a class.
+
+**Command Format**: `view /c CLASS_NAME`
+* CLASS_NAME is not case-sensitive
+* Class must already exist
+
+**Examples**:
+* `view CS2103T`
+* `view cs2103t`
+
+**Successful Output:**
+* CLASS_NAME: Enrolled students: (...)
+
+**Unsuccessful Output:**
+* CLASS_NAME does not exist
 
 ### Adding a student : `add`
 
 Adds a new student to an existing class.
 
 **Command Format**: `add /s STUDENT_NAME /c CLASS_NAME`
-* STUDENT_NAME and CLASS_NAME are compulsory parameters
-* CLASS_NAME is case-insensitive
+* CLASS_NAME is not case-sensitive
+* Class must already exist
 * STUDENT_NAME only accepts alphabetical characters
-* Class must have been created to add a student inside that class
 
-**Example**:
-`add /s John /c cs2103t`
+**Examples**:
+* `add /s John /c cs2103t`
 
 **Successful Output**:
-"STUDENT_NAME has been added to CS2103T"
+* STUDENT_NAME has been added to CLASS_NAME
 
 **Unsuccessful Output**:
-* "Class name was not specified"
-* "CLASS_NAME does not exist"
-
+* Class name not specified
+* CLASS_NAME does not exist
 
 ### Removing a student : `remove`
 
 Removes an existing student from a class.
 
 **Command Format**: `remove /s STUDENT_NAME /c CLASS_NAME`
-* STUDENT_NAME and CLASS_NAME are compulsory parameters
-* CLASS_NAME is case-insensitive
-* STUDENT_NAME only accepts Alphabets
-* Student must have been added into the class to be removed
 
-* CLASS_NAME must be unique (cannot have two classes with the same name)
-
-**Example:**
-Remove /s John /c CS2103T
-
-**Successful Output:**
-“STUDENT_NAME has been removed from CLASS_NAME”
-
-**Unsuccessful Output:**
-“Class name not specified”
-“STUDENT_NAME is not found in CLASS_NAME”
-“CLASS_NAME does not exist”
-
-### Viewing a class : `view`
-Prints out the detailed information (class name, class schedule, enrolled student list) about a specific class.
-**Command Format**: `view /c CLASS_NAME`
 * CLASS_NAME is not case-sensitive
-* Class must have been created to be viewed
+* Class and student must already exist
+* STUDENT_NAME only accepts alphabetical characters
 
-**Examples**:
-view CS2103T
-view cs2103t
+**Examples:**
+* Remove /s John /c CS2103T
 
 **Successful Output:**
-“CLASS_NAME”:
-Enrolled students: (...)
+* STUDENT_NAME has been removed from CLASS_NAME
 
 **Unsuccessful Output:**
-“CLASS_NAME” does not exist
+* Class name not specified
+* CLASS_NAME does not exist
+* STUDENT_NAME is not found in CLASS_NAME
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+**Command Format:** `exit`
 
 ### Saving the data
 
-EduTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EduTrack's data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Adding a list of students
+### Adding a list of students : `coming in v1.3`
 [Coming soon...]
 
-### Updating a Class
+### Updating a class : `coming in v1.3`
 [Coming Soon...]
 
-### Updating a Student Profile
+### Updating a class note : `coming in v1.3`
 [Coming Soon...]
 
-### Taking attendance for a lesson
+### Updating a student : `coming in v1.3`
 [Coming Soon...]
 
-### Updating a Class note
+### Adding a lesson : `coming in v1.3`
 [Coming Soon...]
 
-### Adding a lesson to a Class Schedule
+### Removing a lesson : `coming in v1.3`
 [Coming Soon...]
 
-### Removing a lesson from a Class Schedule
+### Taking attendance : `coming in v1.3`
 [Coming Soon...]
 
-### Finding the profile of a Student from a Class
+### Finding a student : `coming in v1.3`
 [Coming Soon...]
 
 --------------------------------------------------------------------------------------------------------------------
