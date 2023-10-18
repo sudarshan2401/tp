@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,6 +45,7 @@ public class RemoveStudentCommand extends RemoveCommand {
      * @param studentClassName ClassName of the Student's Class
      */
     public RemoveStudentCommand(Index index, ClassName studentClassName) {
+        requireNonNull(studentClassName);
         this.studentIndex = index;
         this.studentClassName = studentClassName;
     }
@@ -65,6 +67,29 @@ public class RemoveStudentCommand extends RemoveCommand {
         Name studentName = studentToDelete.getName();
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
                 Messages.formatClass(studentClass)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RemoveStudentCommand)) {
+            return false;
+        }
+
+        RemoveStudentCommand otherRemoveStudentCommand = (RemoveStudentCommand) other;
+        return studentClassName.equals(otherRemoveStudentCommand.studentClassName)
+                && studentIndex.equals(otherRemoveStudentCommand.studentIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("studentClassName", studentClassName)
+                .add("studentIndex", studentIndex)
+                .toString();
     }
 
 }
