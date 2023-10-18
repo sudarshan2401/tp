@@ -73,7 +73,7 @@ class RemoveClassCommandTest {
         // null -> returns false
         assertFalse(firstRemoveClassCommand.equals(null));
 
-        // different person -> returns false
+        // different class -> returns false
         assertFalse(firstRemoveClassCommand.equals(secondRemoveClassCommand));
     }
 
