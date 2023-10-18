@@ -35,7 +35,9 @@ public class RemoveStudentCommandTest {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
         classStub = model.getFilteredClassList().get(INDEX_FIRST_CLASS.getZeroBased());
         studentStub = new StudentBuilder().build();
-        classStub.addStudentToClass(studentStub);
+        if (!classStub.hasStudentInClass(studentStub)) {
+            classStub.addStudentToClass(studentStub);
+        }
         classStubName = classStub.getClassName();
     }
 
