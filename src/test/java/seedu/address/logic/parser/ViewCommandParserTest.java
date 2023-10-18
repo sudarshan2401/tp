@@ -42,4 +42,10 @@ public class ViewCommandParserTest {
         assertParseFailure(parser, "1",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_stringInsteadOfInteger_failure() {
+        assertParseFailure(parser, " /c " + "a",
+                String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX));
+    }
 }
