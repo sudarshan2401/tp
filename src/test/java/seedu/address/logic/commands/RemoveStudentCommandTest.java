@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLASS;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalClasses;
 
@@ -36,6 +38,16 @@ public class RemoveStudentCommandTest {
         classStub.addStudentToClass(studentStub);
         classStubName = classStub.getClassName();
     }
+
+    @AfterEach
+    public void cleanUp() {
+        try {
+            model.deleteStudentFromClass(studentStub, classStub);
+        } catch (StudentNotFoundException e) {
+            System.out.println("Cleaning up after test: No student to be removed");
+        }
+    }
+
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
