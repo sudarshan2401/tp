@@ -21,22 +21,28 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     public ViewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLASS);
 
-        // ensures that class index is provided
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLASS)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        try {
+
+            // ensures that class index is provided
+            if (!arePrefixesPresent(argMultimap, PREFIX_CLASS)
+                    || !argMultimap.getPreamble().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            }
+
+            //ensures that the index provided is more than 0
+            if (Integer.parseInt(argMultimap.getValue(PREFIX_CLASS).get()) <= 0) {
+                throw new ParseException(String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
+                        ViewCommand.MESSAGE_USAGE));
+            }
+
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
+            Index classIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
+
+            return new ViewCommand(classIndex);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(
+                    String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
         }
-
-        //ensures that the index provided is more than 0
-        if (Integer.parseInt(argMultimap.getValue(PREFIX_CLASS).get()) <= 0) {
-            throw new ParseException(String.format(ViewCommand.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX,
-                    ViewCommand.MESSAGE_USAGE));
-        }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
-        Index classIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
-
-        return new ViewCommand(classIndex);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
