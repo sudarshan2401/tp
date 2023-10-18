@@ -46,6 +46,7 @@ public class RemoveStudentCommand extends RemoveCommand {
      */
     public RemoveStudentCommand(Index index, ClassName studentClassName) {
         requireNonNull(studentClassName);
+        requireNonNull(index);
         this.studentIndex = index;
         this.studentClassName = studentClassName;
     }
