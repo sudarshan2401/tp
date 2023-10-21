@@ -1,9 +1,9 @@
 package seedu.address.model.student;
 
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * Represents a Student's current lesson's attendance in the EduTrack.
@@ -16,7 +16,7 @@ public class CurrentLessonAttendance {
     public Boolean isPresent;
 
     /**
-     * Constructs an {@code CurrentLessonAttendance}.
+     * Constructs a {@code CurrentLessonAttendance}.
      *
      * @param isPresent True if the Student is present for the current lesson.
      */

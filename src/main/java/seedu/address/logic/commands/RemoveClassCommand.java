@@ -11,7 +11,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 
 /**
- * Deletes a Class identified using it's unique name from the EduTrack.
+ * Deletes a Class identified using index from the EduTrack.
  */
 public class RemoveClassCommand extends Command {
 

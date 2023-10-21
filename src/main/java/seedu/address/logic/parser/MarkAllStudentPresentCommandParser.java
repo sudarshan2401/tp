@@ -10,8 +10,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
+/**
+ * Parses input arguments and creates a new MarkAllStudentPresentCommand object.
+ */
 public class MarkAllStudentPresentCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the MarkAllStudentPresentCommand
+     * and returns an MarkAllStudentPresentCommand object for execution.
+     * @throws ParseException if the user input does not follow the expected format
+     */
     public MarkAllStudentPresentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLASS);

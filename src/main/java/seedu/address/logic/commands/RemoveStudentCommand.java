@@ -17,7 +17,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
- * Removes a Student identified by Name  from a Class.
+ * Removes a Student identified by Name from a Class.
  */
 public class RemoveStudentCommand extends RemoveCommand {
 

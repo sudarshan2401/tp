@@ -158,19 +158,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Student retrieveStudent(Index targetStudentIndex) throws CommandException {
-        ObservableList<Student> studentList = this.eduTrack.getStudentList();
-        if (studentList.size() == 0) {
-            throw new CommandException(Messages.MESSAGE_EMPTY_STUDENT_LIST);
-        }
-        if (targetStudentIndex.getZeroBased() >= studentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
-        }
-        return studentList.get(targetStudentIndex.getZeroBased());
-    }
-
-    @Override
-    public void markStudentPresent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedPresent {
+    public void markStudentPresent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedPresent {
         editedStudent.markStudentPresent();
         eduTrack.setStudent(student, editedStudent);
 
@@ -180,9 +169,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markStudentAbsent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedAbsent {
+    public void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedAbsent {
         editedStudent.markStudentAbsent();
         eduTrack.setStudent(student, editedStudent);
+
         // Changes the original Student object
         student.markStudentAbsent();
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));

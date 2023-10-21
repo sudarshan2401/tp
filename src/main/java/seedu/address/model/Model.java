@@ -119,9 +119,11 @@ public interface Model {
     void removeClass(Class c) throws ClassNotFoundException;
 
     Class retrieveClass(Index classListIndex) throws CommandException;
-    Student retrieveStudent(Index studentListIndex) throws CommandException;
-    void markStudentPresent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedPresent;
-    void markStudentAbsent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedAbsent;
+
+    void markStudentPresent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedPresent;
+    void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedAbsent;
 
     Class getClass(ClassName className);
 
