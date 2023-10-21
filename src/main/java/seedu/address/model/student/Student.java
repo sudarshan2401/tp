@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 
 /**
@@ -18,7 +20,7 @@ public class Student {
     private final Name name;
 
     // Data fields
-
+    private CurrentLessonAttendance currentLessonAttendance;
 
     /**
      * Every field must be present and not null.
@@ -26,11 +28,31 @@ public class Student {
     public Student(Name name) {
         requireAllNonNull(name);
         this.name = name;
+        this.currentLessonAttendance = new CurrentLessonAttendance(false);
+    }
 
+    /**
+     * Every field must be present and not null.
+     *
+     * Mainly used for retrieving data from storage
+     */
+    public Student(Name name, CurrentLessonAttendance currentLessonAttendance) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.currentLessonAttendance = currentLessonAttendance;
     }
 
     public Name getName() {
         return name;
+    }
+
+    /**
+     * Obtain String representation of the attendance of this Student.
+     *
+     * @return String - Y - Present current class. N - Absent for current class
+     */
+    public CurrentLessonAttendance getCurrentAttendance() {
+        return this.currentLessonAttendance;
     }
 
     /**
@@ -44,6 +66,24 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName());
+    }
+
+    /**
+     * Creates a duplicate object of this student.
+     *
+     * @return Student - Duplicate student that lives on a different part of memory
+     */
+    public Student duplicateStudent() {
+        return new Student(new Name(this.name.fullName),
+                new CurrentLessonAttendance(this.currentLessonAttendance.isPresent));
+    }
+
+    public void markStudentPresent() throws StudentAlreadyMarkedPresent {
+        this.currentLessonAttendance.setPresent();
+    }
+
+    public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
+        this.currentLessonAttendance.setAbsent();
     }
 
     /**
@@ -62,13 +102,23 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return name.equals(otherStudent.name);
+        return name.equals(otherStudent.name)
+                && currentLessonAttendance.equals(otherStudent.currentLessonAttendance);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name);
+    }
+
+    /**
+     * Obtain String representation of the attendance of this Student.
+     *
+     * @return String - Y - Present current class. N - Absent for current class
+     */
+    public String getAttendanceStringRep() {
+        return this.currentLessonAttendance.toString();
     }
 
     @Override

@@ -19,9 +19,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkAllStudentPresentCommand;
+import seedu.address.logic.commands.MarkStudentAttendanceCommand;
 import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
+import seedu.address.logic.commands.UnmarkStudentAttendanceCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -109,6 +112,15 @@ public class EduTrackParser {
 
         case RemoveClassCommand.COMMAND_WORD:
             return new RemoveClassCommandParser().parse(arguments);
+
+        case MarkAllStudentPresentCommand.COMMAND_WORD:
+            return new MarkAllStudentPresentCommandParser().parse(arguments);
+
+        case MarkStudentAttendanceCommand.COMMAND_WORD:
+            return new MarkStudentAttendanceCommandParser().parse(arguments);
+
+        case UnmarkStudentAttendanceCommand.COMMAND_WORD:
+            return new UnmarkStudentAttendanceCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

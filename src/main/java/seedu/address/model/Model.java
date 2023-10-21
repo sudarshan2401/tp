@@ -11,6 +11,8 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * The API of the Model component.
@@ -117,6 +119,9 @@ public interface Model {
     void removeClass(Class c) throws ClassNotFoundException;
 
     Class retrieveClass(Index classListIndex) throws CommandException;
+    Student retrieveStudent(Index studentListIndex) throws CommandException;
+    void markStudentPresent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedPresent;
+    void markStudentAbsent(Student student, Class studentClass, Student editedStudent) throws StudentAlreadyMarkedAbsent;
 
     Class getClass(ClassName className);
 

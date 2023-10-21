@@ -35,7 +35,6 @@ public class RemoveStudentCommand extends RemoveCommand {
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "%s has been removed from %s ";
 
-
     private final Index studentIndex;
     private final ClassName studentClassName;
 

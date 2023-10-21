@@ -36,8 +36,6 @@ public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
         Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
         return new RemoveStudentCommand(studentIndex, className);
-
-
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
