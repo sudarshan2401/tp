@@ -34,7 +34,8 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
             studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
             studentClassIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS, PREFIX_NAME, PREFIX_ID, PREFIX_MEMO);

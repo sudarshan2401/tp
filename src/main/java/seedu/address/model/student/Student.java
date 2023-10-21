@@ -15,8 +15,8 @@ import seedu.address.model.common.Memo;
  */
 public class Student {
     // Default fields
-    private final Id DEFAULT_ID = new Id("A0000000Z");
-    private final Memo DEFAULT_MEMO = new Memo("");
+    private static final Id DEFAULT_ID = new Id("A0000000Z");
+    private static final Memo DEFAULT_MEMO = new Memo("");
 
     // Identity fields
     private final Name name;

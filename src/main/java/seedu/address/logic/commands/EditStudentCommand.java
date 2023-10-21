@@ -201,7 +201,8 @@ public class EditStudentCommand extends Command {
                 return false;
             }
 
-            EditStudentCommand.EditStudentDescriptor otherEditStudentDescriptor = (EditStudentCommand.EditStudentDescriptor) other;
+            EditStudentCommand.EditStudentDescriptor otherEditStudentDescriptor =
+                    (EditStudentCommand.EditStudentDescriptor) other;
             return Objects.equals(name, otherEditStudentDescriptor.name)
                     && Objects.equals(id, otherEditStudentDescriptor.id)
                     && Objects.equals(memo, otherEditStudentDescriptor.memo);
