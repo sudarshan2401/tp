@@ -33,7 +33,7 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        currentLessonAttendance = source.getCurrentAttendance().isPresent;
+        currentLessonAttendance = source.getCurrentAttendance().getIsPresent();
     }
 
     /**

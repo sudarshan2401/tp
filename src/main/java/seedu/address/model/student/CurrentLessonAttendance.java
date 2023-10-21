@@ -13,7 +13,7 @@ public class CurrentLessonAttendance {
 
     public static final String MESSAGE_CONSTRAINTS = "Attendance should be of the format of True or False";
 
-    public Boolean isPresent;
+    private Boolean isPresent;
 
     /**
      * Constructs a {@code CurrentLessonAttendance}.
@@ -23,6 +23,10 @@ public class CurrentLessonAttendance {
     public CurrentLessonAttendance(Boolean isPresent) {
         requireNonNull(isPresent);
         this.isPresent = isPresent;
+    }
+
+    public Boolean getIsPresent() {
+        return this.isPresent;
     }
 
     /**

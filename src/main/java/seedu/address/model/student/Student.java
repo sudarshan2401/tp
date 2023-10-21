@@ -75,7 +75,7 @@ public class Student {
      */
     public Student duplicateStudent() {
         return new Student(new Name(this.name.fullName),
-                new CurrentLessonAttendance(this.currentLessonAttendance.isPresent));
+                new CurrentLessonAttendance(this.currentLessonAttendance.getIsPresent()));
     }
 
     public void markStudentPresent() throws StudentAlreadyMarkedPresent {

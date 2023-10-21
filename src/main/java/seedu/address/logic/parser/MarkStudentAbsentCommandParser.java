@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkStudentPresentCommand;
 import seedu.address.logic.commands.MarkStudentAbsentCommand;
+import seedu.address.logic.commands.MarkStudentPresentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
 
