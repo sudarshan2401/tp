@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.ClassNote;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -111,4 +112,14 @@ public class ParserUtil {
         }
         return new ClassName(trimmedClassName);
     }
+
+    /**
+     * Parses a {@code String classNote} into a {@code ClassNote}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+//    public static ClassNote parseClassNote(String classNote) {
+//        String trimmedClassNote = classNote.trim();
+//        return new ClassNote(trimmedClassNote);
+//    }
+
 }

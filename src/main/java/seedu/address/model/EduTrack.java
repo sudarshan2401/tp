@@ -164,6 +164,19 @@ public class EduTrack implements ReadOnlyEduTrack {
     public int getClassListSize() {
         return classes.size();
     }
+
+    /**
+     * Replaces the given class {@code target} in the list with
+     * {@code editedClass}.
+     * {@code target} must exist in EduTrack.
+     * The class identity of {@code editedClass} must not be the same as another
+     * existing class in the EduTrack.
+     */
+    public void setClass(Index index, Class editedClass) {
+        requireNonNull(editedClass);
+
+        classes.setClass(index, editedClass);
+    }
     //// util methods
 
     @Override

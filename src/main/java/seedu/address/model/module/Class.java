@@ -18,6 +18,9 @@ public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
 
+    // private final ClassNote classNote;
+    // total lessons
+
     /**
      * Constructs a {@code Class} object.
      *
@@ -27,11 +30,18 @@ public class Class {
         requireNonNull(className);
         this.className = className;
         this.students = students;
+        //this.classNote = new ClassNote("");
     }
 
 
     public ClassName getClassName() {
         return className;
+    }
+//    public ClassNote getClassNote() {
+//        return classNote;
+//    }
+    public UniqueStudentList getUniqueStudentList() {
+        return students;
     }
 
     /**
@@ -103,6 +113,7 @@ public class Class {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("class name", className)
+                //.add("class note", classNote)
                 .toString();
     }
 
