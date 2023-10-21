@@ -17,18 +17,20 @@ import seedu.address.model.student.UniqueStudentList;
 public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
+    private int totalLessons;
 
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
+     * @param students List of Student in the Class.
      */
     public Class(ClassName className, UniqueStudentList students) {
         requireNonNull(className);
         this.className = className;
         this.students = students;
+        this.totalLessons = 0;
     }
-
 
     public ClassName getClassName() {
         return className;
@@ -63,6 +65,26 @@ public class Class {
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
+
+    /**
+     * Starts a lesson and update GUI.
+     */
+    public void startLesson() {
+        increaseTotalLessons();
+        // code logic to refresh GUI
+    }
+    public int getTotalLessons(){
+        return totalLessons;
+    }
+
+    /**
+     * Increases total number of lessons in the class.
+     */
+    public void increaseTotalLessons() {
+        totalLessons++;
+    }
+
+
     /**
      * Checks if this class is equal to another object.
      *

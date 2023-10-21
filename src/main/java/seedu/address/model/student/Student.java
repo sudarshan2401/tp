@@ -26,12 +26,16 @@ public class Student {
     public Student(Name name) {
         requireAllNonNull(name);
         this.name = name;
-
     }
 
+    /**
+     * Returns the Student's name.
+     * @return Name of Student.
+     */
     public Name getName() {
         return name;
     }
+
 
     /**
      * Returns true if both students have the same name.
