@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
@@ -33,13 +34,15 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the records of the student identified "
             + "by the index number used in the displayed student list of a specific class. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: /s INDEX (must be a positive integer), "
-            + "/c CLASS_NAME (must be the exact class name)"
+            + "Parameters: /s STUDENT_INDEX (must be a positive integer), "
+            + "/c CLASS_INDEX (must be a positive integer)"
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_ID + "STUDENT_ID] "
             + "[" + PREFIX_NOTE + "NOTE] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CLASS + "CS2103T"
+            + PREFIX_CLASS + "1"
             + PREFIX_NAME + "John Doe "
+            + PREFIX_ID + "A0000000Z"
             + PREFIX_NOTE + "Mischevious.";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
@@ -47,7 +50,7 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This person already exists in the address book.";
 
     private final Index studentIndex;
-    private final Class studentClass;
+    private final Index studentClassIndex;
 
     private final EditStudentCommand.EditStudentDescriptor editStudentDescriptor;
 
@@ -55,13 +58,13 @@ public class EditStudentCommand extends Command {
      * @param studentIndex of the person in the class's student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditStudentCommand(Index studentIndex, Class studentClass,
+    public EditStudentCommand(Index studentIndex, Index studentClassIndex,
                               EditStudentCommand.EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(studentIndex);
         requireNonNull(editStudentDescriptor);
 
         this.studentIndex = studentIndex;
-        this.studentClass = studentClass;
+        this.studentClassIndex = studentClassIndex;
         this.editStudentDescriptor = new EditStudentCommand.EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -69,11 +72,17 @@ public class EditStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+        List<Class> classList = model.getFilteredClassList();
 
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (studentClassIndex.getZeroBased() >= classList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        }
+
+        Class studentClass = classList.get(studentClassIndex.getZeroBased());
         Student studentToEdit = lastShownList.get(studentIndex.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
@@ -115,7 +124,7 @@ public class EditStudentCommand extends Command {
 
         EditStudentCommand otherEditStudentCommand = (EditStudentCommand) other;
         return this.studentIndex.equals(otherEditStudentCommand.studentIndex)
-                && this.studentClass.equals(otherEditStudentCommand.studentClass)
+                && this.studentClassIndex.equals(otherEditStudentCommand.studentClassIndex)
                 && this.editStudentDescriptor.equals(otherEditStudentCommand.editStudentDescriptor);
     }
 
@@ -123,7 +132,7 @@ public class EditStudentCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("studentIndex", studentIndex)
-                .add("studentClass", studentClass)
+                .add("studentClassIndex", studentClassIndex)
                 .add("editStudentDescriptor", editStudentDescriptor)
                 .toString();
     }
