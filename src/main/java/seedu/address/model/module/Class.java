@@ -73,7 +73,7 @@ public class Class {
         increaseTotalLessons();
         // code logic to refresh GUI
     }
-    public int getTotalLessons(){
+    public int getTotalLessons() {
         return totalLessons;
     }
 

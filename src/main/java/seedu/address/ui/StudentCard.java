@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
 
 
@@ -54,8 +53,8 @@ public class StudentCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-//        Class c = person.getStudentClass();
-//        System.out.println(c.getTotalLessons());
-//        totalLessons.setText(String.valueOf(c.getTotalLessons()));
+        //        Class c = person.getStudentClass();
+        //        System.out.println(c.getTotalLessons());
+        //        totalLessons.setText(String.valueOf(c.getTotalLessons()));
     }
 }
