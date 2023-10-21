@@ -22,7 +22,8 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance) {
         this.name = name;
         this.currentLessonAttendance = currentLessonAttendance;
     }
@@ -55,7 +56,8 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CurrentLessonAttendance.class.getSimpleName()));
         }
-        final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(currentLessonAttendance);
+        final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(
+                currentLessonAttendance);
         return new Student(modelName, modelCurrentLessonAttendance);
     }
 

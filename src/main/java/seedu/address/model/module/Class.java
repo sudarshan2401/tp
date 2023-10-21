@@ -1,13 +1,12 @@
 package seedu.address.model.module;
 
-import seedu.address.commons.core.index.Index;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -128,5 +127,4 @@ public class Class {
                 .add("class name", className)
                 .toString();
     }
-
 }
