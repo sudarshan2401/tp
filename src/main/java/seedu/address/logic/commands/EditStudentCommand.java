@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,13 +16,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.common.Note;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
-import seedu.address.model.student.Address;
-import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 
 /**
@@ -32,18 +29,18 @@ public class EditStudentCommand extends Command {
     public static final String COMMAND_WORD = "edit /s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the records of the student identified "
-            + "by the index number used in the displayed student list of a specific class. "
+            + "by the index used in the displayed student list of a index-specified class. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: /s STUDENT_INDEX (must be a positive integer), "
-            + "/c CLASS_INDEX (must be a positive integer)"
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ID + "STUDENT_ID] "
-            + "[" + PREFIX_NOTE + "NOTE] "
+            + "Parameters: /s STUDENT_INDEX, "
+            + "/c CLASS_INDEX "
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_ID + " STUDENT_ID] "
+            + "[" + PREFIX_MEMO + " NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CLASS + "1"
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_ID + "A0000000Z"
-            + PREFIX_NOTE + "Mischevious.";
+            + PREFIX_CLASS + " 1"
+            + PREFIX_NAME + " John Doe "
+            + PREFIX_ID + " A0000000Z"
+            + PREFIX_MEMO + " Mischevious.";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -106,9 +103,9 @@ public class EditStudentCommand extends Command {
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
-        Note updatedNote = editStudentDescriptor.getNote().orElse(studentToEdit.getNote());
+        Memo updatedMemo = editStudentDescriptor.getNote().orElse(studentToEdit.getMemo());
 
-        return new Student(updatedName, updatedId, updatedNote);
+        return new Student(updatedName, updatedId, updatedMemo);
     }
 
     @Override
@@ -146,7 +143,7 @@ public class EditStudentCommand extends Command {
     public static class EditStudentDescriptor {
         private Name name;
         private Id id;
-        private Note note;
+        private Memo memo;
 
         public EditStudentDescriptor() {
         }
@@ -158,14 +155,14 @@ public class EditStudentCommand extends Command {
         public EditStudentDescriptor(EditStudentCommand.EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setId(toCopy.id);
-            setNote(toCopy.note);
+            setMemo(toCopy.memo);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, id, note);
+            return CollectionUtil.isAnyNonNull(name, id, memo);
         }
 
         public void setName(Name name) {
@@ -185,12 +182,12 @@ public class EditStudentCommand extends Command {
         }
 
 
-        public void setNote(Note note) {
-            this.note = note;
+        public void setMemo(Memo memo) {
+            this.memo = memo;
         }
 
-        public Optional<Note> getNote() {
-            return Optional.ofNullable(note);
+        public Optional<Memo> getNote() {
+            return Optional.ofNullable(memo);
         }
 
         @Override
@@ -207,7 +204,7 @@ public class EditStudentCommand extends Command {
             EditStudentCommand.EditStudentDescriptor otherEditStudentDescriptor = (EditStudentCommand.EditStudentDescriptor) other;
             return Objects.equals(name, otherEditStudentDescriptor.name)
                     && Objects.equals(id, otherEditStudentDescriptor.id)
-                    && Objects.equals(note, otherEditStudentDescriptor.note);
+                    && Objects.equals(memo, otherEditStudentDescriptor.memo);
         }
 
         @Override
@@ -215,7 +212,7 @@ public class EditStudentCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("id", id)
-                    .add("note", note)
+                    .add("memo", memo)
                     .toString();
         }
     }

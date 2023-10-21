@@ -1,12 +1,12 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.common.Note;
-
+import seedu.address.model.common.Memo;
 
 /**
  * Represents a Student in the address book.
@@ -14,23 +14,36 @@ import seedu.address.model.common.Note;
  * immutable.
  */
 public class Student {
+    // Default fields
+    private final Id DEFAULT_ID = new Id("A0000000Z");
+    private final Memo DEFAULT_MEMO = new Memo("");
 
     // Identity fields
     private final Name name;
     private final Id id;
 
     // Data fields
-    private final Note note;
+    private final Memo memo;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Id id, Note note) {
+    public Student(Name name, Id id, Memo memo) {
         requireAllNonNull(name);
         this.name = name;
         this.id = id;
-        this.note = note;
+        this.memo = memo;
+    }
+
+    /**
+     * If only name is provided.
+     */
+    public Student(Name name) {
+        requireNonNull(name);
+        this.name = name;
+        this.id = DEFAULT_ID;
+        this.memo = DEFAULT_MEMO;
     }
 
     public Name getName() {
@@ -41,8 +54,8 @@ public class Student {
         return id;
     }
 
-    public Note getNote() {
-        return note;
+    public Memo getMemo() {
+        return memo;
     }
 
     /**
@@ -87,6 +100,8 @@ public class Student {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("id", id)
+                .add("memo", memo)
                 .toString();
     }
 

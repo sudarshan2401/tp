@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a note.
- * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
+ * Represents a memo.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMemo(String)}
  */
-public class Note {
+public class Memo {
 
-    public static final String MESSAGE_CONSTRAINTS = "Note can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Memo can take any values, and it should not be blank";
 
     /*
      * The first character of the note must not be a whitespace,
@@ -17,27 +17,27 @@ public class Note {
      */
     public static final String VALIDATION_REGEX = "^.*";
 
-    public final String note;
+    public final String memo;
 
     /**
      * Constructs an {@code Note}.
      */
-    public Note(String note) {
-        requireNonNull(note);
-        checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
-        this.note = note;
+    public Memo(String memo) {
+        requireNonNull(memo);
+        checkArgument(isValidMemo(memo), MESSAGE_CONSTRAINTS);
+        this.memo = memo;
     }
 
     /**
      * Returns true if a given string is a valid note.
      */
-    public static boolean isValidNote(String test) {
+    public static boolean isValidMemo(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return this.note;
+        return this.memo;
     }
 
     @Override
@@ -47,17 +47,17 @@ public class Note {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Note)) {
+        if (!(other instanceof Memo)) {
             return false;
         }
 
-        Note otherNote = (Note) other;
-        return this.note.equals(otherNote.note);
+        Memo otherMemo = (Memo) other;
+        return this.memo.equals(otherMemo.memo);
     }
 
     @Override
     public int hashCode() {
-        return this.note.hashCode();
+        return this.memo.hashCode();
     }
 
 }

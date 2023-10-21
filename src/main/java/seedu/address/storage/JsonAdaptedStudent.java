@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.common.Memo;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -15,13 +17,19 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
+    private final String id;
+    private final String memo;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("id") String id,
+                              @JsonProperty("memo") String memo) {
         this.name = name;
+        this.id = id;
+        this.memo = memo;
     }
 
     /**
@@ -29,6 +37,8 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
+        id = source.getId().toString();
+        memo = source.getMemo().toString();
     }
 
     /**
@@ -40,16 +50,24 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
 
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        if (!Id.isValidId(id)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
+        if (!Memo.isValidMemo(memo)) {
+            throw new IllegalValueException(Memo.MESSAGE_CONSTRAINTS);
+        }
 
-        return new Student(modelName);
+        final Name modelName = new Name(name);
+        final Id modelId = new Id(id);
+        final Memo modelMemo = new Memo(memo);
+
+        return new Student(modelName, modelId, modelMemo);
     }
 
 }

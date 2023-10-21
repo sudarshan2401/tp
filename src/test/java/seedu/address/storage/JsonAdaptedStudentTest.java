@@ -14,23 +14,26 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
 
     private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_ID = "A0000000Z";
+    private static final String VALID_NOTE = "Gets distracted easily.";
+
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(BENSON);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_ID, VALID_NOTE);
         assertEquals(BENSON, person.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME, VALID_ID, VALID_NOTE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null);
+        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null, VALID_ID, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

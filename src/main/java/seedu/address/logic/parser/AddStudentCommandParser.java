@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.common.Note;
-import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -38,7 +36,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_STUDENT).get());
         Index classIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
 
-        Student student = new Student(name, new Id(" "),new Note(" "));
+        Student student = new Student(name);
 
         return new AddStudentCommand(student, classIndex);
     }

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.common.Note;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
@@ -130,17 +130,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Note} into an {@code Note}.
+     * Parses a {@code String Memo} into an {@code Memo}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code note} is invalid.
+     * @throws ParseException if the given {@code memo} is invalid.
      */
-    public static Note parseNote(String note) throws ParseException {
-        requireNonNull(note);
-        String trimmedNote = note.trim();
-        if (!Note.isValidNote(trimmedNote)) {
-            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+    public static Memo parseMemo(String memo) throws ParseException {
+        requireNonNull(memo);
+        String trimmedMemo = memo.trim();
+        if (!Memo.isValidMemo(trimmedMemo)) {
+            throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
         }
-        return new Note(trimmedNote);
+        return new Memo(trimmedMemo);
     }
 }
