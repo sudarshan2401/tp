@@ -69,6 +69,7 @@ class JsonSerializableEduTrack {
             }
             eduTrack.addStudent(student);
         }
+
         return eduTrack;
     }
 

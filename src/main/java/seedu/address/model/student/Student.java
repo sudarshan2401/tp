@@ -4,7 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.ClassName;
 
 
 /**
@@ -16,6 +18,7 @@ public class Student {
 
     // Identity fields
     private final Name name;
+    private final Index classIndex;
 
     // Data fields
 
@@ -23,9 +26,10 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name) {
+    public Student(Name name, Index classIndex) {
         requireAllNonNull(name);
         this.name = name;
+        this.classIndex = classIndex;
     }
 
     /**
@@ -35,7 +39,9 @@ public class Student {
     public Name getName() {
         return name;
     }
-
+    public Index getClassIndex() {
+        return classIndex;
+    }
 
     /**
      * Returns true if both students have the same name.

@@ -18,6 +18,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -92,8 +93,9 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Index updatedClassIndex = editPersonDescriptor.getClassIndex().orElse(personToEdit.getClassIndex());
 
-        return new Student(updatedName);
+        return new Student(updatedName, updatedClassIndex);
     }
 
     @Override
@@ -130,6 +132,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Index classIndex;
 
         public EditPersonDescriptor() {
         }
@@ -143,13 +146,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setClassName(toCopy.classIndex);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, classIndex);
         }
 
         public void setName(Name name) {
@@ -183,6 +187,13 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+        public void setClassName(Index classIndex) {
+            this.classIndex = classIndex;
+        }
+
+        public Optional<Index> getClassIndex() {
+            return Optional.ofNullable(classIndex);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -199,7 +210,8 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address);
+                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(classIndex, otherEditPersonDescriptor.classIndex);
         }
 
         @Override
@@ -209,6 +221,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("classIndex", classIndex)
                     .toString();
         }
     }

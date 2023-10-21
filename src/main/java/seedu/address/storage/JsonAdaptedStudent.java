@@ -3,6 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -15,13 +16,17 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
+    private final int classIndex;
+
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("classIndex") int classIndex) {
         this.name = name;
+        this.classIndex = classIndex;
     }
 
     /**
@@ -29,6 +34,7 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
+        classIndex = source.getClassIndex().getZeroBased();
     }
 
     /**
@@ -49,7 +55,10 @@ class JsonAdaptedStudent {
         }
         final Name modelName = new Name(name);
 
-        return new Student(modelName);
+        // add some checks for Index later
+        final Index modelClassIndex = Index.fromZeroBased(classIndex);
+
+        return new Student(modelName, modelClassIndex);
     }
 
 }
