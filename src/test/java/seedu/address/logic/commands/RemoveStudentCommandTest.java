@@ -35,6 +35,7 @@ public class RemoveStudentCommandTest {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
         classStub = model.getFilteredClassList().get(INDEX_FIRST_CLASS.getZeroBased());
         studentStub = new StudentBuilder().build();
+        model.addStudent(studentStub);
         if (!classStub.hasStudentInClass(studentStub)) {
             classStub.addStudentToClass(studentStub);
         }
@@ -67,7 +68,7 @@ public class RemoveStudentCommandTest {
         RemoveCommand removeStudentCommand = new RemoveStudentCommand(Index.fromOneBased(1), classStubName);
         String expectedMessage = String.format(RemoveStudentCommand.MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
             classStubName.toString());
-        ModelManager expectedModel = new ModelManager(model.getEduTrack(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
 
         assertCommandSuccess(removeStudentCommand, model, expectedMessage, expectedModel);
     }
