@@ -90,12 +90,20 @@ public interface Model {
     void addStudentToClass(Student student, Class studentClass);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
+     * Replaces the given student {@code target} with {@code editedPerson}.
+     * {@code target} must exist in EduTrack.
      * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the address book.
+     * existing person in EduTrack.
      */
     void setStudent(Student target, Student editedPerson);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent} in {@code targetClass}.
+     * {@code target} must exist in EduTrack.
+     * The student identity of {@code editedStudent} must not be the same as another
+     * existing student in EduTrack.
+     */
+    void setStudentInClass(Student target, Student editedStudent, Class targetClass);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

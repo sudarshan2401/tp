@@ -37,6 +37,7 @@ public class AddStudentCommand extends Command {
      */
     public AddStudentCommand(Student student, Index classIndex) {
         requireNonNull(student);
+        requireNonNull(classIndex);
         this.toAdd = student;
         this.classIndex = classIndex;
     }

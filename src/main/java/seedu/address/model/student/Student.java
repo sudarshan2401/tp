@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.common.Note;
 
 
 /**
@@ -16,21 +17,32 @@ public class Student {
 
     // Identity fields
     private final Name name;
+    private final Id id;
 
     // Data fields
+    private final Note note;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name) {
+    public Student(Name name, Id id, Note note) {
         requireAllNonNull(name);
         this.name = name;
-
+        this.id = id;
+        this.note = note;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**

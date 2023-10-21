@@ -93,11 +93,29 @@ public class Class {
     /**
      * Returns true if a student with the same identity as {@code student} exists in
      * the class.
+     *
+     * @param student The student.
+     * @return True if student is in class, false otherwise.
      */
     public boolean hasStudentInClass(Student student) {
         requireNonNull(student);
         return students.contains(student);
     }
+
+    /**
+     * Replaces the given student {@code target} in the list with
+     * {@code editedStudent}.
+     * {@code target} must exist in the class
+     * The student identity of {@code editedStudent} must not be the same as another
+     * existing student in the class
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+
+        students.setStudent(target, editedStudent);
+    }
+
+
 
     @Override
     public String toString() {
