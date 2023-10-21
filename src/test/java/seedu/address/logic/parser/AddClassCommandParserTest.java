@@ -12,7 +12,7 @@ import seedu.address.model.module.ClassName;
 import seedu.address.model.student.UniqueStudentList;
 
 public class AddClassCommandParserTest {
-    private MarkStudentPresentCommandParser parser = new MarkStudentPresentCommandParser();
+    private AddClassCommandParser parser = new AddClassCommandParser();
 
     private final String invalidClassName = "cs 2103t";
 

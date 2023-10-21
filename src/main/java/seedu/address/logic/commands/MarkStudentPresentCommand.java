@@ -27,7 +27,7 @@ public class MarkStudentPresentCommand extends Command {
             + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
             + "Example: "
-            + COMMAND_WORD + " 1" + PREFIX_CLASS + "cs2103";
+            + COMMAND_WORD + " 1 " + PREFIX_CLASS + " cs2103";
     public static final String MESSAGE_STUDENT_ALREADY_MARKED = "%s has already been marked present!";
     public static final String MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS = "%s has been marked present!";
     public final Index targetStudentIndex;

@@ -147,7 +147,6 @@ public class EduTrack implements ReadOnlyEduTrack {
 
     public Class getClass(ClassName className) {
         for (Class c : classes) {
-            System.out.println(c.toString());
             if (c.getClassName().equals(className)) {
                 return c;
             }
