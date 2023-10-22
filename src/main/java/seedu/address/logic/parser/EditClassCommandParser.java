@@ -3,9 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditClassCommand;
@@ -24,7 +26,7 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
     public EditClassCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLASS, PREFIX_NAME, PREFIX_NOTE, PREFIX_SCHEDULE);
+                ArgumentTokenizer.tokenize(args, PREFIX_CLASS, PREFIX_NAME, PREFIX_MEMO, PREFIX_SCHEDULE);
 
         Index index;
 
@@ -34,7 +36,7 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClassCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS, PREFIX_NAME, PREFIX_NOTE, PREFIX_SCHEDULE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS, PREFIX_NAME, PREFIX_MEMO, PREFIX_SCHEDULE);
 
         EditClassDescriptor editClassDescriptor = new EditClassDescriptor();
 
@@ -42,8 +44,8 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
             editClassDescriptor.setClassName((ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get())));
         }
 
-        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
-            editClassDescriptor.setClassNote((ParserUtil.parseClassNote(argMultimap.getValue(PREFIX_NOTE).get())));
+        if (argMultimap.getValue(PREFIX_MEMO).isPresent()) {
+            editClassDescriptor.setClassNote((ParserUtil.parseClassNote(argMultimap.getValue(PREFIX_MEMO).get())));
         }
 
         if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
@@ -56,5 +58,9 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
         }
 
         return new EditClassCommand(index, editClassDescriptor);
+    }
+
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -41,10 +41,10 @@ class ClassTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Class.class.getCanonicalName() + "{className=" + c.getClassName() +
-                ", studentList=" + c.getUniqueStudentList() +
-                ", classSchedule=" + c.getClassSchedule() +
-                ", classMemo=" + c.getClassMemo() + "}";
+        String expected = Class.class.getCanonicalName() + "{className=" + c.getClassName()
+                + ", studentList=" + c.getUniqueStudentList()
+                + ", classSchedule=" + c.getClassSchedule()
+                + ", classMemo=" + c.getClassMemo() + "}";
         assertEquals(expected, c.toString());
     }
 }

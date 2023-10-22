@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
 
 import java.util.List;
@@ -32,12 +32,14 @@ public class EditClassCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_NOTE + "NOTE] "
+            + "[" + PREFIX_MEMO + "NOTE] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "cs2100 "
-            + PREFIX_NOTE + "prepare material";
+            + PREFIX_MEMO + "prepare material";
 
-    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s\n";
+    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s\n"
+            + "Schedule: %2$s\n"
+            + "Memo: %3$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CLASS = "Class name already exists";
 
@@ -76,7 +78,8 @@ public class EditClassCommand extends Command {
 
         model.setClass(index, editedClass);
         model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, Messages.formatClass(editedClass)));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, Messages.formatClass(editedClass),
+                editedClass.getClassSchedule(), editedClass.getClassMemo()));
     }
 
     /**
@@ -92,6 +95,30 @@ public class EditClassCommand extends Command {
         Schedule schedule = editClassDescriptor.getClassSchedule().orElse(classToEdit.getClassSchedule());
 
         return new Class(updatedClassName, studentList, memo, schedule);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditClassCommand)) {
+            return false;
+        }
+
+        EditClassCommand otherEditCommand = (EditClassCommand) other;
+        return index.equals(otherEditCommand.index)
+                && editClassDescriptor.equals(otherEditCommand.editClassDescriptor);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("editClassDescriptor", editClassDescriptor)
+                .toString();
     }
 
     /**
@@ -160,13 +187,15 @@ public class EditClassCommand extends Command {
 
             EditClassDescriptor otherEditClassDescriptor = (EditClassDescriptor) other;
             return Objects.equals(className, otherEditClassDescriptor.className)
-                    && Objects.equals(classMemo, otherEditClassDescriptor.classMemo);
+                    && Objects.equals(classMemo, otherEditClassDescriptor.classMemo)
+                    && Objects.equals(classSchedule, otherEditClassDescriptor.classSchedule);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
                     .add("className", className)
+                    .add("classSchedule", classSchedule)
                     .add("classMemo", classMemo)
                     .toString();
         }
