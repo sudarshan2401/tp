@@ -50,7 +50,8 @@ public class Messages {
     public static String formatClass(Class c) {
         final StringBuilder builder = new StringBuilder();
         builder.append(c.getClassName())
-                .append("");
+                .append("\nSchedule: ").append(c.getClassSchedule())
+                .append("\nMemo: ").append(c.getClassMemo());
         return builder.toString();
     }
 

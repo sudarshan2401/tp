@@ -13,7 +13,7 @@ public class ClassCard extends UiPart<Region> {
 
     private static final String FXML = "ClassListCard.fxml";
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved
+     * Memo: Certain keywords such as "location" and "resources" are reserved
      * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.

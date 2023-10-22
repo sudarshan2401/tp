@@ -1,28 +1,30 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
-import seedu.address.model.module.ClassNote;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
-
-public class UpdateClassCommand extends Command {
+/**
+ * Edits the details of an existing class in EduTrack.
+ */
+public class EditClassCommand extends Command {
     public static final String COMMAND_WORD = "edit /c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the class identified "
@@ -32,12 +34,12 @@ public class UpdateClassCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_NOTE + "NOTE] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "91234567 "
-            + PREFIX_NOTE + "johndoe@example.com";
+            + PREFIX_NAME + "cs2100 "
+            + PREFIX_NOTE + "prepare material";
 
-    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s";
+    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLASS = "Class already exists";
+    public static final String MESSAGE_DUPLICATE_CLASS = "Class name already exists";
 
     private final Index index;
     private final EditClassDescriptor editClassDescriptor;
@@ -46,7 +48,7 @@ public class UpdateClassCommand extends Command {
      * @param index                of the person in the filtered person list to edit
      * @param editClassDescriptor details to edit the person with
      */
-    public UpdateClassCommand(Index index, EditClassDescriptor editClassDescriptor) {
+    public EditClassCommand(Index index, EditClassDescriptor editClassDescriptor) {
         requireNonNull(index);
         requireNonNull(editClassDescriptor);
 
@@ -81,12 +83,15 @@ public class UpdateClassCommand extends Command {
      * Creates and returns a {@code Class} with the details of {@code classToEdit}
      * edited with {@code editClassDescriptor}.
      */
-    private static Class createEditedClass(Class classToEdit, EditClassDescriptor editClassDescriptor, UniqueStudentList studentList) {
+    private static Class createEditedClass(Class classToEdit, EditClassDescriptor editClassDescriptor,
+                                           UniqueStudentList studentList) {
         assert classToEdit != null;
 
         ClassName updatedClassName = editClassDescriptor.getClassName().orElse(classToEdit.getClassName());
+        Memo memo = editClassDescriptor.getClassNote().orElse(classToEdit.getClassMemo());
+        Schedule schedule = editClassDescriptor.getClassSchedule().orElse(classToEdit.getClassSchedule());
 
-        return new Class(updatedClassName, studentList);
+        return new Class(updatedClassName, studentList, memo, schedule);
     }
 
     /**
@@ -95,7 +100,8 @@ public class UpdateClassCommand extends Command {
      */
     public static class EditClassDescriptor {
         private ClassName className;
-        //private ClassNote classNote;
+        private Memo classMemo;
+        private Schedule classSchedule;
 
         public EditClassDescriptor() {
         }
@@ -106,14 +112,15 @@ public class UpdateClassCommand extends Command {
          */
         public EditClassDescriptor(EditClassDescriptor toCopy) {
             setClassName(toCopy.className);
-            //setClassNote(toCopy.classNote);
+            setClassNote(toCopy.classMemo);
+            setClassSchedule(toCopy.classSchedule);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(className);
+            return CollectionUtil.isAnyNonNull(className, classMemo, classSchedule);
         }
 
         public void setClassName(ClassName className) {
@@ -124,6 +131,21 @@ public class UpdateClassCommand extends Command {
             return Optional.ofNullable(className);
         }
 
+        public void setClassNote(Memo classMemo) {
+            this.classMemo = classMemo;
+        }
+
+        public Optional<Memo> getClassNote() {
+            return Optional.ofNullable(classMemo);
+        }
+
+        public void setClassSchedule(Schedule classSchedule) {
+            this.classSchedule = classSchedule;
+        }
+
+        public Optional<Schedule> getClassSchedule() {
+            return Optional.ofNullable(classSchedule);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -137,14 +159,15 @@ public class UpdateClassCommand extends Command {
             }
 
             EditClassDescriptor otherEditClassDescriptor = (EditClassDescriptor) other;
-            return Objects.equals(className, otherEditClassDescriptor.className);
+            return Objects.equals(className, otherEditClassDescriptor.className)
+                    && Objects.equals(classMemo, otherEditClassDescriptor.classMemo);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
                     .add("className", className)
-                    //.add("classNote", classNote)
+                    .add("classMemo", classMemo)
                     .toString();
         }
     }
