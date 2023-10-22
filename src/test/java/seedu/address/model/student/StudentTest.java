@@ -69,8 +69,10 @@ public class StudentTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
-                + "}";
+        String expected = Student.class.getCanonicalName()
+                + "{name=" + ALICE.getName() + ","
+                + " id=" + ALICE.getId() + ","
+                + " memo=" + ALICE.getMemo() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

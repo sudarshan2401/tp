@@ -1,7 +1,9 @@
 package seedu.address.testutil;
 
+import seedu.address.model.common.Memo;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
@@ -15,8 +17,12 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    private static final String DEFAULT_ID = "A0000000Z";
+    private static final String DEFAULT_MEMO = "";
 
     private Name name;
+    private Id id;
+    private Memo memo;
     private Phone phone;
     private Email email;
     private Address address;
@@ -26,6 +32,8 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
+        id = new Id(DEFAULT_ID);
+        memo = new Memo(DEFAULT_MEMO);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
