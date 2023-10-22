@@ -59,19 +59,6 @@ public class MarkAllStudentPresentCommandTest {
         assertDoesNotThrow(() -> new MarkAllStudentPresentCommand(Index.fromOneBased(1)));
     }
 
-    // Still require more updates for this test
-//    @Test
-//    public void execute_validStudentIndexAndClass_success() {
-//        int index = 1;
-//        ClassName className = classStub.getClassName();
-//        MarkAllStudentPresentCommand markAllStudentPresentCommand = new MarkAllStudentPresentCommand(
-//                Index.fromOneBased(index));
-//        String expectedMessage = String.format(MarkAllStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-//                className.toString());
-//        ModelManager expectedModel = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-//        assertCommandSuccess(markAllStudentPresentCommand, model, expectedMessage, expectedModel);
-//    }
-
     @Test
     public void equals() {
         MarkAllStudentPresentCommand firstMarkAllStudentPresentCommand = new MarkAllStudentPresentCommand((
