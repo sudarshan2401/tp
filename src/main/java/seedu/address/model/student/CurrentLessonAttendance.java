@@ -25,10 +25,6 @@ public class CurrentLessonAttendance {
         this.isPresent = isPresent;
     }
 
-    public Boolean getIsPresent() {
-        return this.isPresent;
-    }
-
     /**
      * Sets the attendance of the current student to be present.
      *
@@ -51,6 +47,10 @@ public class CurrentLessonAttendance {
             throw new StudentAlreadyMarkedAbsent();
         }
         this.isPresent = false;
+    }
+
+    public Boolean getIsPresent() {
+        return this.isPresent;
     }
 
     @Override

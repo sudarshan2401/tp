@@ -16,6 +16,9 @@ public class LessonsAttended {
      */
     public LessonsAttended(Integer totalLessons) {
         requireNonNull(totalLessons);
+        if (!isValidLessonsAttended(totalLessons)) {
+            throw new IllegalArgumentException();
+        }
         this.totalLessons = totalLessons;
     }
 
@@ -25,6 +28,14 @@ public class LessonsAttended {
      */
     public LessonsAttended() {
         this.totalLessons = 0;
+    }
+
+    static public boolean isValidLessonsAttended(Integer totalLessons) {
+        requireNonNull(totalLessons);
+        if (totalLessons < 0) {
+            return false;
+        }
+        return true;
     }
 
     public Integer getTotalLessons() {
