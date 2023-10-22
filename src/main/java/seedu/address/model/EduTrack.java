@@ -145,7 +145,7 @@ public class EduTrack implements ReadOnlyEduTrack {
         this.classes.remove(c);
     }
 
-    public Class getClass(ClassName className) throws ClassNotFoundException{
+    public Class getClass(ClassName className) throws ClassNotFoundException {
         for (Class c : classes) {
             if (c.getClassName().equals(className)) {
                 return c;
