@@ -30,7 +30,13 @@ public class LessonsAttended {
         this.totalLessons = 0;
     }
 
-    static public boolean isValidLessonsAttended(Integer totalLessons) {
+    /**
+     * Verifies if the lessonsAttended is valid.
+     *
+     * @param totalLessons Cumulative number of lessons the student attended
+     * @return boolean True if lessonsAttended is valid, otherwise false
+     */
+    public static boolean isValidLessonsAttended(Integer totalLessons) {
         requireNonNull(totalLessons);
         if (totalLessons < 0) {
             return false;
@@ -46,14 +52,14 @@ public class LessonsAttended {
      * Increases the number of lessons the student attended by 1.
      */
     public void incrementLessons() {
-        this.totalLessons ++;
+        this.totalLessons++;
     }
 
     /**
      * Reduces the number of lessons the student attended by 1.
      */
     public void decrementLessons() {
-        this.totalLessons --;
+        this.totalLessons--;
     }
 
     @Override
