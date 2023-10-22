@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.CurrentLessonAttendance;
+import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -17,15 +18,18 @@ class JsonAdaptedStudent {
 
     private final String name;
     private final Boolean currentLessonAttendance;
+    private final Integer lessonsAttended;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name,
-                              @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance) {
+                              @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance,
+                              @JsonProperty("lessonsAttended") int lessonsAttended) {
         this.name = name;
         this.currentLessonAttendance = currentLessonAttendance;
+        this.lessonsAttended = lessonsAttended;
     }
 
     /**
@@ -34,6 +38,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         currentLessonAttendance = source.getCurrentAttendance().getIsPresent();
+        lessonsAttended = source.getLessonsAttended().getTotalLessons();
     }
 
     /**
@@ -58,7 +63,13 @@ class JsonAdaptedStudent {
         }
         final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(
                 currentLessonAttendance);
-        return new Student(modelName, modelCurrentLessonAttendance);
+        if (lessonsAttended == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LessonsAttended.class.getSimpleName()));
+        }
+        final LessonsAttended modelLessonsAttended = new LessonsAttended(
+                lessonsAttended);
+        return new Student(modelName, modelCurrentLessonAttendance, modelLessonsAttended);
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.CurrentLessonAttendance;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
@@ -17,12 +18,14 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
+    public static final Integer DEFAULT_LESSONS_ATTENDED = 5;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private CurrentLessonAttendance currentLessonAttendance;
+    private LessonsAttended lessonsAttended;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -33,6 +36,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         currentLessonAttendance = new CurrentLessonAttendance(DEFAULT_CURRENT_LESSON_ATTENDANCE);
+        lessonsAttended = new LessonsAttended(DEFAULT_LESSONS_ATTENDED);
     }
 
     /**
@@ -87,6 +91,13 @@ public class StudentBuilder {
      */
     public StudentBuilder withCurrentLessonAttendance(Boolean isPresent) {
         this.currentLessonAttendance = new CurrentLessonAttendance(isPresent);
+        return this;
+    }
+    /**
+     * Sets the {@code LessonsAttended} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withLessonsAttended(Integer lessonsAttended) {
+        this.lessonsAttended = new LessonsAttended(lessonsAttended);
         return this;
     }
 

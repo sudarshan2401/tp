@@ -1,10 +1,12 @@
 {
   "students": [ {
     "name": "Alice Pauline",
-    "currentLessonAttendance": true
+    "currentLessonAttendance": true,
+    "lessonsAttended": 4
   }, {
     "name": "Alice Pauline",
-    "currentLessonAttendance": true
+    "currentLessonAttendance": true,
+    "lessonsAttended": 4
   } ],
   "classes": []
 }

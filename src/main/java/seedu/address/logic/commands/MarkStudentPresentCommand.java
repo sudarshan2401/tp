@@ -55,7 +55,7 @@ public class MarkStudentPresentCommand extends Command {
         try {
             model.markStudentPresent(studentToMark, studentClass, editedStudent);
         } catch (StudentAlreadyMarkedPresent e) {
-            throw new CommandException(MESSAGE_STUDENT_ALREADY_MARKED);
+            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.toString()));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatStudent(studentToMark)));

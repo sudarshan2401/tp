@@ -43,6 +43,8 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label attendance;
+    @FXML
+    private Label totalAttendance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -54,5 +56,6 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         attendance.setText(person.getAttendanceStringRep());
+        totalAttendance.setText(person.getTotalAttendanceStringRep());
     }
 }

@@ -39,6 +39,7 @@
       </padding>
       <FlowPane fx:id="testtags" />
       <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
+      <Label fx:id="totalAttendance" styleClass="cell_small_label" text="\$totalAttendance" />
     </VBox>
   </GridPane>
 </HBox>

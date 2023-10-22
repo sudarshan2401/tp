@@ -2,25 +2,32 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "students" : [ {
     "name" : "Alice Pauline",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "Benson Meier",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "Carl Kurz",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "Daniel Meier",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "Elle Meyer",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "Fiona Kunz",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   }, {
     "name" : "George Best",
-    "currentLessonAttendance": false
+    "currentLessonAttendance": false,
+    "lessonsAttended": 0
   } ],
   "classes": []
 }

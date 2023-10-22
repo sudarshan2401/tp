@@ -41,10 +41,10 @@ public class MarkAllStudentPresentCommand extends Command {
         requireNonNull(model);
         Class studentClass = model.retrieveClass(targetClassIndex);
         List<Student> studentList = studentClass.getStudentList();
-        for (Student studentToMark : studentList) {
-            Student editedStudent = studentToMark.duplicateStudent();
+        for (Student studentToUnmark : studentList) {
+            Student editedStudent = studentToUnmark.duplicateStudent();
             try {
-                model.markStudentPresent(studentToMark, studentClass, editedStudent);
+                model.markStudentPresent(studentToUnmark, studentClass, editedStudent);
             } catch (StudentAlreadyMarkedPresent e) {
                 continue;
             }

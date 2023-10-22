@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
@@ -56,8 +57,8 @@ public class MarkStudentAbsentCommand extends Command {
 
         try {
             model.markStudentAbsent(studentToMark, studentClass, editedStudent);
-        } catch (StudentAlreadyMarkedPresent e) {
-            throw new CommandException(MESSAGE_STUDENT_ALREADY_MARKED);
+        } catch (StudentAlreadyMarkedAbsent e) {
+            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.toString()));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatStudent(studentToMark)));
