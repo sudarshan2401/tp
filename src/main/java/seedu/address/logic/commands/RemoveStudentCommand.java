@@ -62,6 +62,7 @@ public class RemoveStudentCommand extends RemoveCommand {
         }
         Student studentToDelete = studentList.get(studentIndex.getZeroBased());
 
+        model.deleteStudent(studentToDelete);
         model.deleteStudentFromClass(studentToDelete, studentClass);
         model.deleteStudent(studentToDelete);
 
