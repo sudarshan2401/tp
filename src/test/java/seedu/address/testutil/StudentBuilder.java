@@ -44,6 +44,8 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
+        currentLessonAttendance = personToCopy.getCurrentAttendance();
+        lessonsAttended = personToCopy.getLessonsAttended();
     }
 
     /**

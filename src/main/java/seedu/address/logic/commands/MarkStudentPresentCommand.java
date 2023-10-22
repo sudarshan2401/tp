@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.RemoveClassCommand.MESSAGE_MISSING_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
@@ -48,16 +51,42 @@ public class MarkStudentPresentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        Class studentClass = model.getClass(className);
-        Student studentToMark = studentClass.getStudentInClass(targetStudentIndex);
-        Student editedStudent = studentToMark.duplicateStudent();
-
+        Class studentClass = null;
+        Student studentToMark = null;
         try {
+            studentClass = model.getClass(className);
+            studentToMark = studentClass.getStudentInClass(targetStudentIndex);
+            Student editedStudent = studentToMark.duplicateStudent();
             model.markStudentPresent(studentToMark, studentClass, editedStudent);
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.toString()));
+        } catch (ClassNotFoundException e) {
+            throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatStudent(studentToMark)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkStudentPresentCommand)) {
+            return false;
+        }
+
+        MarkStudentPresentCommand otherMarkStudentPresentCommand = (MarkStudentPresentCommand) other;
+        return this.targetStudentIndex.equals(otherMarkStudentPresentCommand.targetStudentIndex)
+                && this.className.equals(otherMarkStudentPresentCommand.className);
+    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("studentIndex", this.targetStudentIndex.toString())
+                .add("className", this.className.toString())
+                .toString();
     }
 }

@@ -32,14 +32,9 @@ public class MarkStudentPresentCommandParser implements Parser<MarkStudentPresen
                     MarkStudentPresentCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);
-        try {
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
-            ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-            return new MarkStudentPresentCommand(index, className);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkStudentPresentCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
+        ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
+        return new MarkStudentPresentCommand(index, className);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

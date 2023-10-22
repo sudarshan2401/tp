@@ -16,6 +16,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
@@ -179,7 +180,7 @@ public class ModelManager implements Model {
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
-    public Class getClass(ClassName className) {
+    public Class getClass(ClassName className) throws ClassNotFoundException {
         requireNonNull(className);
         return eduTrack.getClass(className);
     }

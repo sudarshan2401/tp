@@ -23,7 +23,8 @@ public class RemoveClassCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REMOVE_CLASS_SUCCESS = "Deleted Class: %1$s";
-    public static final String MESSAGE_MISSING_CLASS = "The index (%1$s) you provided does not exist!";
+    public static final String MESSAGE_MISSING_CLASS_INDEX = "The index (%1$s) you provided does not exist!";
+    public static final String MESSAGE_MISSING_CLASS_NAME = "The Class name (%s) you provided does not exist!";
 
     private final Index targetClassIndex;
 
@@ -45,7 +46,7 @@ public class RemoveClassCommand extends Command {
         try {
             model.removeClass(classToRemove);
         } catch (ClassNotFoundException e) {
-            throw new CommandException(MESSAGE_MISSING_CLASS);
+            throw new CommandException(MESSAGE_MISSING_CLASS_INDEX);
         }
         return new CommandResult(String.format(MESSAGE_REMOVE_CLASS_SUCCESS, Messages.formatClass(classToRemove)));
     }

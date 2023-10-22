@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -51,5 +52,25 @@ public class MarkAllStudentPresentCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatClass(studentClass)));
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkAllStudentPresentCommand)) {
+            return false;
+        }
+
+        MarkAllStudentPresentCommand otherMarkAllStudentPresentCommand = (MarkAllStudentPresentCommand) other;
+        return this.targetClassIndex.equals(otherMarkAllStudentPresentCommand.targetClassIndex);
+    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("classIndex", this.targetClassIndex.toString())
+                .toString();
     }
 }

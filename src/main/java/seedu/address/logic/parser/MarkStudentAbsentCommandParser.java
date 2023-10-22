@@ -30,17 +30,12 @@ public class MarkStudentAbsentCommandParser implements Parser<MarkStudentAbsentC
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MarkStudentPresentCommand.MESSAGE_USAGE));
+                    MarkStudentAbsentCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);
-        try {
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
-            ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-            return new MarkStudentAbsentCommand(index, className);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkStudentPresentCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
+        ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
+        return new MarkStudentAbsentCommand(index, className);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -128,7 +129,7 @@ public class EduTrackTest {
         EduTrack newData = getTypicalEduTrack();
         eduTrack.resetData(newData);
         ClassName classNameStub = new ClassName("classNameStub");
-        assertEquals(eduTrack.getClass(classNameStub), null);
+        assertThrows(ClassNotFoundException.class, () -> eduTrack.getClass(classNameStub));
     }
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface

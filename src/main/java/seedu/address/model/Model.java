@@ -125,7 +125,7 @@ public interface Model {
     void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
             throws StudentAlreadyMarkedAbsent;
 
-    Class getClass(ClassName className);
+    Class getClass(ClassName className) throws ClassNotFoundException;
 
     Class getClassByIndex(Index classIndex);
 
