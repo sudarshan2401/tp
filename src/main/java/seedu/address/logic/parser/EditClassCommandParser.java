@@ -45,7 +45,7 @@ public class EditClassCommandParser implements Parser<EditClassCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_MEMO).isPresent()) {
-            editClassDescriptor.setClassNote((ParserUtil.parseClassNote(argMultimap.getValue(PREFIX_MEMO).get())));
+            editClassDescriptor.setClassNote((ParserUtil.parseMemo(argMultimap.getValue(PREFIX_MEMO).get())));
         }
 
         if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {

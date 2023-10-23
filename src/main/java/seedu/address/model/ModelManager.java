@@ -118,7 +118,6 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student person) {
         eduTrack.addStudent(person);
-        //    updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -206,6 +205,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         eduTrack.setStudent(target, editedPerson);
+    }
+
+    @Override
+    public void setStudentInClass(Student target, Student editedStudent, Class targetClass) {
+        requireAllNonNull(target, editedStudent, targetClass);
+
+        targetClass.setStudent(target, editedStudent);
     }
 
     // =========== Filtered Person List Accessors

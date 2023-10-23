@@ -1,13 +1,14 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.common.Memo;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
-
 
 /**
  * Represents a Student in the address book.
@@ -15,35 +16,44 @@ import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
  * immutable.
  */
 public class Student {
+    // Default fields
+    private static final Id DEFAULT_ID = new Id("A0000000Z");
+    private static final Memo DEFAULT_MEMO = new Memo("");
 
     // Identity fields
     private final Name name;
+    private final Id id;
 
     // Data fields
+    private final Memo memo;
+
     // The current lesson's attendance (Present/Absent)
     private CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
 
     /**
-     * Every field must be present and not null.
+     * If only name is provided.
      */
     public Student(Name name) {
-        requireAllNonNull(name);
+        requireNonNull(name);
         this.name = name;
+        this.id = DEFAULT_ID;
+        this.memo = DEFAULT_MEMO;
         this.currentLessonAttendance = new CurrentLessonAttendance(false);
         this.lessonsAttended = new LessonsAttended();
     }
 
     /**
      * Every field must be present and not null.
-     *
      * Mainly used for retrieving data from storage
      */
-    public Student(Name name, CurrentLessonAttendance currentLessonAttendance,
+    public Student(Name name, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
                    LessonsAttended lessonsAttended) {
-        requireAllNonNull(name);
+        requireAllNonNull(name, id, memo, currentLessonAttendance, lessonsAttended);
         this.name = name;
+        this.id = id;
+        this.memo = memo;
         this.currentLessonAttendance = currentLessonAttendance;
         this.lessonsAttended = lessonsAttended;
     }
@@ -58,8 +68,16 @@ public class Student {
         return this.lessonsAttended;
     }
 
+    public Id getId() {
+        return id;
+    }
+
+    public Memo getMemo() {
+        return memo;
+    }
+
     /**
-     * Returns true if both students have the same name.
+     * Returns true if both students have the same name and id.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -68,7 +86,11 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getMemo().equals(getMemo())
+                && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
+                && otherStudent.getLessonsAttended().equals(getLessonsAttended());
     }
 
     /**
@@ -78,6 +100,8 @@ public class Student {
      */
     public Student duplicateStudent() {
         return new Student(new Name(this.name.fullName),
+                this.getId(),
+                this.getMemo(),
                 new CurrentLessonAttendance(this.currentLessonAttendance.getIsPresent()),
                 new LessonsAttended(this.lessonsAttended.getTotalLessons()));
     }
@@ -119,6 +143,8 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return name.equals(otherStudent.name)
+                && id.equals(otherStudent.id)
+                && memo.equals(otherStudent.memo)
                 && currentLessonAttendance.equals(otherStudent.currentLessonAttendance)
                 && lessonsAttended.equals(otherStudent.lessonsAttended);
     }
@@ -151,6 +177,8 @@ public class Student {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("id", id)
+                .add("memo", memo)
                 .toString();
     }
 

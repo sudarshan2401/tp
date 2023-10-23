@@ -63,16 +63,16 @@ public class CurrentLessonAttendanceTest {
     public void equals() {
         CurrentLessonAttendance presentLessonAttendance = new CurrentLessonAttendance(true);
         CurrentLessonAttendance absentLessonAttendance = new CurrentLessonAttendance(false);
-        CurrentLessonAttendance presentLessonAttendance_duplicate = new CurrentLessonAttendance(true);
-        CurrentLessonAttendance absentLessonAttendance_duplicate = new CurrentLessonAttendance(false);
+        CurrentLessonAttendance presentLessonAttendanceDuplicate = new CurrentLessonAttendance(true);
+        CurrentLessonAttendance absentLessonAttendanceDuplicate = new CurrentLessonAttendance(false);
 
         // Same object -> returns true
         assertTrue(presentLessonAttendance.equals(presentLessonAttendance));
         assertTrue(absentLessonAttendance.equals(absentLessonAttendance));
 
         // Same isPresent but different object -> returns true
-        assertTrue(presentLessonAttendance_duplicate.equals(presentLessonAttendance));
-        assertTrue(absentLessonAttendance_duplicate.equals(absentLessonAttendance));
+        assertTrue(presentLessonAttendanceDuplicate.equals(presentLessonAttendance));
+        assertTrue(absentLessonAttendanceDuplicate.equals(absentLessonAttendance));
 
         // Different isPresent value -> returns false
         assertFalse(presentLessonAttendance.equals(absentLessonAttendance));

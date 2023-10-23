@@ -17,8 +17,8 @@ import seedu.address.testutil.TypicalStudents;
 public class JsonSerializableEduTrackTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableEduTrackTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsEduTrack.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonEduTrack.json");
+    private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsEduTrack.json");
+    private static final Path INVALID_STUDENT_FILE = TEST_DATA_FOLDER.resolve("invalidStudentEduTrack.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonEduTrack.json");
 
     private static final Path TYPICAL_CLASSES_FILE = TEST_DATA_FOLDER.resolve("typicalClassesEduTrack.json");
@@ -26,12 +26,19 @@ public class JsonSerializableEduTrackTest {
     private static final Path DUPLICATE_CLASS_FILE = TEST_DATA_FOLDER.resolve("duplicateClassEduTrack.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableEduTrack dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalStudentsFile_success() throws Exception {
+        JsonSerializableEduTrack dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableEduTrack.class).get();
         EduTrack eduTrackFromFile = dataFromFile.toModelType();
         EduTrack typicalPersonsEduTrack = TypicalStudents.getTypicalEduTrack();
         assertEquals(eduTrackFromFile, typicalPersonsEduTrack);
+    }
+
+    @Test
+    public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableEduTrack dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
+                JsonSerializableEduTrack.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test

@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Class note in EduTrack.
+ * Represents a memo.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMemo(String)}
  */
-
 public class Memo {
     public static final String MESSAGE_CONSTRAINTS = "Memo can take any values";
 
@@ -16,29 +16,27 @@ public class Memo {
      */
     public static final String VALIDATION_REGEX = "^.*";
 
-    public final String value;
+    public final String memo;
 
     /**
      * Constructs an {@code Memo}.
-     *
-     * @param note A valid note.
      */
-    public Memo(String note) {
-        requireNonNull(note);
-        checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
-        value = note;
+    public Memo(String memo) {
+        requireNonNull(memo);
+        checkArgument(isValidMemo(memo), MESSAGE_CONSTRAINTS);
+        this.memo = memo;
     }
 
     /**
-     * Returns true if a given string is a valid note.
+     * Returns true if a given string is a valid memo.
      */
-    public static boolean isValidNote(String test) {
+    public static boolean isValidMemo(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return this.memo;
     }
 
     @Override
@@ -53,12 +51,12 @@ public class Memo {
         }
 
         Memo otherMemo = (Memo) other;
-        return value.equals(otherMemo.value);
+        return this.memo.equals(otherMemo.memo);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.memo.hashCode();
     }
 
 }

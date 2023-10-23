@@ -10,6 +10,7 @@ import seedu.address.model.module.ClassName;
 import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 
@@ -115,16 +116,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String classNote} into a {@code Memo}.
+     * Parses a {@code String Note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code classNote} is invalid.
+     * @throws ParseException if the given {@code note} is invalid.
      */
-    public static Memo parseClassNote(String classNote) throws ParseException {
-        // String trimmedClassNote = classNote.trim();
-        if (!Memo.isValidNote(classNote)) {
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String Memo} into an {@code Memo}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code memo} is invalid.
+     */
+    public static Memo parseMemo(String memo) throws ParseException {
+        requireNonNull(memo);
+        String trimmedMemo = memo.trim();
+        if (!Memo.isValidMemo(trimmedMemo)) {
             throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
         }
-        return new Memo(classNote);
+        return new Memo(trimmedMemo);
     }
 
     /**

@@ -1,11 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.student.Address;
+import seedu.address.model.common.Memo;
 import seedu.address.model.student.CurrentLessonAttendance;
-import seedu.address.model.student.Email;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 
 /**
@@ -14,16 +13,14 @@ import seedu.address.model.student.Student;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
-    public static final Integer DEFAULT_LESSONS_ATTENDED = 5;
+    private static final String DEFAULT_ID = "A0000000Z";
+    private static final String DEFAULT_MEMO = "";
+    private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
+    private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private Id id;
+    private Memo memo;
     private CurrentLessonAttendance currentLessonAttendance;
     private LessonsAttended lessonsAttended;
 
@@ -32,9 +29,8 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        id = new Id(DEFAULT_ID);
+        memo = new Memo(DEFAULT_MEMO);
         currentLessonAttendance = new CurrentLessonAttendance(DEFAULT_CURRENT_LESSON_ATTENDANCE);
         lessonsAttended = new LessonsAttended(DEFAULT_LESSONS_ATTENDED);
     }
@@ -44,6 +40,8 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
+        id = personToCopy.getId();
+        memo = personToCopy.getMemo();
         currentLessonAttendance = personToCopy.getCurrentAttendance();
         lessonsAttended = personToCopy.getLessonsAttended();
     }
@@ -57,34 +55,18 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
-     * {@code Person} that we are building.
+     * Sets the {@code Id} of the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String... tags) {
+    public StudentBuilder withId(String id) {
+        this.id = new Id(id);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Student} that we are building.
+     * Sets the {@code Memo} of the {@code Student} that we are building.
      */
-    public StudentBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public StudentBuilder withMemo(String memo) {
+        this.memo = new Memo(memo);
         return this;
     }
 
@@ -95,6 +77,7 @@ public class StudentBuilder {
         this.currentLessonAttendance = new CurrentLessonAttendance(isPresent);
         return this;
     }
+
     /**
      * Sets the {@code LessonsAttended} of the {@code Student} that we are building.
      */
@@ -104,7 +87,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name);
+        return new Student(name, id, memo, currentLessonAttendance, lessonsAttended);
     }
 
 }
