@@ -26,7 +26,11 @@ public class AddStudentCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedPerson = new StudentBuilder().withName("Bob").build();
+        Student expectedPerson = new StudentBuilder()
+                .withName("Bob")
+                .withCurrentLessonAttendance(false)
+                .withLessonsAttended(0)
+                .build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + " /s Bob /c 1",

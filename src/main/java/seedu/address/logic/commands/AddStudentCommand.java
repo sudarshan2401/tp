@@ -75,7 +75,8 @@ public class AddStudentCommand extends Command {
         }
 
         AddStudentCommand otherAddStudentCommand = (AddStudentCommand) other;
-        return toAdd.equals(otherAddStudentCommand.toAdd) && classIndex.equals(otherAddStudentCommand.classIndex);
+        return this.toAdd.equals(otherAddStudentCommand.toAdd)
+                && this.classIndex.equals(otherAddStudentCommand.classIndex);
     }
 
     @Override

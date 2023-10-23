@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Memo;
-import seedu.address.model.student.Id;
 import seedu.address.model.student.CurrentLessonAttendance;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -32,7 +32,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("id") String id,
                               @JsonProperty("memo") String memo,
                               @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance,
-                              @JsonProperty("lessonsAttended") int lessonsAttended) {
+                              @JsonProperty("lessonsAttended") Integer lessonsAttended) {
         this.name = name;
         this.id = id;
         this.memo = memo;
@@ -63,6 +63,7 @@ class JsonAdaptedStudent {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }

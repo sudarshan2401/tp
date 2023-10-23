@@ -4,44 +4,44 @@
     "name" : "Alice Pauline",
     "id" : "A0251234Z",
     "memo" : "",
-    "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "currentLessonAttendance": true,
+    "lessonsAttended": 5
   }, {
     "name" : "Benson Meier",
     "id" : "A0257893R",
-    "memo" : "",
+    "memo" : "Gets distracted easily.",
     "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "lessonsAttended": 5
   }, {
     "name" : "Carl Kurz",
     "id" : "A0267293K",
     "memo" : "",
-    "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "currentLessonAttendance": true,
+    "lessonsAttended": 5
   }, {
     "name" : "Daniel Meier",
     "id" : "A0129873H",
     "memo" : "",
     "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "lessonsAttended": 5
   }, {
     "name" : "Elle Meyer",
     "id" : "A0918239U",
     "memo" : "",
     "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "lessonsAttended": 5
   }, {
     "name" : "Fiona Kunz",
     "id" : "A1280382I",
     "memo" : "",
     "currentLessonAttendance": false,
-    "lessonsAttended": 0
+    "lessonsAttended": 5
   }, {
       "name": "George Best",
       "id": "A0257372P",
       "memo": "",
-      "currentLessonAttendance": false,
-      "lessonsAttended": 0
+      "currentLessonAttendance": true,
+      "lessonsAttended": 5
   } ],
   "classes": []
 }

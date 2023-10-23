@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.RemoveClassCommand.MESSAGE_MISSING_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
@@ -18,7 +19,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
+import seedu.address.model.student.CurrentLessonAttendance;
 import seedu.address.model.student.Id;
+import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -47,7 +52,7 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This person already exists in the address book.";
 
     private final Index studentIndex;
-    private final Index studentClassIndex;
+    private final ClassName studentClassName;
 
     private final EditStudentCommand.EditStudentDescriptor editStudentDescriptor;
 
@@ -55,13 +60,13 @@ public class EditStudentCommand extends Command {
      * @param studentIndex of the person in the class's student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditStudentCommand(Index studentIndex, Index studentClassIndex,
+    public EditStudentCommand(Index studentIndex, ClassName studentClassName,
                               EditStudentCommand.EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(studentIndex);
         requireNonNull(editStudentDescriptor);
 
         this.studentIndex = studentIndex;
-        this.studentClassIndex = studentClassIndex;
+        this.studentClassName = studentClassName;
         this.editStudentDescriptor = new EditStudentCommand.EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -69,28 +74,28 @@ public class EditStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
-        List<Class> classList = model.getFilteredClassList();
 
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (studentClassIndex.getZeroBased() >= classList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
+        try {
+            Class studentClass = model.getClass(studentClassName);
+            Student studentToEdit = lastShownList.get(studentIndex.getZeroBased());
+            Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+
+            if (!studentToEdit.isSameStudent(editedStudent) && studentClass.hasStudentInClass(editedStudent)) {
+                throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+            }
+
+            model.setStudent(studentToEdit, editedStudent);
+            model.setStudentInClass(studentToEdit, editedStudent, studentClass);
+            model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.formatStudent(editedStudent)));
+        } catch (ClassNotFoundException e) {
+            throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, studentClassName));
         }
-
-        Class studentClass = classList.get(studentClassIndex.getZeroBased());
-        Student studentToEdit = lastShownList.get(studentIndex.getZeroBased());
-        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
-
-        if (!studentToEdit.isSameStudent(editedStudent) && studentClass.hasStudentInClass(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
-        }
-
-        model.setStudent(studentToEdit, editedStudent);
-        model.setStudentInClass(studentToEdit, editedStudent, studentClass);
-        model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.formatStudent(editedStudent)));
     }
 
     /**
@@ -103,9 +108,13 @@ public class EditStudentCommand extends Command {
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
-        Memo updatedMemo = editStudentDescriptor.getNote().orElse(studentToEdit.getMemo());
+        Memo updatedMemo = editStudentDescriptor.getMemo().orElse(studentToEdit.getMemo());
+        CurrentLessonAttendance updatedCurrentLessonAttendance =
+                editStudentDescriptor.getCurrentLessonAttendance().orElse(studentToEdit.getCurrentAttendance());
+        LessonsAttended updatedLessonsAttended =
+                editStudentDescriptor.getLessonsAttended().orElse(studentToEdit.getLessonsAttended());
 
-        return new Student(updatedName, updatedId, updatedMemo);
+        return new Student(updatedName, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended);
     }
 
     @Override
@@ -121,7 +130,7 @@ public class EditStudentCommand extends Command {
 
         EditStudentCommand otherEditStudentCommand = (EditStudentCommand) other;
         return this.studentIndex.equals(otherEditStudentCommand.studentIndex)
-                && this.studentClassIndex.equals(otherEditStudentCommand.studentClassIndex)
+                && this.studentClassName.equals(otherEditStudentCommand.studentClassName)
                 && this.editStudentDescriptor.equals(otherEditStudentCommand.editStudentDescriptor);
     }
 
@@ -129,7 +138,7 @@ public class EditStudentCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("studentIndex", studentIndex)
-                .add("studentClassIndex", studentClassIndex)
+                .add("studentClassName", studentClassName)
                 .add("editStudentDescriptor", editStudentDescriptor)
                 .toString();
     }
@@ -144,6 +153,8 @@ public class EditStudentCommand extends Command {
         private Name name;
         private Id id;
         private Memo memo;
+        private CurrentLessonAttendance currentLessonAttendance;
+        private LessonsAttended lessonsAttended;
 
         public EditStudentDescriptor() {
         }
@@ -156,6 +167,8 @@ public class EditStudentCommand extends Command {
             setName(toCopy.name);
             setId(toCopy.id);
             setMemo(toCopy.memo);
+            setCurrentLessonAttendance(toCopy.currentLessonAttendance);
+            setLessonsAttended(toCopy.lessonsAttended);
         }
 
         /**
@@ -186,8 +199,24 @@ public class EditStudentCommand extends Command {
             this.memo = memo;
         }
 
-        public Optional<Memo> getNote() {
+        public Optional<Memo> getMemo() {
             return Optional.ofNullable(memo);
+        }
+
+        public void setCurrentLessonAttendance(CurrentLessonAttendance currentLessonAttendance) {
+            this.currentLessonAttendance = currentLessonAttendance;
+        }
+
+        public Optional<CurrentLessonAttendance> getCurrentLessonAttendance() {
+            return Optional.ofNullable(currentLessonAttendance);
+        }
+
+        public void setLessonsAttended(LessonsAttended lessonsAttended) {
+            this.lessonsAttended = lessonsAttended;
+        }
+
+        public Optional<LessonsAttended> getLessonsAttended() {
+            return Optional.ofNullable(lessonsAttended);
         }
 
         @Override
@@ -205,7 +234,9 @@ public class EditStudentCommand extends Command {
                     (EditStudentCommand.EditStudentDescriptor) other;
             return Objects.equals(name, otherEditStudentDescriptor.name)
                     && Objects.equals(id, otherEditStudentDescriptor.id)
-                    && Objects.equals(memo, otherEditStudentDescriptor.memo);
+                    && Objects.equals(memo, otherEditStudentDescriptor.memo)
+                    && Objects.equals(currentLessonAttendance, otherEditStudentDescriptor.currentLessonAttendance)
+                    && Objects.equals(lessonsAttended, otherEditStudentDescriptor.lessonsAttended);
         }
 
         @Override

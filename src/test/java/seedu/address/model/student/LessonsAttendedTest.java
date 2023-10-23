@@ -59,13 +59,13 @@ public class LessonsAttendedTest {
     @Test
     public void equals() {
         LessonsAttended lessonsAttended = new LessonsAttended(10);
-        LessonsAttended lessonsAttended_default = new LessonsAttended();
+        LessonsAttended lessonsAttendedDefault = new LessonsAttended();
 
         assertTrue(lessonsAttended.equals(new LessonsAttended(10)));
-        assertTrue(lessonsAttended_default.equals(new LessonsAttended()));
+        assertTrue(lessonsAttendedDefault.equals(new LessonsAttended()));
         assertTrue(lessonsAttended.equals(lessonsAttended));
 
-        assertFalse(lessonsAttended.equals(lessonsAttended_default));
+        assertFalse(lessonsAttended.equals(lessonsAttendedDefault));
         assertFalse(lessonsAttended.equals(new LessonsAttended(50)));
         assertFalse(lessonsAttended.equals(null));
     }

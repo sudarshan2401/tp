@@ -48,7 +48,7 @@ public class Student {
      * Every field must be present and not null.
      * Mainly used for retrieving data from storage
      */
-    public Student(Name name,  Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
+    public Student(Name name, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
                    LessonsAttended lessonsAttended) {
         requireAllNonNull(name, id, memo, currentLessonAttendance, lessonsAttended);
         this.name = name;
@@ -77,7 +77,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name.
+     * Returns true if both students have the same name and id.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -86,7 +86,11 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getMemo().equals(getMemo())
+                && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
+                && otherStudent.getLessonsAttended().equals(getLessonsAttended());
     }
 
     /**
@@ -139,6 +143,8 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return name.equals(otherStudent.name)
+                && id.equals(otherStudent.id)
+                && memo.equals(otherStudent.memo)
                 && currentLessonAttendance.equals(otherStudent.currentLessonAttendance)
                 && lessonsAttended.equals(otherStudent.lessonsAttended);
     }
