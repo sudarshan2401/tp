@@ -59,16 +59,13 @@ Coming soon...
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
-<<<<<<< HEAD
-=======
+
 
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 **Command Format:** `help`
-
->>>>>>> 8bdfe9ae344274bdbb9796c33c40471b0704bcf9
 
 ### Adding a class : `add`
 
