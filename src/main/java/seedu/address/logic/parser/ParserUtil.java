@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -110,5 +112,33 @@ public class ParserUtil {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
         return new ClassName(trimmedClassName);
+    }
+
+    /**
+     * Parses a {@code String classNote} into a {@code Memo}.
+     *
+     * @throws ParseException if the given {@code classNote} is invalid.
+     */
+    public static Memo parseClassNote(String classNote) throws ParseException {
+        // String trimmedClassNote = classNote.trim();
+        if (!Memo.isValidNote(classNote)) {
+            throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
+        }
+        return new Memo(classNote);
+    }
+
+    /**
+     * Parses a {@code String classSchedule} into a {@code Schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static Schedule parseClassSchedule(String classSchedule) throws ParseException {
+        String trimmedClassSchedule = classSchedule.trim();
+
+        if (!Schedule.isValidSchedule(trimmedClassSchedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedClassSchedule);
     }
 }

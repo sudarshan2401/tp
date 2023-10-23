@@ -125,4 +125,12 @@ public interface Model {
     int getClassListSize();
 
     void updateFilteredClassList(Predicate<Class> predicate);
+
+    /**
+     * Replaces the given class at {@code index} with {@code editedClass}.
+     * Class at {@code index} must exist in EduTrack.
+     * The class identity of {@code editedClass} must not be the same as another
+     * existing class in EduTrack.
+     */
+    void setClass(Index index, Class editedClass);
 }

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditClassCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -87,7 +88,7 @@ public class EduTrackParser {
         final String arguments = matcher.group("arguments") == null ? objectClass
                 : objectClass + matcher.group("arguments");
 
-        // Note to developers: Change the log level in config.json to enable lower level
+        // Memo to developers: Change the log level in config.json to enable lower level
         // (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
@@ -112,6 +113,9 @@ public class EduTrackParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case EditClassCommand.COMMAND_WORD:
+            return new EditClassCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

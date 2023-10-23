@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.module.exceptions.DuplicateClassException;
 import seedu.address.model.student.UniqueStudentList;
@@ -25,8 +26,10 @@ public class UniqueClassListTest {
     private final UniqueClassList uniqueClassList = new UniqueClassList();
     private final ClassName sampleClassName1 = new ClassName("cs2103t");
     private final ClassName sampleClassName2 = new ClassName("cs2105");
-    private final Class sampleClass1 = new Class(sampleClassName1, new UniqueStudentList());
-    private final Class sampleClass2 = new Class(sampleClassName2, new UniqueStudentList());
+    private final Class sampleClass1 = new Class(sampleClassName1, new UniqueStudentList(),
+            new Memo(" "), new Schedule());
+    private final Class sampleClass2 = new Class(sampleClassName2, new UniqueStudentList(),
+            new Memo(" "), new Schedule());
 
     @Test
     public void contains_nullClass_throwsNullPointerException() {
@@ -47,7 +50,7 @@ public class UniqueClassListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClassList.add(sampleClass1);
-        Class c = new Class(sampleClassName1, new UniqueStudentList());
+        Class c = new Class(sampleClassName1, new UniqueStudentList(), new Memo(" "), new Schedule());
         assertTrue(uniqueClassList.contains(c));
     }
 

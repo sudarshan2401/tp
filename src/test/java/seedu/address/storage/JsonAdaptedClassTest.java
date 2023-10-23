@@ -17,24 +17,29 @@ public class JsonAdaptedClassTest {
 
     private static final String INVALID_CLASS_NAME = "cs 2103t";
     private static final List<JsonAdaptedStudent> EMPTY_STUDENT_LIST = new ArrayList<>();
+    private static final String EMPTY_CLASS_NOTE = " ";
+    private static final String EMPTY_CLASS_SCHEDULE = " ";
 
     @Test
     public void toModelType_validClassDetails_returnsClass() throws Exception {
-        JsonAdaptedClass c = new JsonAdaptedClass("CS2105", EMPTY_STUDENT_LIST);
+        JsonAdaptedClass c = new JsonAdaptedClass("CS2105", EMPTY_STUDENT_LIST,
+                EMPTY_CLASS_NOTE, EMPTY_CLASS_SCHEDULE);
         assertEquals(CS2105, c.toModelType());
     }
 
     @Test
     public void toModelType_invalidClassName_throwsIllegalValueException() {
         JsonAdaptedClass c =
-                new JsonAdaptedClass(INVALID_CLASS_NAME, EMPTY_STUDENT_LIST);
+                new JsonAdaptedClass(INVALID_CLASS_NAME, EMPTY_STUDENT_LIST,
+                        EMPTY_CLASS_NOTE, EMPTY_CLASS_SCHEDULE);
         String expectedMessage = ClassName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, c::toModelType);
     }
 
     @Test
     public void toModelType_nullClassName_throwsIllegalValueException() {
-        JsonAdaptedClass c = new JsonAdaptedClass((String) null, new ArrayList<JsonAdaptedStudent>());
+        JsonAdaptedClass c = new JsonAdaptedClass((String) null, new ArrayList<JsonAdaptedStudent>(),
+                EMPTY_CLASS_NOTE, EMPTY_CLASS_SCHEDULE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, c::toModelType);
     }
