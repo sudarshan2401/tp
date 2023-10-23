@@ -145,15 +145,14 @@ public class EduTrack implements ReadOnlyEduTrack {
         this.classes.remove(c);
     }
 
-    public Class getClass(ClassName className) {
+    public Class getClass(ClassName className) throws ClassNotFoundException {
         for (Class c : classes) {
-            System.out.println(c.toString());
             if (c.getClassName().equals(className)) {
                 return c;
             }
         }
         // if no matching className, class do not exist in unique class list
-        return null;
+        throw new ClassNotFoundException();
     }
 
     public Class getClassByIndex(Index classIndex) {

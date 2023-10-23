@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.student.CurrentLessonAttendance;
+import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -15,13 +17,19 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
+    private final Boolean currentLessonAttendance;
+    private final Integer lessonsAttended;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
+                              @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance,
+                              @JsonProperty("lessonsAttended") int lessonsAttended) {
         this.name = name;
+        this.currentLessonAttendance = currentLessonAttendance;
+        this.lessonsAttended = lessonsAttended;
     }
 
     /**
@@ -29,6 +37,8 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
+        currentLessonAttendance = source.getCurrentAttendance().getIsPresent();
+        lessonsAttended = source.getLessonsAttended().getTotalLessons();
     }
 
     /**
@@ -40,7 +50,6 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
 
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -48,8 +57,19 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
-        return new Student(modelName);
+        if (currentLessonAttendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CurrentLessonAttendance.class.getSimpleName()));
+        }
+        final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(
+                currentLessonAttendance);
+        if (lessonsAttended == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LessonsAttended.class.getSimpleName()));
+        }
+        final LessonsAttended modelLessonsAttended = new LessonsAttended(
+                lessonsAttended);
+        return new Student(modelName, modelCurrentLessonAttendance, modelLessonsAttended);
     }
 
 }

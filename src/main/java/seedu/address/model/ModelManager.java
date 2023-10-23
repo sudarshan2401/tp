@@ -16,7 +16,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -161,7 +164,29 @@ public class ModelManager implements Model {
         return classList.get(targetClassIndex.getZeroBased());
     }
 
-    public Class getClass(ClassName className) {
+    @Override
+    public void markStudentPresent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedPresent {
+        editedStudent.markStudentPresent();
+        eduTrack.setStudent(student, editedStudent);
+
+        // Changes the original Student object
+        student.markStudentPresent();
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
+    public void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedAbsent {
+        editedStudent.markStudentAbsent();
+        eduTrack.setStudent(student, editedStudent);
+
+        // Changes the original Student object
+        student.markStudentAbsent();
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    public Class getClass(ClassName className) throws ClassNotFoundException {
         requireNonNull(className);
         return eduTrack.getClass(className);
     }

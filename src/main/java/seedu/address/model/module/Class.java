@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.common.Memo;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
@@ -76,6 +79,25 @@ public class Class {
     public void removeStudentFromClass(Student s) {
         students.remove(s);
     }
+
+    /**
+     * Obtains the student based on the index in the UniqueStudentList of this class.
+     *
+     * @param targetStudentIndex The index of the student to retrieve
+     * @return Student The student object corresponding to the indexStudentIndex
+     * @throws CommandException If an error occurs during command execution.
+     */
+    public Student getStudentInClass(Index targetStudentIndex) throws CommandException {
+        List<Student> studentList = this.getStudentList();
+
+        if (studentList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_STUDENT_LIST);
+        }
+        if (targetStudentIndex.getZeroBased() >= studentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+        }
+        return studentList.get(targetStudentIndex.getZeroBased());
+    }
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
@@ -128,5 +150,4 @@ public class Class {
                 .add("classMemo", classMemo)
                 .toString();
     }
-
 }
