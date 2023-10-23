@@ -229,6 +229,10 @@ public class AddCommandTest {
         public Class retrieveClass(Index classListIndex) {
             throw new AssertionError("This method should not be called");
         }
+        @Override
+        public void setClass(Index classListIndex, Class c) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

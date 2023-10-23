@@ -14,17 +14,20 @@ import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 
 class AddClassCommandTest {
 
     private static final String CLASSNAME_STUB = "cs2103t";
+    private static final String EMPTY_MEMO = " ";
 
     final ClassName className = new ClassName(CLASSNAME_STUB);
 
-    final Class c = new Class(className, new UniqueStudentList());
+    final Class c = new Class(className, new UniqueStudentList(), new Memo(EMPTY_MEMO), new Schedule());
 
     private Model model = new ModelManager(getTypicalEduTrack(), new UserPrefs());
 
@@ -62,8 +65,8 @@ class AddClassCommandTest {
     public void equals() {
         ClassName className1 = new ClassName("CS2103T");
         ClassName className2 = new ClassName("CS2100");
-        Class sampleClass1 = new Class(className1, new UniqueStudentList());
-        Class sampleClass2 = new Class(className2, new UniqueStudentList());
+        Class sampleClass1 = new Class(className1, new UniqueStudentList(), new Memo(EMPTY_MEMO), new Schedule());
+        Class sampleClass2 = new Class(className2, new UniqueStudentList(), new Memo(EMPTY_MEMO), new Schedule());
 
         AddClassCommand command1 = new AddClassCommand(sampleClass1);
         AddClassCommand command2 = new AddClassCommand(sampleClass1);
@@ -88,7 +91,7 @@ class AddClassCommandTest {
     @Test
     public void toStringMethod() {
         ClassName className = new ClassName("CS2103T");
-        Class sampleClass = new Class(className, new UniqueStudentList());
+        Class sampleClass = new Class(className, new UniqueStudentList(), new Memo(EMPTY_MEMO), new Schedule());
 
         AddClassCommand command = new AddClassCommand(sampleClass);
 

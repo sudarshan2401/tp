@@ -28,7 +28,7 @@ public class EduTrack implements ReadOnlyEduTrack {
      * between constructors. See
      * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other
+     * Memo that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
      */
@@ -162,6 +162,19 @@ public class EduTrack implements ReadOnlyEduTrack {
 
     public int getClassListSize() {
         return classes.size();
+    }
+
+    /**
+     * Replaces the given class {@code target} in the list with
+     * {@code editedClass}.
+     * {@code target} must exist in EduTrack.
+     * The class identity of {@code editedClass} must not be the same as another
+     * existing class in the EduTrack.
+     */
+    public void setClass(Index index, Class editedClass) {
+        requireNonNull(editedClass);
+
+        classes.setClass(index, editedClass);
     }
     //// util methods
 

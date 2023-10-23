@@ -72,6 +72,7 @@ public class RemoveStudentCommandTest {
 
         assertCommandSuccess(removeStudentCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_outOfBoundsStudentIndex_throwsCommandException() {
         Index studentIndexToRemove = Index.fromOneBased(3);

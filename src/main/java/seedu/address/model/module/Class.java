@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -21,20 +22,39 @@ public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
 
+    private final Memo classMemo;
+
+    private final Schedule classSchedule;
+
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
+     * @param students The list of students in the class. Must not be null.
+     * @param classMemo An optional class note. Can be null.
+     * @param classSchedule An optional class schedule. Can be null.
      */
-    public Class(ClassName className, UniqueStudentList students) {
+    public Class(ClassName className, UniqueStudentList students, Memo classMemo, Schedule classSchedule) {
         requireNonNull(className);
+        requireNonNull(students);
         this.className = className;
         this.students = students;
+        this.classMemo = classMemo;
+        this.classSchedule = classSchedule;
     }
 
 
     public ClassName getClassName() {
         return className;
+    }
+    public Memo getClassMemo() {
+        return classMemo;
+    }
+    public Schedule getClassSchedule() {
+        return classSchedule;
+    }
+    public UniqueStudentList getUniqueStudentList() {
+        return students;
     }
 
     /**
@@ -124,7 +144,10 @@ public class Class {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("class name", className)
+                .add("className", className)
+                .add("studentList", students)
+                .add("classSchedule", classSchedule)
+                .add("classMemo", classMemo)
                 .toString();
     }
 }

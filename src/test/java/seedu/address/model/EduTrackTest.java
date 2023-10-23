@@ -101,7 +101,7 @@ public class EduTrackTest {
         eduTrack.resetData(newData);
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
-        Student studentStub = new Student(studentNameStub );
+        Student studentStub = new Student(studentNameStub);
         eduTrack.addStudent(studentStub);
         int newSize = eduTrack.getStudentList().size();
         int diff = newSize - originalSize;

@@ -24,7 +24,7 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
     - [Saving the data](#saving-the-data)
     - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
     - [Updating a class : `coming in v1.3`](#updating-a-class--coming-in-v13)
-    - [Updating a class note : `coming in v1.3`](#updating-a-class-note--coming-in-v13)
+    - [Updating a class memo : `coming in v1.3`](#updating-a-class-memo--coming-in-v13)
     - [Updating a student : `coming in v1.3`](#updating-a-student--coming-in-v13)
     - [Adding a lesson : `coming in v1.3`](#adding-a-lesson--coming-in-v13)
     - [Removing a lesson : `coming in v1.3`](#removing-a-lesson--coming-in-v13)
@@ -60,12 +60,12 @@ Coming soon...
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 **Command Format:** `help`
-
 
 ### Adding a class : `add`
 
@@ -185,7 +185,7 @@ EduTrack's data are saved in the hard disk automatically after any command that 
 ### Updating a class : `coming in v1.3`
 [Coming Soon...]
 
-### Updating a class note : `coming in v1.3`
+### Updating a class memo : `coming in v1.3`
 [Coming Soon...]
 
 ### Updating a student : `coming in v1.3`

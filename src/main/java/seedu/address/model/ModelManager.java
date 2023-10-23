@@ -140,6 +140,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setClass(Index index, Class editedClass) {
+        requireAllNonNull(index, editedClass);
+        eduTrack.setClass(index, editedClass);
+    }
+
+    @Override
     public void removeClass(Class c) {
         requireNonNull(c);
         eduTrack.removeClass(c);

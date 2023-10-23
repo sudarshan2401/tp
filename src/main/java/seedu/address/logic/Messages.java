@@ -51,8 +51,7 @@ public class Messages {
      */
     public static String formatClass(Class c) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(c.getClassName())
-                .append("");
+        builder.append(c.getClassName());
         return builder.toString();
     }
 
