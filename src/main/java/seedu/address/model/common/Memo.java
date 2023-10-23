@@ -8,8 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidMemo(String)}
  */
 public class Memo {
-
-    public static final String MESSAGE_CONSTRAINTS = "Memo can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Memo can take any values";
 
     /*
      * The first character of the note must not be a whitespace,
@@ -20,7 +19,7 @@ public class Memo {
     public final String memo;
 
     /**
-     * Constructs an {@code Note}.
+     * Constructs an {@code Memo}.
      */
     public Memo(String memo) {
         requireNonNull(memo);
@@ -29,7 +28,7 @@ public class Memo {
     }
 
     /**
-     * Returns true if a given string is a valid note.
+     * Returns true if a given string is a valid memo.
      */
     public static boolean isValidMemo(String test) {
         return test.matches(VALIDATION_REGEX);

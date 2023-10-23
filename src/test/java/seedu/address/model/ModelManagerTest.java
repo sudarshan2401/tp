@@ -20,8 +20,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.testutil.EduTrackBuilder;
@@ -104,15 +106,19 @@ public class ModelManagerTest {
 
     @Test
     public void retrieveClass_indexLargerThanClassList_throwsCommandException() {
-        modelManager.addClass(new Class(new ClassName("class1"), new UniqueStudentList()));
-        modelManager.addClass(new Class(new ClassName("class2"), new UniqueStudentList()));
+        modelManager.addClass(new Class(new ClassName("class1"), new UniqueStudentList(),
+                new Memo(" "), new Schedule()));
+        modelManager.addClass(new Class(new ClassName("class2"), new UniqueStudentList(),
+                new Memo(" "), new Schedule()));
         assertThrows(CommandException.class, () -> modelManager.retrieveClass(Index.fromOneBased(3)));
     }
 
     @Test
     public void retrieveClass_validIndexInClassList_success() {
-        modelManager.addClass(new Class(new ClassName("class1"), new UniqueStudentList()));
-        modelManager.addClass(new Class(new ClassName("class2"), new UniqueStudentList()));
+        modelManager.addClass(new Class(new ClassName("class1"), new UniqueStudentList(),
+                new Memo(" "), new Schedule()));
+        modelManager.addClass(new Class(new ClassName("class2"), new UniqueStudentList(),
+                new Memo(" "), new Schedule()));
         assertDoesNotThrow(() -> modelManager.retrieveClass(Index.fromOneBased(1)));
     }
 

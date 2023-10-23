@@ -11,8 +11,10 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.testutil.TypicalClasses;
 
@@ -26,7 +28,7 @@ public class ViewCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         ClassName className = new ClassName("cs2103t");
-        model.addClass(new Class(className, new UniqueStudentList()));
+        model.addClass(new Class(className, new UniqueStudentList(), new Memo(" "), new Schedule()));
         ViewCommand expectedCommand = new ViewCommand(validClassIndex);
         assertParseSuccess(parser, " /c " + "1", expectedCommand);
     }

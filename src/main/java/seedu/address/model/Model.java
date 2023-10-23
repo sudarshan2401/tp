@@ -11,6 +11,8 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * The API of the Model component.
@@ -126,11 +128,24 @@ public interface Model {
 
     Class retrieveClass(Index classListIndex) throws CommandException;
 
-    Class getClass(ClassName className);
+    void markStudentPresent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedPresent;
+    void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
+            throws StudentAlreadyMarkedAbsent;
+
+    Class getClass(ClassName className) throws ClassNotFoundException;
 
     Class getClassByIndex(Index classIndex);
 
     int getClassListSize();
 
     void updateFilteredClassList(Predicate<Class> predicate);
+
+    /**
+     * Replaces the given class at {@code index} with {@code editedClass}.
+     * Class at {@code index} must exist in EduTrack.
+     * The class identity of {@code editedClass} must not be the same as another
+     * existing class in EduTrack.
+     */
+    void setClass(Index index, Class editedClass);
 }

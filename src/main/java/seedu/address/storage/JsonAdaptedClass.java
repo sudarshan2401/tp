@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 
 /**
@@ -20,6 +22,8 @@ class JsonAdaptedClass {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Class's %s field is missing!";
 
     private final String className;
+    private final String classNote;
+    private final String classSchedule;
     private final List<JsonAdaptedStudent> studentList = new ArrayList<>();
 
     /**
@@ -27,8 +31,12 @@ class JsonAdaptedClass {
      */
     @JsonCreator
     public JsonAdaptedClass(@JsonProperty("className") String className,
-                            @JsonProperty("studentList") List<JsonAdaptedStudent> studentList) {
+                            @JsonProperty("studentList") List<JsonAdaptedStudent> studentList,
+                            @JsonProperty("classNote") String classNote,
+                            @JsonProperty("classSchedule") String classSchedule) {
         this.className = className;
+        this.classNote = classNote;
+        this.classSchedule = classSchedule;
         if (studentList != null) {
             this.studentList.addAll(studentList);
         }
@@ -38,7 +46,10 @@ class JsonAdaptedClass {
      * Converts a given {@code Class} into this class for Jackson use.
      */
     public JsonAdaptedClass(Class source) {
-        className = source.getClassName().className;
+        className = source.getClassName().toString();
+        classNote = source.getClassMemo().toString();
+        classSchedule = source.getClassSchedule().toString();
+
         studentList.addAll(source.getStudentList().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
@@ -64,7 +75,24 @@ class JsonAdaptedClass {
         }
         final ClassName modelClassName = new ClassName(className);
 
-        return new Class(modelClassName, students);
+        final Memo modelClassMemo;
+        if (classNote == null) {
+            modelClassMemo = new Memo(" ");
+        } else {
+            modelClassMemo = new Memo(classNote);
+        }
+
+        final Schedule modelClassSchedule;
+
+        if (classSchedule == null) {
+            modelClassSchedule = new Schedule(" ");
+        } else if (!Schedule.isValidSchedule(classSchedule)) {
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
+        } else {
+            modelClassSchedule = new Schedule(classSchedule);
+        }
+
+        return new Class(modelClassName, students, modelClassMemo, modelClassSchedule);
     }
 
 }

@@ -7,6 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
@@ -142,5 +143,20 @@ public class ParserUtil {
             throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
         }
         return new Memo(trimmedMemo);
+    }
+
+    /**
+     * Parses a {@code String classSchedule} into a {@code Schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static Schedule parseClassSchedule(String classSchedule) throws ParseException {
+        String trimmedClassSchedule = classSchedule.trim();
+
+        if (!Schedule.isValidSchedule(trimmedClassSchedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedClassSchedule);
     }
 }

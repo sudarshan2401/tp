@@ -14,12 +14,16 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditClassCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkAllStudentPresentCommand;
+import seedu.address.logic.commands.MarkStudentAbsentCommand;
+import seedu.address.logic.commands.MarkStudentPresentCommand;
 import seedu.address.logic.commands.RemoveClassCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
@@ -88,7 +92,7 @@ public class EduTrackParser {
         final String arguments = matcher.group("arguments") == null ? objectClass
                 : objectClass + matcher.group("arguments");
 
-        // Note to developers: Change the log level in config.json to enable lower level
+        // Memo to developers: Change the log level in config.json to enable lower level
         // (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
@@ -111,11 +115,23 @@ public class EduTrackParser {
         case RemoveClassCommand.COMMAND_WORD:
             return new RemoveClassCommandParser().parse(arguments);
 
+        case MarkAllStudentPresentCommand.COMMAND_WORD:
+            return new MarkAllStudentPresentCommandParser().parse(arguments);
+
+        case MarkStudentPresentCommand.COMMAND_WORD:
+            return new MarkStudentPresentCommandParser().parse(arguments);
+
+        case MarkStudentAbsentCommand.COMMAND_WORD:
+            return new MarkStudentAbsentCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case EditStudentCommand.COMMAND_WORD:
             return new EditStudentCommandParser().parse(arguments);
+
+        case EditClassCommand.COMMAND_WORD:
+            return new EditClassCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

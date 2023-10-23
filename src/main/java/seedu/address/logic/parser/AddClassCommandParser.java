@@ -8,8 +8,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 
 /**
@@ -33,7 +35,9 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
         UniqueStudentList emptyStudentList = new UniqueStudentList();
-        Class c = new Class(className, emptyStudentList);
+        Memo memo = new Memo(" ");
+        Schedule schedule = new Schedule();
+        Class c = new Class(className, emptyStudentList, memo, schedule);
 
         return new AddClassCommand(c);
     }
