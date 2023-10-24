@@ -5,11 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLASS;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -21,13 +17,8 @@ import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.Schedule;
-import seedu.address.model.student.CurrentLessonAttendance;
-import seedu.address.model.student.Id;
-import seedu.address.model.student.LessonsAttended;
-import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
-import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalClasses;
 
@@ -51,7 +42,8 @@ public class MarkStudentAbsentCommandTest {
 
         Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
-        String expectedMessage = String.format(MarkStudentAbsentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS, "Amy Bee");
+        String expectedMessage = String.format(MarkStudentAbsentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
+                "Amy Bee");
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

@@ -63,7 +63,8 @@ public class MarkAllStudentPresentCommandTest {
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent1);
         expectedModel.setStudent(model.getFilteredStudentList().get(1), editedStudent2);
 
-        String expectedMessage = String.format(MarkAllStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS, "CS2109");
+        String expectedMessage = String.format(MarkAllStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
+                "CS2109");
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
