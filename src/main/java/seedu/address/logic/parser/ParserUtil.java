@@ -5,9 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 
@@ -110,5 +113,50 @@ public class ParserUtil {
             throw new ParseException(ClassName.MESSAGE_CONSTRAINTS);
         }
         return new ClassName(trimmedClassName);
+    }
+
+    /**
+     * Parses a {@code String Note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String Memo} into an {@code Memo}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code memo} is invalid.
+     */
+    public static Memo parseMemo(String memo) throws ParseException {
+        requireNonNull(memo);
+        String trimmedMemo = memo.trim();
+        if (!Memo.isValidMemo(trimmedMemo)) {
+            throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
+        }
+        return new Memo(trimmedMemo);
+    }
+
+    /**
+     * Parses a {@code String classSchedule} into a {@code Schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static Schedule parseClassSchedule(String classSchedule) throws ParseException {
+        String trimmedClassSchedule = classSchedule.trim();
+
+        if (!Schedule.isValidSchedule(trimmedClassSchedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedClassSchedule);
     }
 }

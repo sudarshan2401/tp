@@ -37,6 +37,7 @@ public class AddStudentCommand extends Command {
      */
     public AddStudentCommand(Student student, Index classIndex) {
         requireNonNull(student);
+        requireNonNull(classIndex);
         this.toAdd = student;
         this.classIndex = classIndex;
     }
@@ -74,7 +75,8 @@ public class AddStudentCommand extends Command {
         }
 
         AddStudentCommand otherAddStudentCommand = (AddStudentCommand) other;
-        return toAdd.equals(otherAddStudentCommand.toAdd) && classIndex.equals(otherAddStudentCommand.classIndex);
+        return this.toAdd.equals(otherAddStudentCommand.toAdd)
+                && this.classIndex.equals(otherAddStudentCommand.classIndex);
     }
 
     @Override

@@ -1,12 +1,17 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -17,23 +22,67 @@ import seedu.address.model.student.UniqueStudentList;
 public class Class {
     private final ClassName className;
     private final UniqueStudentList students;
+
+    private final Memo classMemo;
+
+    private final Schedule classSchedule;
     private int totalLessons;
+
+    /**
+     * Constructs a {@code Class} object that automatically creates a Memo and Schedule that hold empty value.
+     *
+     * @param className The name of the class. Must not be null.
+     * @param students The list of students in the class. Must not be null.
+     */
+    public Class(ClassName className, UniqueStudentList students) {
+        this(className, students, new Memo(" "), new Schedule());
+    }
 
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
-     * @param students List of Student in the Class.
+     * @param students The list of students in the class. Must not be null.
+     * @param classMemo A class note that can be empty. Must not be null.
+     * @param classSchedule A class schedule that can be empty. Must not be null.
      */
-    public Class(ClassName className, UniqueStudentList students) {
-        requireNonNull(className);
+    public Class(ClassName className, UniqueStudentList students, Memo classMemo, Schedule classSchedule) {
+        requireAllNonNull(className, students, classMemo, classSchedule);
         this.className = className;
         this.students = students;
+        this.classMemo = classMemo;
+        this.classSchedule = classSchedule;
         this.totalLessons = 0;
     }
 
     public ClassName getClassName() {
         return className;
+    }
+    public Memo getClassMemo() {
+        return classMemo;
+    }
+    public Schedule getClassSchedule() {
+        return classSchedule;
+    }
+    public UniqueStudentList getUniqueStudentList() {
+        return students;
+    }
+    /**
+     * Starts a lesson and update GUI.
+     */
+    public void startLesson() {
+        increaseTotalLessons();
+        // code logic to refresh GUI
+    }
+    public int getTotalLessons() {
+        return totalLessons;
+    }
+
+    /**
+     * Increases total number of lessons in the class.
+     */
+    public void increaseTotalLessons() {
+        totalLessons++;
     }
 
     /**
@@ -53,10 +102,30 @@ public class Class {
 
     public void addStudentToClass(Student toAdd) {
         students.add(toAdd);
+//        toAdd.setStudentClass(this);
     }
 
     public void removeStudentFromClass(Student s) {
         students.remove(s);
+    }
+
+    /**
+     * Obtains the student based on the index in the UniqueStudentList of this class.
+     *
+     * @param targetStudentIndex The index of the student to retrieve
+     * @return Student The student object corresponding to the indexStudentIndex
+     * @throws CommandException If an error occurs during command execution.
+     */
+    public Student getStudentInClass(Index targetStudentIndex) throws CommandException {
+        List<Student> studentList = this.getStudentList();
+
+        if (studentList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_STUDENT_LIST);
+        }
+        if (targetStudentIndex.getZeroBased() >= studentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+        }
+        return studentList.get(targetStudentIndex.getZeroBased());
     }
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
@@ -65,25 +134,6 @@ public class Class {
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
-
-    /**
-     * Starts a lesson and update GUI.
-     */
-    public void startLesson() {
-        increaseTotalLessons();
-        // code logic to refresh GUI
-    }
-    public int getTotalLessons() {
-        return totalLessons;
-    }
-
-    /**
-     * Increases total number of lessons in the class.
-     */
-    public void increaseTotalLessons() {
-        totalLessons++;
-    }
-
 
     /**
      * Checks if this class is equal to another object.
@@ -115,17 +165,38 @@ public class Class {
     /**
      * Returns true if a student with the same identity as {@code student} exists in
      * the class.
+     *
+     * @param student The student.
+     * @return True if student is in class, false otherwise.
      */
     public boolean hasStudentInClass(Student student) {
         requireNonNull(student);
         return students.contains(student);
     }
 
+    /**
+     * Replaces the given student {@code target} in the list with
+     * {@code editedStudent}.
+     * {@code target} must exist in the class
+     * The student identity of {@code editedStudent} must not be the same as another
+     * existing student in the class
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+
+        students.setStudent(target, editedStudent);
+    }
+
+
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("class name", className)
+                .add("className", className)
+                .add("studentList", students)
+                .add("classSchedule", classSchedule)
+                .add("classMemo", classMemo)
+                .add("totalLessons", totalLessons)
                 .toString();
     }
-
 }

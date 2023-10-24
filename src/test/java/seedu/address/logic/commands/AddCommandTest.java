@@ -26,6 +26,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -162,6 +164,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setStudentInClass(Student target, Student editedStudent, Class targetClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -175,6 +182,18 @@ public class AddCommandTest {
         public boolean hasClass(Class c) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markStudentPresent(Student student, Class studentClass, Student editedStudent)
+                throws StudentAlreadyMarkedPresent {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
+                throws StudentAlreadyMarkedAbsent {
+            throw new AssertionError("This method should not be called.");
+        };
 
         @Override
         public Class getClass(ClassName className) {
@@ -213,6 +232,10 @@ public class AddCommandTest {
 
         @Override
         public Class retrieveClass(Index classListIndex) {
+            throw new AssertionError("This method should not be called");
+        }
+        @Override
+        public void setClass(Index classListIndex, Class c) {
             throw new AssertionError("This method should not be called");
         }
     }

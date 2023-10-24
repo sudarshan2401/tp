@@ -3,8 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalEduTrack;
@@ -21,6 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -51,8 +50,7 @@ public class EduTrackTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Student editedAlice = new StudentBuilder(ALICE).build();
 
         List<Student> newPersons = Arrays.asList(ALICE, editedAlice);
         EduTrackStub newData = new EduTrackStub(newPersons);
@@ -80,8 +78,7 @@ public class EduTrackTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
 
         eduTrack.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Student editedAlice = new StudentBuilder(ALICE).build();
         assertTrue(eduTrack.hasStudent(editedAlice));
     }
 
@@ -102,8 +99,9 @@ public class EduTrackTest {
         eduTrack.resetData(newData);
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
-        Index studentClassIndexStub = Index.fromZeroBased(0);
+        Index studentClassIndexStub = Index.fromOneBased(1);
         Student studentStub = new Student(studentNameStub, studentClassIndexStub);
+
         eduTrack.addStudent(studentStub);
         int newSize = eduTrack.getStudentList().size();
         int diff = newSize - originalSize;
@@ -132,7 +130,7 @@ public class EduTrackTest {
         EduTrack newData = getTypicalEduTrack();
         eduTrack.resetData(newData);
         ClassName classNameStub = new ClassName("classNameStub");
-        assertEquals(eduTrack.getClass(classNameStub), null);
+        assertThrows(ClassNotFoundException.class, () -> eduTrack.getClass(classNameStub));
     }
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface

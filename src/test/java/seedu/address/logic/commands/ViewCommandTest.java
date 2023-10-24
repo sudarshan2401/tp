@@ -13,8 +13,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.testutil.TypicalClasses;
 
@@ -46,7 +48,8 @@ public class ViewCommandTest {
         assertTrue(viewCommand.equals(viewCommandCopy));
         assertFalse(viewCommand.equals(viewCommandDiff));
         assertFalse(viewCommand.equals(null));
-        assertFalse(viewCommand.equals(new AddClassCommand(new Class(className, new UniqueStudentList()))));
+        assertFalse(viewCommand.equals(new AddClassCommand(new Class(className, new UniqueStudentList(),
+                new Memo(" "), new Schedule()))));
     }
 
     @Test

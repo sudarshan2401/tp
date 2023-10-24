@@ -461,7 +461,7 @@ _{More to be added}_
 
    Use case ends.
 
-**Use case: Updating a Class note**
+**Use case: Updating a Class memo**
 
 **MSS**
 
@@ -489,9 +489,9 @@ _{More to be added}_
 
     Use case ends.
 
-- 3c. No note details was specified.
+- 3c. No memo details was specified.
 
-  - 3c1. EduTrack informs the user that no note was specified.
+  - 3c1. EduTrack informs the user that no memo was specified.
 
     Use case ends.
 

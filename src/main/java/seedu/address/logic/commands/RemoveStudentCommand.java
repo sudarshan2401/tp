@@ -17,7 +17,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
- * Removes a Student identified by Name  from a Class.
+ * Removes a Student identified by Name from a Class.
  */
 public class RemoveStudentCommand extends RemoveCommand {
 
@@ -34,7 +34,6 @@ public class RemoveStudentCommand extends RemoveCommand {
             + PREFIX_CLASS + " cs2103t";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "%s has been removed from %s ";
-
 
     private final Index studentIndex;
     private final ClassName studentClassName;
@@ -64,7 +63,6 @@ public class RemoveStudentCommand extends RemoveCommand {
 
         model.deleteStudent(studentToDelete);
         model.deleteStudentFromClass(studentToDelete, studentClass);
-
 
         Name studentName = studentToDelete.getName();
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,

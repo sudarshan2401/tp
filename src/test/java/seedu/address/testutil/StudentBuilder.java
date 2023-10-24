@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.student.Address;
-import seedu.address.model.student.Email;
+import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
+import seedu.address.model.student.CurrentLessonAttendance;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 
 /**
@@ -13,26 +16,33 @@ import seedu.address.model.student.Student;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final int DEFAULT_CLASSINDEX = 0;
+
+
+
+    private static final String DEFAULT_ID = "A0000000Z";
+    private static final String DEFAULT_MEMO = "";
+    private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
+    private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
+    public static final int DEFAULT_CLASSINDEX = 1;
+    private Index classIndex;
+    private Class studentClass;
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Index classIndex;
+    private Id id;
+    private Memo memo;
+    private CurrentLessonAttendance currentLessonAttendance;
+    private LessonsAttended lessonsAttended;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        classIndex = Index.fromZeroBased(DEFAULT_CLASSINDEX);
+        id = new Id(DEFAULT_ID);
+        memo = new Memo(DEFAULT_MEMO);
+        currentLessonAttendance = new CurrentLessonAttendance(DEFAULT_CURRENT_LESSON_ATTENDANCE);
+        lessonsAttended = new LessonsAttended(DEFAULT_LESSONS_ATTENDED);
+        classIndex = Index.fromOneBased(DEFAULT_CLASSINDEX);
     }
 
     /**
@@ -40,11 +50,16 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
-        classIndex = personToCopy.getClassIndex();
+//        classIndex = personToCopy.getClassIndex();
+        studentClass = personToCopy.getStudentClass();
+        id = personToCopy.getId();
+        memo = personToCopy.getMemo();
+        currentLessonAttendance = personToCopy.getCurrentAttendance();
+        lessonsAttended = personToCopy.getLessonsAttended();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
@@ -52,34 +67,34 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
-     * {@code Person} that we are building.
+     * Sets the {@code Id} of the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String... tags) {
+    public StudentBuilder withId(String id) {
+        this.id = new Id(id);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Memo} of the {@code Student} that we are building.
      */
-    public StudentBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public StudentBuilder withMemo(String memo) {
+        this.memo = new Memo(memo);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code CurrentLessonAttendance} of the {@code Student} that we are building.
      */
-    public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public StudentBuilder withCurrentLessonAttendance(Boolean isPresent) {
+        this.currentLessonAttendance = new CurrentLessonAttendance(isPresent);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code LessonsAttended} of the {@code Student} that we are building.
      */
-    public StudentBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public StudentBuilder withLessonsAttended(Integer lessonsAttended) {
+        this.lessonsAttended = new LessonsAttended(lessonsAttended);
         return this;
     }
 
@@ -89,12 +104,17 @@ public class StudentBuilder {
      * @return StudentBuilder to build the Student.
      */
     public StudentBuilder withClassIndex(int classIndex) {
-        this.classIndex = Index.fromZeroBased(classIndex);
+        this.classIndex = Index.fromOneBased(classIndex);
+        return this;
+    }
+
+    public StudentBuilder withStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
         return this;
     }
 
     public Student build() {
-        return new Student(name, classIndex);
+        return new Student(name, studentClass, id, memo, currentLessonAttendance, lessonsAttended);
     }
 
 }

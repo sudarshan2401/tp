@@ -6,6 +6,10 @@ import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * Represents a Student in the address book.
@@ -13,22 +17,55 @@ import seedu.address.commons.util.ToStringBuilder;
  * immutable.
  */
 public class Student {
+    // Default fields
+    private static final Id DEFAULT_ID = new Id("A0000000Z");
+    private static final Memo DEFAULT_MEMO = new Memo("");
 
     // Identity fields
     private final Name name;
-    private final Index classIndex;
+    private final Id id;
 
     // Data fields
+    private final Memo memo;
 
+    private Class studentClass = null;
+    private Index classIndex;
+
+    // The current lesson's attendance (Present/Absent)
+    private CurrentLessonAttendance currentLessonAttendance;
+    // Cumulative number of lessons attended
+    private LessonsAttended lessonsAttended;
+
+    /**
+     * Constructs a Student with Name and Index that represents one-based class index.
+     * @param name Name to represent Student.
+     * @param classIndex Index represents one-based class index.
+     */
+    public Student(Name name, Index classIndex) {
+        requireAllNonNull(name, classIndex);
+        this.name = name;
+        this.classIndex = classIndex;
+        this.id = DEFAULT_ID;
+        this.memo = DEFAULT_MEMO;
+        this.currentLessonAttendance = new CurrentLessonAttendance(false);
+        this.lessonsAttended = new LessonsAttended();
+    }
 
 
     /**
      * Every field must be present and not null.
+     * Mainly used for retrieving data from storage
      */
-    public Student(Name name, Index classIndex) {
-        requireAllNonNull(name);
+
+    public Student(Name name, Class studentClass, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
+                   LessonsAttended lessonsAttended) {
+        requireAllNonNull(name, id, memo, currentLessonAttendance, lessonsAttended);
         this.name = name;
-        this.classIndex = classIndex;
+        this.studentClass = studentClass;
+        this.id = id;
+        this.memo = memo;
+        this.currentLessonAttendance = currentLessonAttendance;
+        this.lessonsAttended = lessonsAttended;
     }
 
     /**
@@ -38,12 +75,42 @@ public class Student {
     public Name getName() {
         return name;
     }
+
     public Index getClassIndex() {
         return classIndex;
     }
 
     /**
-     * Returns true if both students have the same name.
+     * Updates Class containing Student after Student is initialized. This can only be done once when Student is first initialized.
+     * @param studentClass Class containing Student.
+     */
+    public void setStudentClass(Class studentClass) {
+        if (this.studentClass == null) {
+            this.studentClass = studentClass;
+        }
+    }
+
+    public Class getStudentClass() {
+        return this.studentClass;
+    }
+
+    public CurrentLessonAttendance getCurrentAttendance() {
+        return this.currentLessonAttendance;
+    }
+    public LessonsAttended getLessonsAttended() {
+        return this.lessonsAttended;
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    public Memo getMemo() {
+        return memo;
+    }
+
+    /**
+     * Returns true if both students have the same name and id.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -52,7 +119,45 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getMemo().equals(getMemo())
+                && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
+                && otherStudent.getLessonsAttended().equals(getLessonsAttended());
+    }
+
+    /**
+     * Creates a duplicate object of this student.
+     *
+     * @return Student - Duplicate student that lives on a different part of memory
+     */
+    public Student duplicateStudent() {
+        return new Student(new Name(this.name.fullName),
+                this.getStudentClass(),
+                this.getId(),
+                this.getMemo(),
+                new CurrentLessonAttendance(this.currentLessonAttendance.getIsPresent()),
+                new LessonsAttended(this.lessonsAttended.getTotalLessons()));
+    }
+
+    /**
+     * Marks a student as present for the current lesson.
+     *
+     * @throws StudentAlreadyMarkedPresent If the Student has already been marked present
+     */
+    public void markStudentPresent() throws StudentAlreadyMarkedPresent {
+        this.currentLessonAttendance.setPresent();
+        this.lessonsAttended.incrementLessons();
+    }
+
+    /**
+     * Marks a student as absent for the current lesson.
+     *
+     * @throws StudentAlreadyMarkedAbsent If the Student has already been marked absent
+     */
+    public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
+        this.currentLessonAttendance.setAbsent();
+        this.lessonsAttended.decrementLessons();
     }
 
     /**
@@ -71,7 +176,11 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return name.equals(otherStudent.name);
+        return name.equals(otherStudent.name)
+                && id.equals(otherStudent.id)
+                && memo.equals(otherStudent.memo)
+                && currentLessonAttendance.equals(otherStudent.currentLessonAttendance)
+                && lessonsAttended.equals(otherStudent.lessonsAttended);
     }
 
     @Override
@@ -80,10 +189,30 @@ public class Student {
         return Objects.hash(name);
     }
 
+    /**
+     * Obtain String representation of the attendance of this Student.
+     *
+     * @return String - Y - Present current class. N - Absent for current class
+     */
+    public String getAttendanceStringRep() {
+        return this.currentLessonAttendance.toString();
+    }
+
+    /**
+     * Obtain String representation of the total number of lessons attended this Student attended.
+     *
+     * @return String - String representation of a integer
+     */
+    public String getTotalAttendanceStringRep() {
+        return this.lessonsAttended.toString();
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("id", id)
+                .add("memo", memo)
                 .toString();
     }
 

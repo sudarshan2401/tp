@@ -16,7 +16,7 @@ public class StudentCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved
+     * Memo: Certain keywords such as "location" and "resources" are reserved
      * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
@@ -44,6 +44,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label totalLessons;
 
+    @FXML
+    private Label attendance;
+    @FXML
+    private Label totalAttendance;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
      * display.
@@ -56,5 +61,7 @@ public class StudentCard extends UiPart<Region> {
         //        Class c = person.getStudentClass();
         //        System.out.println(c.getTotalLessons());
         //        totalLessons.setText(String.valueOf(c.getTotalLessons()));
+        attendance.setText(person.getAttendanceStringRep());
+        totalAttendance.setText(person.getTotalAttendanceStringRep());
     }
 }

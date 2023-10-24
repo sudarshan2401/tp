@@ -11,6 +11,7 @@ import seedu.address.model.student.Student;
  * Contains utility methods for populating {@code EduTrack} with sample data.
  */
 public class SampleDataUtil {
+
     public static Student[] getSamplePersons() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), Index.fromZeroBased(0)),
