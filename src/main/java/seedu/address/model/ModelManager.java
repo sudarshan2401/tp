@@ -168,10 +168,7 @@ public class ModelManager implements Model {
             throws StudentAlreadyMarkedPresent {
         editedStudent.markStudentPresent();
         eduTrack.setStudent(student, editedStudent);
-
-        // Changes the original Student object
         setStudentInClass(student, editedStudent, studentClass);
-//        student.markStudentPresent();
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
@@ -181,8 +178,6 @@ public class ModelManager implements Model {
         editedStudent.markStudentAbsent();
         eduTrack.setStudent(student, editedStudent);
         setStudentInClass(student, editedStudent, studentClass);
-        // Changes the original Student object
-//        student.markStudentAbsent();
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
