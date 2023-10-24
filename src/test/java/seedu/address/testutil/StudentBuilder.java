@@ -15,15 +15,12 @@ import seedu.address.model.student.Student;
  */
 public class StudentBuilder {
 
+    public static final int DEFAULT_CLASSINDEX = 1;
     public static final String DEFAULT_NAME = "Amy Bee";
-
-
-
     private static final String DEFAULT_ID = "A0000000Z";
     private static final String DEFAULT_MEMO = "";
     private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
     private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
-    public static final int DEFAULT_CLASSINDEX = 1;
     private Index classIndex;
     private Class studentClass;
 
@@ -50,7 +47,6 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
-//        classIndex = personToCopy.getClassIndex();
         studentClass = personToCopy.getStudentClass();
         id = personToCopy.getId();
         memo = personToCopy.getMemo();
@@ -99,7 +95,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the classIndex from Zero based of the Student that we are building.
+     * Sets the classIndex from One based of the Student that we are building.
      * @param classIndex ClassIndex of Student's Class.
      * @return StudentBuilder to build the Student.
      */
@@ -108,6 +104,11 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the Class of the Student we are building to studentClass.
+     * @param studentClass Class of Student.
+     * @return StudentBuilder to build the Student.
+     */
     public StudentBuilder withStudentClass(Class studentClass) {
         this.studentClass = studentClass;
         return this;

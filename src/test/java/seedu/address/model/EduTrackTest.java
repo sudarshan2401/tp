@@ -100,7 +100,7 @@ public class EduTrackTest {
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
         Index studentClassIndexStub = Index.fromOneBased(1);
-        Student studentStub = new Student(studentNameStub, studentClassIndexStub);
+        Student studentStub = new Student(studentNameStub);
 
         eduTrack.addStudent(studentStub);
         int newSize = eduTrack.getStudentList().size();
@@ -117,7 +117,7 @@ public class EduTrackTest {
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
         Index studentClassIndexStub = Index.fromZeroBased(0);
-        Student studentStub = new Student(studentNameStub, studentClassIndexStub);
+        Student studentStub = new Student(studentNameStub);
         eduTrack.addStudent(studentStub);
         eduTrack.removeStudent(studentStub);
         int newSize = eduTrack.getStudentList().size();

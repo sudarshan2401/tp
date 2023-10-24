@@ -45,7 +45,7 @@ class ClassTest {
                 + ", studentList=" + c.getUniqueStudentList()
                 + ", classSchedule=" + c.getClassSchedule()
                 + ", classMemo=" + c.getClassMemo()
-                + ", totalLessons=" + c.getTotalLessons() +"}";
+                + ", totalLessons=" + c.getTotalLessons() + "}";
         assertEquals(expected, c.toString());
     }
 }

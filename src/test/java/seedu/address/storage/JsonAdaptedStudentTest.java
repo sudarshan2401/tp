@@ -24,14 +24,14 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_validStudentDetails_returnsStudent() throws Exception {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_CLASS,
+        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME,
                 VALID_ID, VALID_MEMO, VALID_CURRENT_ATTENDANCE, VALID_LESSONS_ATTENDED);
         assertEquals(BENSON, person.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME, VALID_CLASS,
+        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME,
                 VALID_ID, VALID_MEMO, VALID_CURRENT_ATTENDANCE, VALID_LESSONS_ATTENDED);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -39,7 +39,7 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null, VALID_CLASS,
+        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null,
                 VALID_ID, VALID_MEMO, VALID_CURRENT_ATTENDANCE, VALID_LESSONS_ATTENDED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
