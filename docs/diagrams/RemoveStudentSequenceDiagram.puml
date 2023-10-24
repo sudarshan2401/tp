@@ -78,4 +78,5 @@ destroy Student
 
 [<-- RemoveStudentCommand
 deactivate RemoveStudentCommand
+
 @enduml
