@@ -6,8 +6,6 @@ import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.ClassName;
-
 
 /**
  * Represents a Student in the address book.
@@ -21,6 +19,7 @@ public class Student {
     private final Index classIndex;
 
     // Data fields
+
 
 
     /**

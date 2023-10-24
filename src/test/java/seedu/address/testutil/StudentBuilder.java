@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -15,11 +16,13 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final int DEFAULT_CLASSINDEX = 0;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Index classIndex;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -29,6 +32,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        classIndex = Index.fromZeroBased(DEFAULT_CLASSINDEX);
     }
 
     /**
@@ -36,6 +40,7 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
+        classIndex = personToCopy.getClassIndex();
     }
 
     /**
@@ -78,8 +83,18 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the classIndex from Zero based of the Student that we are building.
+     * @param classIndex ClassIndex of Student's Class.
+     * @return StudentBuilder to build the Student.
+     */
+    public StudentBuilder withClassIndex(int classIndex) {
+        this.classIndex = Index.fromZeroBased(classIndex);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, );
+        return new Student(name, classIndex);
     }
 
 }

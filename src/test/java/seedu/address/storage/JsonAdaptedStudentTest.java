@@ -12,6 +12,7 @@ import seedu.address.model.student.Name;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final int VALID_CLASSINDEX = 0;
 
     private static final String VALID_NAME = BENSON.getName().toString();
 
@@ -23,14 +24,14 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(INVALID_NAME, VALID_CLASSINDEX);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null);
+        JsonAdaptedStudent person = new JsonAdaptedStudent((String) null, VALID_CLASSINDEX);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
