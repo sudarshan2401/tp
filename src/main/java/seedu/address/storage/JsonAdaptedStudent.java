@@ -3,11 +3,9 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
-import seedu.address.model.module.ClassName;
 import seedu.address.model.student.CurrentLessonAttendance;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
@@ -22,7 +20,6 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
-    private Class studentClass;
     private final String id;
     private final String memo;
     private final Boolean currentLessonAttendance;
@@ -33,13 +30,11 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name,
-                              @JsonProperty("class") Class studentClass,
                               @JsonProperty("id") String id,
                               @JsonProperty("memo") String memo,
                               @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance,
                               @JsonProperty("lessonsAttended") Integer lessonsAttended) {
         this.name = name;
-        this.studentClass = studentClass;
         this.id = id;
         this.memo = memo;
         this.currentLessonAttendance = currentLessonAttendance;
@@ -51,7 +46,6 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        studentClass = source.getStudentClass();
         id = source.getId().toString();
         memo = source.getMemo().toString();
         currentLessonAttendance = source.getCurrentAttendance().getIsPresent();
@@ -94,14 +88,15 @@ class JsonAdaptedStudent {
 
         final Name modelName = new Name(name);
         // set as null for now because Student's class will be handled by Class when Student is added into a Class
-        Class modelClass = null;
+        final Class modelClass = null;
         final Id modelId = new Id(id);
         final Memo modelMemo = new Memo(memo);
         final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(
                 currentLessonAttendance);
         final LessonsAttended modelLessonsAttended = new LessonsAttended(
                 lessonsAttended);
-        return new Student(modelName, modelClass, modelId, modelMemo, modelCurrentLessonAttendance, modelLessonsAttended);
+        return new Student(modelName, modelClass, modelId, modelMemo, modelCurrentLessonAttendance,
+                modelLessonsAttended);
     }
 
 }

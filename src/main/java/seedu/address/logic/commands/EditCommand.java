@@ -92,9 +92,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Index updatedClassIndex = editPersonDescriptor.getClassIndex().orElse(personToEdit.getClassIndex());
 
-        return new Student(updatedName, updatedClassIndex);
+        return new Student(updatedName);
     }
 
     @Override

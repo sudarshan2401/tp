@@ -62,9 +62,6 @@ class JsonAdaptedClass {
      */
     public Class toModelType() throws IllegalValueException {
         final UniqueStudentList students = new UniqueStudentList();
-        for (JsonAdaptedStudent student : studentList) {
-            students.add(student.toModelType());
-        }
 
         if (className == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -92,7 +89,13 @@ class JsonAdaptedClass {
             modelClassSchedule = new Schedule(classSchedule);
         }
 
-        return new Class(modelClassName, students, modelClassMemo, modelClassSchedule);
+        Class modelClass = new Class(modelClassName, students, modelClassMemo, modelClassSchedule);
+
+        for (JsonAdaptedStudent student : studentList) {
+            modelClass.addStudentToClass(student.toModelType());
+        }
+
+        return modelClass;
     }
 
 }

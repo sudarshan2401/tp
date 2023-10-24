@@ -55,18 +55,28 @@ class JsonSerializableEduTrack {
      */
     public EduTrack toModelType() throws IllegalValueException {
         EduTrack eduTrack = new EduTrack();
+        List<Class> classList = new ArrayList<>();
         for (JsonAdaptedClass jsonAdaptedClass : classes) {
             Class c = jsonAdaptedClass.toModelType();
             if (eduTrack.hasClass(c)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLASS);
             }
             eduTrack.addClass(c);
+            classList.add(c);
         }
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (eduTrack.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+
+            // this updates Class field of Student in global list of EduTrack
+            for (Class c : classList) {
+                if (c.hasStudentInClass(student)) {
+                    student.setStudentClass(c);
+                }
+            }
+
             eduTrack.addStudent(student);
         }
 

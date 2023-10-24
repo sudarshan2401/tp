@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
@@ -29,7 +28,6 @@ public class Student {
     private final Memo memo;
 
     private Class studentClass = null;
-    private Index classIndex;
 
     // The current lesson's attendance (Present/Absent)
     private CurrentLessonAttendance currentLessonAttendance;
@@ -38,13 +36,12 @@ public class Student {
 
     /**
      * Constructs a Student with Name and Index that represents one-based class index.
+     *
      * @param name Name to represent Student.
-     * @param classIndex Index represents one-based class index.
      */
-    public Student(Name name, Index classIndex) {
-        requireAllNonNull(name, classIndex);
+    public Student(Name name) {
+        requireAllNonNull(name);
         this.name = name;
-        this.classIndex = classIndex;
         this.id = DEFAULT_ID;
         this.memo = DEFAULT_MEMO;
         this.currentLessonAttendance = new CurrentLessonAttendance(false);
@@ -76,12 +73,10 @@ public class Student {
         return name;
     }
 
-    public Index getClassIndex() {
-        return classIndex;
-    }
 
     /**
-     * Updates Class containing Student after Student is initialized. This can only be done once when Student is first initialized.
+     * Updates Class containing Student after Student is initialized.
+     * This can only be done once when Student is first initialized.
      * @param studentClass Class containing Student.
      */
     public void setStudentClass(Class studentClass) {
@@ -192,7 +187,7 @@ public class Student {
     /**
      * Obtain String representation of the attendance of this Student.
      *
-     * @return String - Y - Present current class. N - Absent for current class
+     * @return String - Y - Present current class1. N - Absent for current class
      */
     public String getAttendanceStringRep() {
         return this.currentLessonAttendance.toString();

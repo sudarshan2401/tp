@@ -100,9 +100,13 @@ public class Class {
                 && otherClass.getClassName().equals(getClassName());
     }
 
+    /**
+     * Adds Student to Class and set the Class field in Student to the respective Class.
+     * @param toAdd
+     */
     public void addStudentToClass(Student toAdd) {
         students.add(toAdd);
-//        toAdd.setStudentClass(this);
+        toAdd.setStudentClass(this);
     }
 
     public void removeStudentFromClass(Student s) {

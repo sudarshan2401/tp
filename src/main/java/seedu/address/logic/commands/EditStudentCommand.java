@@ -115,7 +115,8 @@ public class EditStudentCommand extends Command {
         LessonsAttended updatedLessonsAttended =
                 editStudentDescriptor.getLessonsAttended().orElse(studentToEdit.getLessonsAttended());
 
-        return new Student(updatedName, updatedClass, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended);
+        return new Student(updatedName, updatedClass, updatedId, updatedMemo, updatedCurrentLessonAttendance,
+                updatedLessonsAttended);
     }
 
     @Override

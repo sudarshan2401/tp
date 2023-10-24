@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Index classIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
 
-        Student person = new Student(name, classIndex);
+        Student person = new Student(name);
 
         return new AddCommand(person);
     }
