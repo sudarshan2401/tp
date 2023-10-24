@@ -168,4 +168,9 @@ public class Class {
                 .add("classMemo", classMemo)
                 .toString();
     }
+
+    public String getClassInfo() {
+        return "Current class: " + className.toString() + "\n" + "Schedule: " + classSchedule.toString()
+                + "\n" + "Class notes: " + classMemo.toString();
+    }
 }
