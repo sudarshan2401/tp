@@ -4,50 +4,28 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLASS;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentNotFoundException;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalClasses;
 
 public class MarkAllStudentPresentCommandTest {
 
     private Model model;
-    private Class classStub;
-    private Student studentStub;
-    private ClassName classStubName;
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        classStub = model.getFilteredClassList().get(INDEX_FIRST_CLASS.getZeroBased());
-        studentStub = new StudentBuilder().build();
-        model.addStudent(studentStub);
-        if (!classStub.hasStudentInClass(studentStub)) {
-            classStub.addStudentToClass(studentStub);
-        }
-        classStubName = classStub.getClassName();
-    }
-
-    @AfterEach
-    public void cleanUp() {
-        try {
-            model.deleteStudentFromClass(studentStub, classStub);
-        } catch (StudentNotFoundException e) {
-            System.out.println("Cleaning up after test: No student to be removed");
-        }
-    }
 
     @Test
     public void constructor_nullClass_throwsNullPointerException() {
@@ -57,6 +35,36 @@ public class MarkAllStudentPresentCommandTest {
     @Test
     public void constructor_validIndex_success() {
         assertDoesNotThrow(() -> new MarkAllStudentPresentCommand(Index.fromOneBased(1)));
+    }
+
+    @Test
+    public void execute_userIsUnmarked_success() {
+        // Set up test case
+        model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
+        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+                new Memo(" "), new Schedule());
+        Student studentToRemove1 = new StudentBuilder().withName("Amy Bee")
+                .withCurrentLessonAttendance(false).withLessonsAttended(4).build();
+        model.addStudent(studentToRemove1);
+        model.addClass(CS2109);
+        model.addStudentToClass(studentToRemove1, CS2109);
+        Student studentToRemove2 = new StudentBuilder().withName("John")
+                .withCurrentLessonAttendance(true).withLessonsAttended(2).build();
+        model.addStudent(studentToRemove2);
+        model.addStudentToClass(studentToRemove2, CS2109);
+
+        // Set up expected model
+        Student editedStudent1 = new StudentBuilder().withName("Amy Bee")
+                .withCurrentLessonAttendance(true).withLessonsAttended(5).build();
+        Student editedStudent2 = new StudentBuilder().withName("John")
+                .withCurrentLessonAttendance(true).withLessonsAttended(2).build();
+        MarkAllStudentPresentCommand command = new MarkAllStudentPresentCommand(Index.fromOneBased(4));
+        Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent1);
+        expectedModel.setStudent(model.getFilteredStudentList().get(1), editedStudent2);
+
+        String expectedMessage = String.format(MarkAllStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS, "CS2109");
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -76,6 +84,9 @@ public class MarkAllStudentPresentCommandTest {
 
         // different values -> return false
         assertFalse(firstMarkAllStudentPresentCommand.equals(secondMarkAllStudentPresentCommand));
+
+        // different instance -> return false
+        assertFalse(firstMarkAllStudentPresentCommand.equals(new Integer(1)));
     }
 
     @Test
