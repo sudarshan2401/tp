@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
 
 import java.util.function.Predicate;
 
@@ -42,8 +43,15 @@ public class ViewCommand extends Command {
         if (classIndex.getZeroBased() >= model.getClassListSize() || classIndex.getZeroBased() < 0) {
             throw new CommandException(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
+        model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
 
         Class classToView = model.getClassByIndex(classIndex);
+        model.updateFilteredClassList(new Predicate<Class>() {
+            @Override
+            public boolean test(Class classToTest) {
+                return classToTest.equals(classToView);
+            }
+        });
         model.updateFilteredStudentList(new Predicate<Student>() {
             @Override
             public boolean test(Student student) {

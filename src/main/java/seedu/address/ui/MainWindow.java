@@ -219,6 +219,8 @@ public class MainWindow extends UiPart<Stage> {
                 //add the class list panel
                 classListPanel = new ClassListPanel(logic.getFilteredClassList());
                 displayListPanel(classListPanel.getRoot());
+                //remove the class info display
+                classInfoDisplay.setClassInfo("");
             }
 
             return commandResult;
