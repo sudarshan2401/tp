@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.common.Memo;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
@@ -29,6 +30,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_CLASSNAME = "cs2103t";
+    private static final String VALID_CLASSPARTICIPATION = "Answered 2 questions";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -165,5 +167,16 @@ public class ParserUtilTest {
         String classNameWithWhitespace = WHITESPACE + VALID_CLASSNAME + WHITESPACE;
         ClassName expectedClassName = new ClassName(VALID_CLASSNAME);
         assertEquals(expectedClassName, ParserUtil.parseClassName(classNameWithWhitespace));
+    }
+
+    @Test
+    public void parseClassParticipation_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClassParticipation((String) null));
+    }
+
+    @Test
+    public void parseClassParticipation_validValue_returnsClassParticipation() throws Exception {
+        Memo expectedClassParticipation = new Memo(VALID_CLASSPARTICIPATION);
+        assertEquals(expectedClassParticipation, ParserUtil.parseClassParticipation(VALID_CLASSPARTICIPATION));
     }
 }

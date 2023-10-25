@@ -45,6 +45,7 @@ public class AddStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASSES);
         List<Class> lastShownClassList = model.getFilteredClassList();
 
         if (classIndex.getZeroBased() >= lastShownClassList.size()) {

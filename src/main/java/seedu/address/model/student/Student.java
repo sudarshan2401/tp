@@ -35,6 +35,8 @@ public class Student {
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
 
+    private Memo classParticipation;
+
     /**
      * Constructs a Student with Name and Index that represents one-based class index.
      *
@@ -47,6 +49,7 @@ public class Student {
         this.memo = DEFAULT_MEMO;
         this.currentLessonAttendance = new CurrentLessonAttendance(false);
         this.lessonsAttended = new LessonsAttended();
+        this.classParticipation = DEFAULT_MEMO;
     }
 
 
@@ -54,9 +57,8 @@ public class Student {
      * Every field must be present and not null.
      * Mainly used for retrieving data from storage
      */
-
     public Student(Name name, Class studentClass, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
-                   LessonsAttended lessonsAttended) {
+                   LessonsAttended lessonsAttended, Memo classParticipation) {
         requireAllNonNull(name, id, memo, currentLessonAttendance, lessonsAttended);
         this.name = name;
         this.studentClass = studentClass;
@@ -64,6 +66,7 @@ public class Student {
         this.memo = memo;
         this.currentLessonAttendance = currentLessonAttendance;
         this.lessonsAttended = lessonsAttended;
+        this.classParticipation = classParticipation;
     }
 
     /**
@@ -105,6 +108,10 @@ public class Student {
         return memo;
     }
 
+    public Memo getClassParticipation() {
+        return classParticipation;
+    }
+
     /**
      * Returns true if both students have the same name and id.
      * This defines a weaker notion of equality between two students.
@@ -119,7 +126,8 @@ public class Student {
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getMemo().equals(getMemo())
                 && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
-                && otherStudent.getLessonsAttended().equals(getLessonsAttended());
+                && otherStudent.getLessonsAttended().equals(getLessonsAttended())
+                && otherStudent.getClassParticipation().equals(getClassParticipation());
     }
 
     /**
@@ -133,7 +141,8 @@ public class Student {
                 this.getId(),
                 this.getMemo(),
                 new CurrentLessonAttendance(this.currentLessonAttendance.getIsPresent()),
-                new LessonsAttended(this.lessonsAttended.getTotalLessons()));
+                new LessonsAttended(this.lessonsAttended.getTotalLessons()),
+                this.getClassParticipation());
     }
 
     /**
@@ -187,7 +196,8 @@ public class Student {
                 && id.equals(otherStudent.id)
                 && memo.equals(otherStudent.memo)
                 && currentLessonAttendance.equals(otherStudent.currentLessonAttendance)
-                && lessonsAttended.equals(otherStudent.lessonsAttended);
+                && lessonsAttended.equals(otherStudent.lessonsAttended)
+                && classParticipation.equals(otherStudent.classParticipation);
     }
 
     @Override

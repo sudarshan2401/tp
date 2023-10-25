@@ -4,7 +4,8 @@
     "id" : "jsjs",
     "memo" : "",
     "currentLessonAttendance" : false,
-    "lessonsAttended" : 0
+    "lessonsAttended" : 0,
+    "classParticipation" : 0
   } ],
   "classes" : [ {
     "className" : "CS2103T",
@@ -13,7 +14,8 @@
       "id" : "jsjs",
       "memo" : "",
       "currentLessonAttendance" : false,
-      "lessonsAttended" : 0
+      "lessonsAttended" : 0,
+      "classParticipation" : 0
     } ],
     "classNote" : " ",
     "classSchedule" : " "
