@@ -235,6 +235,7 @@ public class EditStudentCommand extends Command {
 
         public Optional<Class> getStudentClass() {
             return Optional.ofNullable(studentClass);
+        }
         
         public void setClassParticipation(Memo classParticipation) {
             this.classParticipation = classParticipation;
