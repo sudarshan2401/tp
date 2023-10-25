@@ -1,5 +1,6 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -40,7 +41,7 @@ public class Student {
      * @param name Name to represent Student.
      */
     public Student(Name name) {
-        requireAllNonNull(name);
+        requireNonNull(name);
         this.name = name;
         this.id = DEFAULT_ID;
         this.memo = DEFAULT_MEMO;
@@ -156,6 +157,16 @@ public class Student {
     }
 
     /**
+     * Sets a student attendance back to absent at the start of a new lesson.
+     */
+    public void startNewLesson() {
+        try {
+            this.currentLessonAttendance.setAbsent();
+        } catch (StudentAlreadyMarkedAbsent ignored) {
+        }
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -187,7 +198,7 @@ public class Student {
     /**
      * Obtain String representation of the attendance of this Student.
      *
-     * @return String - Y - Present current class1. N - Absent for current class
+     * @return String - Y - Present current class. N - Absent for current class
      */
     public String getAttendanceStringRep() {
         return this.currentLessonAttendance.toString();

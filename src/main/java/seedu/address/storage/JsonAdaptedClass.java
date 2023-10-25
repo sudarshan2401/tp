@@ -24,6 +24,7 @@ class JsonAdaptedClass {
     private final String className;
     private final String classNote;
     private final String classSchedule;
+    private final int classTotalLessons;
     private final List<JsonAdaptedStudent> studentList = new ArrayList<>();
 
     /**
@@ -33,10 +34,12 @@ class JsonAdaptedClass {
     public JsonAdaptedClass(@JsonProperty("className") String className,
                             @JsonProperty("studentList") List<JsonAdaptedStudent> studentList,
                             @JsonProperty("classNote") String classNote,
-                            @JsonProperty("classSchedule") String classSchedule) {
+                            @JsonProperty("classSchedule") String classSchedule,
+                            @JsonProperty("totalLessons") int classTotalLessons) {
         this.className = className;
         this.classNote = classNote;
         this.classSchedule = classSchedule;
+        this.classTotalLessons = classTotalLessons;
         if (studentList != null) {
             this.studentList.addAll(studentList);
         }
@@ -49,7 +52,7 @@ class JsonAdaptedClass {
         className = source.getClassName().toString();
         classNote = source.getClassMemo().toString();
         classSchedule = source.getClassSchedule().toString();
-
+        classTotalLessons = source.getTotalLessons();
         studentList.addAll(source.getStudentList().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
@@ -89,7 +92,10 @@ class JsonAdaptedClass {
             modelClassSchedule = new Schedule(classSchedule);
         }
 
+        final int modelClassTotalLessons = classTotalLessons;
+
         Class modelClass = new Class(modelClassName, students, modelClassMemo, modelClassSchedule);
+        modelClass.setTotalLessons(modelClassTotalLessons);
 
         for (JsonAdaptedStudent student : studentList) {
             modelClass.addStudentToClass(student.toModelType());

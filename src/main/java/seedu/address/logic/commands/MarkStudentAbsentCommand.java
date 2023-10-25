@@ -61,7 +61,7 @@ public class MarkStudentAbsentCommand extends Command {
             Student editedStudent = studentToMark.duplicateStudent();
             model.markStudentAbsent(studentToMark, studentClass, editedStudent);
         } catch (StudentAlreadyMarkedAbsent e) {
-            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.toString()));
+            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }

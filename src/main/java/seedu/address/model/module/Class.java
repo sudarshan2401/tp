@@ -72,12 +72,14 @@ public class Class {
      */
     public void startLesson() {
         increaseTotalLessons();
-        // code logic to refresh GUI
     }
     public int getTotalLessons() {
         return totalLessons;
     }
 
+    public void setTotalLessons(int newTotalLessons) {
+        totalLessons = newTotalLessons;
+    }
     /**
      * Increases total number of lessons in the class.
      */

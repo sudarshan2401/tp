@@ -185,6 +185,21 @@ public class ModelManager implements Model {
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
+    @Override
+    public void startLessonForStudent(Student student, Class studentClass, Student editedStudent) {
+        editedStudent.startNewLesson();
+        eduTrack.setStudent(student, editedStudent);
+
+        student.startNewLesson();
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
+    public void startLesson(Class c) {
+        c.startLesson();
+        updateFilteredStudentList((s) -> c.getStudentList().contains(s));
+    }
+
     public Class getClass(ClassName className) throws ClassNotFoundException {
         requireNonNull(className);
         return eduTrack.getClass(className);

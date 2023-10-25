@@ -190,20 +190,20 @@ The relationship between variables can be summarised by this object diagram.
 **Walkthrough**
 
 Step 1. `LogicManager` calls `removeStudentCommand#execute()` 
+ 
+Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
 
-Step 1. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
+Step 3. `removeStudentCommand` calls `Class#getStudentList()` to get the `sClassStudentList` from `sClass`.
 
-Step 2. `removeStudentCommand` calls `Class#getStudentList()` to get the `sClassStudentList` from `sClass`.
+Step 4. `removeStudentCommand` calls `List#get(studentIndex)` to get `s` from the `sClassStudentList`.
 
-Step 3. `removeStudentCommand` calls `List#get(studentIndex)` to get `s` from the `sClassStudentList`.
+Step 5. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
 
-Step 4. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+Step 6. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
 
-Step 5. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+Step 7. `removeStudentCommand` calls `Student#getName()` to get `sName`.
 
-Step 6. `removeStudentCommand` calls `Student#getName()` to get `sName`.
-
-Step 7. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
+Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
 
 The walkthrough can be summarised by this sequence diagram. (Some details are omitted in the diagram)
 
