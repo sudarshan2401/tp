@@ -159,7 +159,7 @@ Removes an existing student from a class based on index.
 * Class must already exist
 
 **Examples:**
-* Remove /s 1 /c CS2103T
+* `remove /s 1 /c CS2103T`
 
 **Successful Output:**
 * STUDENT_NAME has been removed from CLASS_NAME
@@ -182,7 +182,7 @@ Starts a lesson of a class.
 * `startlesson /c CS2103T`
 
 **Successful Output:**
-* CS2103T started a new lesson!
+* CLASS_NAME started a new lesson!
 
 **Unsuccessful Output:**
 * Class name not specified
