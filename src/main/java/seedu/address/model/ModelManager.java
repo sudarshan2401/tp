@@ -17,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
@@ -206,11 +207,25 @@ public class ModelManager implements Model {
         return eduTrack.getClassByIndex(classIndex);
     }
 
+    @Override
+    public Name getStudentName(Student student) {
+        return student.getName();
+    }
+
+    @Override
+    public Student getStudentFromStudentList(ObservableList<Student> list, Index index) {
+        return list.get(index.getZeroBased());
+    }
+
+    @Override
+    public ObservableList<Student> getStudentListFromClass(Class studentClass) {
+        return studentClass.getStudentList();
+    }
+
     public int getClassListSize() {
         return eduTrack.getClassListSize();
     }
     //=========== Filtered Person List Accessors =============================================================
-
     @Override
     public void setStudent(Student target, Student editedPerson) {
         requireAllNonNull(target, editedPerson);

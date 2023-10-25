@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
@@ -92,6 +93,19 @@ public interface Model {
     void addStudentToClass(Student student, Class studentClass);
 
     /**
+     * Gets a Student from list based on Student's Index.
+     * @param list List containing Student.
+     * @return Student corresponding to Index in the List.
+     */
+    Student getStudentFromStudentList(ObservableList<Student> list, Index index);
+
+    /**
+     * Gets List of Student in the Class.
+     * @param studentClass Class to retrieve the List of Students from.
+     * @return List of Student in the Class.
+     */
+    ObservableList<Student> getStudentListFromClass(Class studentClass);
+    /**
      * Replaces the given student {@code target} with {@code editedPerson}.
      * {@code target} must exist in EduTrack.
      * The person identity of {@code editedPerson} must not be the same as another
@@ -106,6 +120,9 @@ public interface Model {
      * existing student in EduTrack.
      */
     void setStudentInClass(Student target, Student editedStudent, Class targetClass);
+
+    /** Returns Name of the Student */
+    Name getStudentName(Student student);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
