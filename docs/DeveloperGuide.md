@@ -179,9 +179,9 @@ Given below is a list of variables used in walkthrough of the removal of Student
 
 `studentClassName` - `ClassName` representing `sClass`.
 
-`sClassStudentList` - `List<Student>` in `sClass` containing all its `Student` 
+`sClassStudentList` - `UniqueStudentList` in `sClass` containing all its `Student` 
 
-`globalStudentList` - `List<Student>` in `EduTrack` containing all `Student` across all `Class`.
+`globalStudentList` - `UniqueStudentList` in `EduTrack` containing all `Student` across all `Class`.
 
 The relationship between variables can be summarised by this object diagram.
 
@@ -189,7 +189,7 @@ The relationship between variables can be summarised by this object diagram.
 
 **Walkthrough**
 
-Step 1. `LogicManager` calls `removeStudentCommand#execute()` 
+Step 1. `LogicManager` calls `removeStudentCommand#execute()`
  
 Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
 
