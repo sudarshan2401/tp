@@ -20,6 +20,7 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
     - [Viewing a class : `view`](#viewing-a-class--view)
     - [Adding a student : `add`](#adding-a-student--add)
     - [Removing a student : `remove`](#removing-a-student--remove)
+    - [Starting a lesson : `startlesson`](#starting-a-lesson--startlesson)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
@@ -168,6 +169,25 @@ Removes an existing student from a class.
 * Class name not specified
 * CLASS_NAME does not exist
 * STUDENT_NAME is not found in CLASS_NAME
+
+### Starting a lesson : `startlesson`
+
+Starts a lesson of a class.
+
+**Command Format**: `startlesson /c CLASS_NAME`
+
+* CLASS_NAME is not case-sensitive
+* Class must already exist
+
+**Examples:**
+* `startlesson /c CS2103T`
+
+**Successful Output:**
+* CS2103T started a new lesson!
+
+**Unsuccessful Output:**
+* Class name not specified
+* CLASS_NAME does not exist
 
 ### Exiting the program : `exit`
 
