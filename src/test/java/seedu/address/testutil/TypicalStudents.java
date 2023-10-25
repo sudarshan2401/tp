@@ -21,42 +21,49 @@ public class TypicalStudents {
             .withMemo("")
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withId("A0257893R")
             .withMemo("Gets distracted easily.")
             .withCurrentLessonAttendance(false)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
             .withId("A0267293K")
             .withMemo("")
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
             .withId("A0129873H")
             .withMemo("")
             .withCurrentLessonAttendance(false)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withId("A0918239U")
             .withMemo("")
             .withCurrentLessonAttendance(false)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
             .withId("A1280382I")
             .withMemo("")
             .withCurrentLessonAttendance(false)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best")
             .withId("A0257372P")
             .withMemo("")
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
 
     // Manually added
@@ -65,22 +72,26 @@ public class TypicalStudents {
             .withMemo("Quiet.")
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller")
             .withId("A0282987T")
             .withMemo("Needs help in algorithms.")
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withCurrentLessonAttendance(true)
             .withLessonsAttended(5)
+            .withClassParticipation("")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

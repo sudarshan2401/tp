@@ -17,12 +17,14 @@ public class StudentBuilder {
     private static final String DEFAULT_MEMO = "";
     private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
     private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
+    private static final String DEFAULT_CLASS_PARTICIPATION = "";
 
     private Name name;
     private Id id;
     private Memo memo;
     private CurrentLessonAttendance currentLessonAttendance;
     private LessonsAttended lessonsAttended;
+    private Memo classParticipation;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -33,6 +35,7 @@ public class StudentBuilder {
         memo = new Memo(DEFAULT_MEMO);
         currentLessonAttendance = new CurrentLessonAttendance(DEFAULT_CURRENT_LESSON_ATTENDANCE);
         lessonsAttended = new LessonsAttended(DEFAULT_LESSONS_ATTENDED);
+        classParticipation = new Memo(DEFAULT_CLASS_PARTICIPATION);
     }
 
     /**
@@ -44,6 +47,7 @@ public class StudentBuilder {
         memo = personToCopy.getMemo();
         currentLessonAttendance = personToCopy.getCurrentAttendance();
         lessonsAttended = personToCopy.getLessonsAttended();
+        classParticipation = personToCopy.getClassParticipation();
     }
 
     /**
@@ -86,8 +90,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ClassParticipation} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withClassParticipation(String classParticipation) {
+        this.classParticipation = new Memo(classParticipation);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, id, memo, currentLessonAttendance, lessonsAttended);
+        return new Student(name, id, memo, currentLessonAttendance, lessonsAttended, classParticipation);
     }
 
 }
