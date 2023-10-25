@@ -113,6 +113,7 @@ public class Class {
 
     public void removeStudentFromClass(Student s) {
         students.remove(s);
+        assert(this.hasStudentInClass(s) == false) : "Class should not have studentToBeDeleted anymore.";
     }
 
     /**

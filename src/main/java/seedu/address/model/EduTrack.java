@@ -120,6 +120,7 @@ public class EduTrack implements ReadOnlyEduTrack {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+        assert(this.hasStudent(key) == false) : "EduTrack should not have studentToBeDeleted anymore.";
     }
     /**
      * Adds a class to EduTrack.
