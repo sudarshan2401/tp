@@ -159,6 +159,53 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit Student feature
+The `edit /s` command is facilitated by creating an `EditStudentCommand` depending  on the given input.
+This command will update the student's details and update the `model` accordingly.
+
+The edit student command accepts:
+- Compulsory parameters
+  - Student index in the class
+  - Class Name
+- At least one of these parameters
+  - Name
+  - Id
+  - Memo
+  - Class Participation
+
+The following activity diagram summarizes what happens when a user executes an `edit /s` command.
+<puml src="diagrams/EditStudentActivityDiagram.puml" alt="EditStudentActivityDiagram">
+
+Given below is an example usage scenario and how the edit student operation behaves at each step.
+
+Step 1. A valid command `edit /s 1 /c CS2103T /nJohn` is given as a user input. This invokes
+`LogicManager#execute()`, which calls `EduTrackParser#parseCommand()` to parse the above command into command word `edit /s`
+and command argument `/s 1 /c CS2103T /nJohn`.
+
+Step 2. `EditStudentCommandParser` is initialised based on the parse results and `EditStudentCommandParser#parse()` is called.
+`EditStudentCommandParser#parse()` will call `ArgumentTokenizer#tokenize()` to identify all the prefixes such as `Index` of the Student being edited as well as
+the `ClassName` the student is supposed to be in. (ie. `1` and `CS2103T` respectively). It will also obtain an `ArgumentMultimap` of prefixes to their respective arguments (ie. `/n` is mapped to `John`).
+
+Step 3. `EditStudentCommandParser#parse()` then initialises and EditStudentDescriptor that stores the details to edit the student with. Thus,
+`EditStudentDescriptor#setName()` will be called to store `John Doe` as the `Name` to be edited.
+
+Step 4. `EditStudentCommandParser#parse()` then initialises an EditStudentCommand with the `Index`, `ClassName` and `EditStudentDescriptor` as an argument. 
+`EditStudentCommand#execute()` is then called, which creates a new `Student` and copies over the details to be edited from the `EditStudentDescriptor` into both the `UniqueStudentList` of the `Class` and `EduTrack`.
+
+Step 5. After checking that the new `Student` is not a duplicate using `Class#hasStudentInClass()` and `Student#isSameStudent()`,
+`Model#setStudent` and `Model#setStudentInClass` will be called to replace the specified `Student`. Finally, `Model#updateFilteredStudentList()` is called to reflect the changes made to the `Student`.
+
+Step 6. `CommandResult` is then initialised with the `String` containing `MESSAGE_EDIT_PERSON_SUCCESS` and `Student` which will then be returned.
+
+The following sequence diagram shows how the edit student operation works:
+<puml src="diagrams/EditStudentSequenceDiagram.puml" alt="EditStudentSequenceDiagram">
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `EditStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
