@@ -189,7 +189,7 @@ the `ClassName` the student is supposed to be in. (ie. `1` and `CS2103T` respect
 Step 3. `EditStudentCommandParser#parse()` then initialises and EditStudentDescriptor that stores the details to edit the student with. Thus,
 `EditStudentDescriptor#setName()` will be called to store `John Doe` as the `Name` to be edited.
 
-Step 4. `EditStudentCommandParser#parse()` then initialises an EditStudentCommand with the `Index`, `ClassName` and `EditStudentDescriptor` as an argument. 
+Step 4. `EditStudentCommandParser#parse()` then initialises an EditStudentCommand with the `Index`, `ClassName` and `EditStudentDescriptor` as an argument.
 `EditStudentCommand#execute()` is then called, which creates a new `Student` and copies over the details to be edited from the `EditStudentDescriptor` into both the `UniqueStudentList` of the `Class` and `EduTrack`.
 
 Step 5. After checking that the new `Student` is not a duplicate using `Class#hasStudentInClass()` and `Student#isSameStudent()`,
