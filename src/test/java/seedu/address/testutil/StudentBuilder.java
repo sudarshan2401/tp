@@ -22,7 +22,6 @@ public class StudentBuilder {
     private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
     private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
     private static final String DEFAULT_CLASS_PARTICIPATION = "";
-  
     private Index classIndex;
     private Class studentClass;
 
@@ -118,14 +117,21 @@ public class StudentBuilder {
         this.studentClass = studentClass;
         return this;
     }
-  
-    /** Sets the {@code ClassParticipation} of the {@code Student} that we are building.
+
+    /**
+     * Sets the {@code ClassParticipation} of the {@code Student} that we are building.
+     * @param classParticipation
+     * @return
      */
     public StudentBuilder withClassParticipation(String classParticipation) {
         this.classParticipation = new Memo(classParticipation);
         return this;
     }
 
+    /**
+     * Builds the Student.
+     * @return Student.
+     */
     public Student build() {
         return new Student(name, studentClass, id, memo, currentLessonAttendance, lessonsAttended,
                            classParticipation);
