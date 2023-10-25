@@ -151,16 +151,15 @@ Adds a new student to an existing class.
 
 ### Removing a student : `remove`
 
-Removes an existing student from a class.
+Removes an existing student from a class based on index.
 
-**Command Format**: `remove /s STUDENT_NAME /c CLASS_NAME`
+**Command Format**: `remove /s STUDENT_INDEX /c CLASS_NAME`
 
 * CLASS_NAME is not case-sensitive
-* Class and student must already exist
-* STUDENT_NAME only accepts alphabetical characters
+* Class must already exist
 
 **Examples:**
-* Remove /s John /c CS2103T
+* Remove /s 1 /c CS2103T
 
 **Successful Output:**
 * STUDENT_NAME has been removed from CLASS_NAME
@@ -168,7 +167,7 @@ Removes an existing student from a class.
 **Unsuccessful Output:**
 * Class name not specified
 * CLASS_NAME does not exist
-* STUDENT_NAME is not found in CLASS_NAME
+* Student index provided is invalid
 
 ### Starting a lesson : `startlesson`
 
