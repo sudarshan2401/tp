@@ -23,6 +23,7 @@ class JsonAdaptedStudent {
     private final String memo;
     private final Boolean currentLessonAttendance;
     private final Integer lessonsAttended;
+    private final String classParticipation;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -32,12 +33,14 @@ class JsonAdaptedStudent {
                               @JsonProperty("id") String id,
                               @JsonProperty("memo") String memo,
                               @JsonProperty("currentLessonAttendance") Boolean currentLessonAttendance,
-                              @JsonProperty("lessonsAttended") Integer lessonsAttended) {
+                              @JsonProperty("lessonsAttended") Integer lessonsAttended,
+                              @JsonProperty("classParticipation") String classParticipation) {
         this.name = name;
         this.id = id;
         this.memo = memo;
         this.currentLessonAttendance = currentLessonAttendance;
         this.lessonsAttended = lessonsAttended;
+        this.classParticipation = classParticipation;
     }
 
     /**
@@ -49,6 +52,7 @@ class JsonAdaptedStudent {
         memo = source.getMemo().toString();
         currentLessonAttendance = source.getCurrentAttendance().getIsPresent();
         lessonsAttended = source.getLessonsAttended().getTotalLessons();
+        classParticipation = source.getClassParticipation().toString();
     }
 
     /**
@@ -85,6 +89,10 @@ class JsonAdaptedStudent {
                     LessonsAttended.class.getSimpleName()));
         }
 
+        if (!Memo.isValidMemo(classParticipation)) {
+            throw new IllegalValueException(Memo.MESSAGE_CONSTRAINTS);
+        }
+
         final Name modelName = new Name(name);
         final Id modelId = new Id(id);
         final Memo modelMemo = new Memo(memo);
@@ -92,8 +100,10 @@ class JsonAdaptedStudent {
                 currentLessonAttendance);
         final LessonsAttended modelLessonsAttended = new LessonsAttended(
                 lessonsAttended);
+        final Memo modelClassParticipation = new Memo(classParticipation);
 
-        return new Student(modelName, modelId, modelMemo, modelCurrentLessonAttendance, modelLessonsAttended);
+        return new Student(modelName, modelId, modelMemo, modelCurrentLessonAttendance, modelLessonsAttended,
+                modelClassParticipation);
     }
 
 }

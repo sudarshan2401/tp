@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ID = new Prefix("/id");
     public static final Prefix PREFIX_MEMO = new Prefix("/m");
     public static final Prefix PREFIX_SCHEDULE = new Prefix("/t");
+    public static final Prefix PREFIX_CLASSPARTICIPATION = new Prefix("/p");
 
 }

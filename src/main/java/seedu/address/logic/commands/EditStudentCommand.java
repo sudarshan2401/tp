@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.RemoveClassCommand.MESSAGE_MISSING_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSPARTICIPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -45,7 +46,8 @@ public class EditStudentCommand extends Command {
             + PREFIX_CLASS + " 1"
             + PREFIX_NAME + " John Doe "
             + PREFIX_ID + " A0000000Z"
-            + PREFIX_MEMO + " Mischevious.";
+            + PREFIX_MEMO + " Mischevious."
+            + PREFIX_CLASSPARTICIPATION + " Answered 2 questions";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -113,8 +115,11 @@ public class EditStudentCommand extends Command {
                 editStudentDescriptor.getCurrentLessonAttendance().orElse(studentToEdit.getCurrentAttendance());
         LessonsAttended updatedLessonsAttended =
                 editStudentDescriptor.getLessonsAttended().orElse(studentToEdit.getLessonsAttended());
+        Memo updatedClassParticipation =
+                editStudentDescriptor.getClassParticipation().orElse(studentToEdit.getClassParticipation());
 
-        return new Student(updatedName, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended);
+        return new Student(updatedName, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended,
+                updatedClassParticipation);
     }
 
     @Override
@@ -155,6 +160,7 @@ public class EditStudentCommand extends Command {
         private Memo memo;
         private CurrentLessonAttendance currentLessonAttendance;
         private LessonsAttended lessonsAttended;
+        private Memo classParticipation;
 
         public EditStudentDescriptor() {
         }
@@ -169,13 +175,14 @@ public class EditStudentCommand extends Command {
             setMemo(toCopy.memo);
             setCurrentLessonAttendance(toCopy.currentLessonAttendance);
             setLessonsAttended(toCopy.lessonsAttended);
+            setClassParticipation(toCopy.classParticipation);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, id, memo);
+            return CollectionUtil.isAnyNonNull(name, id, memo, classParticipation);
         }
 
         public void setName(Name name) {
@@ -219,6 +226,14 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(lessonsAttended);
         }
 
+        public void setClassParticipation(Memo classParticipation) {
+            this.classParticipation = classParticipation;
+        }
+
+        public Optional<Memo> getClassParticipation() {
+            return Optional.ofNullable(classParticipation);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -236,7 +251,8 @@ public class EditStudentCommand extends Command {
                     && Objects.equals(id, otherEditStudentDescriptor.id)
                     && Objects.equals(memo, otherEditStudentDescriptor.memo)
                     && Objects.equals(currentLessonAttendance, otherEditStudentDescriptor.currentLessonAttendance)
-                    && Objects.equals(lessonsAttended, otherEditStudentDescriptor.lessonsAttended);
+                    && Objects.equals(lessonsAttended, otherEditStudentDescriptor.lessonsAttended)
+                    && Objects.equals(classParticipation, otherEditStudentDescriptor.classParticipation);
         }
 
         @Override

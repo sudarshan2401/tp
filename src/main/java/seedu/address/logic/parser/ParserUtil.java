@@ -159,4 +159,19 @@ public class ParserUtil {
         }
         return new Schedule(trimmedClassSchedule);
     }
+
+    /**
+     * Parses a {@code String classParticipation} into a {@code Memo}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code memo} is invalid.
+     */
+    public static Memo parseClassParticipation(String classPart) throws ParseException {
+        requireNonNull(classPart);
+        String trimmedMemo = classPart.trim();
+        if (!Memo.isValidMemo(trimmedMemo)) {
+            throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
+        }
+        return new Memo(trimmedMemo);
+    }
 }
