@@ -46,4 +46,13 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullClassParticipation_throwsIllegalValueException() {
+        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME,
+                VALID_ID, VALID_MEMO, VALID_CURRENT_ATTENDANCE, VALID_LESSONS_ATTENDED,
+                null);
+        // check for null pointer exception
+        assertThrows(NullPointerException.class, person::toModelType);
+    }
+
 }
