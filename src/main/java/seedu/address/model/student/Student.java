@@ -163,6 +163,7 @@ public class Student {
         try {
             this.currentLessonAttendance.setAbsent();
         } catch (StudentAlreadyMarkedAbsent ignored) {
+            // do nothing
         }
     }
 
