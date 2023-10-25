@@ -18,13 +18,12 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
     - [Adding a class : `add`](#adding-a-class--add)
     - [Removing a class : `remove`](#removing-a-class--remove)
     - [Viewing a class : `view`](#viewing-a-class--view)
+    - [Editing a class: `view`](#editing-a-class--edit)
     - [Adding a student : `add`](#adding-a-student--add)
     - [Removing a student : `remove`](#removing-a-student--remove)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
-    - [Updating a class : `coming in v1.3`](#updating-a-class--coming-in-v13)
-    - [Updating a class memo : `coming in v1.3`](#updating-a-class-memo--coming-in-v13)
     - [Updating a student : `coming in v1.3`](#updating-a-student--coming-in-v13)
     - [Adding a lesson : `coming in v1.3`](#adding-a-lesson--coming-in-v13)
     - [Removing a lesson : `coming in v1.3`](#removing-a-lesson--coming-in-v13)
@@ -129,6 +128,32 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 **Unsuccessful Output:**
 * CLASS_NAME does not exist
 
+### Editing a class : `edit`
+
+Edits a class information (class name, class memo, class schedule) at the specified index.
+
+Command Format: `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_MEMO /t NEW_SCHEDULE`
+
+* User must specify at least one parameter (`/n`, `/m` or `/t`)
+* CLASS_INDEX must be valid positive integer shown in displayed class list
+* CLASS_SCHEDULE if non-blank, then follows the format: `day, HH:MM-HH:MM` (e.g: tue, 09:00-10:00)
+* Existing values will be updated to the input values
+* To delete class memo or class schedule, you can type `/m` or `/t` without specifying any tags after it
+
+**Examples:**
+* edit /c 1 /n cs2100
+* edit /c 1 /m submit attendance report by tomorrow /n cs2100
+* edit /c 1 /t mon, 10:00-12:00 /m
+
+**Successful Output:**
+Edited class: NEW_CLASS_NAME
+Schedule: NEW_SCHEDULE
+Memo: NEW_MEMO
+
+**Unsuccessful Output:**
+* Class does not exist
+* Class already exists
+
 ### Adding a student : `add`
 
 Adds a new student to an existing class.
@@ -224,3 +249,4 @@ Coming soon...
 | **add**    | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T`  <br><br> **Adding a list of students** <br> Coming soon |
 | **remove** | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                          |
 | **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_NAME` <br> **Eg:** `view CS2103T`                                                                                                                                                                                      |
+| **edit**   | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                     |
