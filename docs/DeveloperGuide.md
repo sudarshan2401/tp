@@ -159,6 +159,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a class feature
+
+#### Implementation
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `add /c cs2103t` command to add a new class with the class name CS2103T. The `add /c` command calls `Parser#AddClassCommandParser` to retrieve the provided class name argument.
+
+Step 3. A new `Class` is created with the specified class name, an empty student list, an empty class note and empty class schedule.
+
+Step 4. The created `Class` is checked if the same class exists in `UniqueClassList`, then if not `Class` is added to the `UniqueClassList`, then update the `Storage` to save the current state of `EduTrack`.
+
+<puml src="diagrams/AddAClassObjectDiagram.puml" width="250" />
+
+Step 5. The application prints the successful message to the user. UI automatically updates the current state of the class list.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, the class list remains unchanged and an error message will be printed to notify the user.
+
+</box>
+
+The following sequence diagram shows how the add class operation works:
+
+<puml src="diagrams/AddAClassSequenceDiagram.puml" width="250" />
+
+The following activity diagram summarizes what happens when a new Class is added:
+
+<puml src="diagrams/AddAClassActivityDiagram.puml" width="250" />
+
+#### Design Consideration
+
+**Aspect: The number of parameters required**
+
+- **Alternative 1 (current choice):** Creates a new class with only class name.
+
+  - Pros: Easy to implement.
+  - Cons: Needs to use another command to update class note and class schedule.
+
+- **Alternative 2:** Creates a new class with class name, class note and class schedule.
+  itself.
+  - Pros: All information are specified by the time the class is created.
+  - Cons: Requires the user to provide additional details like class notes or class schedule
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
