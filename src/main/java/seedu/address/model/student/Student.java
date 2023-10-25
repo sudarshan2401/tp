@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
@@ -27,13 +28,17 @@ public class Student {
     // Data fields
     private final Memo memo;
 
+    private Class studentClass = null;
+
     // The current lesson's attendance (Present/Absent)
     private CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
 
     /**
-     * If only name is provided.
+     * Constructs a Student with Name and Index that represents one-based class index.
+     *
+     * @param name Name to represent Student.
      */
     public Student(Name name) {
         requireNonNull(name);
@@ -44,23 +49,47 @@ public class Student {
         this.lessonsAttended = new LessonsAttended();
     }
 
+
     /**
      * Every field must be present and not null.
      * Mainly used for retrieving data from storage
      */
-    public Student(Name name, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
+
+    public Student(Name name, Class studentClass, Id id, Memo memo, CurrentLessonAttendance currentLessonAttendance,
                    LessonsAttended lessonsAttended) {
         requireAllNonNull(name, id, memo, currentLessonAttendance, lessonsAttended);
         this.name = name;
+        this.studentClass = studentClass;
         this.id = id;
         this.memo = memo;
         this.currentLessonAttendance = currentLessonAttendance;
         this.lessonsAttended = lessonsAttended;
     }
 
+    /**
+     * Returns the Student's name.
+     * @return Name of Student.
+     */
     public Name getName() {
         return name;
     }
+
+
+    /**
+     * Updates Class containing Student after Student is initialized.
+     * This can only be done once when Student is first initialized.
+     * @param studentClass Class containing Student.
+     */
+    public void setStudentClass(Class studentClass) {
+        if (this.studentClass == null) {
+            this.studentClass = studentClass;
+        }
+    }
+
+    public Class getStudentClass() {
+        return this.studentClass;
+    }
+
     public CurrentLessonAttendance getCurrentAttendance() {
         return this.currentLessonAttendance;
     }
@@ -100,6 +129,7 @@ public class Student {
      */
     public Student duplicateStudent() {
         return new Student(new Name(this.name.fullName),
+                this.getStudentClass(),
                 this.getId(),
                 this.getMemo(),
                 new CurrentLessonAttendance(this.currentLessonAttendance.getIsPresent()),
@@ -124,6 +154,17 @@ public class Student {
     public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
         this.currentLessonAttendance.setAbsent();
         this.lessonsAttended.decrementLessons();
+    }
+
+    /**
+     * Sets a student attendance back to absent at the start of a new lesson.
+     */
+    public void startNewLesson() {
+        try {
+            this.currentLessonAttendance.setAbsent();
+        } catch (StudentAlreadyMarkedAbsent ignored) {
+            // do nothing
+        }
     }
 
     /**

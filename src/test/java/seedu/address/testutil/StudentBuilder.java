@@ -1,6 +1,9 @@
 package seedu.address.testutil;
 
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.CurrentLessonAttendance;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
@@ -12,11 +15,14 @@ import seedu.address.model.student.Student;
  */
 public class StudentBuilder {
 
+    public static final int DEFAULT_CLASSINDEX = 1;
     public static final String DEFAULT_NAME = "Amy Bee";
     private static final String DEFAULT_ID = "A0000000Z";
     private static final String DEFAULT_MEMO = "";
     private static final Boolean DEFAULT_CURRENT_LESSON_ATTENDANCE = false;
     private static final Integer DEFAULT_LESSONS_ATTENDED = 5;
+    private Index classIndex;
+    private Class studentClass;
 
     private Name name;
     private Id id;
@@ -33,6 +39,7 @@ public class StudentBuilder {
         memo = new Memo(DEFAULT_MEMO);
         currentLessonAttendance = new CurrentLessonAttendance(DEFAULT_CURRENT_LESSON_ATTENDANCE);
         lessonsAttended = new LessonsAttended(DEFAULT_LESSONS_ATTENDED);
+        classIndex = Index.fromOneBased(DEFAULT_CLASSINDEX);
     }
 
     /**
@@ -40,6 +47,7 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
+        studentClass = personToCopy.getStudentClass();
         id = personToCopy.getId();
         memo = personToCopy.getMemo();
         currentLessonAttendance = personToCopy.getCurrentAttendance();
@@ -86,8 +94,28 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the classIndex from One based of the Student that we are building.
+     * @param classIndex ClassIndex of Student's Class.
+     * @return StudentBuilder to build the Student.
+     */
+    public StudentBuilder withClassIndex(int classIndex) {
+        this.classIndex = Index.fromOneBased(classIndex);
+        return this;
+    }
+
+    /**
+     * Sets the Class of the Student we are building to studentClass.
+     * @param studentClass Class of Student.
+     * @return StudentBuilder to build the Student.
+     */
+    public StudentBuilder withStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, id, memo, currentLessonAttendance, lessonsAttended);
+        return new Student(name, studentClass, id, memo, currentLessonAttendance, lessonsAttended);
     }
 
 }

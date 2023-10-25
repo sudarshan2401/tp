@@ -107,6 +107,7 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Class updatedClass = editStudentDescriptor.getStudentClass().orElse(studentToEdit.getStudentClass());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
         Memo updatedMemo = editStudentDescriptor.getMemo().orElse(studentToEdit.getMemo());
         CurrentLessonAttendance updatedCurrentLessonAttendance =
@@ -114,7 +115,8 @@ public class EditStudentCommand extends Command {
         LessonsAttended updatedLessonsAttended =
                 editStudentDescriptor.getLessonsAttended().orElse(studentToEdit.getLessonsAttended());
 
-        return new Student(updatedName, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended);
+        return new Student(updatedName, updatedClass, updatedId, updatedMemo, updatedCurrentLessonAttendance,
+                updatedLessonsAttended);
     }
 
     @Override
@@ -155,6 +157,7 @@ public class EditStudentCommand extends Command {
         private Memo memo;
         private CurrentLessonAttendance currentLessonAttendance;
         private LessonsAttended lessonsAttended;
+        private Class studentClass;
 
         public EditStudentDescriptor() {
         }
@@ -169,6 +172,7 @@ public class EditStudentCommand extends Command {
             setMemo(toCopy.memo);
             setCurrentLessonAttendance(toCopy.currentLessonAttendance);
             setLessonsAttended(toCopy.lessonsAttended);
+            setStudentClass(toCopy.studentClass);
         }
 
         /**
@@ -217,6 +221,14 @@ public class EditStudentCommand extends Command {
 
         public Optional<LessonsAttended> getLessonsAttended() {
             return Optional.ofNullable(lessonsAttended);
+        }
+
+        public void setStudentClass(Class studentClass) {
+            this.studentClass = studentClass;
+        }
+
+        public Optional<Class> getStudentClass() {
+            return Optional.ofNullable(studentClass);
         }
 
         @Override
