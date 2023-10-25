@@ -132,6 +132,7 @@ public class EduTrackTest {
         ClassName classNameStub = new ClassName("classNameStub");
         assertThrows(ClassNotFoundException.class, () -> eduTrack.getClass(classNameStub));
     }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface
      * constraints.

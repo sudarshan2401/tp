@@ -220,6 +220,8 @@ public class Student {
                 .add("name", name)
                 .add("id", id)
                 .add("memo", memo)
+                .add("currentLessonAttendance", currentLessonAttendance)
+                .add("lessonsAttended", lessonsAttended)
                 .toString();
     }
 
