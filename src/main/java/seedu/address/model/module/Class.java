@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,24 +26,34 @@ public class Class {
     private final Memo classMemo;
 
     private final Schedule classSchedule;
+    private int totalLessons;
+
+    /**
+     * Constructs a {@code Class} object that automatically creates a Memo and Schedule that hold empty value.
+     *
+     * @param className The name of the class. Must not be null.
+     * @param students The list of students in the class. Must not be null.
+     */
+    public Class(ClassName className, UniqueStudentList students) {
+        this(className, students, new Memo(" "), new Schedule());
+    }
 
     /**
      * Constructs a {@code Class} object.
      *
      * @param className The name of the class. Must not be null.
      * @param students The list of students in the class. Must not be null.
-     * @param classMemo An optional class note. Can be null.
-     * @param classSchedule An optional class schedule. Can be null.
+     * @param classMemo A class note that can be empty. Must not be null.
+     * @param classSchedule A class schedule that can be empty. Must not be null.
      */
     public Class(ClassName className, UniqueStudentList students, Memo classMemo, Schedule classSchedule) {
-        requireNonNull(className);
-        requireNonNull(students);
+        requireAllNonNull(className, students, classMemo, classSchedule);
         this.className = className;
         this.students = students;
         this.classMemo = classMemo;
         this.classSchedule = classSchedule;
+        this.totalLessons = 0;
     }
-
 
     public ClassName getClassName() {
         return className;
@@ -55,6 +66,25 @@ public class Class {
     }
     public UniqueStudentList getUniqueStudentList() {
         return students;
+    }
+    /**
+     * Starts a lesson and update GUI.
+     */
+    public void startLesson() {
+        increaseTotalLessons();
+    }
+    public int getTotalLessons() {
+        return totalLessons;
+    }
+
+    public void setTotalLessons(int newTotalLessons) {
+        totalLessons = newTotalLessons;
+    }
+    /**
+     * Increases total number of lessons in the class.
+     */
+    public void increaseTotalLessons() {
+        totalLessons++;
     }
 
     /**
@@ -72,8 +102,13 @@ public class Class {
                 && otherClass.getClassName().equals(getClassName());
     }
 
+    /**
+     * Adds Student to Class and set the Class field in Student to the respective Class.
+     * @param toAdd
+     */
     public void addStudentToClass(Student toAdd) {
         students.add(toAdd);
+        toAdd.setStudentClass(this);
     }
 
     public void removeStudentFromClass(Student s) {
@@ -105,6 +140,7 @@ public class Class {
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
+
     /**
      * Checks if this class is equal to another object.
      *
@@ -166,6 +202,7 @@ public class Class {
                 .add("studentList", students)
                 .add("classSchedule", classSchedule)
                 .add("classMemo", classMemo)
+                .add("totalLessons", totalLessons)
                 .toString();
     }
 

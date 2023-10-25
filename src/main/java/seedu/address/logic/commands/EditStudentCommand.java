@@ -109,6 +109,7 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Class updatedClass = editStudentDescriptor.getStudentClass().orElse(studentToEdit.getStudentClass());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
         Memo updatedMemo = editStudentDescriptor.getMemo().orElse(studentToEdit.getMemo());
         CurrentLessonAttendance updatedCurrentLessonAttendance =
@@ -118,8 +119,8 @@ public class EditStudentCommand extends Command {
         Memo updatedClassParticipation =
                 editStudentDescriptor.getClassParticipation().orElse(studentToEdit.getClassParticipation());
 
-        return new Student(updatedName, updatedId, updatedMemo, updatedCurrentLessonAttendance, updatedLessonsAttended,
-                updatedClassParticipation);
+        return new Student(updatedName, updatedClass, updatedId, updatedMemo, updatedCurrentLessonAttendance,
+                updatedLessonsAttended, updatedClassParticipation);
     }
 
     @Override
@@ -160,6 +161,7 @@ public class EditStudentCommand extends Command {
         private Memo memo;
         private CurrentLessonAttendance currentLessonAttendance;
         private LessonsAttended lessonsAttended;
+        private Class studentClass;
         private Memo classParticipation;
 
         public EditStudentDescriptor() {
@@ -175,6 +177,7 @@ public class EditStudentCommand extends Command {
             setMemo(toCopy.memo);
             setCurrentLessonAttendance(toCopy.currentLessonAttendance);
             setLessonsAttended(toCopy.lessonsAttended);
+            setStudentClass(toCopy.studentClass);
             setClassParticipation(toCopy.classParticipation);
         }
 
@@ -226,6 +229,13 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(lessonsAttended);
         }
 
+        public void setStudentClass(Class studentClass) {
+            this.studentClass = studentClass;
+        }
+
+        public Optional<Class> getStudentClass() {
+            return Optional.ofNullable(studentClass);
+        
         public void setClassParticipation(Memo classParticipation) {
             this.classParticipation = classParticipation;
         }
