@@ -191,6 +191,7 @@ public class ModelManager implements Model {
         return studentToDuplicate.duplicateStudent();
     }
 
+    @Override
     public void startLessonForStudent(Student student, Class studentClass, Student editedStudent) {
         editedStudent.startNewLesson();
         eduTrack.setStudent(student, editedStudent);
