@@ -17,40 +17,42 @@ end box
 [-> LogicManager : execute("add /c cs2103t")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add /c cs2103t")
-activate AddressBookParser
+LogicManager -> EduTrackParser : parseCommand("add /c cs2103t")
+activate EduTrackParser
 
 create AddClassCommandParser
-AddressBookParser -> AddClassCommandParser
+EduTrackParser -> AddClassCommandParser
 activate AddClassCommandParser
 
-AddClassCommandParser --> AddressBookParser
+AddClassCommandParser --> EduTrackParser
 deactivate AddClassCommandParser
 
-AddressBookParser -> AddClassCommandParser : parse(" /c cs2103t")
+EduTrackParser -> AddClassCommandParser : parse(" /c cs2103t")
 activate AddClassCommandParser
 
 create AddClassCommand
 AddClassCommandParser -> AddClassCommand
 activate AddClassCommand
 
-AddClassCommand --> AddClassCommandParser : a
+AddClassCommand --> AddClassCommandParser
 deactivate AddClassCommand
 
-AddClassCommandParser --> AddressBookParser : a
+AddClassCommandParser --> EduTrackParser
 deactivate AddClassCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddClassCommandParser -[hidden]-> AddressBookParser
+AddClassCommandParser -[hidden]-> EduTrackParser
 destroy AddClassCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+EduTrackParser --> LogicManager : a
+deactivate EduTrackParser
 
 LogicManager -> AddClassCommand : execute()
 activate AddClassCommand
 
-AddClassCommand -> Model : addClass(c)
+AddClassCommand -> Model : hasClass(c)
 activate Model
+AddClassCommand -> Model : addClass(c)
+
 
 Model --> AddClassCommand
 deactivate Model
