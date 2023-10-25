@@ -8,10 +8,13 @@ import static seedu.address.testutil.TypicalStudents.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.Name;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
+
+    private static final Class VALID_CLASS = null;
     private static final Boolean VALID_CURRENT_ATTENDANCE = false;
     private static final Integer VALID_LESSONS_ATTENDED = 5;
     private static final String VALID_NAME = BENSON.getName().toString();

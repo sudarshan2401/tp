@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
 
 
@@ -42,9 +43,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label studentMemo;
+    @FXML
     private Label attendance;
     @FXML
-    private Label totalAttendance;
+    private Label overallAttendance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -55,7 +58,12 @@ public class StudentCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        attendance.setText(person.getAttendanceStringRep());
-        totalAttendance.setText(person.getTotalAttendanceStringRep());
+        Class c = person.getStudentClass();
+        String studentMemo = person.getMemo().toString();
+        String totalLessons = String.valueOf(c.getTotalLessons());
+        String overallAttendance = person.getTotalAttendanceStringRep() + "/" + totalLessons;
+        this.attendance.setText(person.getAttendanceStringRep());
+        this.overallAttendance.setText(overallAttendance);
+        this.studentMemo.setText(studentMemo);
     }
 }

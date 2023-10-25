@@ -155,6 +155,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
+### Mark student attendance
+
+---
+
 ## **Implementation**
 
 Step 1. The user launches the application    
@@ -204,13 +208,69 @@ The following activity diagram shows what happens when a use executes the MarkSt
   - Pros: Enable users to view or modify the state of each individual lesson. May lead to more consistency in data, since the number of lessons and length of array is related.
   - Cons: Difficult to implement. More memory usage, predefined maximum lessons required for array creation, although using ArrayList would be possible as well.
 
-### Mark student attendance
+This section describes some noteworthy details on how certain features are implemented.
 
 ---
 
-## **Implementation**
+### Remove Student feature
+#### Implementation
 
-This section describes some noteworth details on 
+The removal of Student implements the following operation:
+- `EduTrack#removeStudent(Student s)`  — Removes the Student s from List of Students in EduTrack that tracks all students.
+- `Class#removeStudentFromClass(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
+
+These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudentFromClass(Student s, Class sClass)`.
+
+Given below is a list of variables used in walkthrough of the removal of Student mechanism.
+
+**Variables used:**
+
+`s` - `Student` to be removed.
+
+`sName` - `Name` representing `s`.
+
+`sClass` - `Class` of `s`.
+
+`studentClassName` - `ClassName` representing `sClass`.
+
+`sClassStudentList` - `List<Student>` in `sClass` containing all its `Student` 
+
+`globalStudentList` - `List<Student>` in `EduTrack` containing all `Student` across all `Class`.
+
+The relationship between variables can be summarised by this object diagram.
+
+<puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
+
+**Walkthrough**
+
+Step 1. `LogicManager` calls `removeStudentCommand#execute()` 
+ 
+Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
+
+Step 3. `removeStudentCommand` calls `Class#getStudentList()` to get the `sClassStudentList` from `sClass`.
+
+Step 4. `removeStudentCommand` calls `List#get(studentIndex)` to get `s` from the `sClassStudentList`.
+
+Step 5. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+
+Step 6. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+
+Step 7. `removeStudentCommand` calls `Student#getName()` to get `sName`.
+
+Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
+
+The walkthrough can be summarised by this sequence diagram. (Some details are omitted in the diagram)
+
+<puml src="diagrams/RemoveStudentSequenceDiagram.puml" alt="RemoveStudentSequenceDiagram" />
+
+The following activity diagram summarises what happen when a user executes removeStudentCommand:
+
+<puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
+
+**Implementation reasoning:**
+1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system. 
+2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 
 ### \[Proposed\] Undo/redo feature
 

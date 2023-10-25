@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
 import seedu.address.model.student.CurrentLessonAttendance;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
@@ -86,14 +87,16 @@ class JsonAdaptedStudent {
         }
 
         final Name modelName = new Name(name);
+        // set as null for now because Student's class will be handled by Class when Student is added into a Class
+        final Class modelClass = null;
         final Id modelId = new Id(id);
         final Memo modelMemo = new Memo(memo);
         final CurrentLessonAttendance modelCurrentLessonAttendance = new CurrentLessonAttendance(
                 currentLessonAttendance);
         final LessonsAttended modelLessonsAttended = new LessonsAttended(
                 lessonsAttended);
-
-        return new Student(modelName, modelId, modelMemo, modelCurrentLessonAttendance, modelLessonsAttended);
+        return new Student(modelName, modelClass, modelId, modelMemo, modelCurrentLessonAttendance,
+                modelLessonsAttended);
     }
 
 }
