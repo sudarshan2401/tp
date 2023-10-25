@@ -182,6 +182,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException {
+        return studentClass.getStudentInClass(targetStudentIndex);
+    }
+
+    @Override
+    public Student duplicateStudent(Student studentToDuplicate) {
+        return studentToDuplicate.duplicateStudent();
+    }
+
+    @Override
     public void startLessonForStudent(Student student, Class studentClass, Student editedStudent) {
         editedStudent.startNewLesson();
         eduTrack.setStudent(student, editedStudent);

@@ -55,8 +55,8 @@ public class MarkStudentPresentCommand extends Command {
         Student studentToMark = null;
         try {
             studentClass = model.getClass(className);
-            studentToMark = studentClass.getStudentInClass(targetStudentIndex);
-            Student editedStudent = studentToMark.duplicateStudent();
+            studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
+            Student editedStudent = model.duplicateStudent(studentToMark);
             model.markStudentPresent(studentToMark, studentClass, editedStudent);
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,

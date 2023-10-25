@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
  * Represents the total number of lessons a Student has attended.
  */
 public class LessonsAttended {
-    public static final String MESSAGE_CONSTRAINTS = "LessonsAttended should be an int";
+    public static final String MESSAGE_CONSTRAINTS = "LessonsAttended should be an integer";
     private Integer totalLessons;
 
     /**

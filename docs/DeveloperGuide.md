@@ -155,9 +155,63 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
+### Mark student attendance
+
+---
+
 ## **Implementation**
 
+Step 1. The user launches the application    
+
+Step 2. The user executes `view /c 1` command to view the students in the 1st class in EduTrack.
+
+Step 3. The user executes `mark /s 1 /c CS2103T` to mark the 1st student in the class CS2103T.
+
+Step 4. `MarkStudentPresentCommandParser` creates a new `MarkStudentPresentCommand` with the required fields.
+
+Step 5. `LogicManager` calls `MarkStudentPresentCommand#excecute()`.
+
+Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student.
+
+Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent` to mark the duplicate student present.
+
+Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the duplicate Student object as present.
+
+Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set the existing Student the updated duplicate Student.
+
+Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set the existing Student attached to the Class as the updated duplicate Student.
+
+Step 11. `Model#markStudentPresent` calls the `Model#updateFIlteredStudentList` to update the GUI of Students shown to user.
+
+<box type="info" seamless>
+
+**Note:** If the command fail its execution, both the StudentList in EduTrack as well as StudentList in the class remain unchanged. An error message will be printed to notify the user.
+
+</box>
+
+The following sequence diagram shows how the MarkStudentPresent operation works:
+
+<puml src="diagrams/MarkStudentSequenceDiagram.puml" width="550" />
+
+The following activity diagram shows what happens when a use executes the MarkStudentPresentCommand:
+
+<puml src="diagrams/MarkStudentActivityDiagram.puml" width="550" />
+
+#### Design considerations:
+
+**Aspect: Method of calculating number of lessons attended
+
+- **Alternative 1 (current choice): Maintain an overall counter for the number of lessons the student attended.
+  - Pros: Easy to implement.
+  - Cons: Unable to store the individual state of each lesson. Determining which lesson user attended is not possible.
+- **Alternative 2: Maintain the state of each individual lesson with an array.
+  - Pros: Enable users to view or modify the state of each individual lesson. May lead to more consistency in data, since the number of lessons and length of array is related.
+  - Cons: Difficult to implement. More memory usage, predefined maximum lessons required for array creation, although using ArrayList would be possible as well.
+
 This section describes some noteworthy details on how certain features are implemented.
+
+---
+
 ### Remove Student feature
 #### Implementation
 
@@ -215,6 +269,7 @@ The following activity diagram summarises what happen when a user executes remov
 
 **Implementation reasoning:**
 1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system. 
+2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 
 ### Add a class feature
