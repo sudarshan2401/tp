@@ -272,6 +272,61 @@ The following activity diagram summarises what happen when a user executes remov
 2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 
+### Add a class feature
+
+#### Implementation
+
+Given below is an example usage scenario and how the add class mechanism behaves at each step:
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `add /c cs2103t` command to add a new class with the class name "CS2103T". The `add /c` command calls `Parser#AddClassCommandParser` to retrieve the provided class name argument.
+
+Step 3. A new `Class` is created with the specified class name, an empty student list, an empty class note and empty class schedule.
+
+Step 4. The created `Class` is added to `UniqueClassList` if it does not exists in UniqueClassList. Then the `Storage` is updated to save the current state of `EduTrack`.
+
+<puml src="diagrams/AddAClassObjectDiagram.puml" width="250" />
+
+Step 5. The application prints the successful message to the user. UI automatically updates the current state of the shown class list.
+
+<box type="info" seamless>
+
+**Note:**
+
+- The received class name will be converted to uppercase using the `toUpperCase()` method.
+- If the command fails its execution, the class list remains unchanged and an error message will be printed to notify the user.
+
+</box>
+
+The following sequence diagram shows how the add class operation works:
+
+<puml src="diagrams/AddAClassSequenceDiagram.puml" width="250" />
+
+1. `LogicManager#execute()` is called.
+2. `EduTrackParse#parseCommand()` is called
+3. `AddClassCommandParser#parse()` is called, a new `Class c` is created. Returns `AddClassCommand addClassCommand`
+4.  `addClassCommand` calls `Model#hasClass(c)`. If class does not exists, calls `Model#addClass(c)`
+5.  `addClassCommand` returns `CommandResult` to `LogicManager`.
+
+The following activity diagram summarizes what happens when a new Class is added:
+
+<puml src="diagrams/AddAClassActivityDiagram.puml" width="250" />
+
+#### Design Consideration
+
+**Aspect: The number of parameters required**
+
+- **Alternative 1 (current choice):** Creates a new class with only class name.
+
+  - Pros: Easy to implement.
+  - Cons: Needs to use another command to update class note and class schedule.
+
+- **Alternative 2:** Creates a new class with class name, class note and class schedule.
+  itself.
+  - Pros: All information are specified by the time the class is created.
+  - Cons: Requires the user to provide additional details like class notes or class schedule
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
