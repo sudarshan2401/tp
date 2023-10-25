@@ -238,6 +238,16 @@ public class AddCommandTest {
         public void setClass(Index classListIndex, Class c) {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Student duplicateStudent(Student studentToDuplicate) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

@@ -136,6 +136,8 @@ public interface Model {
     Class getClass(ClassName className) throws ClassNotFoundException;
 
     Class getClassByIndex(Index classIndex);
+    Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException;
+    Student duplicateStudent(Student studentToDuplicate);
 
     int getClassListSize();
 

@@ -181,6 +181,16 @@ public class ModelManager implements Model {
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
+    @Override
+    public Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException {
+        return studentClass.getStudentInClass(targetStudentIndex);
+    }
+
+    @Override
+    public Student duplicateStudent(Student studentToDuplicate) {
+        return studentToDuplicate.duplicateStudent();
+    }
+
     public Class getClass(ClassName className) throws ClassNotFoundException {
         requireNonNull(className);
         return eduTrack.getClass(className);
