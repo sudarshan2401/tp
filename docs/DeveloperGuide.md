@@ -227,7 +227,7 @@ The edit student command accepts:
   - Class Participation
 
 The following activity diagram summarizes what happens when a user executes an `edit /s` command.
-<puml src="diagrams/EditStudentActivityDiagram.puml" alt="EditStudentActivityDiagram">
+<puml src="diagrams/EditStudentActivityDiagram.puml" alt="EditStudentActivityDiagram" />
 
 Given below is an example usage scenario and how the edit student operation behaves at each step.
 
@@ -244,7 +244,7 @@ Step 5. After checking that the new `Student` is not a duplicate using `Class#ha
 Step 6. `CommandResult` is then initialised with the `String` containing `MESSAGE_EDIT_PERSON_SUCCESS` and `Student` which will then be returned.
 
 The following sequence diagram shows how the edit student operation works:
-<puml src="diagrams/EditStudentSequenceDiagram.puml" alt="EditStudentSequenceDiagram">
+<puml src="diagrams/EditStudentSequenceDiagram.puml" alt="EditStudentSequenceDiagram" />
 
 <box type="info" seamless>
 
