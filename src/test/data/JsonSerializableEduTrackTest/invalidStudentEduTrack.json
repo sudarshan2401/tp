@@ -10,7 +10,7 @@
   "classes" : [ {
     "className" : "CS2103T",
     "studentList" : [ {
-      "name" : "B0@B",
+      "name" : "B@B",
       "id" : "jsjs",
       "memo" : "",
       "currentLessonAttendance" : false,

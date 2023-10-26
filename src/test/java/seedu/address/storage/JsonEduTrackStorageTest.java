@@ -50,10 +50,10 @@ public class JsonEduTrackStorageTest {
         assertThrows(DataLoadingException.class, () -> readEduTrack("notJsonFormatEduTrack.json"));
     }
 
-    //    @Test
-    //    public void readEduTrack_invalidStudentEduTrack_throwDataLoadingException() {
-    //        assertThrows(DataLoadingException.class, () -> readEduTrack("invalidStudentEduTrack.json"));
-    //    }
+    @Test
+    public void readEduTrack_invalidStudentEduTrack_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readEduTrack("invalidStudentEduTrack.json"));
+    }
 
     @Test
     public void readEduTrack_invalidAndValidPersonEduTrack_throwDataLoadingException() {
