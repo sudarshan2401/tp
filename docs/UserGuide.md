@@ -22,24 +22,36 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
     - [Adding a student : `add`](#adding-a-student--add)
     - [Removing a student : `remove`](#removing-a-student--remove)
     - [Starting a lesson : `startlesson`](#starting-a-lesson--startlesson)
+    - [Marking a student present : `mark`](#marking-your-students-attendance-as-present--mark)
+    - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present--markall)
+    - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent--unmark)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
     - [Updating a student : `coming in v1.3`](#updating-a-student--coming-in-v13)
     - [Adding a lesson : `coming in v1.3`](#adding-a-lesson--coming-in-v13)
     - [Removing a lesson : `coming in v1.3`](#removing-a-lesson--coming-in-v13)
-    - [Taking attendance : `coming in v1.3`](#taking-attendance--coming-in-v13)
     - [Finding a student : `coming in v1.3`](#finding-a-student--coming-in-v13)
 3. [FAQ](#faq)
 4. [Known issues](#known-issues)
 5. [Command summary](#command-summary)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-Coming soon...
-
+1. Ensure you have Java 11 or above install in your Computer. (Refer to this <a href="https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk">installation guide</a> if you have yet to do so)
+2. Download the latest `EduTrack.jar` from <a href="https://github.com/AY2324S1-CS2103T-T15-3/tp/releases/download/v1.3.trial/EduTrack.jar">here</a>.
+3. Copy the file to the folder you want to use as the home folder for your EduTrack.
+4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br/>A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br/><img src="images/quickstart.png" alt="EduTrackimage"></img>
+5. Type the command in the command box and press Enter to execute it. eg. typing `help` and pressing Enter will open the help window.
+   Some example commands you can try:
+   - list: Lists all your classes.
+   - `add /c CS2105`: Adds a class named `CS2105` to your EduTrack.
+   - `add /s Samuel /c 1`: Adds a student named `Samuel` to the class at index `1` which you can find when you `list` your classes.
+   - `view /c 1`: View your students in your `CS2105` class.
+   - `mark /s 1 /c CS2105`: Mark the attendance of your student at index `1` in your `CS2105` class.
+6. Refer to the [Features](#features) below for details of each command.
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -91,18 +103,13 @@ Adds a new class to the list of classes.
 
 Removes an existing class from the list of classes.
 
-**Command Format:** `remove /c CLASS_NAME`
+**Command Format:** `remove /c CLASS_INDEX`
 
-* CLASS_NAME is not case-sensitive
-* Class must already exist
-
-> [!Confirmation is required to remove your class]\
-> Are you sure you want to remove class "CLASS_NAME?"\
-> This action cannot be undone\
-> Type 'y' to confirm and 'n' to cancel
+* CLASS_INDEX must be a valid positive integer shown in the displayed class list
+* CLASS_NAME must be the name of a class that already exists
 
 **Examples:**
-* `remove /c cs2103t`
+* `remove /c 1`
 
 **Successful Output:**
 * CLASS_NAME has been removed
@@ -213,6 +220,66 @@ Starts a lesson of a class.
 * Class name not specified
 * CLASS_NAME does not exist
 
+### Marking your student's attendance as present : `mark`
+
+**Command Format**: `mark /s STUDENT_INDEX /c CLASS_NAME`
+
+* Both STUDENT_INDEX and CLASS_NAME are compulsory
+* STUDENT_INDEX must be a valid positive integer shown in the displayed student list
+* CLASS_NAME is not case-sensitive
+* CLASS_NAME must be the name of a class that already exists
+* Selected should have been marked absent
+
+**Examples**
+* mark /s 2 /c CS2103T
+
+**Successful Output:**
+* STUDENT_NAME has been marked present!
+
+**Unsuccessful Output:**
+* Index is not a non-zero unsigned integer
+* The Class name (CS9999) you provided does not exist!
+* STUDENT_NAME has already been marked present!
+
+### Marking your student's attendance as absent : `unmark`
+
+**Command Format**: `unmark /s STUDENT_INDEX /c CLASS_NAME`
+
+* Both STUDENT_INDEX and CLASS_NAME are compulsory
+* CLASS_INDEX must be a valid positive integer shown in the displayed student list
+* CLASS_NAME is not case-sensitive
+* CLASS_NAME must be the name of a class that already exists
+* Selected student should have been marked present
+
+**Examples**
+* unmark /s 2 /c CS2103T
+
+**Successful Output:**
+* Emily has been marked absent!!
+
+**Unsuccessful Output:**
+* Index is not a non-zero unsigned integer
+* The Class name (CS9999) you provided does not exist!
+* Emily has already been marked absent!
+
+### Marking all student's attendance in your class as present : `markall`
+
+**Command Format**: `markall /c CLASS_INDEX`
+
+Marks all student in your class as being present. Use this if all your students are present for your current lesson.
+
+* CLASS_INDEX is compulsory
+* CLASS_INDEX must be a valid positive integer shown in the displayed class list
+
+**Examples**
+* markall /c 1
+
+**Successful Output:**
+* Successfully marked all students present in CLASS_NAME!
+
+**Unsuccessful Output:**
+* Class index provided is invalid
+
 ### List all classes : `list`
 
 Shows a list of all existing classes.
@@ -247,9 +314,6 @@ EduTrack's data are saved in the hard disk automatically after any command that 
 ### Removing a lesson : `coming in v1.3`
 [Coming Soon...]
 
-### Taking attendance : `coming in v1.3`
-[Coming Soon...]
-
 ### Finding a student : `coming in v1.3`
 [Coming Soon...]
 
@@ -269,9 +333,12 @@ Coming soon...
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                            |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action      | Format, Examples                                                                                                                                                                                                                                                            |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **add**    | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T`  <br><br> **Adding a list of students** <br> Coming soon |
 | **remove** | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                          |
-| **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                           |
+| **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                        |
 | **edit**   | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                     |
+| **mark**    | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `mark /s 1 /c CS2103T`                                                                                                                                                |
+| **unmark**  | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `unmark /s 1 /c CS2103T`                                                                                                                                             |
+| **markall** | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **Eg:** `markall /c 1`                                                                                                                                                     |
