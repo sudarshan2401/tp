@@ -159,6 +159,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
+<puml src="diagrams/MarkStudentObjectDiagram.puml" alt="MarkStudentObjectDiagram" />
+
 ## **Implementation**
 
 Step 1. The user launches the application    
@@ -191,11 +193,11 @@ Step 11. `Model#markStudentPresent` calls the `Model#updateFIlteredStudentList` 
 
 The following sequence diagram shows how the MarkStudentPresent operation works:
 
-<puml src="diagrams/MarkStudentSequenceDiagram.puml" width="550" />
+<puml src="diagrams/MarkStudentSequenceDiagram.puml" alt="MarkStudentSequenceDiagram"/>
 
 The following activity diagram shows what happens when a use executes the MarkStudentPresentCommand:
 
-<puml src="diagrams/MarkStudentActivityDiagram.puml" width="550" />
+<puml src="diagrams/MarkStudentActivityDiagram.puml" alt="MarkStudentActivityDiagram" />
 
 #### Design considerations:
 
