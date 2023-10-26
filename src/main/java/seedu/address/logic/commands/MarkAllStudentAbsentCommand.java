@@ -15,24 +15,24 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
- * Marks all the student in a class as present.
+ * Unmarks all the student in a class as present.
  */
-public class MarkAllStudentPresentCommand extends Command {
-    public static final String COMMAND_WORD = "markall" + " /c";
+public class MarkAllStudentAbsentCommand extends Command {
+    public static final String COMMAND_WORD = "unmarkall /c";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks all students in this class as being present.\n"
+            + ": Marks all students in this class as being absent.\n"
             + "Parameters: "
             + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
             + "Example: "
             + COMMAND_WORD + " 1";
-    public static final String MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS = "Successfully marked all students in %s!";
+    public static final String MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS = "Successfully unmarked all students in %s!";
     private Index targetClassIndex;
 
     /**
-     * Creates a MarkAllStudentPresentCommand to mark all {@code Student}
+     * Creates a MarkAllStudentAbsentCommand to mark all {@code Student}
      */
-    public MarkAllStudentPresentCommand(Index classIndex) {
+    public MarkAllStudentAbsentCommand(Index classIndex) {
         requireNonNull(classIndex);
         this.targetClassIndex = classIndex;
     }
@@ -42,15 +42,15 @@ public class MarkAllStudentPresentCommand extends Command {
         requireNonNull(model);
         Class studentClass = model.retrieveClass(targetClassIndex);
         List<Student> studentList = studentClass.getStudentList();
-        for (Student studentToMark : studentList) {
-            Student editedStudent = studentToMark.duplicateStudent();
+        for (Student studentToUnmark : studentList) {
+            Student editedStudent = studentToUnmark.duplicateStudent();
             try {
-                model.markStudentPresent(studentToMark, studentClass, editedStudent);
+                model.markStudentAbsent(studentToUnmark, studentClass, editedStudent);
             } catch (StudentAlreadyMarkedPresent e) {
                 continue;
             }
         }
-        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatClass(studentClass)));
     }
     @Override
@@ -60,12 +60,12 @@ public class MarkAllStudentPresentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkAllStudentPresentCommand)) {
+        if (!(other instanceof MarkAllStudentAbsentCommand)) {
             return false;
         }
 
-        MarkAllStudentPresentCommand otherMarkAllStudentPresentCommand = (MarkAllStudentPresentCommand) other;
-        return this.targetClassIndex.equals(otherMarkAllStudentPresentCommand.targetClassIndex);
+        MarkAllStudentAbsentCommand markAllStudentAbsentCommand = (MarkAllStudentAbsentCommand) other;
+        return this.targetClassIndex.equals(markAllStudentAbsentCommand.targetClassIndex);
     }
     @Override
     public String toString() {

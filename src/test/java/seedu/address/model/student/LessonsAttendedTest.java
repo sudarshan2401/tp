@@ -69,4 +69,11 @@ public class LessonsAttendedTest {
         assertFalse(lessonsAttended.equals(new LessonsAttended(50)));
         assertFalse(lessonsAttended.equals(null));
     }
+
+    @Test
+    public void toString_test_success() {
+        Integer lessons = 10;
+        LessonsAttended lessonsAttended = new LessonsAttended(lessons);
+        assertEquals(lessonsAttended.toString(), lessons.toString());
+    }
 }

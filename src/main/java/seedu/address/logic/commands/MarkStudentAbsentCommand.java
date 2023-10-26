@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.RemoveClassCommand.MESSAGE_MISSING_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
@@ -34,6 +33,7 @@ public class MarkStudentAbsentCommand extends Command {
 
     public static final String MESSAGE_STUDENT_ALREADY_MARKED = "%s has already been marked absent!";
     public static final String MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS = "%s has been marked absent!";
+    public static final String MESSAGE_MISSING_CLASS_NAME = "The Class name (%s) you provided does not exist!";
 
     public final Index targetStudentIndex;
     private ClassName className;
@@ -57,11 +57,11 @@ public class MarkStudentAbsentCommand extends Command {
         Student studentToMark = null;
         try {
             studentClass = model.getClass(className);
-            studentToMark = studentClass.getStudentInClass(targetStudentIndex);
-            Student editedStudent = studentToMark.duplicateStudent();
+            studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
+            Student editedStudent = model.duplicateStudent(studentToMark);
             model.markStudentAbsent(studentToMark, studentClass, editedStudent);
         } catch (StudentAlreadyMarkedAbsent e) {
-            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.toString()));
+            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }

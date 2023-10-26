@@ -168,4 +168,21 @@ public class UniqueStudentListTest {
     public void toStringMethod() {
         assertEquals(uniqueStudentList.asUnmodifiableObservableList().toString(), uniqueStudentList.toString());
     }
+
+    @Test
+    public void equalsMethod_sameInstance_success() {
+        assertTrue(uniqueStudentList.equals(uniqueStudentList));
+    }
+
+    @Test
+    public void equalsMethod_differentClass_failure() {
+        Integer intStub = new Integer(2);
+        assertTrue(uniqueStudentList.equals(uniqueStudentList));
+        assertFalse(uniqueStudentList.equals(intStub));
+    }
+
+    @Test
+    public void hashCode_sameInstance_sameHashCode() {
+        assertTrue(uniqueStudentList.hashCode() == uniqueStudentList.hashCode());
+    }
 }

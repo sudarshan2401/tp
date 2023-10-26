@@ -39,11 +39,13 @@ public class EditStudentDescriptorTest {
 
     @Test
     public void toStringMethod() {
+
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         String expected = EditStudentDescriptor.class.getCanonicalName() + "{name="
                 + editStudentDescriptor.getName().orElse(null) + ", id="
                 + editStudentDescriptor.getId().orElse(null) + ", memo="
                 + editStudentDescriptor.getMemo().orElse(null) + "}";
         assertEquals(expected, editStudentDescriptor.toString());
+
     }
 }

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
@@ -27,6 +28,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EduTrackTest {
 
     private final EduTrack eduTrack = new EduTrack();
+
 
     @Test
     public void constructor() {
@@ -97,7 +99,9 @@ public class EduTrackTest {
         eduTrack.resetData(newData);
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
+        Index studentClassIndexStub = Index.fromOneBased(1);
         Student studentStub = new Student(studentNameStub);
+
         eduTrack.addStudent(studentStub);
         int newSize = eduTrack.getStudentList().size();
         int diff = newSize - originalSize;
@@ -112,6 +116,7 @@ public class EduTrackTest {
         eduTrack.resetData(newData);
         int originalSize = eduTrack.getStudentList().size();
         Name studentNameStub = new Name("studentNameStub");
+        Index studentClassIndexStub = Index.fromZeroBased(0);
         Student studentStub = new Student(studentNameStub);
         eduTrack.addStudent(studentStub);
         eduTrack.removeStudent(studentStub);
@@ -127,6 +132,7 @@ public class EduTrackTest {
         ClassName classNameStub = new ClassName("classNameStub");
         assertThrows(ClassNotFoundException.class, () -> eduTrack.getClass(classNameStub));
     }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface
      * constraints.

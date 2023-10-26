@@ -132,10 +132,14 @@ public interface Model {
             throws StudentAlreadyMarkedPresent;
     void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
             throws StudentAlreadyMarkedAbsent;
+    void startLessonForStudent(Student student, Class studentClass, Student editedStudent);
+    void startLesson(Class c);
 
     Class getClass(ClassName className) throws ClassNotFoundException;
 
     Class getClassByIndex(Index classIndex);
+    Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException;
+    Student duplicateStudent(Student studentToDuplicate);
 
     int getClassListSize();
 
