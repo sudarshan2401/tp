@@ -1,0 +1,9 @@
+{
+  "students" : [ {
+    "name" : "Invalid R@S",
+    "id" : "jsjs",
+    "memo" : "",
+    "currentLessonAttendance" : false,
+    "lessonsAttended" : 0
+  } ]
+}

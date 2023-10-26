@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
@@ -214,6 +215,18 @@ public class AddCommandTest {
 
         @Override
         public Class getClassByIndex(Index classIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public Student getStudentFromStudentList(ObservableList<Student> list, Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public ObservableList<Student> getStudentListFromClass(Class c) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public Name getStudentName(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 

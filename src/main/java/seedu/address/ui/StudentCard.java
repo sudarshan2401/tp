@@ -53,16 +53,17 @@ public class StudentCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to
      * display.
      */
-    public StudentCard(Student person, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.person = student;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        Class c = person.getStudentClass();
-        String studentMemo = person.getMemo().toString();
+        name.setText(student.getName().fullName);
+        Class c = student.getStudentClass();
+        assert(c != null) : "student's class attribute should not be null";
+        String studentMemo = student.getMemo().toString();
         String totalLessons = String.valueOf(c.getTotalLessons());
-        String overallAttendance = person.getTotalAttendanceStringRep() + "/" + totalLessons;
-        this.attendance.setText(person.getAttendanceStringRep());
+        String overallAttendance = student.getTotalAttendanceStringRep() + "/" + totalLessons;
+        this.attendance.setText(student.getAttendanceStringRep());
         this.overallAttendance.setText(overallAttendance);
         this.studentMemo.setText(studentMemo);
     }
