@@ -59,6 +59,11 @@ public class CurrentLessonAttendance {
     }
 
     @Override
+    public int hashCode() {
+        return this.isPresent.hashCode();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -71,11 +76,6 @@ public class CurrentLessonAttendance {
 
         CurrentLessonAttendance otherAttendance = (CurrentLessonAttendance) other;
         return this.isPresent == otherAttendance.isPresent;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.isPresent.hashCode();
     }
 
 }

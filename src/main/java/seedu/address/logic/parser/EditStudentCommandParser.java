@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSPARTICIPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -26,7 +27,8 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
     public EditStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT, PREFIX_CLASS, PREFIX_ID, PREFIX_MEMO, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT, PREFIX_CLASS, PREFIX_ID, PREFIX_MEMO, PREFIX_NAME,
+                        PREFIX_CLASSPARTICIPATION);
 
         Index studentIndex;
         ClassName studentClassName;
@@ -39,7 +41,8 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS, PREFIX_NAME, PREFIX_ID, PREFIX_MEMO);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS, PREFIX_NAME, PREFIX_ID, PREFIX_MEMO,
+                PREFIX_CLASSPARTICIPATION);
 
         EditStudentCommand.EditStudentDescriptor editStudentDescriptor = new EditStudentCommand.EditStudentDescriptor();
 
@@ -51,6 +54,10 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         }
         if (argMultimap.getValue(PREFIX_MEMO).isPresent()) {
             editStudentDescriptor.setMemo(ParserUtil.parseMemo(argMultimap.getValue(PREFIX_MEMO).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CLASSPARTICIPATION).isPresent()) {
+            editStudentDescriptor.setClassParticipation(ParserUtil.parseClassParticipation(
+                    argMultimap.getValue(PREFIX_CLASSPARTICIPATION).get()));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {

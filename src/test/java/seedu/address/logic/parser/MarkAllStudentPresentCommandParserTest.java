@@ -27,6 +27,22 @@ public class MarkAllStudentPresentCommandParserTest {
     }
 
     @Test
+    public void parse_nonIndexArg_throwsParseException() {
+        // Argument should be numbers
+        int index = 1;
+        assertParseFailure(parser, "/c " + "cs2102",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_outOfRange_throwsParseException() {
+        // Argument should be numbers
+        int index = 1;
+        assertParseFailure(parser, "/c " + -1,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_wrongIdentifier_throwsParseException() {
         // Argument should be numbers
         int index = 1;

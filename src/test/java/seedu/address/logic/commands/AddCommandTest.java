@@ -150,7 +150,7 @@ public class AddCommandTest {
 
         @Override
         public void deleteStudentFromClass(Student student, Class studentClass) {
-            // to be filled after implementation of class' delete student function
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -194,7 +194,14 @@ public class AddCommandTest {
                 throws StudentAlreadyMarkedAbsent {
             throw new AssertionError("This method should not be called.");
         };
-
+        @Override
+        public void startLesson(Class studentClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void startLessonForStudent(Student student, Class studentClass, Student editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public Class getClass(ClassName className) {
             throw new AssertionError("This method should not be called.");
@@ -236,6 +243,16 @@ public class AddCommandTest {
         }
         @Override
         public void setClass(Index classListIndex, Class c) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Student duplicateStudent(Student studentToDuplicate) {
             throw new AssertionError("This method should not be called");
         }
     }

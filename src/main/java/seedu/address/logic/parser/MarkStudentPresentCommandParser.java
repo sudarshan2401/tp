@@ -13,13 +13,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
 
 /**
- * Parses input arguments and creates a new AddClassCommand object
+ * Parses input arguments and creates a new MarkStudentPresentCommand object.
  */
 public class MarkStudentPresentCommandParser implements Parser<MarkStudentPresentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddClassCommand
-     * and returns an AddClassCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MarkStudentPresentCommand
+     * and returns an MarkStudentPresentCommand object for execution.
      * @throws ParseException if the user input does not follow the expected format
      */
     public MarkStudentPresentCommand parse(String args) throws ParseException {

@@ -1,14 +1,20 @@
 package seedu.address.model.student;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.DANIEL;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -40,6 +46,75 @@ public class StudentTest {
     }
 
     @Test
+    public void duplicateStudent() {
+        Student duplicateAlice = ALICE.duplicateStudent();
+        assertEquals(ALICE, duplicateAlice);
+        // Check if different instance
+        assertFalse(ALICE == duplicateAlice);
+    }
+
+    @Test
+    public void markStudentPresent_studentAttended_throwsStudentAlreadyMarkedPresentException() {
+        // BOB attended lesson before
+        Student Bob = new StudentBuilder(BOB).build();
+        assertThrows(StudentAlreadyMarkedPresent.class, () -> Bob.markStudentPresent());
+    }
+
+    @Test
+    public void markStudentPresent_studentDidNotAttend_success() {
+        // bob has not attended lesson before
+        Student bob = new StudentBuilder().withName(VALID_NAME_BOB)
+                .withCurrentLessonAttendance(false)
+                .withLessonsAttended(5)
+                .build();
+        assertDoesNotThrow(() -> bob.markStudentPresent());
+    }
+
+    @Test
+    public void markStudentAbsent_studentDidNotAttend_throwsStudentAlreadyMarkedAbsentException() {
+        // DANIEL was already marked absent
+        Student Daniel = new StudentBuilder(DANIEL).build();
+        assertThrows(StudentAlreadyMarkedAbsent.class, () -> Daniel.markStudentAbsent());
+    }
+
+    @Test
+    public void markStudentAbsent_studentAttended_success() {
+        // bob was marked present beforehand
+        Student bob = new StudentBuilder().withName(VALID_NAME_BOB)
+                .withCurrentLessonAttendance(true)
+                .withLessonsAttended(5)
+                .build();
+        assertDoesNotThrow(() -> bob.markStudentAbsent());
+    }
+    @Test
+    public void getAttendanceStringRep() {
+        // BOB was marked present beforehand
+        // DANIEL was already marked absent
+        Student Bob = new StudentBuilder(BOB).build();
+        Student Daniel = new StudentBuilder(DANIEL).build();
+        assertEquals(Bob.getAttendanceStringRep(), "Y");
+        assertEquals(Daniel.getAttendanceStringRep(), "N");
+    }
+
+    @Test
+    public void getTotalAttendanceStringRep() {
+        Integer lessonsAttendedFirstStudent = 5;
+        Student firstStudent = new StudentBuilder().withName(VALID_NAME_BOB)
+                .withCurrentLessonAttendance(true)
+                .withLessonsAttended(lessonsAttendedFirstStudent)
+                .build();
+        Integer lessonsAttendedSecondStudent = 2;
+        Student secondStudent = new StudentBuilder().withName(VALID_NAME_AMY)
+                .withCurrentLessonAttendance(true)
+                .withLessonsAttended(lessonsAttendedSecondStudent)
+                .build();
+        assertEquals(firstStudent.getTotalAttendanceStringRep(),
+                lessonsAttendedFirstStudent.toString());
+        assertEquals(secondStudent.getTotalAttendanceStringRep(),
+                lessonsAttendedSecondStudent.toString());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Student aliceCopy = new StudentBuilder(ALICE).build();
@@ -67,7 +142,9 @@ public class StudentTest {
         String expected = Student.class.getCanonicalName()
                 + "{name=" + ALICE.getName() + ","
                 + " id=" + ALICE.getId() + ","
-                + " memo=" + ALICE.getMemo() + "}";
+                + " memo=" + ALICE.getMemo() + ","
+                + " currentLessonAttendance=" + ALICE.getCurrentAttendance() + ","
+                + " lessonsAttended=" + ALICE.getLessonsAttended() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

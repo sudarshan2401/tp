@@ -155,11 +155,64 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
+### Mark student attendance
+
+---
+
 ## **Implementation**
+
+Step 1. The user launches the application    
+
+Step 2. The user executes `view /c 1` command to view the students in the 1st class in EduTrack.
+
+Step 3. The user executes `mark /s 1 /c CS2103T` to mark the 1st student in the class CS2103T.
+
+Step 4. `MarkStudentPresentCommandParser` creates a new `MarkStudentPresentCommand` with the required fields.
+
+Step 5. `LogicManager` calls `MarkStudentPresentCommand#excecute()`.
+
+Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student.
+
+Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent` to mark the duplicate student present.
+
+Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the duplicate Student object as present.
+
+Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set the existing Student the updated duplicate Student.
+
+Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set the existing Student attached to the Class as the updated duplicate Student.
+
+Step 11. `Model#markStudentPresent` calls the `Model#updateFIlteredStudentList` to update the GUI of Students shown to user.
+
+<box type="info" seamless>
+
+**Note:** If the command fail its execution, both the StudentList in EduTrack as well as StudentList in the class remain unchanged. An error message will be printed to notify the user.
+
+</box>
+
+The following sequence diagram shows how the MarkStudentPresent operation works:
+
+<puml src="diagrams/MarkStudentSequenceDiagram.puml" width="550" />
+
+The following activity diagram shows what happens when a use executes the MarkStudentPresentCommand:
+
+<puml src="diagrams/MarkStudentActivityDiagram.puml" width="550" />
+
+#### Design considerations:
+
+**Aspect: Method of calculating number of lessons attended
+
+- **Alternative 1 (current choice): Maintain an overall counter for the number of lessons the student attended.
+  - Pros: Easy to implement.
+  - Cons: Unable to store the individual state of each lesson. Determining which lesson user attended is not possible.
+- **Alternative 2: Maintain the state of each individual lesson with an array.
+  - Pros: Enable users to view or modify the state of each individual lesson. May lead to more consistency in data, since the number of lessons and length of array is related.
+  - Cons: Difficult to implement. More memory usage, predefined maximum lessons required for array creation, although using ArrayList would be possible as well.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
 ### Edit Student feature
+#### Implementation
 The `edit /s` command is facilitated by creating an `EditStudentCommand` depending  on the given input.
 This command will update the student's details and update the `model` accordingly.
 
@@ -205,6 +258,123 @@ The following sequence diagram shows how the edit student operation works:
 **Note:** The lifeline for `EditStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
+
+---
+
+### Remove Student feature
+#### Implementation
+
+The removal of Student implements the following operation:
+- `EduTrack#removeStudent(Student s)`  — Removes the Student s from List of Students in EduTrack that tracks all students.
+- `Class#removeStudentFromClass(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
+
+These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudentFromClass(Student s, Class sClass)`.
+
+Given below is a list of variables used in walkthrough of the removal of Student mechanism.
+
+**Variables used:**
+
+`s` - `Student` to be removed.
+
+`sName` - `Name` representing `s`.
+
+`sClass` - `Class` of `s`.
+
+`studentClassName` - `ClassName` representing `sClass`.
+
+`sClassStudentList` - `UniqueStudentList` in `sClass` containing all its `Student` 
+
+`globalStudentList` - `UniqueStudentList` in `EduTrack` containing all `Student` across all `Class`.
+
+The relationship between variables can be summarised by this object diagram.
+
+<puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
+
+**Walkthrough**
+
+Step 1. `LogicManager` calls `removeStudentCommand#execute()`
+ 
+Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
+
+Step 3. `removeStudentCommand` calls `Class#getStudentList()` to get the `sClassStudentList` from `sClass`.
+
+Step 4. `removeStudentCommand` calls `List#get(studentIndex)` to get `s` from the `sClassStudentList`.
+
+Step 5. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+
+Step 6. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+
+Step 7. `removeStudentCommand` calls `Student#getName()` to get `sName`.
+
+Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
+
+The walkthrough can be summarised by this sequence diagram. (Some details are omitted in the diagram)
+
+<puml src="diagrams/RemoveStudentSequenceDiagram.puml" alt="RemoveStudentSequenceDiagram" />
+
+The following activity diagram summarises what happen when a user executes removeStudentCommand:
+
+<puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
+
+**Implementation reasoning:**
+1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system. 
+2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+
+### Add a class feature
+
+#### Implementation
+
+Given below is an example usage scenario and how the add class mechanism behaves at each step:
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `add /c cs2103t` command to add a new class with the class name "CS2103T". The `add /c` command calls `Parser#AddClassCommandParser` to retrieve the provided class name argument.
+
+Step 3. A new `Class` is created with the specified class name, an empty student list, an empty class note and empty class schedule.
+
+Step 4. The created `Class` is added to `UniqueClassList` if it does not exists in UniqueClassList. Then the `Storage` is updated to save the current state of `EduTrack`.
+
+<puml src="diagrams/AddAClassObjectDiagram.puml" width="250" />
+
+Step 5. The application prints the successful message to the user. UI automatically updates the current state of the shown class list.
+
+<box type="info" seamless>
+
+**Note:**
+
+- The received class name will be converted to uppercase using the `toUpperCase()` method.
+- If the command fails its execution, the class list remains unchanged and an error message will be printed to notify the user.
+
+</box>
+
+The following sequence diagram shows how the add class operation works:
+
+<puml src="diagrams/AddAClassSequenceDiagram.puml" width="250" />
+
+1. `LogicManager#execute()` is called.
+2. `EduTrackParse#parseCommand()` is called
+3. `AddClassCommandParser#parse()` is called, a new `Class c` is created. Returns `AddClassCommand addClassCommand`
+4.  `addClassCommand` calls `Model#hasClass(c)`. If class does not exists, calls `Model#addClass(c)`
+5.  `addClassCommand` returns `CommandResult` to `LogicManager`.
+
+The following activity diagram summarizes what happens when a new Class is added:
+
+<puml src="diagrams/AddAClassActivityDiagram.puml" width="250" />
+
+#### Design Consideration
+
+**Aspect: The number of parameters required**
+
+- **Alternative 1 (current choice):** Creates a new class with only class name.
+
+  - Pros: Easy to implement.
+  - Cons: Needs to use another command to update class note and class schedule.
+
+- **Alternative 2:** Creates a new class with class name, class note and class schedule.
+  itself.
+  - Pros: All information are specified by the time the class is created.
+  - Cons: Requires the user to provide additional details like class notes or class schedule
 
 ### \[Proposed\] Undo/redo feature
 

@@ -168,9 +168,7 @@ public class ModelManager implements Model {
             throws StudentAlreadyMarkedPresent {
         editedStudent.markStudentPresent();
         eduTrack.setStudent(student, editedStudent);
-
-        // Changes the original Student object
-        student.markStudentPresent();
+        setStudentInClass(student, editedStudent, studentClass);
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
@@ -179,10 +177,33 @@ public class ModelManager implements Model {
             throws StudentAlreadyMarkedAbsent {
         editedStudent.markStudentAbsent();
         eduTrack.setStudent(student, editedStudent);
-
-        // Changes the original Student object
-        student.markStudentAbsent();
+        setStudentInClass(student, editedStudent, studentClass);
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
+    public Student getStudentInClass(Index targetStudentIndex, Class studentClass) throws CommandException {
+        return studentClass.getStudentInClass(targetStudentIndex);
+    }
+
+    @Override
+    public Student duplicateStudent(Student studentToDuplicate) {
+        return studentToDuplicate.duplicateStudent();
+    }
+
+    @Override
+    public void startLessonForStudent(Student student, Class studentClass, Student editedStudent) {
+        editedStudent.startNewLesson();
+        eduTrack.setStudent(student, editedStudent);
+
+        student.startNewLesson();
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
+    public void startLesson(Class c) {
+        c.startLesson();
+        updateFilteredStudentList((s) -> c.getStudentList().contains(s));
     }
 
     public Class getClass(ClassName className) throws ClassNotFoundException {

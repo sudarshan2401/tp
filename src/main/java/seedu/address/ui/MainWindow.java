@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Class;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClassListPanel classListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClassInfoDisplay classInfoDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -57,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane classInfoDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -124,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         classListPanel = new ClassListPanel(logic.getFilteredClassList());
         listPanelPlaceholder.getChildren().add(classListPanel.getRoot());
+
+        classInfoDisplay = new ClassInfoDisplay();
+        classInfoDisplayPlaceholder.getChildren().add(classInfoDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -199,6 +207,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isView()) {
+                //add the class info display
+                classInfoDisplay.setClassInfo(getClassInfo());
+
                 //add the person list panel
                 personListPanel = new StudentListPanel(logic.getFilteredPersonList());
                 displayListPanel(personListPanel.getRoot());
@@ -208,6 +219,8 @@ public class MainWindow extends UiPart<Stage> {
                 //add the class list panel
                 classListPanel = new ClassListPanel(logic.getFilteredClassList());
                 displayListPanel(classListPanel.getRoot());
+                //remove the class info display
+                classInfoDisplay.setClassInfo("");
             }
 
             return commandResult;
@@ -216,5 +229,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private String getClassInfo() {
+        Class current = logic.getFilteredClassList().get(0);
+        return current.getClassInfo();
     }
 }
