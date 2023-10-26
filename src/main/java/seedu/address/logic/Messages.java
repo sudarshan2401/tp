@@ -43,8 +43,8 @@ public class Messages {
     public static String formatStudent(Student student) {
         final StringBuilder builder = new StringBuilder();
         builder.append(student.getName());
-        builder.append("; Id: "  +student.getId());
-        builder.append("; Memo: "  +student.getMemo());
+        builder.append("; Id: " + student.getId());
+        builder.append("; Memo: " + student.getMemo());
         return builder.toString();
     }
 
