@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
-import java.util.List;
-
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -55,16 +54,14 @@ public class RemoveStudentCommand extends RemoveCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Class studentClass = model.getClass(studentClassName);
-        List<Student> studentList = studentClass.getStudentList();
+        ObservableList<Student> studentList = model.getStudentListFromClass(studentClass);
         if (studentIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Student studentToDelete = studentList.get(studentIndex.getZeroBased());
-
+        Student studentToDelete = model.getStudentFromStudentList(studentList, studentIndex);
+        Name studentName = model.getStudentName(studentToDelete);
         model.deleteStudent(studentToDelete);
         model.deleteStudentFromClass(studentToDelete, studentClass);
-
-        Name studentName = studentToDelete.getName();
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
                 Messages.formatClass(studentClass)));
     }

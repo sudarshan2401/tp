@@ -296,15 +296,15 @@ Step 1. `LogicManager` calls `removeStudentCommand#execute()`
  
 Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
 
-Step 3. `removeStudentCommand` calls `Class#getStudentList()` to get the `sClassStudentList` from `sClass`.
+Step 3. `removeStudentCommand` calls `Model#getStudentListFromClass` to get the `sClassStudentList` from `sClass`.
 
-Step 4. `removeStudentCommand` calls `List#get(studentIndex)` to get `s` from the `sClassStudentList`.
+Step 4. `removeStudentCommand` calls `Model#getStudentFromStudentList` to get `s` from the `sClassStudentList`.
 
-Step 5. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+Step 5. `removeStudentCommand` calls `Model#getStudentName()` to get `sName`.
 
-Step 6. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+Step 6. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
 
-Step 7. `removeStudentCommand` calls `Student#getName()` to get `sName`.
+Step 7. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
 
 Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
 

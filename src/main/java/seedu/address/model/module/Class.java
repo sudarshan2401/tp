@@ -111,8 +111,13 @@ public class Class {
         toAdd.setStudentClass(this);
     }
 
+    /**
+     * Removes Student from the Class it is in.
+     * @param s Student to be removed from its Class.
+     */
     public void removeStudentFromClass(Student s) {
         students.remove(s);
+        assert(this.hasStudentInClass(s) == false) : "Class should not have studentToBeDeleted anymore.";
     }
 
     /**
