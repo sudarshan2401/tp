@@ -115,19 +115,19 @@ Removes an existing class from the list of classes.
 
 Prints out the detailed information (class name, class schedule, enrolled student list) about a class.
 
-**Command Format**: `view /c CLASS_NAME`
-* CLASS_NAME is not case-sensitive
+**Command Format**: `view /c CLASS_INDEX`
+* Index must be within the range of the list of classes
 * Class must already exist
 
 **Examples**:
-* `view CS2103T`
-* `view cs2103t`
+* `view /c 1`
+* `view /c 2`
 
 **Successful Output:**
-* CLASS_NAME: Enrolled students: (...)
+* UI updated to show class information and student list
 
 **Unsuccessful Output:**
-* CLASS_NAME does not exist
+* The class index provided is invalid
 
 ### Editing a class : `edit`
 
@@ -213,6 +213,12 @@ Starts a lesson of a class.
 * Class name not specified
 * CLASS_NAME does not exist
 
+### List all classes : `list`
+
+Shows a list of all existing classes.
+
+**Command Format:** `list`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -267,5 +273,5 @@ Coming soon...
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **add**    | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T`  <br><br> **Adding a list of students** <br> Coming soon |
 | **remove** | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                          |
-| **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_NAME` <br> **Eg:** `view CS2103T`                                                                                                                                                                                      |
+| **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view 1`                                                                                                                                                                                           |
 | **edit**   | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                     |
