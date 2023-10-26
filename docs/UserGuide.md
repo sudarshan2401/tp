@@ -39,8 +39,19 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
 
 ## Quick start
 
-Coming soon...
-
+1. Ensure you have Java 11 or above install in your Computer. (Refer to this <a href="https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk">installation guide</a> if you have yet to do so)
+2. Download the latest `EduTrack.jar` from <a href="https://github.com/AY2324S1-CS2103T-T15-3/tp/releases/download/v1.3.trial/EduTrack.jar">here</a>.
+3. Copy the file to the folder you want to use as the home folder for your EduTrack.
+4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br/>A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br/><img src="images/quickstart.png" alt="EduTrackimage"></img>
+5. Type the command in the command box and press Enter to execute it. eg. typing `help` and pressing Enter will open the help window.
+   Some example commands you can try:
+   - list: Lists all your classes.
+   - `add /c CS2105`: Adds a class named `CS2105` to your EduTrack.
+   - `add /s Samuel /c 1`: Adds a student named `Samuel` to the class at index `1` which you can find when you `list` your classes.
+   - `view /c 1`: View your students in your `CS2105` class.
+   - `mark /s 1 /c CS2105`: Mark the attendance of your student at index `1` in your `CS2105` class.
+6. Refer to the [Features](#features) below for details of each command.
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
