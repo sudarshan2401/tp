@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+    title: "Developer Guide"
+    pageNav: 3
 ---
 
 # EduTrack Developer Guide
@@ -310,9 +310,74 @@ The following activity diagram summarises what happen when a user executes remov
 <puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
 
 **Implementation reasoning:**
-1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system. 
+1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system.
 2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+
+### View Class feature
+
+#### Implementation
+
+The View Command feature allows users to list all students in a specified class. It is implemented as follows:
+
+- `Model#updateFilteredClassList(Predicate<Class> predicate)` — Updates the filtered class list based on a given predicate. This is used to display the specified class along with its students.
+
+- `Model#updateFilteredStudentList(Predicate<Student> predicate)` — Updates the filtered student list based on a given predicate. In this case, it filters students belonging to the specified class.
+
+- `Model#getClassByIndex(Index classIndex)` — Retrieves the class object based on the provided index.
+
+- `Class#getStudentList()` — Gets the list of students associated with a specific class.
+
+- `Class#getClassName()` — Gets the name of the class for display purposes.
+
+- `CommandResult` — Returns a command result with a success message indicating the class name.
+
+The workflow of the View Command feature is outlined below:
+
+1. The user invokes the View Command with a specified class index.
+
+2. The command is executed, calling the appropriate methods in the `Model`.
+
+3. The `Model` updates the filtered class list to show all classes.
+
+4. The specified class is retrieved using the class index.
+
+5. The `Model` updates the filtered class list again, this time with a predicate that filters for the specified class.
+
+6. The filtered student list is updated to show only students belonging to the specified class.
+
+7. The command returns a success message with the name of the class.
+
+**Variables used:**
+
+- `classIndex` - The index of the class specified by the user.
+
+- `classToView` - The class object corresponding to the specified index.
+
+- `classToTest` - A class used in the filtering predicate.
+
+- `student` - A student object used in the filtering predicate.
+
+The interaction between these variables is illustrated in the following object diagram:
+<puml src="diagrams/ViewClassObjectDiagram.puml" alt="ViewClassObjectDiagram" />
+
+#### Walkthrough
+
+1. LogicManager calls `ViewCommand#execute()`.
+
+2. `ViewCommand` calls `Model#getClassByIndex(classIndex)` to retrieve the class object corresponding to the specified index.
+
+3. `ViewCommand` calls `Model#updateFilteredClassList(Predicate<Class> predicate)` to update the filtered class list.
+
+4. `ViewCommand` calls `Model#updateFilteredStudentList(Predicate<Student> predicate)` to update the filtered student list which is displayed on the UI.
+
+5. `ViewCommand` returns a `CommandResult` with a success message.
+
+The interaction between these variables is illustrated in the following sequence diagram:
+<puml src="diagrams/ViewClassSequenceDiagram.puml" alt="ViewClassSequenceDiagram" />
+
+The following activity diagram summarises what happens when a user executes the View Command:
+<puml src="diagrams/ViewClassActivityDiagram.puml" alt="ViewClassActivityDiagram" />
 
 ### Add a class feature
 
@@ -964,16 +1029,16 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+  1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -981,16 +1046,16 @@ Given below are instructions to test the app manually.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -998,6 +1063,6 @@ Given below are instructions to test the app manually.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
