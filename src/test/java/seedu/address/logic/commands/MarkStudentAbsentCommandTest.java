@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,7 +44,7 @@ public class MarkStudentAbsentCommandTest {
         Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         String expectedMessage = String.format(MarkStudentAbsentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                "Amy Bee");
+                Messages.formatStudent(editedStudent));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

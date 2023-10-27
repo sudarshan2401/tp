@@ -8,53 +8,125 @@ pageNav: 3
 
 EduTrack is a **desktop app for managing classes designed for tutors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Whether you are managing multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization.
 
+If you are new to this guide, click [here](#about) to find out more about this user guide.
+
+If you are keen to get started on using EduTrack, click [here](#quick-start) for our quick start guide.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 
 1. [Quick start](#quick-start)
+2. [About](#about)
+   - [Structure of this user guide](#structure-of-this-user-guide)
+   - [Reading this user guide](#reading-this-user-guide)
+     - [Common icons](#common-icons)
+     - [Common terms](#common-terms)
+     - [Command Format](#command-format)
+     - [Command Parameters](#command-parameters)
 2. [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a class : `add`](#adding-a-class--add)
-    - [Removing a class : `remove`](#removing-a-class--remove)
-    - [Viewing a class : `view`](#viewing-a-class--view)
-    - [Editing a class: `view`](#editing-a-class--edit)
-    - [Adding a student : `add`](#adding-a-student--add)
-    - [Removing a student : `remove`](#removing-a-student--remove)
-    - [Starting a lesson : `startlesson`](#starting-a-lesson--startlesson)
-    - [Marking a student present : `mark`](#marking-your-students-attendance-as-present--mark)
-    - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present--markall)
-    - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent--unmark)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Saving the data](#saving-the-data)
-    - [Adding a list of students : `coming in v1.3`](#adding-a-list-of-students--coming-in-v13)
-    - [Updating a student : `coming in v1.3`](#updating-a-student--coming-in-v13)
-    - [Adding a lesson : `coming in v1.3`](#adding-a-lesson--coming-in-v13)
-    - [Removing a lesson : `coming in v1.3`](#removing-a-lesson--coming-in-v13)
-    - [Finding a student : `coming in v1.3`](#finding-a-student--coming-in-v13)
+    - [Class Commands](#class-commands)
+      - [Adding a class : `add /c`](#adding-a-class-add-c)
+      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
+      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
+      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
+      - [Starting a lesson : `startlesson`](#starting-a-lesson-startlesson)
+      - [Marking a student present : `mark`](#marking-your-students-attendance-as-present-mark)
+      - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present-markall)
+      - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent-unmark)
+    - [Student commands](#student-commands)
+      - [Adding a student : `add /s`](#adding-a-student-add-s)
+      - [Removing a student : `remove /s`](#removing-a-student-remove-s)
+      - [Editing a student : `edit /s`](#editing-a-student-edit-s)
+    - [Miscellaneous commands](#miscellaneous-commands)
+      - [Viewing help : `help`](#viewing-help-help)
+      - [Exiting the program : `exit`](#exiting-the-program-exit)
+      - [Saving the data](#saving-the-data)
 3. [FAQ](#faq)
 4. [Known issues](#known-issues)
 5. [Command summary](#command-summary)
+6. [Glossary](#glossary)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java 11 or above install in your Computer. (Refer to this <a href="https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk">installation guide</a> if you have yet to do so)
-2. Download the latest `EduTrack.jar` from <a href="https://github.com/AY2324S1-CS2103T-T15-3/tp/releases/download/v1.3.trial/EduTrack.jar">here</a>.
-3. Copy the file to the folder you want to use as the home folder for your EduTrack.
-4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br/>A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br/><img src="images/quickstart.png" alt="EduTrackimage"></img>
-5. Type the command in the command box and press Enter to execute it. eg. typing `help` and pressing Enter will open the help window.
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for your EduTrack.
+4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> ![Ui](images/quickstart.png)
+5. Type the command in the command box and press `Enter` to execute it. eg. typing **`help`** and `Enter` again will open the help window.<br>
    Some example commands you can try:
-   - list: Lists all your classes.
-   - `add /c CS2105`: Adds a class named `CS2105` to your EduTrack.
-   - `add /s Samuel /c 1`: Adds a student named `Samuel` to the class at index `1` which you can find when you `list` your classes.
-   - `view /c 1`: View your students in your `CS2105` class.
-   - `mark /s 1 /c CS2105`: Mark the attendance of your student at index `1` in your `CS2105` class.
+   * `list` : Lists all classes.
+   * `view /c 1` : Lists all students in the first class in the list.
+   * `add /c CS2103T` : Adds a class named `CS2103T` to the list of classes.
+   * `add /s John /c 1` : Adds a student named `John` to the first class in the list.
+   * `remove /c 1` : Removes the first class in the list.
+   * `exit` : Exits the app.
 6. Refer to the [Features](#features) below for details of each command.
- 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About
+
+### Structure of this user guide
+This guide is structured in a manner that lets you find what you need fast and easily. To jump to various sections, you can refer to the [Table of Contents](#table-of-contents).
+
+In the following subsection, you can find several tips that could be beneficial when reading this guide. The next section, documents the _main features_ that **EduTrack** offers and provides you instructions on how to use them!
+
+### Reading this user guide
+
+#### Common icons
+Here are the common icons that is used throughout this user guide.
+
+**Additional Information**<br>
+Text that appear in an information box indicates additional information that is useful to know.
+
+<box type="info">
+    **Information:** Example additional information.
+</box>
+
+**Caution**<br>
+Text that appear in a caution box should be followed carefully, else unintended consequences might arise.
+
+<box type="warning">
+    **Caution:** Example warning. 
+</box>
+
+**Tip**<br>
+Text that appear in a tip box are useful for improving your user experience with EduTrack.
+
+<box type="tip">
+    **Tip:** Example tip.
+</box>
+
+#### Common terms
+Here are the common terms that is used throughout this user guide.
+
+| Terms       | Meaning                                                                        |
+|-------------|--------------------------------------------------------------------------------|
+| Command     | The instruction you enter into the application                                 |
+| Parameter   | The additional information you provide for the instruction you intend to enter |
+
+#### Command Format
+
+_Coming soon..._
+
+#### Command Parameters
+
+_Coming soon..._
+
+return to [Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+The features are broken down into their following subsections:
+1. [Class commands](#class-commands)
+2. [Student commands](#student-commands)
+3. [Miscellaneous commands](#miscellaneous-commands)
 
 <box type="info" seamless>
 
@@ -70,16 +142,19 @@ EduTrack is a **desktop app for managing classes designed for tutors**, optimize
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </box>
+
+</box>
 
 
-### Viewing help : `help`
+### Class commands
 
-Shows a message explaining how to access the help page.
+### List all classes : `list`
 
-**Command Format:** `help`
+Shows a list of all existing classes.
 
-### Adding a class : `add`
+**Command Format:** `list`
+
+### Adding a class : `add /c`
 
 Adds a new class to the list of classes.
 
@@ -99,7 +174,7 @@ Adds a new class to the list of classes.
 * CLASS_NAME already exists
 * Class name not specified
 
-### Removing a class : `remove`
+### Removing a class : `remove /c`
 
 Removes an existing class from the list of classes.
 
@@ -118,7 +193,7 @@ Removes an existing class from the list of classes.
 * CLASS_NAME does not exist
 * Class name not specified
 
-### Viewing a class : `view`
+### Viewing a class : `view /c`
 
 Prints out the detailed information (class name, class schedule, enrolled student list) about a class.
 
@@ -136,7 +211,7 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 **Unsuccessful Output:**
 * The class index provided is invalid
 
-### Editing a class : `edit`
+### Editing a class : `edit /c`
 
 Edits a class information (class name, class memo, class schedule) at the specified index.
 
@@ -161,64 +236,6 @@ Memo: NEW_MEMO
 **Unsuccessful Output:**
 * Class does not exist
 * Class already exists
-
-### Adding a student : `add`
-
-Adds a new student to an existing class.
-
-**Command Format**: `add /s STUDENT_NAME /c CLASS_NAME`
-* CLASS_NAME is not case-sensitive
-* Class must already exist
-* STUDENT_NAME only accepts alphabetical characters
-
-**Examples**:
-* `add /s John /c cs2103t`
-
-**Successful Output**:
-* STUDENT_NAME has been added to CLASS_NAME
-
-**Unsuccessful Output**:
-* Class name not specified
-* CLASS_NAME does not exist
-
-### Removing a student : `remove`
-
-Removes an existing student from a class based on index.
-
-**Command Format**: `remove /s STUDENT_INDEX /c CLASS_NAME`
-
-* CLASS_NAME is not case-sensitive
-* Class must already exist
-
-**Examples:**
-* `remove /s 1 /c CS2103T`
-
-**Successful Output:**
-* STUDENT_NAME has been removed from CLASS_NAME
-
-**Unsuccessful Output:**
-* Class name not specified
-* CLASS_NAME does not exist
-* Student index provided is invalid
-
-### Starting a lesson : `startlesson`
-
-Starts a lesson of a class.
-
-**Command Format**: `startlesson /c CLASS_NAME`
-
-* CLASS_NAME is not case-sensitive
-* Class must already exist
-
-**Examples:**
-* `startlesson /c CS2103T`
-
-**Successful Output:**
-* CLASS_NAME started a new lesson!
-
-**Unsuccessful Output:**
-* Class name not specified
-* CLASS_NAME does not exist
 
 ### Marking your student's attendance as present : `mark`
 
@@ -280,11 +297,136 @@ Marks all student in your class as being present. Use this if all your students 
 **Unsuccessful Output:**
 * Class index provided is invalid
 
-### List all classes : `list`
+### Student commands
 
-Shows a list of all existing classes.
+### Adding a student : `add /s`
 
-**Command Format:** `list`
+Adds a new student to an existing class.
+
+Command Format: `add /s STUDENT_NAME /c CLASS_INDEX`
+
+Examples:
+* `add /s John /c 1`
+* `add /s Bob /c 2`
+
+<box type="info">
+
+**Information:**
+* Student name can only be alphabetical letters.
+* The index refers to the index number shown in the displayed class list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* A default id "A0000000Z" will be assigned to the student.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+* The class to add the student into must already exist.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+* You can edit the student's id using the [edit student command](#editing-a-student--edit-s) once you know the student's student number!
+
+</box>
+
+Successful Output:
+
+```Added New Student: student_name; Id: A0000000Z; Memo:  to the class: CS```
+
+
+### Removing a student : `remove /s`
+
+Removes an existing student from a class based on index.
+
+**Command Format**: `remove /s STUDENT_INDEX /c CLASS_NAME`
+
+* CLASS_NAME is not case-sensitive
+* Class must already exist
+
+**Examples:**
+* `remove /s 1 /c CS2103T`
+
+**Successful Output:**
+* STUDENT_NAME has been removed from CLASS_NAME
+
+**Unsuccessful Output:**
+* Class name not specified
+* CLASS_NAME does not exist
+* Student index provided is invalid
+
+### Editing a student : `edit /s`
+
+Edits an existing student from a specified class.
+
+Command Format: `edit /s STUDENT_INDEX /c CLASS_NAME [/nName] [/idId] [/mMemo]`
+
+Examples:
+* `edit /s 1 /c CS2103T /nBob` : Edits the name of the first student in the class CS2103T to Bob.
+* `edit /s 2 /c CS2103T /idA0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
+
+Sample Usage:
+
+1. Assuming you want to edit the 2nd Student's Id to "A010193Z", who is from the Class "CS2103T", and the class index in the displayed list is "1".
+2. Enter the following commands:
+   ````
+   view /c 1
+   edit /s 2 /c CS2103T /idA010193Z
+   ````
+3. The result box will display the following message:
+   ````
+   Edited Student: John; Id: A010193Z; Memo: 
+   ````
+4. You have successfully edited the student's details.
+
+<box type="info">
+
+**Information:**
+* Edits the student at the specified `INDEX` in the specified `CLASS_NAME`.
+* The index refers to the index shown in the displayed student list of the class.
+* The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+</box>
+
+<box type="caution">
+
+**Caution:**
+* You have to perform a [view class command](#viewing-a-class--view) first!
+* Only valid ids will be recognised. It has to start with "A", followed by only numerical characters and end of with "A-Z".
+
+</box>
+
+### Starting a lesson : `startlesson`
+
+Starts a lesson of a class.
+
+**Command Format**: `startlesson /c CLASS_NAME`
+
+* CLASS_NAME is not case-sensitive
+* Class must already exist
+
+**Examples:**
+* `startlesson /c CS2103T`
+
+**Successful Output:**
+* CLASS_NAME started a new lesson!
+
+**Unsuccessful Output:**
+* Class name not specified
+* CLASS_NAME does not exist
+
+### Miscellaneous commands
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+**Command Format:** `help`
 
 ### Exiting the program : `exit`
 
@@ -296,32 +438,17 @@ Exits the program.
 
 EduTrack's data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Adding a list of students : `coming in v1.3`
-[Coming soon...]
-
-### Updating a class : `coming in v1.3`
-[Coming Soon...]
-
-### Updating a class memo : `coming in v1.3`
-[Coming Soon...]
-
-### Updating a student : `coming in v1.3`
-[Coming Soon...]
-
-### Adding a lesson : `coming in v1.3`
-[Coming Soon...]
-
-### Removing a lesson : `coming in v1.3`
-[Coming Soon...]
-
-### Finding a student : `coming in v1.3`
-[Coming Soon...]
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-Coming soon...
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file EduTrack creates, with the file
+that contains the data of your previous EduTrack home folder.
+
+**Q**: How do I save my data?<br>
+**A**: EduTrack's data is saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -335,10 +462,19 @@ Coming soon...
 
 | Action      | Format, Examples                                                                                                                                                                                                                                                            |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**    | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T`  <br><br> **Adding a list of students** <br> Coming soon |
-| **remove** | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                          |
-| **view**   | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                        |
-| **edit**   | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                     |
+| **add**     | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T`  <br><br> **Adding a list of students** <br> Coming soon |
+| **remove**  | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                          |
+| **view**    | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                        |
+| **edit**    | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                     |
 | **mark**    | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `mark /s 1 /c CS2103T`                                                                                                                                                |
 | **unmark**  | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `unmark /s 1 /c CS2103T`                                                                                                                                             |
 | **markall** | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **Eg:** `markall /c 1`                                                                                                                                                     |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Term                               | Definition                                                                                                                                           |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | Command line interface where users interact with the system by typing in commands. <br> <br> e.g. Terminal                                           |
+| **Graphical User Interface (GUI)** | Graphical user interface where users interact with the system through visual representations. <br> <br> e.g. Google Chrome, Spotify, Windows Desktop |

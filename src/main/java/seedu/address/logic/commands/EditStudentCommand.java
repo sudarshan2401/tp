@@ -27,6 +27,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Edits the details of an existing student in EduTrack.
@@ -52,6 +53,8 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This person already exists in the address book.";
+    public static final String MESSAGE_NO_STUDENT_LIST =
+            "Please perform a view command first to ensure the correct student is edited!";
 
     private final Index studentIndex;
     private final ClassName studentClassName;
@@ -97,6 +100,8 @@ public class EditStudentCommand extends Command {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.formatStudent(editedStudent)));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, studentClassName));
+        } catch (StudentNotFoundException e) {
+            throw new CommandException(MESSAGE_NO_STUDENT_LIST);
         }
     }
 

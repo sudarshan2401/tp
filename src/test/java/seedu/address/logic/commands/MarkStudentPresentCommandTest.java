@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.EduTrack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,12 +37,10 @@ public class MarkStudentPresentCommandTest {
         model.addStudentToClass(studentToRemove, CS2109);
 
         ClassName className = new ClassName("CS2109");
-        // Actual test
-        String studentStubName = "Amy Bee";
         Index index = Index.fromOneBased(1);
         MarkStudentPresentCommand command = new MarkStudentPresentCommand(index, className);
         String expectedMessage = String.format(MarkStudentPresentCommand.MESSAGE_STUDENT_ALREADY_MARKED,
-                studentStubName);
+                Messages.formatStudent(studentToRemove));
         assertCommandFailure(command, model, expectedMessage);
     }
 
@@ -67,7 +66,7 @@ public class MarkStudentPresentCommandTest {
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         String expectedMessage = String.format(MarkStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                "Amy Bee");
+                Messages.formatStudent(editedStudent));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

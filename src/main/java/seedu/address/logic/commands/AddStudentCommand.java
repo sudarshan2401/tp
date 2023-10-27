@@ -27,7 +27,7 @@ public class AddStudentCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " John Doe "
             + PREFIX_CLASS + " 1";
-    public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New student added: %1$s to the class: %2$s";
+    public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added New Student: %1$s to the class: %2$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
     private final Student toAdd;
     private final Index classIndex;
