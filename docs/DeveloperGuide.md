@@ -395,7 +395,7 @@ Step 3. A new `Class` is created with the specified class name, an empty student
 
 Step 4. The created `Class` is added to `UniqueClassList` if it does not exists in UniqueClassList. Then the `Storage` is updated to save the current state of `EduTrack`.
 
-<puml src="diagrams/AddAClassObjectDiagram.puml" width="250" />
+<puml src="diagrams/AddAClassObjectDiagram.puml" alt="AddAClassObjectDiagram" />
 
 Step 5. The application prints the successful message to the user. UI automatically updates the current state of the shown class list.
 
@@ -410,17 +410,17 @@ Step 5. The application prints the successful message to the user. UI automatica
 
 The following sequence diagram shows how the add class operation works:
 
-<puml src="diagrams/AddAClassSequenceDiagram.puml" width="250" />
+<puml src="diagrams/AddAClassSequenceDiagram.puml" alt="AddAClassSequenceDiagram" />
 
 1. `LogicManager#execute()` is called.
-2. `EduTrackParse#parseCommand()` is called
-3. `AddClassCommandParser#parse()` is called, a new `Class c` is created. Returns `AddClassCommand addClassCommand`
-4.  `addClassCommand` calls `Model#hasClass(c)`. If class does not exists, calls `Model#addClass(c)`
+2. `EduTrackParse#parseCommand()` is called.
+3. `AddClassCommandParser#parse()` is called, a new `Class c` is created. Returns `AddClassCommand addClassCommand`.
+4.  `addClassCommand` calls `Model#hasClass(c)`. If class does not exists, calls `Model#addClass(c)`.
 5.  `addClassCommand` returns `CommandResult` to `LogicManager`.
 
 The following activity diagram summarizes what happens when a new Class is added:
 
-<puml src="diagrams/AddAClassActivityDiagram.puml" width="250" />
+<puml src="diagrams/AddAClassActivityDiagram.puml" alt="AddAClassActivityDiagram" />
 
 #### Design Consideration
 
@@ -432,7 +432,7 @@ The following activity diagram summarizes what happens when a new Class is added
   - Cons: Needs to use another command to update class note and class schedule.
 
 - **Alternative 2:** Creates a new class with class name, class note and class schedule.
-  itself.
+
   - Pros: All information are specified by the time the class is created.
   - Cons: Requires the user to provide additional details like class notes or class schedule
 
