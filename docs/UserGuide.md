@@ -26,17 +26,17 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
      - [Command Parameters](#command-parameters)
 2. [Features](#features)
     - [Class Commands](#class-commands)
-      - [Adding a class : `add`](#adding-a-class-add)
-      - [Removing a class : `remove`](#removing-a-class-remove)
-      - [Viewing a class : `view`](#viewing-a-class-view)
-      - [Editing a class: `view`](#editing-a-class-edit)
+      - [Adding a class : `add /c`](#adding-a-class-add-c)
+      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
+      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
+      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
       - [Starting a lesson : `startlesson`](#starting-a-lesson-startlesson)
       - [Marking a student present : `mark`](#marking-your-students-attendance-as-present-mark)
       - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present-markall)
       - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent-unmark)
     - [Student commands](#student-commands)
       - [Adding a student : `add /s`](#adding-a-student-add-s)
-      - [Removing a student : `remove`](#removing-a-student-remove)
+      - [Removing a student : `remove /s`](#removing-a-student-remove-s)
       - [Editing a student : `edit /s`](#editing-a-student-edit-s)
     - [Miscellaneous commands](#miscellaneous-commands)
       - [Viewing help : `help`](#viewing-help-help)
@@ -154,7 +154,7 @@ Shows a list of all existing classes.
 
 **Command Format:** `list`
 
-### Adding a class : `add`
+### Adding a class : `add /c`
 
 Adds a new class to the list of classes.
 
@@ -174,7 +174,7 @@ Adds a new class to the list of classes.
 * CLASS_NAME already exists
 * Class name not specified
 
-### Removing a class : `remove`
+### Removing a class : `remove /c`
 
 Removes an existing class from the list of classes.
 
@@ -193,7 +193,7 @@ Removes an existing class from the list of classes.
 * CLASS_NAME does not exist
 * Class name not specified
 
-### Viewing a class : `view`
+### Viewing a class : `view /c`
 
 Prints out the detailed information (class name, class schedule, enrolled student list) about a class.
 
@@ -211,7 +211,7 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 **Unsuccessful Output:**
 * The class index provided is invalid
 
-### Editing a class : `edit`
+### Editing a class : `edit /c`
 
 Edits a class information (class name, class memo, class schedule) at the specified index.
 
@@ -338,7 +338,7 @@ Successful Output:
 ```Added New Student: student_name; Id: A0000000Z; Memo:  to the class: CS```
 
 
-### Removing a student : `remove`
+### Removing a student : `remove /s`
 
 Removes an existing student from a class based on index.
 
