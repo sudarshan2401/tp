@@ -158,6 +158,8 @@ Shows a list of all existing classes.
 
 **Command Format:** `list`
 
+<br>
+
 ### Adding a class : `add /c`
 
 Adds a new class to the list of classes.
@@ -181,6 +183,8 @@ Adds a new class to the list of classes.
 - CLASS_NAME already exists
 - Class name not specified
 
+<br>
+
 ### Removing a class : `remove /c`
 
 Removes an existing class from the list of classes.
@@ -203,6 +207,8 @@ Removes an existing class from the list of classes.
 - CLASS_NAME does not exist
 - Class name not specified
 
+<br>
+
 ### Viewing a class : `view /c`
 
 Prints out the detailed information (class name, class schedule, enrolled student list) about a class.
@@ -224,6 +230,8 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 **Unsuccessful Output:**
 
 - The class index provided is invalid
+
+<br>
 
 ### Editing a class : `edit /c`
 
@@ -253,6 +261,8 @@ Memo: NEW_MEMO
 - Class does not exist
 - Class already exists
 
+<br>
+
 ### Marking your student's attendance as present : `mark`
 
 **Command Format**: `mark /s STUDENT_INDEX /c CLASS_NAME`
@@ -276,6 +286,8 @@ Memo: NEW_MEMO
 - Index is not a non-zero unsigned integer
 - The Class name (CS9999) you provided does not exist!
 - STUDENT_NAME has already been marked present!
+
+<br>
 
 ### Marking your student's attendance as absent : `unmark`
 
@@ -301,6 +313,8 @@ Memo: NEW_MEMO
 - The Class name (CS9999) you provided does not exist!
 - Emily has already been marked absent!
 
+<br>
+
 ### Marking all student's attendance in your class as present : `markall`
 
 **Command Format**: `markall /c CLASS_INDEX`
@@ -321,6 +335,8 @@ Marks all student in your class as being present. Use this if all your students 
 **Unsuccessful Output:**
 
 - Class index provided is invalid
+
+<br>
 
 ### Starting a lesson : `startlesson /c`
 
@@ -362,6 +378,8 @@ This increases the total number of lessons conducted in your `Class` and resets 
 - If you started a lesson by accident, you can manually [set the number of lessons](#setting-number-of-lessons-of-a-class-setlesson-c) back.
 
 </box>
+
+<br>
 
 ### Setting number of lessons of a class : `setlesson /c`
 
@@ -406,6 +424,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 - This is useful when you accidentally [start a lesson](#starting-a-lesson-startlesson-c) and wants to decrease the number of lesson(s) by 1.
 
 </box>
+
+<br>
 
 ## Student commands
 
@@ -496,6 +516,7 @@ Student index provided is invalid
 
   </box>
 
+<br>
 
 ### Editing a student : `edit /s`
 
@@ -544,7 +565,11 @@ Sample Usage:
 </box>
 
 
+<br>
+
 ### Miscellaneous commands
+
+<br>
 
 ### Viewing help : `help`
 
@@ -552,11 +577,15 @@ Shows a message explaining how to access the help page.
 
 **Command Format:** `help`
 
+<br>
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 **Command Format:** `exit`
+
+<br>
 
 ### Saving the data
 
@@ -584,15 +613,18 @@ Coming soon...
 
 ## Command summary
 
-| Action      | Format, Examples                                                                                                                                                                                                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **add**     | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T` <br><br> **Adding a list of students** <br> Coming soon |
-| **remove**  | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                         |
-| **view**    | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                       |
-| **edit**    | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                    |
-| **mark**    | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `mark /s 1 /c CS2103T`                                                                                                                                               |
-| **unmark**  | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `unmark /s 1 /c CS2103T`                                                                                                                                            |
-| **markall** | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **Eg:** `markall /c 1`                                                                                                                                                    |
+| Action          | Format, Examples                                                                                                                                                                                                                                                           |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T` <br><br> **Adding a list of students** <br> Coming soon |
+| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                         |
+| **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                       |
+| **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                    |
+| **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `mark /s 1 /c CS2103T`                                                                                                                                               |
+| **unmark**      | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `unmark /s 1 /c CS2103T`                                                                                                                                            |
+| **markall**     | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **Eg:** `markall /c 1`                                                                                                                                                    |
+| **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **Eg:** `startlesson /c CS2103T`                                                                                                                                                       |
+| **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **Eg:** `setlesson /c CS2103T /l 5`                                                                                                                     |
+
 
 ---
 
