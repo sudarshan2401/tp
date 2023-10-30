@@ -156,21 +156,45 @@ Shows a list of all existing classes.
 
 ### Adding a class : `add /c`
 
-Adds a new class to the list of classes.
+Adds a new class to your list of classes.
 
 **Command Format:** `add /c CLASS_NAME`
 
-* CLASS_NAME is not case-sensitive
-
-* CLASS_NAME must be unique (cannot have two classes with the same name)
-
 **Examples:**
-* `add /c cs2103t`
+* `add /c cs2103t` will add a new class named "CS2103T".
+* `add /c st2334` will add a new class named "ST2334".
+
+**Sample Usage:**
+
+1. Assuming you want to add a new class named "CS2030S".
+2. Enter the following command:
+
+````
+add /c cs2030s
+````
+
+3. The result box will display the following message:
+
+````
+CS2103T has been added
+````
+
+4. You have successfully added the class.
+
+<box type="info">
+
+**Information:**
+
+* CLASS_NAME is not case-sensitive.
+
+* CLASS_NAME must be unique (two classes with the same name cannot exist at the same time).
+
+</box>
 
 **Successful Output:**
 * CLASS_NAME has been added
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 * CLASS_NAME already exists
 * Class name not specified
 
@@ -217,25 +241,66 @@ Edits a class information (class name, class memo, class schedule) at the specif
 
 Command Format: `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_MEMO /t NEW_SCHEDULE`
 
-* User must specify at least one parameter (`/n`, `/m` or `/t`)
-* CLASS_INDEX must be valid positive integer shown in displayed class list
-* CLASS_SCHEDULE if non-blank, then follows the format: `day, HH:MM-HH:MM` (e.g: tue, 09:00-10:00)
-* Existing values will be updated to the input values
-* To delete class memo or class schedule, you can type `/m` or `/t` without specifying any tags after it
-
 **Examples:**
-* edit /c 1 /n cs2100
-* edit /c 1 /m submit attendance report by tomorrow /n cs2100
-* edit /c 1 /t mon, 10:00-12:00 /m
+* `edit /c 1 /n cs2100` will update the class name to "CS2100".
+* `edit /c 1 /m submit attendance report /n cs2100` will update the class name to "CS2100" and the class memo to "submit attendance report".
+* `edit /c 1 /t mon, 10:00-12:00 /m` will update the schedule to "mon, 10:00-12:00" and remove the class memo.
+
+**Sample Usage:**
+
+1. Assuming you want to edit the name of the second class to "CS2040S". This is what your original class looks like, you can see this when you enter `view /c 2`:
+
+````
+Current class: CS2100
+Schedule: tue, 10:00-12:00
+Memo: 
+````
+
+2. Enter the following command:
+
+````
+edit /c 2 /n cs2040s
+````
+
+3. The result box will display the following message:
+
+````
+Edited class: CS2040S
+Schedule: tue, 10:00-12:00
+Memo: 
+````
+
+4. You have successfully edited the class name.
+
+<box type="info">
+
+**Information:**
+
+* User must specify at least one parameter of the following: `/n`, `/m` or `/t`.
+* CLASS_INDEX must be valid positive integer shown in displayed class list.
+* CLASS_SCHEDULE if non-blank, then follows the format: `day, HH:MM-HH:MM` (e.g: tue, 09:00-10:00).
+* Existing values will be updated to the input values.
+* To delete class memo or class schedule, you can type `/m` or `/t` without specifying any tags after it.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The class to be edited must already exist.
+
+</box>
 
 **Successful Output:**
 Edited class: NEW_CLASS_NAME
 Schedule: NEW_SCHEDULE
 Memo: NEW_MEMO
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 * Class does not exist
 * Class already exists
+* At least one field to edit must be provided
 
 ### Marking your student's attendance as present : `mark`
 
