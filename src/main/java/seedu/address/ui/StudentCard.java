@@ -45,6 +45,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label studentMemo;
     @FXML
+    private Label classParticipation;
+    @FXML
     private Label attendance;
     @FXML
     private Label overallAttendance;
@@ -61,10 +63,12 @@ public class StudentCard extends UiPart<Region> {
         Class c = student.getStudentClass();
         assert(c != null) : "student's class attribute should not be null";
         String studentMemo = student.getMemo().toString();
+        String classParticipation = student.getClassParticipation().toString();
         String totalLessons = String.valueOf(c.getTotalLessons());
         String overallAttendance = student.getTotalAttendanceStringRep() + "/" + totalLessons;
         this.attendance.setText(student.getAttendanceStringRep());
         this.overallAttendance.setText(overallAttendance);
         this.studentMemo.setText(studentMemo);
+        this.classParticipation.setText(classParticipation);
     }
 }
