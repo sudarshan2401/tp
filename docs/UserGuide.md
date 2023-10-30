@@ -6,7 +6,11 @@ pageNav: 3
 
 # EduTrack User Guide
 
-EduTrack is a **desktop app for managing classes designed for tutors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Whether you are managing multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization.
+EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records.
+
+Whether you find yourself juggling the management of numerous students or simply require swift access to individual student information, EduTrack equips you with the tools to easily organize your classes.
+
+The application is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you are new to this guide, click [here](#about) to find out more about this user guide.
 
@@ -115,7 +119,19 @@ Here are the common terms that is used throughout this user guide.
 
 #### Command Format
 
-_Coming soon..._
+* Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
+  e.g. in `add /c CLASS_NAME`, `CLASS_NAME` is a parameter which can be used as `add /c CS2103T-T15-3`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `/n CLASS_NAME /m MEMO`, `/m MEMO /n CLASS_NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+ignored.<br>
+
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
+as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 #### Command Parameters
 
@@ -166,19 +182,19 @@ Adds a new class to the list of classes.
 
 **Command Format:** `add /c CLASS_NAME`
 
-- CLASS_NAME is not case-sensitive
+- CLASS_NAME is not case-sensitive.
 
-- CLASS_NAME must be unique (cannot have two classes with the same name)
+- CLASS_NAME must be unique (two classes with the same name cannot exist at the same time).
 
 **Examples:**
-
-- `add /c cs2103t`
+- `add /c cs2103t` will add a new class named "CS2103T".
+- `add /c st2334` will add a new class named "ST2334".
 
 **Successful Output:**
 
 - CLASS_NAME has been added
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 
 - CLASS_NAME already exists
 - Class name not specified
@@ -239,7 +255,7 @@ Edits a class information (class name, class memo, class schedule) at the specif
 
 Command Format: `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_MEMO /t NEW_SCHEDULE`
 
-- User must specify at least one parameter (`/n`, `/m` or `/t`)
+- User must specify at least one parameter of the following: `/n`, `/m` or `/t`
 - CLASS_INDEX must be valid positive integer shown in displayed class list
 - CLASS_SCHEDULE if non-blank, then follows the format: `day, HH:MM-HH:MM` (e.g: tue, 09:00-10:00)
 - Existing values will be updated to the input values
@@ -247,19 +263,21 @@ Command Format: `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_MEMO /t NEW_SCHEDU
 
 **Examples:**
 
-- edit /c 1 /n cs2100
-- edit /c 1 /m submit attendance report by tomorrow /n cs2100
-- edit /c 1 /t mon, 10:00-12:00 /m
+- `edit /c 1 /n cs2100` will update the class name to "CS2100".
+- `edit /c 1 /m submit attendance report by tomorrow /n cs2100` will update the class name to "CS2100" and the class 
+memo to "submit attendance report".
+- `edit /c 1 /t mon, 10:00-12:00 /m`  will update the schedule to "mon, 10:00-12:00" and remove the class memo.
 
 **Successful Output:**
 Edited class: NEW_CLASS_NAME
 Schedule: NEW_SCHEDULE
 Memo: NEW_MEMO
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 
 - Class does not exist
-- Class already exists
+- Class already exists 
+- At least one field to edit must be provided
 
 <br>
 
@@ -529,12 +547,12 @@ Student index provided is invalid
 
 Edits an existing student from a specified class.
 
-Command Format: `edit /s STUDENT_INDEX /c CLASS_NAME [/nName] [/idId] [/mMemo]`
+Command Format: `edit /s STUDENT_INDEX /c CLASS_NAME [/n Name] [/id Id] [/m Memo]`
 
 Examples:
 
-- `edit /s 1 /c CS2103T /nBob` : Edits the name of the first student in the class CS2103T to Bob.
-- `edit /s 2 /c CS2103T /idA0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
+- `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to Bob.
+- `edit /s 2 /c CS2103T /id A0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
 
 Sample Usage:
 
@@ -542,7 +560,7 @@ Sample Usage:
 2. Enter the following commands:
    ```
    view /c 1
-   edit /s 2 /c CS2103T /idA010193Z
+   edit /s 2 /c CS2103T /id A010193Z
    ```
 3. The result box will display the following message:
    ```
@@ -594,6 +612,14 @@ Exits the program.
 
 <br>
 
+### Clearing all entries : `clear`
+
+Clears all entries from EduTrack.
+
+**Command Format:** `clear`
+
+<br>
+
 ### Saving the data
 
 EduTrack's data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -602,7 +628,7 @@ EduTrack's data are saved in the hard disk automatically after any command that 
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file EduTrack creates, with the file
 that contains the data of your previous EduTrack home folder.
 
