@@ -30,7 +30,8 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
-     - [Starting a lesson : `startlesson`](#starting-a-lesson-startlesson)
+     - [Setting number of lessons of a class: `setlesson /c`](#setting-number-of-lessons-of-a-class-setlesson-c)
+     - [Starting a lesson : `startlesson /c`](#starting-a-lesson-startlesson-c)
      - [Marking a student present : `mark`](#marking-your-students-attendance-as-present-mark)
      - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present-markall)
      - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent-unmark)
@@ -434,7 +435,32 @@ Sample Usage:
 
 </box>
 
-### Starting a lesson : `startlesson`
+### Setting number of lessons of a class : `setlesson /c`
+
+Sets the total number of lessons of a class.
+
+**Command Format**: `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
+
+- CLASS_NAME is not case-sensitive
+- Class must already exist
+- NUMBER_OF_LESSONS takes numbers such as 0,1,2,3
+- NUMBER_OF_LESSONS must be at least 0.
+
+**Examples:**
+
+- `setlesson /c CS2103T /l 10`
+
+**Successful Output:**
+
+- Successfully set the number of lessons in CLASS_NAME to NUMBER_OF_LESSONS!
+
+**Unsuccessful Output:**
+
+- Class name not specified
+- CLASS_NAME does not exist
+- Number of lessons must be at least 0.
+
+### Starting a lesson : `startlesson /c`
 
 Starts a lesson of a class.
 
