@@ -176,6 +176,12 @@ public class ParserUtil {
         return new Memo(trimmedMemo);
     }
 
+    /**
+     * Parses a {@code String numLessons} into an int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given int is invalid.
+     */
     public static int parseNumLessons(String numLessons) throws ParseException {
         requireNonNull(numLessons);
         int trimmedNumLessons = Integer.valueOf(numLessons.trim());

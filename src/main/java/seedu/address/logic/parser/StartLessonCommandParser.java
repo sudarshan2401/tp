@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.MarkStudentPresentCommand;
 import seedu.address.logic.commands.StartLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;

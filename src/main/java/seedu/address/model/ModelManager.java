@@ -203,7 +203,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isValidAttendanceForStudent(Student student, Class studentClass) {
-        return student.getNumberOfLessonsAttended() <=studentClass.getTotalLessons();
+        return student.getNumberOfLessonsAttended() <= studentClass.getTotalLessons();
     }
 
     @Override
@@ -216,6 +216,7 @@ public class ModelManager implements Model {
         c.setTotalLessons(num);
         updateFilteredStudentList((s) -> c.getStudentList().contains(s));
     }
+
 
     public void setStudentLesson(Student student, Class studentClass, Student editedStudent, int numLesson) {
         editedStudent.setLessonsAttended(numLesson);
