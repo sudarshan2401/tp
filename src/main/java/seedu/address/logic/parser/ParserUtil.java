@@ -22,6 +22,7 @@ import seedu.address.model.student.Phone;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_NUMLESSONS = "Number of lessons must be non-negative.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -173,5 +174,14 @@ public class ParserUtil {
             throw new ParseException(Memo.MESSAGE_CONSTRAINTS);
         }
         return new Memo(trimmedMemo);
+    }
+
+    public static int parseNumLessons(String numLessons) throws ParseException {
+        requireNonNull(numLessons);
+        int trimmedNumLessons = Integer.valueOf(numLessons.trim());
+        if (trimmedNumLessons < 0) {
+            throw new ParseException(MESSAGE_INVALID_NUMLESSONS);
+        }
+        return trimmedNumLessons;
     }
 }

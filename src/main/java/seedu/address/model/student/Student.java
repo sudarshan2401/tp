@@ -100,6 +100,15 @@ public class Student {
         return this.lessonsAttended;
     }
 
+    public void setLessonsAttended(int num) {
+        this.lessonsAttended.setTotalLessons(num);
+    }
+
+    public int getNumberOfLessonsAttended() {
+        LessonsAttended l = this.lessonsAttended;
+        return l.getTotalLessons();
+    }
+
     public Id getId() {
         return id;
     }

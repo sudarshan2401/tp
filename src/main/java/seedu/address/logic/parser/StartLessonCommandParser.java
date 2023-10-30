@@ -27,7 +27,7 @@ public class StartLessonCommandParser {
         if (!arePrefixesPresent(argMultimap, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MarkStudentPresentCommand.MESSAGE_USAGE));
+                    StartLessonCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
