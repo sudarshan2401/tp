@@ -341,9 +341,13 @@ Marks all student in your class as being present. Use this if all your students 
 ### Starting a lesson : `startlesson /c`
 
 Starts a lesson of your chosen class. <br>
-This increases the total number of lessons conducted in your `Class` and resets all `Student` attendance to absent.
+This increases the total number of lessons conducted in your `Class` and changes all `Student` to absent.
 
 **Command Format**: `startlesson /c CLASS_NAME`
+
+**Example**
+- `startlesson /c CS2103T`: Increases the `Class` CS2103T's number of lessons by 1 and sets all `Student` in CS2103T 
+as absent so that you can mark attendance.
 
 **Sample Usage**:
 
@@ -387,6 +391,9 @@ Sets the total number of lessons of your chosen class manually.<br>
 This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) by accident.
 
 **Command Format**: `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
+
+**Examples**
+- `setlesson /c CS2103T /l 10`: Sets the total number of lessons of `Class` CS2103T to 10.
 
 **Sample Usage**:
 
@@ -482,8 +489,8 @@ Removes a student in your chosen class.
 
 **Example:**
 
-- `remove /s 1 /c CS2103T`
-- `remove /s 2 /c cs2103t`
+- `remove /s 1 /c CS2103T`: Removes the first `Student` in `Class` CS2103T.
+- `remove /s 2 /c CS2100`: Removes the second `Student` in `Class` CS2100.
 
 **Sample Usage**:
 
