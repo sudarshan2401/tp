@@ -150,7 +150,7 @@ The features are broken down into their following subsections:
 
 </box>
 
-### Class commands
+## Class commands
 
 ### List all classes : `list`
 
@@ -322,7 +322,92 @@ Marks all student in your class as being present. Use this if all your students 
 
 - Class index provided is invalid
 
-### Student commands
+### Starting a lesson : `startlesson /c`
+
+Starts a lesson of your chosen class. <br>
+This increases the total number of lessons conducted in your `Class` and resets all `Student` attendance to absent.
+
+**Command Format**: `startlesson /c CLASS_NAME`
+
+**Sample Usage**:
+
+1. You want to start a lesson for `Class` CS2103T.
+2. Enter the following commands:
+   ```
+   startlesson /c CS2103T
+   ```
+3. The result box will display the following message:
+   ```
+   CS2103T started a new lesson!
+   ```
+4. You have successfully started a lesson in CS2103T.
+
+**Unsuccessful Output:**
+
+- Class name not specified
+- CLASS_NAME does not exist
+
+<br>
+<box type="info">
+
+**Information:**
+- CLASS_NAME is not case-sensitive
+- Class must already exist
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+- If you started a lesson by accident, you can manually [set the number of lessons](#setting-number-of-lessons-of-a-class-setlesson-c) back.
+
+</box>
+
+### Setting number of lessons of a class : `setlesson /c`
+
+Sets the total number of lessons of your chosen class manually.<br>
+This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) by accident.
+
+**Command Format**: `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
+
+**Sample Usage**:
+
+1. You want to set the number of lessons conducted for `Class` CS2103T.
+2. Enter the following commands:
+   ```
+   setlesson /c CS2103T /l 5
+   ```
+3. The result box will display the following message:
+   ```
+   Successfully set the number of lessons in CS2103T to 5!
+   ```
+4. You have successfully set the total number of  lessons in CS2103T to 5.
+
+**Unsuccessful Output:**
+- Class name not specified
+- CLASS_NAME does not exist
+- Number of lessons must be at least 0.
+
+<box type="info">
+
+**Information:**
+- CLASS_NAME is not case-sensitive
+- NUMBER_OF_LESSONS takes numbers such as `0`,`1`,`2`,`3`
+- NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`
+- NUMBER_OF_LESSONS must be at least `0`.
+- If a `Student`'s number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
+    - Example: John's current attendance in CS2103T is 5/7. <br> If you call `setlesson /c CS2103T /l 3`, it helps to adjust John's attendance to 3/3.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+- This is useful when you accidentally [start a lesson](#starting-a-lesson-startlesson-c) and wants to decrease the number of lesson(s) by 1.
+
+</box>
+
+## Student commands
 
 ### Adding a student : `add /s`
 
@@ -366,28 +451,51 @@ Successful Output:
 
 `Added New Student: student_name; Id: A0000000Z; Memo:  to the class: CS`
 
+<br>
+
 ### Removing a student : `remove /s`
 
-Removes an existing student from a class based on index.
+Removes a student in your chosen class.
 
-**Command Format**: `remove /s STUDENT_INDEX /c CLASS_NAME`
+**Command Format**: 
+`remove /s STUDENT_INDEX /c CLASS_NAME`
 
-- CLASS_NAME is not case-sensitive
-- Class must already exist
-
-**Examples:**
+**Example:**
 
 - `remove /s 1 /c CS2103T`
+- `remove /s 2 /c cs2103t`
 
-**Successful Output:**
+**Sample Usage**:
 
-- STUDENT_NAME has been removed from CLASS_NAME
+1. You want to remove a `Student` named "John" and he is the 2nd`Student` from the `Class` "CS2103T".
+2. Enter the following commands:
+   ```
+   remove /s 2 /c CS2103T
+   ```
+3. The result box will display the following message:
+   ```
+   John has been removed from CS2103T
+   ```
+4. You have successfully removed John from CS2103T.
+
 
 **Unsuccessful Output:**
+```
+Class name not specified
+CLASS_NAME does not exist
+Student index provided is invalid
+```
 
-- Class name not specified
-- CLASS_NAME does not exist
-- Student index provided is invalid
+<br>
+
+  <box type="info">
+
+  **Information:**
+- CLASS_NAME is not case-sensitive
+- STUDENT_INDEX of a `Student` can be identified by [viewing the `Class`](#viewing-a-class--view)
+
+  </box>
+
 
 ### Editing a student : `edit /s`
 
@@ -435,52 +543,6 @@ Sample Usage:
 
 </box>
 
-### Setting number of lessons of a class : `setlesson /c`
-
-Sets the total number of lessons of a class.
-
-**Command Format**: `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
-
-- CLASS_NAME is not case-sensitive
-- Class must already exist
-- NUMBER_OF_LESSONS takes numbers such as 0,1,2,3
-- NUMBER_OF_LESSONS must be at least 0.
-
-**Examples:**
-
-- `setlesson /c CS2103T /l 10`
-
-**Successful Output:**
-
-- Successfully set the number of lessons in CLASS_NAME to NUMBER_OF_LESSONS!
-
-**Unsuccessful Output:**
-
-- Class name not specified
-- CLASS_NAME does not exist
-- Number of lessons must be at least 0.
-
-### Starting a lesson : `startlesson /c`
-
-Starts a lesson of a class.
-
-**Command Format**: `startlesson /c CLASS_NAME`
-
-- CLASS_NAME is not case-sensitive
-- Class must already exist
-
-**Examples:**
-
-- `startlesson /c CS2103T`
-
-**Successful Output:**
-
-- CLASS_NAME started a new lesson!
-
-**Unsuccessful Output:**
-
-- Class name not specified
-- CLASS_NAME does not exist
 
 ### Miscellaneous commands
 
