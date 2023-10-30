@@ -17,6 +17,7 @@ public class StudentCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     /**
+     *
      * Memo: Certain keywords such as "location" and "resources" are reserved
      * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -34,6 +35,8 @@ public class StudentCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label studentid;
     @FXML
     private Label phone;
     @FXML
@@ -66,5 +69,6 @@ public class StudentCard extends UiPart<Region> {
         this.attendance.setText(student.getAttendanceStringRep());
         this.overallAttendance.setText(overallAttendance);
         this.studentMemo.setText(studentMemo);
+        this.studentid.setText(student.getId().toString());
     }
 }
