@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_STUDENT = new Prefix("/s");
     public static final Prefix PREFIX_CLASS = new Prefix("/c");
+    public static final Prefix PREFIX_LESSONQUANTITY = new Prefix("/l");
     public static final Prefix PREFIX_NAME = new Prefix("/n");
     public static final Prefix PREFIX_ID = new Prefix("/id");
     public static final Prefix PREFIX_MEMO = new Prefix("/m");

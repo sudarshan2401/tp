@@ -62,6 +62,14 @@ public class LessonsAttended {
         this.totalLessons--;
     }
 
+    /**
+     * Sets the total number of lessons the student attended.
+     * @param num The total number of lessons attended by the student.
+     */
+    public void setTotalLessons(int num) {
+        this.totalLessons = num;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

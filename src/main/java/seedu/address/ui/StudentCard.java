@@ -35,6 +35,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label studentid;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -69,6 +71,7 @@ public class StudentCard extends UiPart<Region> {
         this.attendance.setText(student.getAttendanceStringRep());
         this.overallAttendance.setText(overallAttendance);
         this.studentMemo.setText(studentMemo);
+        this.studentid.setText(student.getId().toString());
         this.classParticipation.setText(classParticipation);
     }
 }

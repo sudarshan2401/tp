@@ -150,7 +150,10 @@ public interface Model {
     void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
             throws StudentAlreadyMarkedAbsent;
     void startLessonForStudent(Student student, Class studentClass, Student editedStudent);
+    boolean isValidAttendanceForStudent(Student student, Class studentClass);
     void startLesson(Class c);
+    void setClassLesson(Class c, int num);
+    void setStudentLesson(Student student, Class studentClass, Student editedStudent, int numLesson);
 
     Class getClass(ClassName className) throws ClassNotFoundException;
 

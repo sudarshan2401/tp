@@ -196,7 +196,20 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         };
         @Override
+
+        public boolean isValidAttendanceForStudent(Student student, Class studentClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void startLesson(Class studentClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setClassLesson(Class c, int num) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setStudentLesson(Student student, Class studentClass, Student editedStudent, int numLesson) {
             throw new AssertionError("This method should not be called.");
         }
         @Override

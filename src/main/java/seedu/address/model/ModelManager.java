@@ -202,9 +202,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isValidAttendanceForStudent(Student student, Class studentClass) {
+        return student.getNumberOfLessonsAttended() <= studentClass.getTotalLessons();
+    }
+
+    @Override
     public void startLesson(Class c) {
         c.startLesson();
         updateFilteredStudentList((s) -> c.getStudentList().contains(s));
+    }
+
+    public void setClassLesson(Class c, int num) {
+        c.setTotalLessons(num);
+        updateFilteredStudentList((s) -> c.getStudentList().contains(s));
+    }
+
+
+    public void setStudentLesson(Student student, Class studentClass, Student editedStudent, int numLesson) {
+        editedStudent.setLessonsAttended(numLesson);
+        eduTrack.setStudent(student, editedStudent);
+        setStudentInClass(student, editedStudent, studentClass);
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
     public Class getClass(ClassName className) throws ClassNotFoundException {
