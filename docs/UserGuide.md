@@ -122,6 +122,9 @@ Here are the common terms that is used throughout this user guide.
 * Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
   e.g. in `add /c CLASS_NAME`, `CLASS_NAME` is a parameter which can be used as `add /c CS2103T-T15-3`.
 
+* Words in `UPPER_CASE` that are wrapped in square brackets are optional parameters. <br>
+  E.g. in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m CLASS_MEMO] [/t CLASS_SCHEDULE`],
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `/n CLASS_NAME /m MEMO`, `/m MEMO /n CLASS_NAME` is also acceptable.
 
@@ -135,7 +138,16 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 #### Command Parameters
 
-_Coming soon..._
+Most commands in the user guide require various parameters. You can find their constraints in the table below
+
+| Parameters       | Constraints                                                                                                                                                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLASS_NAME       | A single-word string consists of any characters and not case-sensitive.                                                                                                                                                                            |
+| CLASS_INDEX      | A valid positive integer shown in displayed class list.                                                                                                                                                                                            |
+| CLASS_MEMO       | A string consists of any characters.                                                                                                                                                                                                               |
+| CLASS_SCHEDULE   | A string that follows the format `day, HH:MM-HH:MM` <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
+
+<br>
 
 return to [Table of Contents](#table-of-contents)
 
@@ -149,28 +161,13 @@ The features are broken down into their following subsections:
 2. [Student commands](#student-commands)
 3. [Miscellaneous commands](#miscellaneous-commands)
 
-<box type="info" seamless>
-
-**Notes about the command format:**<br>
-
-- Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
-  e.g. in `add /c CLASS_NAME`, `CLASS_NAME` is a parameter which can be used as `add /c CS2103T-T15-3`.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-
-</box>
-
 ## Class commands
 
-### List all classes : `list`
+<br>
 
-Shows a list of all existing classes.
+### Listing all classes : `list`
+
+Shows an instant overview list of all your existing classes. 
 
 **Command Format:** `list`
 
@@ -178,26 +175,45 @@ Shows a list of all existing classes.
 
 ### Adding a class : `add /c`
 
-Adds a new class to your list of classes.
+Adds a new class to your list of classes. This feature allows you to manage multiple classes at once.
 
 **Command Format:** `add /c CLASS_NAME`
 
-- CLASS_NAME is not case-sensitive.
-
-- CLASS_NAME must be unique (two classes with the same name cannot exist at the same time).
-
 **Examples:**
-- `add /c cs2103t` will add a new class named "CS2103T".
-- `add /c st2334` will add a new class named "ST2334".
->>>>>>> eabcd60d2b226d3192827b48023e1f6657a4d967
+* `add /c cs2103t` will add a new class named "CS2103T".
+* `add /c st2334` will add a new class named "ST2334".
+
+**Sample Usage:**
+
+1. Assuming you want to add a new class named "CS2030S".
+2. Enter the following command:
+
+````
+add /c cs2030s
+````
+
+3. The result box will display the following message:
+
+````
+CS2103T has been added
+````
+
+4. You have successfully added the class.
+
+<box type="warning">
+
+**Caution:**
+
+* The CLASS_NAME provided must be unique, meaning that two classes with the same CLASS_NAME cannot coexist in the same list.
+
+</box>
 
 **Successful Output:**
-- CLASS_NAME has been added
+* CLASS_NAME has been added
 
 **Unsuccessful Outputs:**
-
-- CLASS_NAME already exists
-- Class name not specified
+* CLASS_NAME already exists
+* Class name not specified
 
 <br>
 
@@ -251,22 +267,65 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 
 ### Editing a class : `edit /c`
 
-Edits a class information (class name, class memo, class schedule) at the specified index.
+Edits your class information at the specified index. You are able to update the class name, class memo and class schedule. This will help keep your class information up-to-date.
 
-Command Format: `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_MEMO /t NEW_SCHEDULE`
-
-- User must specify at least one parameter of the following: `/n`, `/m` or `/t`
-- CLASS_INDEX must be valid positive integer shown in displayed class list
-- CLASS_SCHEDULE if non-blank, then follows the format: `day, HH:MM-HH:MM` (e.g: tue, 09:00-10:00)
-- Existing values will be updated to the input values
-- To delete class memo or class schedule, you can type `/m` or `/t` without specifying any tags after it
+Command Format: `edit /c CLASS_INDEX /n CLASS_NAME /m CLASS_MEMO /t CLASS_SCHEDULE`
 
 **Examples:**
+* `edit /c 1 /n cs2100` will update the class name to "CS2100".
+* `edit /c 1 /m submit attendance report /n cs2100` will update the class name to "CS2100" and the class memo to "submit attendance report".
+* `edit /c 1 /t mon, 10:00-12:00 /m` will update the schedule to "mon, 10:00-12:00" and remove the class memo.
 
-- `edit /c 1 /n cs2100` will update the class name to "CS2100".
-- `edit /c 1 /m submit attendance report by tomorrow /n cs2100` will update the class name to "CS2100" and the class 
-memo to "submit attendance report".
-- `edit /c 1 /t mon, 10:00-12:00 /m`  will update the schedule to "mon, 10:00-12:00" and remove the class memo.
+**Sample Usage:**
+
+1. Assuming you want to edit the name of the second class to "CS2040S". This is what your original class looks like, you can see this when you enter `view /c 2`:
+
+````
+Current class: CS2100
+Schedule: tue, 10:00-12:00
+Memo:
+````
+
+2. Enter the following command:
+
+````
+edit /c 2 /n cs2040s
+````
+
+3. The result box will display the following message:
+
+````
+Edited class: CS2040S
+Schedule: tue, 10:00-12:00
+Memo:
+````
+
+4. You have successfully edited the class name.
+
+<box type="info">
+
+**Information:**
+
+* User must specify at least one parameter of the following: `/n`, `/m` or `/t`.
+* Existing values will be updated to the input values.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The class to be edited must already exist.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+
+* To delete class memo or class schedule, you can type `/m` or `/t` without specifying anything after it.
+
+</box>
 
 **Successful Output:**
 Edited class: NEW_CLASS_NAME
@@ -274,10 +333,9 @@ Schedule: NEW_SCHEDULE
 Memo: NEW_MEMO
 
 **Unsuccessful Outputs:**
-
-- Class does not exist
-- Class already exists 
-- At least one field to edit must be provided
+* Class does not exist
+* Class already exists
+* At least one field to edit must be provided
 
 <br>
 
@@ -598,7 +656,7 @@ Sample Usage:
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Receives instruction on how to access the help page when you need assistance while using EduTrack.
 
 **Command Format:** `help`
 
@@ -606,7 +664,7 @@ Shows a message explaining how to access the help page.
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the application at any time you want.
 
 **Command Format:** `exit`
 
@@ -614,15 +672,22 @@ Exits the program.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from EduTrack.
+Removes all your entries from EduTrack when you want to start fresh.
 
 **Command Format:** `clear`
+
+<box type="warning">
+
+**Caution:**
+* Make sure to think carefully before you execute this command as the action cannot be undone.
+
+</box>
 
 <br>
 
 ### Saving the data
 
-EduTrack's data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EduTrack's got your back. Your data is automatically saved on your hard disk after any command that changes the data, so no need to worry about saving manually.
 
 ---
 
