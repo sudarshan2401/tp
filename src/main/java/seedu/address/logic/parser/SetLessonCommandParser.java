@@ -16,7 +16,7 @@ import seedu.address.model.module.ClassName;
  */
 public class SetLessonCommandParser {
     /**
-     * Parses the input arguments and create a SetLessonCommand based on input arguments.
+     * Parses the input arguments and creates a SetLessonCommand based on input arguments.
      * @param args Inputs by user to determine Class that SetLessonCommand should work on.
      * @return SetLessonCommand with user's chosen Class.
      */

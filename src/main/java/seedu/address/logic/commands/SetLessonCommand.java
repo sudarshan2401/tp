@@ -37,7 +37,7 @@ public class SetLessonCommand extends Command {
     private int numLessons;
 
     /**
-     * Command to simulate starting a lesson of a Class thus increasing total lessons conducted of the Class by one.
+     * Command to forcefully set the total number of lessons of a Class.
      * @param className Classname to represent the Class.
      */
     public SetLessonCommand(ClassName className, int numLessons) {
