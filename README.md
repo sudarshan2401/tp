@@ -13,7 +13,7 @@ You should expect **EduTrack** to be able to manage:
 
 ### Installation:
 * Ensure you have java 11 installed in your local computer (Download [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) if you have yet to do so!)
-* Download the [jar file]()
+* Download the [JAR file](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases)
 * Run it!
 
 ### Quick Start
