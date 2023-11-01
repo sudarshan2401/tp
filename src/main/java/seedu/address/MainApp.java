@@ -75,18 +75,18 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getEduTrackFilePath());
 
-        Optional<ReadOnlyEduTrack> addressBookOptional;
+        Optional<ReadOnlyEduTrack> eduTrackOptional;
         ReadOnlyEduTrack initialData;
         try {
-            addressBookOptional = storage.readEduTrack();
-            if (!addressBookOptional.isPresent()) {
+            eduTrackOptional = storage.readEduTrack();
+            if (!eduTrackOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getEduTrackFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample EduTrack.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleEduTrack);
+            initialData = eduTrackOptional.orElseGet(SampleDataUtil::getSampleEduTrack);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getEduTrackFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty EduTrack.");
             initialData = new EduTrack();
         }
 
@@ -170,13 +170,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting EduTrack " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping EduTrack ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

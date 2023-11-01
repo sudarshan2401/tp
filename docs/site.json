@@ -2,7 +2,7 @@
   "baseUrl": "",
   "titlePrefix": "",
   "titleSuffix": "EduTrack",
-  "faviconPath": "images/SeEduLogo.png",
+  "faviconPath": "images/EduTrack.png",
   "style": {
     "codeTheme": "light"
   },
