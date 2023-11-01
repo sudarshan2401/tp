@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import seedu.address.model.EduTrack;
 import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.Schedule;
 import seedu.address.model.student.CurrentLessonAttendance;
@@ -10,9 +11,7 @@ import seedu.address.model.student.Id;
 import seedu.address.model.student.LessonsAttended;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.model.module.Class;
 import seedu.address.model.student.UniqueStudentList;
-
 
 /**
  * Contains utility methods for populating {@code EduTrack} with sample data.
@@ -26,10 +25,10 @@ public class SampleDataUtil {
      */
     public static Class[] getSampleClasses() {
         return new Class[] {
-                new Class(new ClassName("T1"),
-                        new UniqueStudentList(), new Memo("First Class"), new Schedule("mon, 10:00-12:00")),
-                new Class(new ClassName("T2"),
-                        new UniqueStudentList(), new Memo("Second Class"), new Schedule("tue, 10:00-12:00"))
+            new Class(new ClassName("T1"), new UniqueStudentList(),
+                    new Memo("First Class"), new Schedule("mon, 10:00-12:00")),
+            new Class(new ClassName("T2"), new UniqueStudentList(),
+                    new Memo("Second Class"), new Schedule("tue, 10:00-12:00"))
         };
     }
 
@@ -62,18 +61,18 @@ public class SampleDataUtil {
      */
     public static Student[] getSampleStudentList2() {
         return new Student[] {
-                new Student(new Name("Carol Mcleod"), null, new Id("A1383296T"), new Memo(""),
-                        new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo("")),
-                new Student(new Name("Kylie Dominguez"), null, new Id("A9359958U"), new Memo(""),
-                        new CurrentLessonAttendance(false), new LessonsAttended(2), new Memo("")),
-                new Student(new Name("Lily Luna"), null, new Id("A5997977P"), new Memo(""),
-                        new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo("")),
-                new Student(new Name("Aarav Salazar"), null, new Id("A6447199Z"), new Memo("Usually late."),
-                        new CurrentLessonAttendance(false), new LessonsAttended(3), new Memo("")),
-                new Student(new Name("Sian Pena"), null, new Id("A0657231Z"), new Memo("Funny."),
-                        new CurrentLessonAttendance(false), new LessonsAttended(5), new Memo("")),
-                new Student(new Name("John Doe"), null, new Id("A0832341Z"), new Memo(""),
-                        new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo(""))
+            new Student(new Name("Carol Mcleod"), null, new Id("A1383296T"), new Memo(""),
+                    new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo("")),
+            new Student(new Name("Kylie Dominguez"), null, new Id("A9359958U"), new Memo(""),
+                    new CurrentLessonAttendance(false), new LessonsAttended(2), new Memo("")),
+            new Student(new Name("Lily Luna"), null, new Id("A5997977P"), new Memo(""),
+                    new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo("")),
+            new Student(new Name("Aarav Salazar"), null, new Id("A6447199Z"), new Memo("Usually late."),
+                    new CurrentLessonAttendance(false), new LessonsAttended(3), new Memo("")),
+            new Student(new Name("Sian Pena"), null, new Id("A0657231Z"), new Memo("Funny."),
+                    new CurrentLessonAttendance(false), new LessonsAttended(5), new Memo("")),
+            new Student(new Name("John Doe"), null, new Id("A0832341Z"), new Memo(""),
+                    new CurrentLessonAttendance(true), new LessonsAttended(7), new Memo(""))
         };
     }
 
@@ -83,7 +82,7 @@ public class SampleDataUtil {
      * @return ReadOnlyEduTrack with sample data.
      */
     public static ReadOnlyEduTrack getSampleEduTrack() {
-        EduTrack sampleEt= new EduTrack();
+        EduTrack sampleEt = new EduTrack();
         Class[] sampleClasses = getSampleClasses();
         for (Class sampleClass : getSampleClasses()) {
             sampleClass.setTotalLessons(8);
