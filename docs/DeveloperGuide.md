@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "Developer Guide"
-    pageNav: 3
+  title: "Developer Guide"
+  pageNav: 3
 ---
 
 # EduTrack Developer Guide
@@ -13,7 +13,9 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* [JavaFX](https://openjfx.io/)
+* [Jackson](https://github.com/FasterXML/jackson)
+* [JUnit5](https://github.com/junit-team/junit5)
 
 ---
 
@@ -24,6 +26,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ---
 
 ## **Design**
+
+<box type="tip">
+    
+**Tip:** The `.puml` files used to create diagrams used in this document can be found in the [diagrams](https://github.com/AY2324S1-CS2103T-T15-3/tp/tree/master/docs/diagrams). Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
+</box>
+
 
 ### Architecture
 
@@ -155,13 +164,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-### Mark student attendance
+## **Implementation**
+This section describes some noteworthy details on how certain features are implemented.
 
----
+### Mark student attendance
+#### Implementation
 
 <puml src="diagrams/MarkStudentObjectDiagram.puml" alt="MarkStudentObjectDiagram" />
 
-## **Implementation**
 
 Step 1. The user launches the application    
 
