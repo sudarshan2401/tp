@@ -70,7 +70,8 @@ public class Student {
     }
 
     /**
-     * Returns the Student's name.
+     * Returns the Student's name
+     *
      * @return Name of Student.
      */
     public Name getName() {
@@ -81,6 +82,7 @@ public class Student {
     /**
      * Updates Class containing Student after Student is initialized.
      * This can only be done once when Student is first initialized.
+     *
      * @param studentClass Class containing Student.
      */
     public void setStudentClass(Class studentClass) {
