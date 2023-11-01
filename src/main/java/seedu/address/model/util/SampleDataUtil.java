@@ -86,6 +86,7 @@ public class SampleDataUtil {
         EduTrack sampleEt= new EduTrack();
         Class[] sampleClasses = getSampleClasses();
         for (Class sampleClass : getSampleClasses()) {
+            sampleClass.setTotalLessons(8);
             sampleEt.addClass(sampleClass);
             if (sampleClass.equals(sampleClasses[0])) {
                 for (Student sampleStudent : getSampleStudentList1()) {
