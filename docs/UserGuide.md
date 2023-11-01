@@ -458,21 +458,33 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 
 Adds a new student to an existing class.
 
-Command Format: `add /s STUDENT_NAME /c CLASS_INDEX`
+**Command Format:** `add /s STUDENT_NAME /c CLASS_INDEX`
 
-Examples:
+**Examples:**
+* `add /s John /c 1` : Adds a new student named "John" into the first class on the displayed class list.
+* `add /s Bob /c 2` : Adds a new student named "Bob" into the second class on the displayed class list.
 
-- `add /s John /c 1`
-- `add /s Bob /c 2`
+**Sample Usage:**
+
+1. Assuming you want to add a student named "John" into the Class "CS2103T", and the class index in the displayed list is "1".
+2. Enter the following commands:
+   ````
+   list
+   add /s John /c 1
+   ````
+3. The result box will display the following message:
+   ````
+   Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
+   ````
+4. You have successfully added the student into the class `CS2103T`.
 
 <box type="info">
 
 **Information:**
-
-- Student name can only be alphabetical letters.
-- The index refers to the index number shown in the displayed class list.
-- The index **must be a positive integer** 1, 2, 3, ...
-- A default id "A0000000Z" will be assigned to the student.
+* Student name can only be alphabetical letters.
+* The index refers to the index number shown in the displayed class list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* A default id "A0000000Z" will be assigned to the student.
 
 </box>
 
@@ -480,21 +492,19 @@ Examples:
 
 **Caution:**
 
-- The class to add the student into must already exist.
+* The class to add the student into must already exist.
+* If you are currently viewing a different class from the one you are adding the student into, the `Ui` will update to show you the student list of the class you added the new student into.
 
 </box>
 
 <box type="tip">
 
 **Tip:**
-
-- You can edit the student's id using the [edit student command](#editing-a-student--edit-s) once you know the student's student number!
+* If you want to see the student show up in the student list of the class, perform a `view` command first. Be sure to remember the `CLASS_INDEX` though!
+* You can edit the student's id using the [edit student command](#editing-a-student-edit-s) once you know the student's student number!
+* You can also add a memo for a particular student using the same [edit student command](#editing-a-student-edit-s)!
 
 </box>
-
-Successful Output:
-
-`Added New Student: student_name; Id: A0000000Z; Memo:  to the class: CS`
 
 <br>
 
@@ -533,13 +543,13 @@ Student index provided is invalid
 
 <br>
 
-  <box type="info">
+<box type="info">
 
-  **Information:**
+**Information:**
 - CLASS_NAME is not case-sensitive
 - STUDENT_INDEX of a `Student` can be identified by [viewing the `Class`](#viewing-a-class--view)
 
-  </box>
+</box>
 
 <br>
 
@@ -547,12 +557,11 @@ Student index provided is invalid
 
 Edits an existing student from a specified class.
 
-Command Format: `edit /s STUDENT_INDEX /c CLASS_NAME [/n Name] [/id Id] [/m Memo]`
+**Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
-Examples:
-
-- `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to Bob.
-- `edit /s 2 /c CS2103T /id A0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
+**Examples:**
+* `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to "Bob".
+* `edit /s 2 /c CS2103T /id A0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
 
 Sample Usage:
 
