@@ -8,7 +8,7 @@
 [![CI Status](https://github.com/AY2324S1-CS2103T-T15-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2103T-T15-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2324S1-CS2103T-T15-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2324S1-CS2103T-T15-3/tp)
 
-![Ui](images/UiMockup.png)
+![Ui](images/Ui.png)
 
 EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records.
 
