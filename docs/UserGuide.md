@@ -352,6 +352,8 @@ Memo: NEW_MEMO
 
 ### Marking a student present : `mark`
 
+Marks your student present for your current lesson.
+
 **Command Format**: `mark /s STUDENT_INDEX /c CLASS_NAME`
 
 **Examples**
@@ -410,6 +412,8 @@ You have marked Jamie present!
 
 ### Marking a student absent : `unmark`
 
+Marks your student absent for your current lesson.
+
 **Command Format**: `unmark /s STUDENT_INDEX /c CLASS_NAME`
 
 **Examples**
@@ -459,6 +463,8 @@ Jamie has been marked absent!
 <br>
 
 ### Marking all students in a class present : `markall`
+
+Marks all your students present for your current lesson in your class.
 
 **Command Format**: `markall /c CLASS_INDEX`
 
