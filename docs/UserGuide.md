@@ -366,7 +366,7 @@ Memo: NEW_MEMO
 view /c 1
 mark /s 2 /c CS2103T
 ```
-3. The result box will display the following message upon success
+3. The result box will display the following message upon success:
 ```
 You have marked Jamie present!
 ```
