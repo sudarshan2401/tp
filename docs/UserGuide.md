@@ -478,8 +478,8 @@ All students in class CS2103T has been marked present!
 ```
 
 **Examples:**
-* `markall /c 1` : Marks all the student in the class at CLASS_INDEX 1 as present.
-* `markall /c 2` : Marks all the student in the class at CLASS_INDEX 2 as present.
+* `markall /c 1` : Marks all the student in your class at CLASS_INDEX 1 as present.
+* `markall /c 2` : Marks all the student in your class at CLASS_INDEX 2 as present.
 
 <box type="info">
 
