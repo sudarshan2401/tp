@@ -472,7 +472,7 @@ Marks all students in your class as being present. Use this command if all your 
 
 **Sample Usage**:
 
-1. Assuming you want to mark all your students in your CS2103T class present.
+1. If you want to mark all your students in your class CS2103T class, which is positioned at index 1 in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
