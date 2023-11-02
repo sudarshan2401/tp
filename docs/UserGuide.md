@@ -356,11 +356,11 @@ Memo: NEW_MEMO
 
 **Examples**
 * `mark /s 2 /c CS2103T` : Marks the 2nd student in your class CS2103T as present.
-* `mark /s 3 /c CS2102` : Marks the student in your class CS2102 as present.
+* `mark /s 3 /c CS2102` : Marks the 3rd student in your class CS2102 as present.
 
 **Sample Usage**:
 
-1. Assuming you want to mark the 2nd Student in your class CS2103T as present
+1. If you want to mark the 2nd student in your class CS2103T, which is positioned at index 1 in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
@@ -394,7 +394,7 @@ You have marked Jamie present!
 
 **Tip:**
 
-* If all your students are present, use our `markall` command instead!
+* If all your students are present, use our [markall](#marking-all-students-attendance-in-your-class-as-present-markall) command instead!
 
 </box>
 
@@ -403,7 +403,7 @@ You have marked Jamie present!
 
 **Unsuccessful Output:**
 * Index is not a non-zero unsigned integer.
-* The Class name (CS1234) you provided does not exist!
+* The Class name (CLASS_NAME) you provided does not exist!
 * STUDENT_NAME has already been marked present!
 
 <br>
@@ -414,11 +414,11 @@ You have marked Jamie present!
 
 **Examples**
 * `unmark /s 2 /c CS2103T` : Marks the 2nd student in your class CS2103T as absent.
-* `unmark /s 4 /c CS2102` : Marks the 4th student in your class CS2103T as absent.
+* `unmark /s 4 /c CS2102` : Marks the 4th student in your class CS2102 as absent.
 
 **Sample Usage**
 
-1. Assuming you want to mark the 2nd student in your class CS2103T.
+1. If you want to mark the 2nd student in your class CS2103T, which is positioned at index 1 in your class list, as absent.
 2. Enter the following commands:
 ```
 view /c 1
@@ -449,12 +449,12 @@ Jamie has been marked absent!
 </box>
 
 **Successful Output:**
-* Emily has been marked absent!
+* STUDENT_NAME has been marked absent!
 
 **Unsuccessful Output:**
 * Index is not a non-zero unsigned integer.
-* The Class name (CS1234) you provided does not exist!
-* Emily has already been marked absent!
+* The Class name (CLASS_NAME) you provided does not exist!
+* STUDENT_NAME has already been marked absent!
 
 <br>
 
@@ -479,7 +479,7 @@ All students in class CS2103T has been marked present!
 
 **Examples:**
 * `markall /c 1` : Marks all the student in the class at CLASS_INDEX 1 as present.
-* `markall /c 2` : Marks all the student in the calss at CLASS_INDEX 2 as present.
+* `markall /c 2` : Marks all the student in the class at CLASS_INDEX 2 as present.
 
 <box type="info">
 
