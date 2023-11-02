@@ -10,6 +10,7 @@ Here is a glimpse of what EduTrack looks like!
 You should expect **EduTrack** to be able to manage:
 * Student attendance
 * Additional notes for each student
+* Student class participation
 
 ### Installation:
 * Ensure you have java 11 installed in your local computer (Download [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) if you have yet to do so!)
