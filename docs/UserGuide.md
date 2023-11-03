@@ -36,9 +36,9 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
      - [Setting number of lessons of a class: `setlesson /c`](#setting-number-of-lessons-of-a-class-setlesson-c)
      - [Starting a lesson : `startlesson /c`](#starting-a-lesson-startlesson-c)
-     - [Marking a student present : `mark`](#marking-your-students-attendance-as-present-mark)
-     - [Marking a student absent : `unmark`](#marking-all-students-attendance-in-your-class-as-present-markall)
-     - [Marking all students present : `markall`](#marking-your-students-attendance-as-absent-unmark)
+     - [Marking a student present : `mark`](#marking-a-student-present-mark)
+     - [Marking a student absent : `unmark`](#marking-a-student-absent-unmark)
+     - [Marking all students in a class present : `markall`](#marking-all-students-in-a-class-present-markall)
    - [Student commands](#student-commands)
      - [Adding a student : `add /s`](#adding-a-student-add-s)
      - [Removing a student : `remove /s`](#removing-a-student-remove-s)
@@ -396,7 +396,7 @@ You have marked Jamie present!
 
 **Tip:**
 
-* If all your students are present, use our [markall](#marking-all-students-attendance-in-your-class-as-present-markall) command instead!
+* If all your students are present, use our [markall](#marking-all-students-in-a-class-present-markall) command instead!
 
 </box>
 
