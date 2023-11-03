@@ -219,25 +219,36 @@ CS2103T has been added
 
 ### Removing a class : `remove /c`
 
-Removes an existing class from the list of classes.
+Removes an existing class from your list of classes.
 
 **Command Format:** `remove /c CLASS_INDEX`
 
-- CLASS_INDEX must be a valid positive integer shown in the displayed class list
-- CLASS_NAME must be the name of a class that already exists
-
 **Examples:**
+* `remove /c 1` : Removes your class at CLASS_INDEX 1 in the class list.
+* `remove /c 2` : Removes your class at CLASS_INDEX 2 in the class list.
 
-- `remove /c 1`
+<box type="info">
+
+**Information:**
+
+* CLASS_INDEX must be a valid positive integer shown in the displayed class list.
+
+</box>
+
+<box type="warning">
+
+**Caution**
+
+* CLASS_NAME must be the name of a class that already exists.
+
+</box>
 
 **Successful Output:**
-
-- CLASS_NAME has been removed
+* CLASS_NAME has been removed
 
 **Unsuccessful Output:**
-
-- CLASS_NAME does not exist
-- Class name not specified
+* CLASS_NAME does not exist
+* Class name not specified
 
 <br>
 
@@ -339,78 +350,166 @@ Memo: NEW_MEMO
 
 <br>
 
-### Marking your student's attendance as present : `mark`
+### Marking a student present : `mark`
+
+Marks your student present for your current lesson.
 
 **Command Format**: `mark /s STUDENT_INDEX /c CLASS_NAME`
 
-- Both STUDENT_INDEX and CLASS_NAME are compulsory
-- STUDENT_INDEX must be a valid positive integer shown in the displayed student list
-- CLASS_NAME is not case-sensitive
-- CLASS_NAME must be the name of a class that already exists
-- Selected should have been marked absent
-
 **Examples**
+* `mark /s 2 /c CS2103T` : Marks the 2nd student in your class CS2103T as present.
+* `mark /s 3 /c CS2102` : Marks the 3rd student in your class CS2102 as present.
 
-- mark /s 2 /c CS2103T
+**Sample Usage**:
+
+1. If you want to mark the 2nd student in your class CS2103T, which is positioned at index 1 in your class list, as present.
+2. Enter the following commands:
+```
+view /c 1
+mark /s 2 /c CS2103T
+```
+3. The result box will display the following message upon success:
+```
+You have marked Jamie present!
+```
+
+<box type="info">
+
+**Information:**
+
+* Both STUDENT_INDEX and CLASS_NAME are compulsory.
+* STUDENT_INDEX must be a valid positive integer shown in the displayed student list.
+* CLASS_NAME is not case-sensitive.
+* CLASS_NAME must be the name of a class that already exists.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The student you want to mark should not already be marked present.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+
+* If all your students are present, use our [markall](#marking-all-students-attendance-in-your-class-as-present-markall) command instead!
+
+</box>
 
 **Successful Output:**
-
-- STUDENT_NAME has been marked present!
+* STUDENT_NAME has been marked present!
 
 **Unsuccessful Output:**
-
-- Index is not a non-zero unsigned integer
-- The Class name (CS9999) you provided does not exist!
-- STUDENT_NAME has already been marked present!
+* Index is not a non-zero unsigned integer.
+* The Class name (CLASS_NAME) you provided does not exist!
+* STUDENT_NAME has already been marked present!
 
 <br>
 
-### Marking your student's attendance as absent : `unmark`
+### Marking a student absent : `unmark`
+
+Marks your student absent for your current lesson.
 
 **Command Format**: `unmark /s STUDENT_INDEX /c CLASS_NAME`
 
-- Both STUDENT_INDEX and CLASS_NAME are compulsory
-- CLASS_INDEX must be a valid positive integer shown in the displayed student list
-- CLASS_NAME is not case-sensitive
-- CLASS_NAME must be the name of a class that already exists
-- Selected student should have been marked present
-
 **Examples**
+* `unmark /s 2 /c CS2103T` : Marks the 2nd student in your class CS2103T as absent.
+* `unmark /s 4 /c CS2102` : Marks the 4th student in your class CS2102 as absent.
 
-- unmark /s 2 /c CS2103T
+**Sample Usage**
+
+1. If you want to mark the 2nd student in your class CS2103T, which is positioned at index 1 in your class list, as absent.
+2. Enter the following commands:
+```
+view /c 1
+mark /s 2 /c CS2103T
+```
+3. Upon success, the result box will display the following message:
+```
+Jamie has been marked absent!
+```
+
+<box type="info">
+
+**Information:**
+
+* Both STUDENT_INDEX and CLASS_NAME are compulsory.
+* CLASS_INDEX must be a valid positive integer shown in the displayed student list.
+* CLASS_NAME is not case-sensitive.
+* CLASS_NAME must be the name of a class that already exists.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The student you want to unmark should not already be marked absent.
+
+</box>
 
 **Successful Output:**
-
-- Emily has been marked absent!!
+* STUDENT_NAME has been marked absent!
 
 **Unsuccessful Output:**
-
-- Index is not a non-zero unsigned integer
-- The Class name (CS9999) you provided does not exist!
-- Emily has already been marked absent!
+* Index is not a non-zero unsigned integer.
+* The Class name (CLASS_NAME) you provided does not exist!
+* STUDENT_NAME has already been marked absent!
 
 <br>
 
-### Marking all student's attendance in your class as present : `markall`
+### Marking all students in a class present : `markall`
+
+Marks all your students present for your current lesson in your class.
 
 **Command Format**: `markall /c CLASS_INDEX`
 
-Marks all student in your class as being present. Use this if all your students are present for your current lesson.
+Marks all students in your class as being present. Use this command if all your students are present for your current lesson.
 
-- CLASS_INDEX is compulsory
-- CLASS_INDEX must be a valid positive integer shown in the displayed class list
+**Sample Usage**:
 
-**Examples**
+1. If you want to mark all your students in your class CS2103T class, which is positioned at index 1 in your class list, as present.
+2. Enter the following commands:
+```
+view /c 1
+markall /c 1
+```
+3. Upon success, the result box will display the following message:
+```
+All students in class CS2103T has been marked present!
+```
 
-- markall /c 1
+**Examples:**
+* `markall /c 1` : Marks all the student in your class at CLASS_INDEX 1 as present.
+* `markall /c 2` : Marks all the student in your class at CLASS_INDEX 2 as present.
+
+<box type="info">
+
+**Information:**
+
+* CLASS_INDEX is compulsory.
+* CLASS_INDEX must be a valid positive integer shown in the displayed class list.
+* Students who have already been marked present will not be affected by this command.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+
+* You can use `markall` in conjunction with `unmark` if most of your students are present, you can save more time doing it this way.
+
+</box>
 
 **Successful Output:**
-
-- Successfully marked all students present in CLASS_NAME!
+* Successfully marked all students present in CLASS_NAME!
 
 **Unsuccessful Output:**
-
-- Class index provided is invalid
+* Class index provided is invalid!
 
 <br>
 
