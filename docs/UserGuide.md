@@ -464,11 +464,9 @@ Jamie has been marked absent!
 
 ### Marking all students in a class present : `markall`
 
-Marks all your students present for your current lesson in your class.
+Marks all students in your class as being present. Use this command if all your students are present for your current lesson.
 
 **Command Format**: `markall /c CLASS_INDEX`
-
-Marks all students in your class as being present. Use this command if all your students are present for your current lesson.
 
 **Sample Usage**:
 
