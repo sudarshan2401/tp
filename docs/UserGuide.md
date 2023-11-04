@@ -239,16 +239,15 @@ Removes an existing class from your list of classes.
 
 **Caution**
 
-* CLASS_NAME must be the name of a class that already exists.
+* CLASS_INDEX selected must be within the class list.
 
 </box>
 
 **Successful Output:**
-* CLASS_NAME has been removed
+* Deleted Class: CLASS_NAME
 
 **Unsuccessful Output:**
-* CLASS_NAME does not exist
-* Class name not specified
+* Class index provided is invalid
 
 <br>
 
