@@ -8,6 +8,7 @@ import java.util.Objects;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
@@ -160,8 +161,13 @@ public class Student {
      * Marks a student as present for the current lesson.
      *
      * @throws StudentAlreadyMarkedPresent If the Student has already been marked present
+     * @throws AttendanceDiscrepancy If the marking of Student's attendance causes current to
+     * exceed class total attendance
      */
-    public void markStudentPresent() throws StudentAlreadyMarkedPresent {
+    public void markStudentPresent() throws StudentAlreadyMarkedPresent, AttendanceDiscrepancy {
+        if (this.lessonsAttended.getTotalLessons() >= studentClass.getTotalLessons()) {
+            throw new AttendanceDiscrepancy();
+        }
         this.currentLessonAttendance.setPresent();
         this.lessonsAttended.incrementLessons();
     }

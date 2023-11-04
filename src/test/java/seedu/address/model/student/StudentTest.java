@@ -13,6 +13,10 @@ import static seedu.address.testutil.TypicalStudents.DANIEL;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 import seedu.address.testutil.StudentBuilder;
@@ -55,9 +59,13 @@ public class StudentTest {
 
     @Test
     public void markStudentPresent_studentAttended_throwsStudentAlreadyMarkedPresentException() {
+        int STUDENT_BUILDER_VALUE = 5;
         // BOB attended lesson before
-        Student Bob = new StudentBuilder(BOB).build();
-        assertThrows(StudentAlreadyMarkedPresent.class, () -> Bob.markStudentPresent());
+        Student bob = new StudentBuilder(BOB).build();
+        Class c = new Class(new ClassName("CS1101S"), new UniqueStudentList(), new Memo(" "), new Schedule());
+        bob.setStudentClass(c);
+        c.setTotalLessons(STUDENT_BUILDER_VALUE + 1);
+        assertThrows(StudentAlreadyMarkedPresent.class, () -> bob.markStudentPresent());
     }
 
     @Test
@@ -65,8 +73,12 @@ public class StudentTest {
         // bob has not attended lesson before
         Student bob = new StudentBuilder().withName(VALID_NAME_BOB)
                 .withCurrentLessonAttendance(false)
-                .withLessonsAttended(5)
+                .withLessonsAttended(0)
                 .build();
+        Class c = new Class(new ClassName("CS1101S"), new UniqueStudentList(), new Memo(" "), new Schedule());
+        bob.setStudentClass(c);
+        c.startLesson();
+        bob.startNewLesson();
         assertDoesNotThrow(() -> bob.markStudentPresent());
     }
 

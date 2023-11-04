@@ -13,6 +13,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
@@ -33,6 +34,8 @@ public class MarkStudentPresentCommand extends Command {
     public static final String MESSAGE_STUDENT_ALREADY_MARKED = "%s has already been marked present!";
     public static final String MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS = "%s sucessfully marked present!";
     public static final String MESSAGE_MISSING_CLASS_NAME = "The Class name (%s) you provided does not exist!";
+    public static final String MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL = "You should start a new lesson for %s!\n" +
+            "Existing attendance cannot be larger than it's total!";
     public final Index targetStudentIndex;
     private ClassName className;
 
@@ -60,7 +63,11 @@ public class MarkStudentPresentCommand extends Command {
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,
                     Messages.formatStudent(studentToMark)));
-        } catch (ClassNotFoundException e) {
+        } catch (AttendanceDiscrepancy e) {
+            throw new CommandException(String.format(MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL,
+                    Messages.formatClass(studentClass)));
+        }
+        catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,

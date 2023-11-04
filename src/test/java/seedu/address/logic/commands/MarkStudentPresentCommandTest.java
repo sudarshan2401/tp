@@ -30,6 +30,7 @@ public class MarkStudentPresentCommandTest {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
         Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
+        CS2109.setTotalLessons(10);
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(true).withLessonsAttended(4).build();
         model.addStudent(studentToRemove);
@@ -50,6 +51,7 @@ public class MarkStudentPresentCommandTest {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
         Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
+        CS2109.setTotalLessons(10);
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(4).build();
         model.addStudent(studentToRemove);
