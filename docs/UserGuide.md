@@ -60,8 +60,11 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
 2. Download the latest `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your EduTrack.
 4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> ![Ui](images/quickstart.png)
-5. Type the command in the command box and press `Enter` to execute it. eg. typing **`help`** and `Enter` again will open the help window.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+   
+![Ui](images/quickstart.png) <br>
+
+5. Type the command in the command box and press `Enter` to execute it. eg. typing `help` and `Enter` again will open the help window.<br>
    Some example commands you can try:
    - `list` : Lists all classes.
    - `view /c 1` : Lists all students in the first class in the list.
@@ -79,33 +82,42 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
 
 This guide is structured in a manner that lets you find what you need fast and easily. To jump to various sections, you can refer to the [Table of Contents](#table-of-contents).
 
-In the following subsection, you can find several tips that could be beneficial when reading this guide. The next section, documents the _main features_ that **EduTrack** offers and provides you instructions on how to use them!
+In the following subsection, you can find several tips that could be beneficial when reading this guide. The [next section](#features), documents the _main features_ that **EduTrack** offers and provides you instructions on how to use them!
+
+<br>
 
 ### Reading this user guide
 
-#### Common icons
+In this section, we will provide you with essential information to help you understand this user guide effectively.
 
+#### Common icons
 Here are the common icons that is used throughout this user guide.
 
 **Additional Information**<br>
-Text that appear in an information box indicates additional information that is useful to know.
+The text displayed in an information box indicates additional details that you might find useful to know while using the commands.
 
 <box type="info">
-    **Information:** Example additional information.
+
+**Information:** Example additional information.
+
 </box>
 
 **Caution**<br>
-Text that appear in a caution box should be followed carefully, else unintended consequences might arise.
+The text displayed in a caution box indicates what should be followed carefully, else unintended consequences might arise.
 
 <box type="warning">
-    **Caution:** Example warning.
+
+**Caution:** Example warning.
+
 </box>
 
 **Tip**<br>
-Text that appear in a tip box are useful for improving your user experience with EduTrack.
+The text displayed in a tip box indicates handy tips to enhance your user experience with EduTrack.
 
 <box type="tip">
-    **Tip:** Example tip.
+
+**Tip:** Example tip.
+
 </box>
 
 #### Common terms
@@ -140,12 +152,15 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 Most commands in the user guide require various parameters. You can find their constraints in the table below
 
-| Parameters       | Constraints                                                                                                                                                                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLASS_NAME       | A single-word string consists of any characters and not case-sensitive.                                                                                                                                                                            |
-| CLASS_INDEX      | A valid positive integer shown in displayed class list.                                                                                                                                                                                            |
-| CLASS_MEMO       | A string consists of any characters.                                                                                                                                                                                                               |
-| CLASS_SCHEDULE   | A string that follows the format `day, HH:MM-HH:MM` <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
+| Parameters       | Constraints                                                                                                                                                                                                                                         |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLASS_NAME       | A single-word string consists of any characters and not case-sensitive. <br> When CLASS_NAME is displayed on the screen, it will always be in uppercase.                                                                                            |
+| CLASS_INDEX      | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
+| CLASS_MEMO       | A string consists of any characters.                                                                                                                                                                                                                |
+| CLASS_SCHEDULE   | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
+|                  |                                                                                                                                                                                                                                                     |
+|                  |                                                                                                                                                                                                                                                     |
+|                  |                                                                                                                                                                                                                                                     |
 
 <br>
 
@@ -161,7 +176,7 @@ The features are broken down into their following subsections:
 2. [Student commands](#student-commands)
 3. [Miscellaneous commands](#miscellaneous-commands)
 
-## Class commands
+## Class commands :school:
 
 <br>
 
@@ -185,11 +200,11 @@ Adds a new class to your list of classes. This feature allows you to manage mult
 
 **Sample Usage:**
 
-1. Assuming you want to add a new class named "CS2030S".
+1. Assuming you want to add a new class named "CS2103T".
 2. Enter the following command:
 
 ````
-add /c cs2030s
+add /c cs2103t
 ````
 
 3. The result box will display the following message:
@@ -280,7 +295,7 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 
 Edits your class information at the specified index. You are able to update the class name, class memo and class schedule. This will help keep your class information up-to-date.
 
-Command Format: `edit /c CLASS_INDEX /n CLASS_NAME /m CLASS_MEMO /t CLASS_SCHEDULE`
+Command Format: `edit /c CLASS_INDEX [/n CLASS_NAME] [/m CLASS_MEMO] [/t CLASS_SCHEDULE]`
 
 **Examples:**
 * `edit /c 1 /n cs2100` will update the class name to "CS2100".
@@ -291,11 +306,7 @@ Command Format: `edit /c CLASS_INDEX /n CLASS_NAME /m CLASS_MEMO /t CLASS_SCHEDU
 
 1. Assuming you want to edit the name of the second class to "CS2040S". This is what your original class looks like, you can see this when you enter `view /c 2`:
 
-````
-Current class: CS2100
-Schedule: tue, 10:00-12:00
-Memo:
-````
+![](images/editClassUsage_1.png)
 
 2. Enter the following command:
 
@@ -305,11 +316,7 @@ edit /c 2 /n cs2040s
 
 3. The result box will display the following message:
 
-````
-Edited class: CS2040S
-Schedule: tue, 10:00-12:00
-Memo:
-````
+![](images/editClassUsage_2.png)
 
 4. You have successfully edited the class name.
 
@@ -544,7 +551,6 @@ as absent so that you can mark attendance.
 <box type="info">
 
 **Information:**
-- CLASS_NAME is not case-sensitive
 - Class must already exist
 
 </box>
@@ -589,7 +595,6 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 <box type="info">
 
 **Information:**
-- CLASS_NAME is not case-sensitive
 - NUMBER_OF_LESSONS takes numbers such as `0`,`1`,`2`,`3`
 - NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`
 - NUMBER_OF_LESSONS must be at least `0`.
@@ -607,7 +612,7 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 
 <br>
 
-## Student commands
+## Student commands :mortar_board:
 
 ### Adding a student : `add /s`
 
@@ -701,7 +706,6 @@ Student index provided is invalid
 <box type="info">
 
 **Information:**
-- CLASS_NAME is not case-sensitive
 - STUDENT_INDEX of a `Student` can be identified by [viewing the `Class`](#viewing-a-class--view)
 
 </box>
@@ -712,7 +716,7 @@ Student index provided is invalid
 
 Edits an existing student from a specified class.
 
-**Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
+**Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
 **Examples:**
 * `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to "Bob".
@@ -756,15 +760,21 @@ Sample Usage:
 
 <br>
 
-### Miscellaneous commands
+### Miscellaneous commands :sparkles:
 
 <br>
 
 ### Viewing help : `help`
 
-Receives instruction on how to access the help page when you need assistance while using EduTrack.
+Receives instruction on how to access EduTrack's user guide when you need assistance while using the app.
 
 **Command Format:** `help`
+
+**Successful output:**
+
+Opened help window
+
+![Help message box](images/helpMessage.png)
 
 <br>
 
@@ -817,17 +827,17 @@ Coming soon...
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                                                                                           |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **Eg:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `add /s John /c CS2103T` <br><br> **Adding a list of students** <br> Coming soon |
-| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_NAME` <br> **Eg:** `remove /c CS2103T` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_NAME  /c CLASS_NAME` <br> **Eg:** `remove /s John /c CS2103T`                                         |
-| **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **Eg:** `view /c 1`                                                                                                                                                                                       |
-| **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX /n NEW_CLASS_NAME /m NEW_CLASS_MEMO /t NEW_CLASS_SCHEDULE` <br> **Eg:** `edit /c 2 /m submit marking report`                                                                                                    |
-| **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `mark /s 1 /c CS2103T`                                                                                                                                               |
-| **unmark**      | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **Eg:** `unmark /s 1 /c CS2103T`                                                                                                                                            |
-| **markall**     | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **Eg:** `markall /c 1`                                                                                                                                                    |
-| **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **Eg:** `startlesson /c CS2103T`                                                                                                                                                       |
-| **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **Eg:** `setlesson /c CS2103T /l 5`                                                                                                                     |
+| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                     |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students** <br> Coming soon                                                                         |
+| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 1` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX  /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                        |
+| **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                |
+| **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` <br> **E.g:** `edit /c 2 /m submit marking report` <br> **Editing a student:** <br> **Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]` <br> **E.g:** `edit /s 1 /c cs2103t /id A1234567W` |
+| **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `mark /s 1 /c CS2103T`                                                                                                                                                                                                                        |
+| **unmark**      | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `unmark /s 1 /c CS2103T`                                                                                                                                                                                                                     |
+| **markall**     | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **E.g:** `markall /c 1`                                                                                                                                                                                                                             |
+| **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **E.g:** `startlesson /c CS2103T`                                                                                                                                                                                                                                |
+| **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **E.g:** `setlesson /c CS2103T /l 5`                                                                                                                                                                                              |
 
 
 ---
