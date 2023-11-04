@@ -22,7 +22,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             return new RemoveCommand();
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format("invalid msg placeholder", RemoveCommand.MESSAGE_USAGE), pe);
+                    String.format("Invalid command format! \n%s", RemoveCommand.MESSAGE_USAGE));
         }
     }
 }

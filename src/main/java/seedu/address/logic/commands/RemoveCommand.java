@@ -13,23 +13,23 @@ public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes a specified type of object from its respective storage"
+    public static final String MESSAGE_USAGE =
+            "Remove : Removes either a Class from list or a Student from a Class"
             // Removing a student from a class
-            + "\n"
+            + "\n\n"
             + "To remove a student from a class:\n"
             + "Parameters: "
-            + PREFIX_STUDENT + " STUDENT_NAME "
+            + PREFIX_STUDENT + " STUDENT_INDEX "
             + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT + " John Doe "
+            + PREFIX_STUDENT + " 1 "
             + PREFIX_CLASS + " cs2103t"
             + "\n\n"
 
             // Removing a class
             + "To remove a class: \n"
-            + "Parameters:"
+            + "Parameters: "
             + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
