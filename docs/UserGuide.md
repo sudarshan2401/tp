@@ -4,9 +4,9 @@ title: "User Guide"
 pageNav: 3
 ---
 
-# EduTrack User Guide
+# EduTrack User Guide :book:
 
-EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records.
+EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records. :sunglasses:
 
 Whether you find yourself juggling the management of numerous students or simply require swift access to individual student information, EduTrack equips you with the tools to easily organize your classes.
 
@@ -22,6 +22,7 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
 
 1. [Quick start](#quick-start)
 2. [About](#about)
+   - [EduTrack's Graphical User Interface](#edutracks-graphical-user-interface)
    - [Structure of this user guide](#structure-of-this-user-guide)
    - [Reading this user guide](#reading-this-user-guide)
      - [Common icons](#common-icons)
@@ -60,8 +61,8 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
 2. Download the latest `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your EduTrack.
 4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and use the `java -jar EduTrack.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
-   
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Refer to [EduTrack's Graphical User Interface](#edutracks-graphical-user-interface) if you want to learn more about EduTrack's interface.
+
 ![Ui](images/quickstart.png) <br>
 
 5. Type the command in the command box and press `Enter` to execute it. eg. typing `help` and `Enter` again will open the help window.<br>
@@ -78,7 +79,27 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
 
 ## About
 
-### Structure of this user guide
+### EduTrack's Graphical User Interface
+
+EduTrack's user interface is designed with simplicity and efficiency in mind, featuring two primary displays:
+
+1. **Overview of All Classes**
+
+- **Command box:** Where you can enter the commands.
+- **Command result output:** The resulting message will be shown here.
+- **Class list:** Displays the list of all your classes
+
+![](images/classListDisplay.png)
+
+2. **Overview of a Specific Class**
+
+- **Class information:** Displays the details of your selected class.
+- **Student list:** Displays the list of all students in your selected class.
+
+![](images/specificClassDisplay.png)
+
+
+### Structure of This User Guide
 
 This guide is structured in a manner that lets you find what you need fast and easily. To jump to various sections, you can refer to the [Table of Contents](#table-of-contents).
 
@@ -86,11 +107,11 @@ In the following subsection, you can find several tips that could be beneficial 
 
 <br>
 
-### Reading this user guide
+### Reading This User Guide
 
 In this section, we will provide you with essential information to help you understand this user guide effectively.
 
-#### Common icons
+#### Common Icons
 Here are the common icons that is used throughout this user guide.
 
 **Additional Information**<br>
@@ -120,30 +141,30 @@ The text displayed in a tip box indicates handy tips to enhance your user experi
 
 </box>
 
-#### Common terms
+#### Common Terms
 
 Here are the common terms that is used throughout this user guide.
 
-| Terms     | Meaning                                                                        |
-| --------- | ------------------------------------------------------------------------------ |
-| Command   | The instruction you enter into the application                                 |
-| Parameter | The additional information you provide for the instruction you intend to enter |
+| Terms      | Meaning                                                                         |
+|------------|---------------------------------------------------------------------------------|
+| Command    | The instruction you enter into the application.                                 |
+| Parameter  | The additional information you provide for the instruction you intend to enter. |
 
 #### Command Format
 
 * Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
-  e.g. in `add /c CLASS_NAME`, `CLASS_NAME` is a parameter which can be used as `add /c CS2103T-T15-3`.
+  E.g. in `add /c CLASS_NAME` command, you must provide the `CLASS_NAME`.
 
-* Words in `UPPER_CASE` that are wrapped in square brackets are optional parameters. <br>
-  E.g. in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m CLASS_MEMO] [/t CLASS_SCHEDULE`],
+* Words in `UPPER_CASE` enclosed in square brackets are optional parameters. <br>
+  E.g: in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command, `CLASS_NAME`, `MEMO`, `SCHEDULE` are optional parameters.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `/n CLASS_NAME /m MEMO`, `/m MEMO /n CLASS_NAME` is also acceptable.
+  E.g. if the command specifies `/n CLASS_NAME /m MEMO`, `/m MEMO /n CLASS_NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
 ignored.<br>
 
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  E.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -152,15 +173,16 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 Most commands in the user guide require various parameters. You can find their constraints in the table below
 
-| Parameters       | Constraints                                                                                                                                                                                                                                         |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLASS_NAME       | A single-word string consists of any characters and not case-sensitive. <br> When CLASS_NAME is displayed on the screen, it will always be in uppercase.                                                                                            |
-| CLASS_INDEX      | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
-| CLASS_MEMO       | A string consists of any characters.                                                                                                                                                                                                                |
-| CLASS_SCHEDULE   | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
-|                  |                                                                                                                                                                                                                                                     |
-|                  |                                                                                                                                                                                                                                                     |
-|                  |                                                                                                                                                                                                                                                     |
+| Parameters          | Constraints                                                                                                                                                                                                                                         |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLASS_NAME          | A single-word string consists of any characters and not case-sensitive. <br> When CLASS_NAME is displayed on the screen, it will always be in uppercase.                                                                                            |
+| CLASS_INDEX         | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
+| STUDENT_NAME        | A string consists of alphanumeric characters.                                                                                                                                                                                                       |
+| STUDENT_INDEX       | A valid positive integer shown in displayed student list.                                                                                                                                                                                           |
+| MEMO, PARTICIPATION | A string consists of any characters.                                                                                                                                                                                                                |
+| SCHEDULE            | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
+| ID                  | A string consists of alphanumeric characters, and it should begin with A and end with A-Z.                                                                                                                                                          |
+| NUMBER_OF_LESSONS   | A non-negative integer.                                                                                                                                                                                                                             |
 
 <br>
 
@@ -261,7 +283,7 @@ Removes an existing class from your list of classes.
 **Successful Output:**
 * CLASS_NAME has been removed
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 * CLASS_NAME does not exist
 * Class name not specified
 
@@ -295,7 +317,7 @@ Prints out the detailed information (class name, class schedule, enrolled studen
 
 Edits your class information at the specified index. You are able to update the class name, class memo and class schedule. This will help keep your class information up-to-date.
 
-Command Format: `edit /c CLASS_INDEX [/n CLASS_NAME] [/m CLASS_MEMO] [/t CLASS_SCHEDULE]`
+Command Format: `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]`
 
 **Examples:**
 * `edit /c 1 /n cs2100` will update the class name to "CS2100".
@@ -334,6 +356,8 @@ edit /c 2 /n cs2040s
 **Caution:**
 
 * The class to be edited must already exist.
+* You can edit any class while you are in the class list panel.
+* You are only able to edit the specific class you choose to view.
 
 </box>
 
@@ -346,9 +370,9 @@ edit /c 2 /n cs2040s
 </box>
 
 **Successful Output:**
-Edited class: NEW_CLASS_NAME
-Schedule: NEW_SCHEDULE
-Memo: NEW_MEMO
+Edited class: CLASS_NAME
+Schedule: SCHEDULE
+Memo: MEMO
 
 **Unsuccessful Outputs:**
 * Class does not exist
@@ -410,7 +434,7 @@ You have marked Jamie present!
 **Successful Output:**
 * STUDENT_NAME has been marked present!
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 * Index is not a non-zero unsigned integer.
 * The Class name (CLASS_NAME) you provided does not exist!
 * STUDENT_NAME has already been marked present!
@@ -462,7 +486,7 @@ Jamie has been marked absent!
 **Successful Output:**
 * STUDENT_NAME has been marked absent!
 
-**Unsuccessful Output:**
+**Unsuccessful Outputs:**
 * Index is not a non-zero unsigned integer.
 * The Class name (CLASS_NAME) you provided does not exist!
 * STUDENT_NAME has already been marked absent!
@@ -542,7 +566,11 @@ as absent so that you can mark attendance.
    ```
 4. You have successfully started a lesson in CS2103T.
 
-**Unsuccessful Output:**
+**Successful Output:**
+
+- CLASS_NAME started a new lesson!
+
+**Unsuccessful Outputs:**
 
 - Class name not specified
 - CLASS_NAME does not exist
@@ -587,7 +615,10 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
    ```
 4. You have successfully set the total number of  lessons in CS2103T to 5.
 
-**Unsuccessful Output:**
+**Successful Output:**
+- Successfully set the number of lessons in CLASS_NAME to NUMBER_OF_LESSONS!
+
+**Unsuccessful Outputs:**
 - Class name not specified
 - CLASS_NAME does not exist
 - Number of lessons must be at least 0.
@@ -693,6 +724,9 @@ Removes a student in your chosen class.
    ```
 4. You have successfully removed John from CS2103T.
 
+**Successful Output:**
+
+- STUDENT_NAME has been removed from CLASS_NAME
 
 **Unsuccessful Output:**
 ```
@@ -760,7 +794,7 @@ Sample Usage:
 
 <br>
 
-### Miscellaneous commands :sparkles:
+## Miscellaneous commands 🛠️
 
 <br>
 
@@ -770,9 +804,9 @@ Receives instruction on how to access EduTrack's user guide when you need assist
 
 **Command Format:** `help`
 
-**Successful output:**
+**Successful Output:**
 
-Opened help window
+- Opened help window
 
 ![Help message box](images/helpMessage.png)
 
@@ -821,7 +855,7 @@ There is no need to save manually.
 
 ## Known issues
 
-Coming soon...
+1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ---
 
