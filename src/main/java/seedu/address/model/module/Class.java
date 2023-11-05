@@ -211,6 +211,6 @@ public class Class {
 
     public String getClassInfo() {
         return "Current class: " + className.toString() + "\n" + "Schedule: " + classSchedule.toString()
-                + "\n" + "Class notes: " + classMemo.toString();
+                + "\n" + "Memo: " + classMemo.toString();
     }
 }
