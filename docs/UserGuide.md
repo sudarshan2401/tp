@@ -201,8 +201,6 @@ The features are broken down into their following subsections:
 
 ## Class commands :school:
 
-<br>
-
 ### Listing all classes : `list`
 
 Shows an instant overview list of all your existing classes. 
@@ -371,8 +369,11 @@ edit /c 2 /n cs2040s
 </box>
 
 **Successful Output:**
+
 Edited class: CLASS_NAME
+
 Schedule: SCHEDULE
+
 Memo: MEMO
 
 **Unsuccessful Outputs:**
@@ -732,11 +733,10 @@ Removes a student in your chosen class.
 - STUDENT_NAME has been removed from CLASS_NAME
 
 **Unsuccessful Output:**
-```
-Class name not specified
-CLASS_NAME does not exist
-Student index provided is invalid
-```
+
+- Class name not specified
+- CLASS_NAME does not exist
+- Student index provided is invalid
 
 <br>
 
@@ -799,8 +799,6 @@ Sample Usage:
 return to [Table of Contents](#table-of-contents)
 
 ## Miscellaneous commands 🛠️
-
-<br>
 
 ### Viewing help : `help`
 
