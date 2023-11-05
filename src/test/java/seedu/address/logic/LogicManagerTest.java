@@ -2,13 +2,7 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASSNAME;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -18,24 +12,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.common.Memo;
-import seedu.address.model.ReadOnlyEduTrack;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.ClassName;
-import seedu.address.model.module.Schedule;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
 import seedu.address.storage.JsonEduTrackStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");

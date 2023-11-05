@@ -59,12 +59,11 @@ public class StudentTest {
 
     @Test
     public void markStudentPresent_studentAttended_throwsStudentAlreadyMarkedPresentException() {
-        int STUDENT_BUILDER_VALUE = 5;
         // BOB attended lesson before
         Student bob = new StudentBuilder(BOB).build();
         Class c = new Class(new ClassName("CS1101S"), new UniqueStudentList(), new Memo(" "), new Schedule());
         bob.setStudentClass(c);
-        c.setTotalLessons(STUDENT_BUILDER_VALUE + 1);
+        c.setTotalLessons(6);
         assertThrows(StudentAlreadyMarkedPresent.class, () -> bob.markStudentPresent());
     }
 
