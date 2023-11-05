@@ -27,6 +27,8 @@ Given below are my contributions to the project.
 
 - **Highlights:** This enhancement helps users manage multiple classes in EduTrack. Once the new class is added successfully, EduTrack's GUI will automatically update the class list display.
 
+- **Pull request:** [#34](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/34)
+
 2. **Editing a class**
 
 - **What it does:**  This feature allows users to edit various attributes of an existing class, including its name, memo, and schedule. 
@@ -35,18 +37,20 @@ Given below are my contributions to the project.
 
 - **Highlights:** This enhancement helps users keep class information remains up-to-date and accurate.
 
-**Contributions to team-based tasks**:
+- **Pull request:** [#59](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/59)
+
 **Contributions to the UG:**
 
-- Added documentation for the features `adding a class` and `editing a class`
-- Modified existing documentation of `Miscellaneous features`
+- Added documentation for the features `adding a class` and `editing a class`: Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
+- Modified existing documentation of `Miscellaneous features`: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
 - Added the following sections: `Command Parameters`, `EduTrack's Graphical User Interface` 
-- Contributed in standardising language use.
+- Contributed in standardising language use: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
 
 **Contributions to the DG:**
-- Described the implementation of the features `adding a class` and `editing a class`
-- Added activity diagram, object diagram and sequence diagram of the feature `adding a class`
-- Added use cases for the features `adding a class` and `editing a class`.
+- Described the implementation of the feature `adding a class`: Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
+- Added activity diagram, object diagram and sequence diagram of the feature `adding a class`: : Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
+- Added target user profile, user stories, value proposition and non-functional requirements: Pull request [#26](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/26)
+- Added use cases for the features `adding a class` and `editing a class`: Pull request [#26](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/26)
 
 **Other contributions:**
 - Recorded product demos for `v1.2` and `v1.3`.

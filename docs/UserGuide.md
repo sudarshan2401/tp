@@ -30,7 +30,7 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
      - [Command Format](#command-format)
      - [Command Parameters](#command-parameters)
 3. [Features](#features)
-   - [Class Commands](#class-commands)
+   - [Class commands](#class-commands)
      - [Adding a class : `add /c`](#adding-a-class-add-c)
      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
