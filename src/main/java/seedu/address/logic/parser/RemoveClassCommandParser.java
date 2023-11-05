@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
@@ -33,8 +34,7 @@ public class RemoveClassCommandParser implements Parser<RemoveClassCommand> {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLASS).get());
             return new RemoveClassCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveClassCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
         }
     }
 

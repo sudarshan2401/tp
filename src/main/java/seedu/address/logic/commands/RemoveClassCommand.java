@@ -24,7 +24,7 @@ public class RemoveClassCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the class identified by the index number used in the displayed class list.\n"
-            + "Parameters: CLASSINDEX \n"
+            + "Parameters: CLASS_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REMOVE_CLASS_SUCCESS = "Deleted Class: %1$s";
