@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -11,9 +14,6 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Deletes a Class identified using index from the EduTrack.
