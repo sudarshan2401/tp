@@ -15,7 +15,7 @@ import seedu.address.model.module.ClassName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
+public class RemoveStudentCommandParser implements Parser<RemoveStudentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteCommand
