@@ -627,9 +627,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 <box type="info">
 
 **Information:**
-- NUMBER_OF_LESSONS takes numbers such as `0`,`1`,`2`,`3`
+- NUMBER_OF_LESSONS must be a valid non-negative integer such as `0`,`1`,`2`,`3`
 - NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`
-- NUMBER_OF_LESSONS must be at least `0`.
 - If a `Student`'s number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
     - Example: John's current attendance in CS2103T is 5/7. <br> If you call `setlesson /c CS2103T /l 3`, it helps to adjust John's attendance to 3/3.
 
@@ -872,7 +871,7 @@ There is no need to save manually.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students:** <br> Coming soon                                                                            |
+| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME /c CLASS_INDEX` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students:** <br> Coming soon                                                                            |
 | **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 1` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX  /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                            |
 | **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
 | **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` <br> **E.g:** `edit /c 2 /m submit marking report` <br><br> **Editing a student:** <br> **Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]` <br> **E.g:** `edit /s 1 /c cs2103t /id A1234567W` |

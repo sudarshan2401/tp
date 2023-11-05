@@ -1078,3 +1078,8 @@ Given below are instructions to test the app manually.
   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+1. Remove Student feature to display general message on restrictions of the input when user gives unhandled invalid input.
+2. Set Lesson feature to display general message on restrictions of the input when user gives unhandled invalid input.

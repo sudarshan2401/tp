@@ -149,6 +149,7 @@ public interface Model {
             throws StudentAlreadyMarkedPresent;
     void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
             throws StudentAlreadyMarkedAbsent;
+    void refreshStudentUI(Student student, Class studentClass, Student editedStudent);
     void startLessonForStudent(Student student, Class studentClass, Student editedStudent);
     boolean isValidAttendanceForStudent(Student student, Class studentClass);
     void startLesson(Class c);
