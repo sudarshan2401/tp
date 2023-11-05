@@ -44,17 +44,15 @@ public class EditStudentCommand extends Command {
             + "[" + PREFIX_ID + " STUDENT_ID] "
             + "[" + PREFIX_MEMO + " NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CLASS + " 1"
+            + PREFIX_CLASS + " 1 "
             + PREFIX_NAME + " John Doe "
-            + PREFIX_ID + " A0000000Z"
-            + PREFIX_MEMO + " Mischevious."
+            + PREFIX_ID + " A0000000Z "
+            + PREFIX_MEMO + " Mischevious. "
             + PREFIX_CLASSPARTICIPATION + " Answered 2 questions";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s from Class: %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This person already exists in the address book.";
-    public static final String MESSAGE_NO_STUDENT_LIST =
-            "Please perform a view command first to ensure the correct student is edited!";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in EduTrack.";
 
     private final Index studentIndex;
     private final ClassName studentClassName;
@@ -78,15 +76,10 @@ public class EditStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
-
-        if (studentIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
 
         try {
             Class studentClass = model.getClass(studentClassName);
-            Student studentToEdit = lastShownList.get(studentIndex.getZeroBased());
+            Student studentToEdit = studentClass.getStudentInClass(studentIndex);
             Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
             if (!studentToEdit.isSameStudent(editedStudent) && studentClass.hasStudentInClass(editedStudent)) {
@@ -97,11 +90,12 @@ public class EditStudentCommand extends Command {
             model.setStudentInClass(studentToEdit, editedStudent, studentClass);
             model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
 
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.formatStudent(editedStudent)));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+                    Messages.formatStudent(editedStudent), Messages.formatClass(studentClass)));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, studentClassName));
         } catch (StudentNotFoundException e) {
-            throw new CommandException(MESSAGE_NO_STUDENT_LIST);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
 

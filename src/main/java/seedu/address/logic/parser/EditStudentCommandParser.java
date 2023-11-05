@@ -14,6 +14,8 @@ import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
 
+import java.util.NoSuchElementException;
+
 /**
  * Parses input arguments and creates a new EditStudentCommand object
  */
@@ -36,7 +38,7 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
             studentClassName = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-        } catch (ParseException pe) {
+        } catch (ParseException | NoSuchElementException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
         }

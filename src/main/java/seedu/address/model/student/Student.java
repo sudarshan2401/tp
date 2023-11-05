@@ -27,6 +27,7 @@ public class Student {
 
     // Data fields
     private final Memo memo;
+    private Memo classParticipation;
 
     private Class studentClass = null;
 
@@ -34,8 +35,6 @@ public class Student {
     private CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
-
-    private Memo classParticipation;
 
     /**
      * Constructs a Student with Name and Index that represents one-based class index.
@@ -136,8 +135,6 @@ public class Student {
                 && otherStudent.getName().equals(getName())
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getMemo().equals(getMemo())
-                && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
-                && otherStudent.getLessonsAttended().equals(getLessonsAttended())
                 && otherStudent.getClassParticipation().equals(getClassParticipation());
     }
 
