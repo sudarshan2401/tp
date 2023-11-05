@@ -355,8 +355,7 @@ edit /c 2 /n cs2040s
 **Caution:**
 
 * The class to be edited must already exist.
-* You can edit any class while you are in the class list panel.
-* You are only able to edit the specific class you choose to view.
+* You can only edit a class while you are in the class list view, i.e. the view you see when you enter the [list](#listing-all-classes-list) command.
 
 </box>
 
