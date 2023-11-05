@@ -162,7 +162,7 @@ public class Student {
      *
      * @throws StudentAlreadyMarkedPresent If the Student has already been marked present
      * @throws AttendanceDiscrepancy If the marking of Student's attendance causes current to
-     * exceed class total attendance
+     *          exceed class total attendance
      */
     public void markStudentPresent() throws StudentAlreadyMarkedPresent, AttendanceDiscrepancy {
         if (this.lessonsAttended.getTotalLessons() >= studentClass.getTotalLessons()) {
