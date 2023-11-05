@@ -80,7 +80,9 @@ public class EduTrackParser {
     public Command parseCommand(String userInput) throws ParseException {
         String objectClass = "";
         final Matcher matcher;
-        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput.trim());
+        // removes any consecutive whitespaces and removes trailing/starting whitespaces
+        userInput = userInput.replaceAll("\\s+", " ").trim();
+        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput);
         if (tempMatcher.matches()) {
             objectClass = extractObjectClass(userInput);
             matcher = tempMatcher;
