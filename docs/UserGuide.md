@@ -590,9 +590,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 
 **Information:**
 - CLASS_NAME is not case-sensitive
-- NUMBER_OF_LESSONS takes numbers such as `0`,`1`,`2`,`3`
+- NUMBER_OF_LESSONS must be a valid non-negative integer such as `0`,`1`,`2`,`3`
 - NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`
-- NUMBER_OF_LESSONS must be at least `0`.
 - If a `Student`'s number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
     - Example: John's current attendance in CS2103T is 5/7. <br> If you call `setlesson /c CS2103T /l 3`, it helps to adjust John's attendance to 3/3.
 
