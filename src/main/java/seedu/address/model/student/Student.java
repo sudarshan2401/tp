@@ -123,8 +123,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name and id.
-     * This defines a weaker notion of equality between two students.
+     * Returns true if both students are the same.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -135,6 +134,8 @@ public class Student {
                 && otherStudent.getName().equals(getName())
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getMemo().equals(getMemo())
+                && otherStudent.getCurrentAttendance().equals(getCurrentAttendance())
+                && otherStudent.getLessonsAttended().equals(getLessonsAttended())
                 && otherStudent.getClassParticipation().equals(getClassParticipation());
     }
 
