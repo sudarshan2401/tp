@@ -226,6 +226,10 @@ public class Student {
         return this.currentLessonAttendance.toString();
     }
 
+    public boolean isPresentForLesson() {
+        return this.currentLessonAttendance.getIsPresent();
+    }
+
     /**
      * Obtain String representation of the total number of lessons attended this Student attended.
      *
