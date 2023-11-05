@@ -49,7 +49,7 @@ public class EditStudentCommand extends Command {
             + PREFIX_MEMO + " Mischevious. "
             + PREFIX_CLASSPARTICIPATION + " Answered 2 questions";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s from Class: %2$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in EduTrack.";
 
@@ -90,7 +90,7 @@ public class EditStudentCommand extends Command {
             model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
 
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
-                    Messages.formatStudent(editedStudent), Messages.formatClass(studentClass)));
+                    Messages.formatStudent(editedStudent)));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, studentClassName));
         } catch (StudentNotFoundException e) {
