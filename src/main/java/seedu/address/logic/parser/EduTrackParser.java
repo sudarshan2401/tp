@@ -141,9 +141,6 @@ public class EduTrackParser {
         case StartLessonCommand.COMMAND_WORD:
             return new StartLessonCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
 
