@@ -47,6 +47,7 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
    - [Miscellaneous commands](#miscellaneous-commands)
      - [Viewing help : `help`](#viewing-help-help)
      - [Exiting the program : `exit`](#exiting-the-program-exit)
+     - [Clearing all entries : `clear`](#clearing-all-entries-clear)
      - [Saving the data](#saving-the-data)
 4. [FAQ](#faq)
 5. [Known issues](#known-issues)
@@ -235,7 +236,7 @@ add /c cs2103t
 CS2103T has been added
 ````
 
-4. You have successfully added the class.
+4. You have successfully added the class. :tada:
 
 <box type="warning">
 
@@ -340,7 +341,7 @@ edit /c 2 /n cs2040s
 
 ![](images/editClassUsage_2.png)
 
-4. You have successfully edited the class name.
+4. You have successfully edited the class name. :tada:
 
 <box type="info">
 
@@ -564,7 +565,7 @@ as absent so that you can mark attendance.
    ```
    CS2103T started a new lesson!
    ```
-4. You have successfully started a lesson in CS2103T.
+4. You have successfully started a lesson in CS2103T. :tada:
 
 **Successful Output:**
 
@@ -613,7 +614,7 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
    ```
    Successfully set the number of lessons in CS2103T to 5!
    ```
-4. You have successfully set the total number of  lessons in CS2103T to 5.
+4. You have successfully set the total number of  lessons in CS2103T to 5. :tada:
 
 **Successful Output:**
 - Successfully set the number of lessons in CLASS_NAME to NUMBER_OF_LESSONS!
@@ -643,6 +644,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 
 <br>
 
+return to [Table of Contents](#table-of-contents)
+
 ## Student commands :mortar_board:
 
 ### Adding a student : `add /s`
@@ -667,7 +670,7 @@ Adds a new student to an existing class.
    ````
    Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
    ````
-4. You have successfully added the student into the class `CS2103T`.
+4. You have successfully added the student into the class `CS2103T`. :tada:
 
 <box type="info">
 
@@ -722,7 +725,7 @@ Removes a student in your chosen class.
    ```
    John has been removed from CS2103T
    ```
-4. You have successfully removed John from CS2103T.
+4. You have successfully removed John from CS2103T. :tada:
 
 **Successful Output:**
 
@@ -768,7 +771,7 @@ Sample Usage:
    ```
    Edited Student: John; Id: A010193Z; Memo:
    ```
-4. You have successfully edited the student's details.
+4. You have successfully edited the student's details. :tada:
 
 <box type="info">
 
@@ -791,8 +794,9 @@ Sample Usage:
 
 </box>
 
-
 <br>
+
+return to [Table of Contents](#table-of-contents)
 
 ## Miscellaneous commands 🛠️
 
@@ -833,11 +837,19 @@ Removes all your entries from EduTrack when you want to start fresh.
 
 </box>
 
+**Successful Output:**
+
+- EduTrack's data has been cleared!
+
 <br>
 
 ### Saving the data
 
 EduTrack's got your back. Your data is automatically saved on your hard disk after any command that changes the data, so no need to worry about saving manually.
+
+<br> 
+
+return to [Table of Contents](#table-of-contents)
 
 ---
 
@@ -861,17 +873,17 @@ There is no need to save manually.
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                     |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students** <br> Coming soon                                                                         |
-| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 1` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX  /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                        |
-| **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                |
-| **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` <br> **E.g:** `edit /c 2 /m submit marking report` <br> **Editing a student:** <br> **Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]` <br> **E.g:** `edit /s 1 /c cs2103t /id A1234567W` |
-| **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `mark /s 1 /c CS2103T`                                                                                                                                                                                                                        |
-| **unmark**      | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `unmark /s 1 /c CS2103T`                                                                                                                                                                                                                     |
-| **markall**     | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **E.g:** `markall /c 1`                                                                                                                                                                                                                             |
-| **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **E.g:** `startlesson /c CS2103T`                                                                                                                                                                                                                                |
-| **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **E.g:** `setlesson /c CS2103T /l 5`                                                                                                                                                                                              |
+| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students:** <br> Coming soon                                                                            |
+| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 1` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX  /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                            |
+| **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
+| **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` <br> **E.g:** `edit /c 2 /m submit marking report` <br><br> **Editing a student:** <br> **Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]` <br> **E.g:** `edit /s 1 /c cs2103t /id A1234567W` |
+| **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `mark /s 1 /c CS2103T`                                                                                                                                                                                                                            |
+| **unmark**      | **Marking your student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `unmark /s 1 /c CS2103T`                                                                                                                                                                                                                         |
+| **markall**     | **Marking all your students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **E.g:** `markall /c 1`                                                                                                                                                                                                                                 |
+| **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **E.g:** `startlesson /c CS2103T`                                                                                                                                                                                                                                    |
+| **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **E.g:** `setlesson /c CS2103T /l 5`                                                                                                                                                                                                  |
 
 
 ---
