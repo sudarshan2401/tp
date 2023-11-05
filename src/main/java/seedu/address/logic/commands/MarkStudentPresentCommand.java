@@ -34,7 +34,8 @@ public class MarkStudentPresentCommand extends Command {
     public static final String MESSAGE_STUDENT_ALREADY_MARKED = "%s has already been marked present!";
     public static final String MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS = "%s sucessfully marked present!";
     public static final String MESSAGE_MISSING_CLASS_NAME = "The Class name (%s) you provided does not exist!";
-    public static final String MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL = "You should start a new lesson for %s!\n" +
+    public static final String MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL = "You should start a new lesson for %s!" +
+            "\n" +
             "Existing attendance cannot be larger than it's total!";
     public final Index targetStudentIndex;
     private ClassName className;
