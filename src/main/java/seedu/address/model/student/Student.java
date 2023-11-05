@@ -179,7 +179,9 @@ public class Student {
      */
     public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
         this.currentLessonAttendance.setAbsent();
-        this.lessonsAttended.decrementLessons();
+        if (this.lessonsAttended.getTotalLessons() > 0) {
+            this.lessonsAttended.decrementLessons();
+        }
     }
 
     /**
