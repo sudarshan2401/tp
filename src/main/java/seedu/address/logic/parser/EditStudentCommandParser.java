@@ -9,12 +9,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
-
-import java.util.NoSuchElementException;
 
 /**
  * Parses input arguments and creates a new EditStudentCommand object

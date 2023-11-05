@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,15 +35,15 @@ public class EditStudentCommand extends Command {
     public static final String COMMAND_WORD = "edit /s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the records of the student identified "
-            + "by the index used in the displayed student list of a index-specified class. "
+            + "by the index used in the displayed student list of a specified class. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: /s STUDENT_INDEX, "
-            + "/c CLASS_INDEX "
+            + "/c CLASS_NAME "
             + "[" + PREFIX_NAME + " NAME] "
             + "[" + PREFIX_ID + " STUDENT_ID] "
             + "[" + PREFIX_MEMO + " NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CLASS + " 1 "
+            + PREFIX_CLASS + " T1 "
             + PREFIX_NAME + " John Doe "
             + PREFIX_ID + " A0000000Z "
             + PREFIX_MEMO + " Mischevious. "
