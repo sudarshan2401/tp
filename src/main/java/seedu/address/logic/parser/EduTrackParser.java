@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddClassCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -78,7 +77,9 @@ public class EduTrackParser {
     public Command parseCommand(String userInput) throws ParseException {
         String objectClass = "";
         final Matcher matcher;
-        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput.trim());
+        // removes any consecutive whitespaces and removes trailing/starting whitespaces
+        userInput = userInput.replaceAll("\\s+", " ").trim();
+        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput);
         if (tempMatcher.matches()) {
             objectClass = extractObjectClass(userInput);
             matcher = tempMatcher;
@@ -102,9 +103,6 @@ public class EduTrackParser {
         switch (commandWord) {
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);

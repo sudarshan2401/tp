@@ -19,6 +19,7 @@ import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
@@ -176,7 +177,7 @@ public class ModelManager implements Model {
 
     @Override
     public void markStudentPresent(Student student, Class studentClass, Student editedStudent)
-            throws StudentAlreadyMarkedPresent {
+            throws StudentAlreadyMarkedPresent, AttendanceDiscrepancy {
         editedStudent.markStudentPresent();
         eduTrack.setStudent(student, editedStudent);
         setStudentInClass(student, editedStudent, studentClass);
