@@ -29,16 +29,18 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Wrote tests for existing features to increase coverage by
       * 2.32% : [#44](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/44)
+      * 2.03% : [#138](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/138)
       
 * **Documentation**:
     * User Guide:
       * ##### v1.1
         1. Added and updated documentation of feature `removing a student`: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25), [\#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [\#67](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/67)
         2. Added and updated documentation of feature `starting a lesson`: [\#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [\#67](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/67)
+        3. Added and updated documentation of feature `setting number of lessons of a class`: [#85](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/85)
         4. Tweaked documentation of command format from original [UserGuide.md](https://github.com/nus-cs2103-AY2324S1/tp/blob/master/docs/UserGuide.md): [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
     * Developer Guide:
       * ##### v1.1
-        1. Added UML diagrams for implementation of `Remove Student` feature: [\#56](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/56), [\#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [\#67](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/67)
+        1. Added UML diagrams for implementation of `Remove Student` feature: [\#56](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/56), [\#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [\#67](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/67), [#144](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/144)
         2. Added use cases for `Remove a student`, `Modify an existing student record` and `Use auto-save feature`: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
         3. Added `Database` definition under glossary: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
 * **Contribution to team**:
@@ -47,7 +49,19 @@ Given below are my contributions to the project.
     * Preparing skeletal [documentation](https://docs.google.com/document/d/1nNcM_SvI3pcRtNDLubyRG98JFneY5IetiGIi4dhietE/edit?usp=sharing) before discussion
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#88](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/88), [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61), [#40](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/40), [#36](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/36)
-
-
+  * Reported [bugs & flaws](https://github.com/seanpzk/ped/issues) with extensive elaboration to ease process of fixing bug for the other team (taken from Practical Exam Dry Run).
+  
+* **Key Contribution to the Developer Guide**:
+  * Implementation of [Remove Student feature](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#remove-student-feature)
+  * UML Diagrams 
+    * ##### Remove Student Mechanism
+      <puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
+    * ##### Relationship between objects involved
+      <puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
+    * ##### Execution of a `RemoveStudentCommand`
+      <puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
+    * ##### Remove Student Workflow
+      <puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
+  
 
 
