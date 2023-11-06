@@ -86,4 +86,8 @@ public class CommandResult {
     public boolean isList() {
         return this.feedbackToUser.contains("Listed all classes");
     }
+
+    public boolean isEditClass() {
+        return this.feedbackToUser.contains("Edited Class:");
+    }
 }

@@ -76,4 +76,14 @@ public class CommandResultTest {
         assertEquals(commandResult.isList(), true);
         assertEquals(commandResult.isExit(), false);
     }
+
+    // Test for edit class feedback "Edited Class: "
+    @Test
+    public void testEditFeedback() {
+        CommandResult commandResult = new CommandResult("Edited Class: CS2103T");
+        assertEquals(commandResult.isView(), false);
+        assertEquals(commandResult.isList(), false);
+        assertEquals(commandResult.isExit(), false);
+        assertEquals(commandResult.isEditClass(), true);
+    }
 }

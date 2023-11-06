@@ -13,7 +13,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditClassCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -139,9 +138,6 @@ public class EduTrackParser {
 
         case StartLessonCommand.COMMAND_WORD:
             return new StartLessonCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case RemoveStudentCommand.COMMAND_WORD:
             return new RemoveStudentCommandParser().parse(arguments);
