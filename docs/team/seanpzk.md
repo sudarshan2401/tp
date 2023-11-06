@@ -56,10 +56,10 @@ Given below are my contributions to the project.
   * UML Diagrams 
     * ##### Remove Student Mechanism
       <puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
-    * ##### Relationship between objects involved
-      <puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
     * ##### Execution of a `RemoveStudentCommand`
       <puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
+    * ##### Relationship between objects involved
+      <puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
     * ##### Remove Student Workflow
       <puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
   
