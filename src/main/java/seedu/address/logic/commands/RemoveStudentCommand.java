@@ -18,9 +18,9 @@ import seedu.address.model.student.Student;
 /**
  * Removes a Student identified by Name from a Class.
  */
-public class RemoveStudentCommand extends RemoveCommand {
+public class RemoveStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = RemoveCommand.COMMAND_WORD + " /s";
+    public static final String COMMAND_WORD = "remove /s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes a student from a class.\n"

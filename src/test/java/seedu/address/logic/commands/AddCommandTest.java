@@ -222,6 +222,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshStudentUI(Student student, Class studentClass, Student editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void addClass(Class c) {
             throw new AssertionError("This method should not be called.");
         }

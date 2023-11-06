@@ -65,7 +65,7 @@ public class RemoveStudentCommandTest {
     public void execute_validStudentName_success() {
         Student studentToDelete = studentStub;
         Name studentName = studentToDelete.getName();
-        RemoveCommand removeStudentCommand = new RemoveStudentCommand(Index.fromOneBased(1), classStubName);
+        RemoveStudentCommand removeStudentCommand = new RemoveStudentCommand(Index.fromOneBased(1), classStubName);
         String expectedMessage = String.format(RemoveStudentCommand.MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
             classStubName.toString());
         ModelManager expectedModel = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
