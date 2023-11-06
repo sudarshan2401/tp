@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteStudentFromClass(Student student, Class studentClass) {
+        public void deleteStudent(Student student, Class studentClass) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -231,11 +231,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public Student getStudentFromStudentList(ObservableList<Student> list, Index index) {
+        public Student getStudent(ObservableList<Student> list, Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
-        public ObservableList<Student> getStudentListFromClass(Class c) {
+        public ObservableList<Student> getStudentList(Class c) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -78,7 +78,7 @@ public interface Model {
      * Deletes the given student from class.
      * The person must exist in the class.
      */
-    void deleteStudentFromClass(Student student, Class studentClass);
+    void deleteStudent(Student student, Class studentClass);
 
     /**
      * Adds the given person.
@@ -97,14 +97,14 @@ public interface Model {
      * @param list List containing Student.
      * @return Student corresponding to Index in the List.
      */
-    Student getStudentFromStudentList(ObservableList<Student> list, Index index);
+    Student getStudent(ObservableList<Student> list, Index index);
 
     /**
      * Gets List of Student in the Class.
      * @param studentClass Class to retrieve the List of Students from.
      * @return List of Student in the Class.
      */
-    ObservableList<Student> getStudentListFromClass(Class studentClass);
+    ObservableList<Student> getStudentList(Class studentClass);
     /**
      * Replaces the given student {@code target} with {@code editedPerson}.
      * {@code target} must exist in EduTrack.

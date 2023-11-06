@@ -45,7 +45,7 @@ public class RemoveStudentCommandTest {
     @AfterEach
     public void cleanUp() {
         try {
-            model.deleteStudentFromClass(studentStub, classStub);
+            model.deleteStudent(studentStub, classStub);
         } catch (StudentNotFoundException e) {
             System.out.println("Cleaning up after test: No student to be removed");
         }
