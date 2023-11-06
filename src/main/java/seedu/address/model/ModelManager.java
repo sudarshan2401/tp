@@ -129,6 +129,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void refreshStudentUI(Student student, Class studentClass, Student editedStudent) {
+        editedStudent.forceChangeStudentClass(studentClass);
+        student.forceChangeStudentClass(studentClass);
+        if (eduTrack.hasStudent(student)) {
+            eduTrack.setStudent(student, editedStudent);
+        }
+        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+    }
+
+    @Override
     public void addClass(Class c) {
         eduTrack.addClass(c);
         updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);

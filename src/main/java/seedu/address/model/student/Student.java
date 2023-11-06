@@ -92,6 +92,15 @@ public class Student {
         }
     }
 
+    /**
+     * Changes Class of Student forcefully. This is used when a Class is edited and the student is under a clone of
+     * the Class. Use with caution to avoid breaking implementation of other parts of the code.
+     * @param studentClass Class containing Student.
+     */
+    public void forceChangeStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
+    }
+
     public Class getStudentClass() {
         return this.studentClass;
     }
@@ -232,6 +241,10 @@ public class Student {
      */
     public String getAttendanceStringRep() {
         return this.currentLessonAttendance.toString();
+    }
+
+    public boolean isPresentForLesson() {
+        return this.currentLessonAttendance.getIsPresent();
     }
 
     /**
