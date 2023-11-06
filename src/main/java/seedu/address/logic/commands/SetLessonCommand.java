@@ -58,6 +58,9 @@ public class SetLessonCommand extends Command {
             List<Student> studentList = c.getStudentList();
             for (Student studentToVerify : studentList) {
                 if (!model.isValidAttendanceForStudent(studentToVerify, c)) {
+                    if (numLessons == 0 && studentToVerify.isPresentForLesson()) {
+                        studentToVerify.markStudentAbsent();
+                    }
                     Student editedStudent = studentToVerify.duplicateStudent();
                     model.setStudentLesson(studentToVerify, c, editedStudent, numLessons);
                 }

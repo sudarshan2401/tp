@@ -13,7 +13,7 @@ import seedu.address.model.module.ClassName;
 /**
  * Parses input arguments and create a new StartLessonCommand.
  */
-public class StartLessonCommandParser {
+public class StartLessonCommandParser implements Parser<StartLessonCommand> {
     /**
      * Parses the input arguments and create a StartLessonCommand based on input arguments.
      * @param args Inputs by user to determine Class that StartLessonCommand should work on.

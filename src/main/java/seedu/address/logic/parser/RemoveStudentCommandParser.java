@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
@@ -15,7 +14,7 @@ import seedu.address.model.module.ClassName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
+public class RemoveStudentCommandParser implements Parser<RemoveStudentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteCommand
@@ -29,7 +28,7 @@ public class RemoveStudentCommandParser implements Parser<RemoveCommand> {
         // ensures that student name and class name is provided
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT, PREFIX_CLASS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveStudentCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_CLASS);

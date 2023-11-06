@@ -18,18 +18,18 @@ import seedu.address.model.student.Student;
 /**
  * Removes a Student identified by Name from a Class.
  */
-public class RemoveStudentCommand extends RemoveCommand {
+public class RemoveStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = RemoveCommand.COMMAND_WORD + " /s";
+    public static final String COMMAND_WORD = "remove /s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes a student from a class.\n"
             + "Parameters: "
-            + PREFIX_STUDENT + "STUDENT_NAME"
+            + PREFIX_STUDENT + "STUDENT_INDEX"
             + PREFIX_CLASS + "CLASS_NAME"
             + "\n"
             + "Example: "
-            + COMMAND_WORD + " John Doe "
+            + COMMAND_WORD + " 1 "
             + PREFIX_CLASS + " cs2103t";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "%s has been removed from %s ";
