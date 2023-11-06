@@ -28,6 +28,7 @@ public class Student {
 
     // Data fields
     private final Memo memo;
+    private Memo classParticipation;
 
     private Class studentClass = null;
 
@@ -35,8 +36,6 @@ public class Student {
     private CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
-
-    private Memo classParticipation;
 
     /**
      * Constructs a Student with Name and Index that represents one-based class index.
@@ -134,8 +133,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name and id.
-     * This defines a weaker notion of equality between two students.
+     * Returns true if both students are the same.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
