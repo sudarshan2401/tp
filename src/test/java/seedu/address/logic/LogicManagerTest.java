@@ -49,29 +49,11 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    //    @Test
-    //    public void execute_commandExecutionError_throwsCommandException() {
-    //        String deleteCommand = "delete 9";
-    //        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
-
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
-
-    //    @Test
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
-    //                LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
-    //    }
-    //
-    //    @Test
-    //    public void execute_storageThrowsAdException_throwsCommandException() {
-    //        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
-    //                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
-    //    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
@@ -135,42 +117,6 @@ public class LogicManagerTest {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
-
-    //    /**
-    //     * Tests the Logic component's handling of an {@code IOException} thrown by the
-    //     * Storage component.
-    //     *
-    //     * @param e               the exception to be thrown by the Storage component
-    //     * @param expectedMessage the message expected inside exception thrown by the
-    //     *                        Logic component
-    //     */
-    //    private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
-    //        Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
-    //
-    //
-    //        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-    //        JsonEduTrackStorage addressBookStorage = new JsonEduTrackStorage(prefPath) {
-    //            @Override
-    //            public void saveEduTrack(ReadOnlyEduTrack addressBook, Path filePath)
-    //                    throws IOException {
-    //                throw e;
-    //            }
-    //        };
-    //
-    //        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
-    //                temporaryFolder.resolve("ExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-    //
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Triggers the saveAddressBook method by executing an add command
-    //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-    //                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-    //        Student expectedPerson = new StudentBuilder(AMY).build();
-    //        ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addStudent(expectedPerson);
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
 
     @Test
     public void testGetFilteredClassList_modifyList_throwsUnsupportedOperationException() {
