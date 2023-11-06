@@ -273,7 +273,7 @@ The removal of Student implements the following operation:
 - `EduTrack#removeStudent(Student s)`  — Removes the Student s from List of Students in EduTrack that tracks all students.
 - `Class#removeStudent(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
 
-These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudentFromClass(Student s, Class sClass)`.
+These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudent(Student s, Class sClass)`.
 
 Given below is an example usage scenario of the remove student mechanism at a high level:
 
@@ -288,11 +288,12 @@ Step 4. `cmd` communicates with the `Model` when executed to remove the first `S
 
 Step 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back to `Logic`.
 
-The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand)
+The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand).
 ##### Remove Student Mechanism
 <puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
 
-Given below is a list of variables used in walkthrough of execution of a `RemoveStudentCommand`.
+The mechanism to execute a `RemoveStudentCommand` is elaborated in the below walkthrough.
+This is a list of variables used in the walkthrough for clarity.
 
 **Variables used:**
 
@@ -316,21 +317,21 @@ The relationship between variables can be summarised by this object diagram.
 
 **Walkthrough**
 
-Step 1. `LogicManager` calls `RemoveStudentCommand#execute()`
+Step 1. `LogicManager` calls `RemoveStudentCommand#execute()`.
  
 Step 2. `cmd` calls `Model#getClass(studentClassName)` to get `sClass`.
 
-Step 3. `cmd` calls `Model#getStudentList` to get the `sClassStudentList` from `sClass`.
+Step 3. `cmd` calls `Model#getStudentList(sClass)` to get the `sClassStudentList` from `sClass`.
 
-Step 4. `cmd` calls `Model#getStudent` to get `s` from the `sClassStudentList`.
+Step 4. `cmd` calls `Model#getStudent(sClassStudentList, 1)` to get `s`, the first student in the `sClassStudentList`.
 
-Step 5. `cmd` calls `Model#getStudentName()` to get `sName`.
+Step 5. `cmd` calls `Model#getStudentName(s)` to get `sName`.
 
 Step 6. `cmd` calls  `Model#deleteStudent(s, sClass)` to remove `s` from `sClassStudentList`.
 
 Step 7. `cmd` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
 
-Step 8. The result of the command execution is encapsulated as a `CommandResult` object.
+Step 8. The result of the `cmd`'s execution is encapsulated as a `CommandResult` object.
 
 Step 9. `cmd` returns `CommandResult` to `LogicManager`.
 
