@@ -49,7 +49,7 @@ Given below are my contributions to the project.
     * Preparing skeletal [documentation](https://docs.google.com/document/d/1nNcM_SvI3pcRtNDLubyRG98JFneY5IetiGIi4dhietE/edit?usp=sharing) before discussion
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#88](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/88), [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61), [#40](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/40), [#36](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/36)
-  * Reported [bugs & flaws](https://github.com/seanpzk/ped/issues) with extensive elaboration to ease process of fixing bug for the other team (taken from Practical Exam Dry Run).
+  * Reported [bugs & flaws](https://github.com/seanpzk/ped/issues) with extensive elaboration to ease process of bug fixing for [another team](https://github.com/AY2324S1-CS2103T-T10-3/tp) (taken from Practical Exam Dry Run).
   
 * **Key Contribution to the Developer Guide**:
   * Implementation of [Remove Student feature](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#remove-student-feature)
