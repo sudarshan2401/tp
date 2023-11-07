@@ -88,6 +88,7 @@ public class EditStudentCommand extends Command {
             model.setStudent(studentToEdit, editedStudent);
             model.setStudentInClass(studentToEdit, editedStudent, studentClass);
             model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
+            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
 
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
                     Messages.formatStudent(editedStudent)));

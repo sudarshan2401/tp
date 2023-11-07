@@ -46,6 +46,7 @@ public class MarkAllStudentAbsentCommand extends Command {
             Student editedStudent = studentToUnmark.duplicateStudent();
             try {
                 model.markStudentAbsent(studentToUnmark, studentClass, editedStudent);
+                model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
             } catch (StudentAlreadyMarkedPresent e) {
                 continue;
             }

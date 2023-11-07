@@ -60,6 +60,7 @@ public class AddStudentCommand extends Command {
 
         model.addStudent(toAdd);
         model.addStudentToClass(this.toAdd, classToAddStudent);
+        model.updateFilteredClassList((c) -> c.isSameClass(classToAddStudent));
         return new CommandResult(String.format(MESSAGE_ADD_STUDENT_SUCCESS,
                 Messages.formatStudent(this.toAdd), Messages.formatClass(classToAddStudent)));
     }

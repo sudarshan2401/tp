@@ -47,6 +47,7 @@ public class MarkAllStudentPresentCommand extends Command {
             Student editedStudent = studentToMark.duplicateStudent();
             try {
                 model.markStudentPresent(studentToMark, studentClass, editedStudent);
+                model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
             } catch (StudentAlreadyMarkedPresent e) {
                 // do nothing
             } catch (AttendanceDiscrepancy e) {

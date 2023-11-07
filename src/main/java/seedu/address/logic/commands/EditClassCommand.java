@@ -83,7 +83,7 @@ public class EditClassCommand extends Command {
         }
 
         model.setClass(index, editedClass);
-        model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
+        model.updateFilteredClassList((c) -> c.isSameClass(editedClass));
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, Messages.formatClass(editedClass),
                 editedClass.getClassSchedule(), editedClass.getClassMemo()));
     }
