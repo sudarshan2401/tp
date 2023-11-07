@@ -690,15 +690,15 @@ _{More to be added}_
 
    Use case ends.
 
-**Use case: Updating a Class memo**
+**Use case: Edit a Class**
 
 **MSS**
 
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User requests to update the Class notes of a particular class
-4.  EduTrack overwrites the Class notes of that particular class
-5.  EduTrack informs that user that the was successfully updated
+1.  User requests to view the list of classes.
+2.  EduTrack shows a list of classes.
+3.  User requests to update either the class name, memo or schedule of a particular class.
+4.  EduTrack overwrites the updated attribute of that particular class.
+5.  EduTrack informs that user of the new class details.
 
 **Extensions**
 
@@ -706,67 +706,21 @@ _{More to be added}_
 
   Use case ends
 
-- 3a. The given class name is invalid.
+- 3a. The provided class index is invalid.
 
-  - 3a1. EduTrack shows an error message.
-
-    Use case ends.
-
-- 3b. No class name specified.
-
-  - 3b1. EduTrack informs the user he should enter a class field
+  - 3a1. EduTrack informs the user that class index is invalid.
 
     Use case ends.
 
-- 3c. No memo details was specified.
+- 3b. User request to edit class name but class name is not specified.
 
-  - 3c1. EduTrack informs the user that no memo was specified.
-
-    Use case ends.
-
----
-
-**Use case: Update a class**
-
-**MSS**
-
-1.  User requests to view the class to be updated
-2.  EduTrack shows the class
-3.  User requests to update a field in the class
-4.  EduTrack updates the field of the class
-5.  EduTrack shows the updated list of classes
+  - 3b1. EduTrack informs the user to specify the class name.
 
     Use case ends.
 
-**Extensions**
+- 3c. The provided class name already exists in the class list.
 
-- 1a. Class name is not specified.
-
-  - 1a1. EduTrack informs user that class name is empty.
-
-    Use case ends.
-
-- 1b. Class name already exists.
-
-  - 1a1. EduTrack informs user that class already exists.
-
-    Use case ends.
-
-- 3a. Class field is not specified.
-
-  - 3a1. EduTrack informs user that class field is empty.
-
-    Use case ends.
-
-- 3b. Class field does not exist.
-
-  - 3b1. EduTrack informs user that class field does not exist.
-
-    Use case ends.
-
-- 3c. Updated information is not specified.
-
-  - 3c1. EduTrack informs user that information to be updated is empty.
+  - 3c1. EduTrack informs the user that class name already exists.
 
     Use case ends.
 
