@@ -183,15 +183,15 @@ Step 4. `MarkStudentPresentCommandParser` creates a new `MarkStudentPresentComma
 
 Step 5. `LogicManager` calls `MarkStudentPresentCommand#excecute()`.
 
-Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student.
+Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student, `duplicateS`.
 
-Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent` to mark the duplicate student present.
+Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent`.
 
-Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the duplicate Student object as present.
+Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the `duplicateS` as present, this updates both `sLessonsAttended` and `sCurrentLessonAttendance`.
 
-Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set the existing Student the updated duplicate Student.
+Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set `s` as the newly updated `duplicateS` in `EduTrack`'s `globalStudentList`.
 
-Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set the existing Student attached to the Class as the updated duplicate Student.
+Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set `s` attached to the Class as the updated `duplicateS`.
 
 Step 11. `Model#markStudentPresent` calls the `Model#updateFIlteredStudentList` to update the GUI of Students shown to user.
 
@@ -633,10 +633,8 @@ _{More to be added}_
 1.  User requests to view the list of classes
 2.  EduTrack shows a list of classes
 3.  User requests to delete a specific class in the list
-4.  EduTrack requests for confirmation and waits for y/n response from user
-5.  User confirms
-6.  EduTrack deletes the class
-7.  EduTrack informs the user that the class is successfully deleted
+4.  EduTrack deletes the class
+5.  EduTrack informs the user that the class is successfully deleted
 
     Use case ends.
 
@@ -646,37 +644,24 @@ _{More to be added}_
 
   Use case ends.
 
-- 2a. User did not specify the class.
-
-  - 2a1. EduTrack informs user that class name is not specified in request.
-  - 2a2. EduTrack terminates the request.
-
-    Use case ends.
-
-- 2b. EduTrack detects that the class does not exist.
-
-  - 2b1. EduTrack informs user that the class does not exist.
-  - 2b2. EduTrack terminates the request.
-
-    Use case ends.
-
-- 3a. The given class name is invalid.
+- 3a. The given class index is invalid.
 
   - 3a1. EduTrack shows an error message.
 
   Use case ends.
 
-- 3b. No class name specified.
+- 3b. No class index specified.
 
-  - 3b1. EduTrack informs the user he should enter a class field
-
-  Use case ends.
-
-- 4a. User does not confirm, provides a `n` input
-
-  - 4a1. EduTrack confirms that the cancellation is successful
+  - 3b1. EduTrack shows an error message.
 
   Use case ends.
+
+- 4b. EduTrack detects that the class does not exist.
+
+  - 4b1. EduTrack informs user that the class does not exist.
+  - 4b2. EduTrack terminates the request.
+
+    Use case ends.
 
 ---
 
@@ -689,6 +674,8 @@ _{More to be added}_
 3. User accesses the sample data to see how the app works.
 
    Use case ends.
+
+---
 
 **Use case: Edit a Class**
 
@@ -726,15 +713,15 @@ _{More to be added}_
 
 ---
 
-**Use case: Adding a lesson to a Class Schedule**
+**Use case: Marking a student present for a lesson**
 
 **MSS**
 
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User requests to add a lesson for a particular class
-4.  EduTrack appends to the Class schedule of that particular class
-5.  EduTrack informs the user that the lesson was added to the class schedule
+1.  User requests to view the students in a particular class
+2.  EduTrack shows a list of students
+3.  User requests to mark a student present
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
+5.  EduTrack informs the user the student was successfully marked present
 
     Use case ends.
 
@@ -744,29 +731,67 @@ _{More to be added}_
 
   Use case ends
 
-- 3a. The given class name is invalid.
+- 3a. The given student index is invalid.
 
   - 3a1. EduTrack shows an error message.
 
     Use case ends.
 
-- 3b. No class name specified.
+- 3b. THe given student index is empty.
 
-  - 3b1. EduTrack informs the user he should enter a class field
-
-    Use case ends.
-
-- 3c. No lesson details was specified.
-
-  - 3c1. EduTrack informs the user that a lesson wasn't specified.
+  - 3b1. EduTrack shows an error message.
 
     Use case ends.
 
-- 3d. Lesson details was of invalid format.
+- 3c. The given class name is invalid.
 
-  - 3d1. EduTrack informs the user he should enter a lesson of the correct format
+  - 3c1. EduTrack shows an error message.
 
     Use case ends.
+
+- 3d. No class name specified.
+
+  - 3d1. EduTrack shows an error message
+
+    Use case ends.
+
+- 3e. Lesson details was of invalid format.
+
+  - 3e1. EduTrack informs the user he should enter a lesson of the correct format
+
+    Use case ends.
+
+---
+
+**Use case: Marking all students present in a class**
+
+**MSS**
+
+1.  User requests to view the students in a particular class
+2.  EduTrack shows a list of students
+3.  User requests to mark a student present
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
+5.  EduTrack informs the user the student was successfully marked present
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends
+
+- 3a. The given class index is invalid.
+
+  - 3a1. EduTrack shows an error message.
+
+    Use case ends.
+
+- 3b. THe given class index is empty.
+
+  - 3b1. EduTrack shows an error message.
+
+    **Use case ends.**
 
 ---
 
@@ -809,21 +834,6 @@ _{More to be added}_
   - 3d1. EduTrack informs the user that the lesson does not exist.
 
     Use case ends.
-
----
-
-**Use case: Take attendance in a lesson**
-
-**MSS**
-
-1.  User choose a class from the list of classes
-2.  User requests to create a lesson of the class
-3.  EduTrack creates a lesson monitor for the class
-4.  User enters attendance of a student
-5.  EduTrack updates the attendance field of the student
-6.  User repeats step 3 for mutiple times
-7.  User requests to end the lesson
-8.  EduTrack ends the lesson and saves the data automatically
 
 ---
 
