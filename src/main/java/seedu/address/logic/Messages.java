@@ -18,7 +18,11 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "Student index provided is invalid";
     public static final String MESSAGE_INVALID_CLASS_DISPLAYED_INDEX = "The class index provided is invalid";
     public static final String MESSAGE_INDEX_INPUT_TOO_LARGE = "The class index provided is invalid";
+    public static final String MESSAGE_INDEX_IS_NEGATIVE = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NUMBER_OF_LESSON_NEGATIVE = "Number of lessons must be at least 0.";
     public static final String MESSAGE_EMPTY_CLASS_LIST = "There are no classes available at the moment! Create one!";
+    public static final String MESSAGE_CLASS_NAME_CONTAINS_SPACE = "Class name should not contain spaces.";
+    public static final String MESSAGE_EMPTY_CLASS_NAME = "Class name not specified.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_EMPTY_STUDENT_LIST = "There are no students available at the moment! "
             + "Create one!";

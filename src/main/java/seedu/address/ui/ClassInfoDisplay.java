@@ -23,4 +23,17 @@ public class ClassInfoDisplay extends UiPart<Region> {
         requireNonNull(classInfo);
         classInfoDisplay.setText(classInfo);
     }
+
+    public String getClassName() {
+        // Class info =
+        // Current class: CS2103
+        // Schedule:
+        // Class notes:
+        if (classInfoDisplay.getText().isEmpty()) {
+            return "";
+        }
+        String[] classInfo = classInfoDisplay.getText().split("\n");
+        String className = classInfo[0].split(": ")[1];
+        return className;
+    }
 }

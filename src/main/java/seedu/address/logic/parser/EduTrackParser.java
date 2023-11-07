@@ -9,11 +9,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddClassCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditClassCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,7 +23,6 @@ import seedu.address.logic.commands.MarkAllStudentPresentCommand;
 import seedu.address.logic.commands.MarkStudentAbsentCommand;
 import seedu.address.logic.commands.MarkStudentPresentCommand;
 import seedu.address.logic.commands.RemoveClassCommand;
-import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveStudentCommand;
 import seedu.address.logic.commands.SetLessonCommand;
 import seedu.address.logic.commands.StartLessonCommand;
@@ -80,7 +77,9 @@ public class EduTrackParser {
     public Command parseCommand(String userInput) throws ParseException {
         String objectClass = "";
         final Matcher matcher;
-        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput.trim());
+        // removes any consecutive whitespaces and removes trailing/starting whitespaces
+        userInput = userInput.replaceAll("\\s+", " ").trim();
+        Matcher tempMatcher = BASIC_COMMAND_FORMAT1.matcher(userInput);
         if (tempMatcher.matches()) {
             objectClass = extractObjectClass(userInput);
             matcher = tempMatcher;
@@ -104,9 +103,6 @@ public class EduTrackParser {
         switch (commandWord) {
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
         case AddClassCommand.COMMAND_WORD:
             return new AddClassCommandParser().parse(arguments);
@@ -140,12 +136,6 @@ public class EduTrackParser {
 
         case StartLessonCommand.COMMAND_WORD:
             return new StartLessonCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommandParser().parse(arguments);
 
         case RemoveStudentCommand.COMMAND_WORD:
             return new RemoveStudentCommandParser().parse(arguments);

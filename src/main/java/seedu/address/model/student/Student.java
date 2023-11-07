@@ -8,6 +8,7 @@ import java.util.Objects;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
@@ -27,6 +28,7 @@ public class Student {
 
     // Data fields
     private final Memo memo;
+    private Memo classParticipation;
 
     private Class studentClass = null;
 
@@ -34,8 +36,6 @@ public class Student {
     private CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
     private LessonsAttended lessonsAttended;
-
-    private Memo classParticipation;
 
     /**
      * Constructs a Student with Name and Index that represents one-based class index.
@@ -91,6 +91,15 @@ public class Student {
         }
     }
 
+    /**
+     * Changes Class of Student forcefully. This is used when a Class is edited and the student is under a clone of
+     * the Class. Use with caution to avoid breaking implementation of other parts of the code.
+     * @param studentClass Class containing Student.
+     */
+    public void forceChangeStudentClass(Class studentClass) {
+        this.studentClass = studentClass;
+    }
+
     public Class getStudentClass() {
         return this.studentClass;
     }
@@ -124,8 +133,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name and id.
-     * This defines a weaker notion of equality between two students.
+     * Returns true if both students are the same.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -160,8 +168,13 @@ public class Student {
      * Marks a student as present for the current lesson.
      *
      * @throws StudentAlreadyMarkedPresent If the Student has already been marked present
+     * @throws AttendanceDiscrepancy If the marking of Student's attendance causes current to
+     *          exceed class total attendance
      */
-    public void markStudentPresent() throws StudentAlreadyMarkedPresent {
+    public void markStudentPresent() throws StudentAlreadyMarkedPresent, AttendanceDiscrepancy {
+        if (this.lessonsAttended.getTotalLessons() >= studentClass.getTotalLessons()) {
+            throw new AttendanceDiscrepancy();
+        }
         this.currentLessonAttendance.setPresent();
         this.lessonsAttended.incrementLessons();
     }
@@ -173,7 +186,9 @@ public class Student {
      */
     public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
         this.currentLessonAttendance.setAbsent();
-        this.lessonsAttended.decrementLessons();
+        if (this.lessonsAttended.getTotalLessons() > 0) {
+            this.lessonsAttended.decrementLessons();
+        }
     }
 
     /**
@@ -224,6 +239,10 @@ public class Student {
      */
     public String getAttendanceStringRep() {
         return this.currentLessonAttendance.toString();
+    }
+
+    public boolean isPresentForLesson() {
+        return this.currentLessonAttendance.getIsPresent();
     }
 
     /**

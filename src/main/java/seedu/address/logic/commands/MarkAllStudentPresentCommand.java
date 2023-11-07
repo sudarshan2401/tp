@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
@@ -47,7 +48,9 @@ public class MarkAllStudentPresentCommand extends Command {
             try {
                 model.markStudentPresent(studentToMark, studentClass, editedStudent);
             } catch (StudentAlreadyMarkedPresent e) {
-                continue;
+                // do nothing
+            } catch (AttendanceDiscrepancy e) {
+                // do nothing
             }
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,

@@ -19,6 +19,7 @@ import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.Schedule;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
 /**
@@ -61,6 +62,7 @@ public class EditClassCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
         List<Class> lastShownList = model.getFilteredClassList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -74,6 +76,10 @@ public class EditClassCommand extends Command {
 
         if (!classToEdit.isSameClass(editedClass) && model.hasClass(editedClass)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLASS);
+        }
+        for (Student s : currentStudentList) {
+            Student editedStudent = model.duplicateStudent(s);
+            model.refreshStudentUI(s, editedClass, editedStudent);
         }
 
         model.setClass(index, editedClass);
@@ -93,8 +99,12 @@ public class EditClassCommand extends Command {
         ClassName updatedClassName = editClassDescriptor.getClassName().orElse(classToEdit.getClassName());
         Memo memo = editClassDescriptor.getClassNote().orElse(classToEdit.getClassMemo());
         Schedule schedule = editClassDescriptor.getClassSchedule().orElse(classToEdit.getClassSchedule());
+        int totalLessons = classToEdit.getTotalLessons();
 
-        return new Class(updatedClassName, studentList, memo, schedule);
+        Class c = new Class(updatedClassName, studentList, memo, schedule);
+
+        c.setTotalLessons(totalLessons);
+        return c;
     }
 
     @Override

@@ -35,9 +35,9 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) for
      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
-     - [Marking a student present : `mark`](#marking-a-student-present-mark)
-     - [Marking a student absent : `unmark`](#marking-a-student-absent-unmark)
-     - [Marking all students in a class present : `markall`](#marking-all-students-in-a-class-present-markall)
+     - [Marking a student present : `mark /s`](#marking-a-student-present-mark-s)
+     - [Marking a student absent : `unmark /s`](#marking-a-student-absent-unmark-s)
+     - [Marking all students in a class present : `markall /c`](#marking-all-students-in-a-class-present-markall-c)
      - [Starting a lesson : `startlesson /c`](#starting-a-lesson-startlesson-c)
      - [Setting number of lessons of a class: `setlesson /c`](#setting-number-of-lessons-of-a-class-setlesson-c)
    - [Student commands](#student-commands)
@@ -275,16 +275,15 @@ Removes an existing class from your list of classes.
 
 **Caution**
 
-* CLASS_NAME must be the name of a class that already exists.
+* CLASS_INDEX selected must be within the class list.
 
 </box>
 
 **Successful Output:**
-* CLASS_NAME has been removed
+* Deleted Class: CLASS_NAME
 
-**Unsuccessful Outputs:**
-* CLASS_NAME does not exist
-* Class name not specified
+**Unsuccessful Output:**
+* Class index provided is invalid
 
 <br>
 
@@ -382,7 +381,7 @@ Memo: MEMO
 
 <br>
 
-### Marking a student present : `mark`
+### Marking a student present : `mark /s`
 
 Marks your student present for your current lesson.
 
@@ -442,7 +441,7 @@ You have marked Jamie present!
 
 <br>
 
-### Marking a student absent : `unmark`
+### Marking a student absent : `unmark /s`
 
 Marks your student absent for your current lesson.
 
@@ -494,7 +493,7 @@ Jamie has been marked absent!
 
 <br>
 
-### Marking all students in a class present : `markall`
+### Marking all students in a class present : `markall /c`
 
 Marks all students in your class as being present. Use this command if all your students are present for your current lesson.
 
@@ -627,9 +626,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 <box type="info">
 
 **Information:**
-- NUMBER_OF_LESSONS takes numbers such as `0`,`1`,`2`,`3`
+- NUMBER_OF_LESSONS must be a valid non-negative integer such as `0`,`1`,`2`,`3`
 - NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`
-- NUMBER_OF_LESSONS must be at least `0`.
 - If a `Student`'s number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
     - Example: John's current attendance in CS2103T is 5/7. <br> If you call `setlesson /c CS2103T /l 3`, it helps to adjust John's attendance to 3/3.
 
@@ -872,8 +870,8 @@ There is no need to save manually.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_NAME` <br> **E.g:** `add /s John /c CS2103T` <br><br> **Adding a list of students:** <br> Coming soon                                                                            |
-| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 1` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX  /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                            |
+| **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_INDEX` <br> **E.g:** `add /s John /c 3` <br><br>                                                                                                                                 |
+| **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 3` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                             |
 | **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
 | **edit**        | **Editing a class:** <br> **Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` <br> **E.g:** `edit /c 2 /m submit marking report` <br><br> **Editing a student:** <br> **Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]` <br> **E.g:** `edit /s 1 /c cs2103t /id A1234567W` |
 | **mark**        | **Marking your student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `mark /s 1 /c CS2103T`                                                                                                                                                                                                                            |
