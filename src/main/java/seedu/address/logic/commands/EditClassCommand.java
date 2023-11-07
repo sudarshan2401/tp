@@ -79,7 +79,7 @@ public class EditClassCommand extends Command {
         }
         for (Student s : currentStudentList) {
             Student editedStudent = model.duplicateStudent(s);
-            model.refreshStudentUI(s, editedClass, editedStudent);
+            model.updateClassChange(s, editedClass, editedStudent);
         }
 
         model.setClass(index, editedClass);

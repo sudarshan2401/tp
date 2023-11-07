@@ -129,13 +129,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void refreshStudentUI(Student student, Class studentClass, Student editedStudent) {
+    public void updateClassChange(Student student, Class studentClass, Student editedStudent) {
         editedStudent.forceChangeStudentClass(studentClass);
         student.forceChangeStudentClass(studentClass);
         if (eduTrack.hasStudent(student)) {
             eduTrack.setStudent(student, editedStudent);
         }
-        updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
     @Override
