@@ -3,6 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSPARTICIPATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -26,11 +30,20 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String INVALID_NAME = "R@chel"; // '@' not allowed in student name
+    public static final String INVALID_ID = "B0000000Z"; // 'B' not allowed as first character
     public static final String VALID_BOB_ID = "A1928456U";
+    public static final String VALID_AMY_ID = "A0128764Z";
     public static final String VALID_MEMO = "Takes longer to understand concepts";
-    public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + " Bob&"; // '&' not allowed in student name
+    public static final String MEMO_DESC = " " + PREFIX_MEMO + VALID_MEMO;
+    public static final String VALID_CLASS_PARTICIPATION = "Presented their answer today.";
+    public static final String CLASS_PARTICIPATION_DESC = " " + PREFIX_CLASSPARTICIPATION + VALID_CLASS_PARTICIPATION;
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_AMY_ID;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_NAME;
+    public static final String INVALID_ID_DESC = " " + PREFIX_ID + INVALID_ID;
+    public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + INVALID_NAME;
     public static final String INVALID_CLASS_INDEX_DESC = " " + PREFIX_CLASS + "@1"; // '@' not allowed in class index
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

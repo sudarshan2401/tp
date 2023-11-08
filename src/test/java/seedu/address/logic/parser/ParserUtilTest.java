@@ -15,10 +15,9 @@ import seedu.address.model.student.Name;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_CLASSNAME = "cs 2103t";
-
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_CLASSNAME = "cs2103t";
-    private static final String VALID_CLASSPARTICIPATION = "Answered 2 questions";
+    private static final String VALID_CLASS_PARTICIPATION = "Answered 2 questions";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -95,7 +94,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseClassParticipation_validValue_returnsClassParticipation() throws Exception {
-        Memo expectedClassParticipation = new Memo(VALID_CLASSPARTICIPATION);
-        assertEquals(expectedClassParticipation, ParserUtil.parseClassParticipation(VALID_CLASSPARTICIPATION));
+        Memo expectedClassParticipation = new Memo(VALID_CLASS_PARTICIPATION);
+        assertEquals(expectedClassParticipation, ParserUtil.parseClassParticipation(VALID_CLASS_PARTICIPATION));
     }
 }

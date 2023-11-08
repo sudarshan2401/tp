@@ -15,7 +15,7 @@ public class IdTest {
 
     @Test
     public void constructor_invalidId_throwsIllegalArgumentException() {
-        String invalidId= "";
+        String invalidId = "";
         assertThrows(IllegalArgumentException.class, () -> new Id(invalidId));
     }
 

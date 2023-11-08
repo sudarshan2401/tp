@@ -270,6 +270,7 @@ public class EditStudentCommand extends Command {
                     .add("name", name)
                     .add("id", id)
                     .add("memo", memo)
+                    .add("classParticipation", classParticipation)
                     .toString();
         }
     }
