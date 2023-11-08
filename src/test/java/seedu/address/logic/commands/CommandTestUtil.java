@@ -26,6 +26,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_BOB_ID = "A1928456U";
+    public static final String VALID_MEMO = "Takes longer to understand concepts";
     public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + " Bob&"; // '&' not allowed in student name
     public static final String INVALID_CLASS_INDEX_DESC = " " + PREFIX_CLASS + "@1"; // '@' not allowed in class index
 
