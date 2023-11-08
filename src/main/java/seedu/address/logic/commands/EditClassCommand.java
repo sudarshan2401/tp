@@ -79,11 +79,11 @@ public class EditClassCommand extends Command {
         }
         for (Student s : currentStudentList) {
             Student editedStudent = model.duplicateStudent(s);
-            model.refreshStudentUI(s, editedClass, editedStudent);
+            model.updateClassChange(s, editedClass, editedStudent);
         }
 
         model.setClass(index, editedClass);
-        model.updateFilteredClassList(PREDICATE_SHOW_ALL_CLASSES);
+        model.updateFilteredClassList((c) -> c.isSameClass(editedClass));
         return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, Messages.formatClass(editedClass),
                 editedClass.getClassSchedule(), editedClass.getClassMemo()));
     }
