@@ -90,4 +90,16 @@ public class CommandResult {
     public boolean isEditClass() {
         return this.feedbackToUser.contains("Edited Class:");
     }
+
+    public boolean isUpdatedStudent() {
+        return this.feedbackToUser.contains("Edited Student:")
+                || this.feedbackToUser.contains("started a new lesson!")
+                || this.feedbackToUser.contains("Successfully marked all students in")
+                || this.feedbackToUser.contains("Successfully unmarked all students in")
+                || this.feedbackToUser.contains("has been marked absent!")
+                || this.feedbackToUser.contains("sucessfully marked present!")
+                || this.feedbackToUser.contains("Added New Student:")
+                || this.feedbackToUser.contains("has been removed from")
+                || this.feedbackToUser.contains("Successfully set the number of lessons in");
+    }
 }

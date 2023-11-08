@@ -53,13 +53,15 @@ public class MarkStudentAbsentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        Class studentClass = null;
+        model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASSES);
         Student studentToMark = null;
         try {
-            studentClass = model.getClass(className);
+            Class studentClass = model.getClass(className);
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
             Student editedStudent = model.duplicateStudent(studentToMark);
             model.markStudentAbsent(studentToMark, studentClass, editedStudent);
+            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
+
         } catch (StudentAlreadyMarkedAbsent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
