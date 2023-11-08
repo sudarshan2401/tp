@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
-import java.util.NoSuchElementException;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,7 +36,7 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT).get());
             studentClassName = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
-        } catch (ParseException | NoSuchElementException pe) {
+        } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
         }
