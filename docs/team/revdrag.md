@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 * **Project Management**:
   * Setup GitHub Team Organisation and Repository
   * Setup Project Website: Migrate to MarkDown and set up GitHub Pages, helped partially to change names and links from AddressBook to EduTrack on the website such as `index.md`. (Pull Requests [#1](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/1), [#30](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/30))
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * Added the ability to store `Memo` information (was initially `Note` but changed to de-conflict `Prefix` used) in `Student` and `Class` objects. (Pull Request [#58](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/58))
   * Added the ability to store `Id` information in `Student` objects. (Pull Request [#58](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/58))
   * Updated many of the test cases related to AddressBook's json file testing to EduTrack. (Pull Requests [#42](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/42), [#58](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/58), [#63](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/63))
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Help to improve the structure of the UG by splitting our features into 3 subsections and added the About, Glossary, FAQ sections. (Pull Request [#73](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/73))
     * Added documentation for the features `add /s` and `edit /s`. (Pull Requests [#30](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/30), [#73](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/73), [#87](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/87))
-  * Developer Guide: 
+  * Developer Guide:
     * Added use cases. (Pull Request [#35](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/35))
     * Added implementation details for the Edit Student feature. (Pull Request [#63](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/63))
 * **Community**:

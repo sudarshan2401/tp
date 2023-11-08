@@ -206,7 +206,7 @@ Make sure that you have read the [Command format](#command-format) and [Command 
 
 ### Listing all classes : `list`
 
-Shows an instant overview list of all your existing classes. 
+Shows an instant overview list of all your existing classes.
 
 **Command Format:** `list`
 

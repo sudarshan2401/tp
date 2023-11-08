@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <box type="tip">
-    
+
 **Tip:** The `.puml` files used to create diagrams used in this document can be found in the [diagrams](https://github.com/AY2324S1-CS2103T-T15-3/tp/tree/master/docs/diagrams). Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </box>
@@ -173,7 +173,7 @@ This section describes some noteworthy details on how certain features are imple
 <puml src="diagrams/MarkStudentObjectDiagram.puml" alt="MarkStudentObjectDiagram" />
 
 
-Step 1. The user launches the application    
+Step 1. The user launches the application
 
 Step 2. The user executes `view /c 1` command to view the students in the 1st class in EduTrack.
 
@@ -287,7 +287,7 @@ Given below is a list of variables used in walkthrough of the removal of Student
 
 `studentClassName` - `ClassName` representing `sClass`.
 
-`sClassStudentList` - `UniqueStudentList` in `sClass` containing all its `Student` 
+`sClassStudentList` - `UniqueStudentList` in `sClass` containing all its `Student`
 
 `globalStudentList` - `UniqueStudentList` in `EduTrack` containing all `Student` across all `Class`.
 
@@ -298,7 +298,7 @@ The relationship between variables can be summarised by this object diagram.
 **Walkthrough**
 
 Step 1. `LogicManager` calls `removeStudentCommand#execute()`
- 
+
 Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
 
 Step 3. `removeStudentCommand` calls `Model#getStudentListFromClass` to get the `sClassStudentList` from `sClass`.
@@ -1002,7 +1002,7 @@ Given below are instructions to test the app manually.
 <br>
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
@@ -1013,10 +1013,10 @@ Given below are instructions to test the app manually.
 
    1. Test case: `list`<br>
       Expected: All the classes that have been added into EduTrack are shown. If the user is previously viewing a class, switches from class's student list to class list display.
-   
+
    2. Test case: `list 1`<br>
       Expected: Similar to the previous. Additional invalid parameters are ignored.
-   
+
    3. Test case: `list /n John`<br>
       Expected: Similar to the previous.
 
@@ -1029,7 +1029,7 @@ Given below are instructions to test the app manually.
 
    2. Test case: `add /c cs2101`<br>
       Expected: New class is added.
-   
+
    3. Test case: `add /c cs2101`<br>
       Expected: No class is added. Error details shown.<br>
       Note: This have to be performed after test case 2.
@@ -1039,10 +1039,10 @@ Given below are instructions to test the app manually.
 1. Removes a class from EduTrack.
 
    1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
-   
+
    2. Test case: `remove /c 1`<br>
       Expected: First class is removed from the list. Class name is shown in delete message.
-   
+
    3. Test case: `remove /c 0`<br>
       Expected: No classes are deleted. Error details shown.
 
@@ -1051,7 +1051,7 @@ Given below are instructions to test the app manually.
 1. Views the detailed information of a class.
 
    1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
-   
+
    2. Test case: `view /c 1`<br>
       Expected: Displays the student list of the first class as well as the class details in the Class information box.
 
@@ -1075,7 +1075,7 @@ Given below are instructions to test the app manually.
 
    2. Test case: `mark /s 2 /c CS2103T`<br>
       Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
-   
+
    3. Some invalid test cases to try (Error details shown):<br>
       * Student index = 0: `mark /s 0 /c CS2103T`
       * Student index larger than student list: `mark /s 100 /c CS2103T`
@@ -1085,7 +1085,7 @@ Given below are instructions to test the app manually.
 ### Marking a student absent
 
 1. Marks a student present for the current class.
-   
+
    1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has been marked present.
 
    2. Test case: `unmark /s 2 /c CS2103T`<br>
@@ -1127,7 +1127,7 @@ Given below are instructions to test the app manually.
 
 ### Setting number of lessons of a class
 
-1. Sets the total number of a class. 
+1. Sets the total number of a class.
 
    1. Prerequisites: List all classes using the `list` command. The first class called `CS2103T` have multiple students. The current total lessons of the class is `5`.
 
@@ -1146,7 +1146,7 @@ Given below are instructions to test the app manually.
 
     2. Test case: `add /s John /c 1`<br>
        Expected: New student called `John` is added to the first class (ie. `T1`). Displays the student list and class information of the class the student is added into (ie. `T1`).
-   
+
     3. Some invalid test cases to try (Error details shown):<br>
        * Missing student name: `add /s /c 1`
        * Class index missing, or it is lesser or equal to 0: `add /s John /c`, `add /s John /c -1`
@@ -1161,7 +1161,7 @@ Given below are instructions to test the app manually.
 
    2. Test case: `remove /s 2 /c CS2103T`<br>
       Expected: Second student is deleted from the class `CS2103T`. Displays student list of the class the student is removed from.
-   
+
    3. Some invalid test cases to try (Error details shown):<br>
       * Invalid student index: `remove /s 100 /c CS2103T`
 
