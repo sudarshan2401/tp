@@ -48,12 +48,11 @@ public class EditStudentCommandParserTest {
         // no class name specified
         assertParseFailure(parser, " /s 1 /c", MESSAGE_INVALID_FORMAT);
 
-        // no compulsory field specified
-        //        assertParseFailure(parser, " 1 /c T1", MESSAGE_INVALID_FORMAT);
+        // no compulsory class field specified
         assertParseFailure(parser, " /s 1 T1", MESSAGE_INVALID_FORMAT);
 
         // no index and no compulsory field specified
-        //        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
         // no optional field specified
         assertParseFailure(parser, " /s 1 /c T1", EditStudentCommand.MESSAGE_NOT_EDITED);
