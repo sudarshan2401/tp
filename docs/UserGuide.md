@@ -326,7 +326,7 @@ Edits your class information at the specified index. You can update the class na
 
 ![](images/editClassUsage_1.png)
 
-3. Enter the following command to edit the name of your class:
+3. Enter the following command:
 
 ````
 edit /c 2 /n cs2040s
