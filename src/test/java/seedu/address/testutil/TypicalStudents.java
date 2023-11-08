@@ -94,11 +94,8 @@ public class TypicalStudents {
             .withClassParticipation("")
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalStudents() {
     } // prevents instantiation
-
 
     /**
      * Returns an {@code EduTrack} with all the typical persons.
@@ -110,6 +107,7 @@ public class TypicalStudents {
         }
         return ab;
     }
+
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
