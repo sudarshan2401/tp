@@ -206,7 +206,7 @@ Make sure that you have read the [Command format](#command-format) and [Command 
 
 ### Listing all classes : `list`
 
-Shows you an overview of all your existing classes. 
+Shows an overview of all your existing classes. You will be able to have a concise view of all the classes you are currently teaching.
 
 **Command Format:** `list`
 
@@ -280,7 +280,7 @@ Deleted Class: CS2103T-T15-3
 
 ### Viewing a class : `view /c`
 
-Shows you the detailed information (class name, class schedule, enrolled student list) of your selected class.
+Shows you the detailed information (class name, class schedule, enrolled student list) about a class onto the User Interface. Using this feature you will be able to have access to all the information you need to manage and edit your class and student information.
 
 **Command Format:** `view /c CLASS_INDEX`
 
