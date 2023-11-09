@@ -41,7 +41,7 @@ public class EduTrackTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyEduTrack_replacesData() {
         EduTrack newData = getTypicalEduTrack();
         eduTrack.resetData(newData);
         assertEquals(newData, eduTrack);
@@ -64,18 +64,18 @@ public class EduTrackTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInEduTrack_returnsFalse() {
         assertFalse(eduTrack.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInEduTrack_returnsTrue() {
         eduTrack.addStudent(ALICE);
         assertTrue(eduTrack.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInEduTrack_returnsTrue() {
 
         eduTrack.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).build();
@@ -134,7 +134,7 @@ public class EduTrackTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface
+     * A stub ReadOnlyEduTrack whose persons list can violate interface
      * constraints.
      */
 

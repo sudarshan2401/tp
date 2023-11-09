@@ -20,7 +20,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMLESSONS = "Number of lessons must be at least 0.";
-
+    public static final String MESSAGE_INVALID_INT_INPUT = "Number of lessons only accept numbers from"
+            + " 0 to 2147483647.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -31,7 +32,11 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        try {
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+        } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -137,7 +142,12 @@ public class ParserUtil {
      */
     public static int parseNumLessons(String numLessons) throws ParseException {
         requireNonNull(numLessons);
-        int trimmedNumLessons = Integer.valueOf(numLessons.trim());
+        int trimmedNumLessons;
+        try {
+            trimmedNumLessons = Integer.valueOf(numLessons.trim());
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_INT_INPUT);
+        }
         if (trimmedNumLessons < 0) {
             throw new ParseException(MESSAGE_INVALID_NUMLESSONS);
         }

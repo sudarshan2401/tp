@@ -81,7 +81,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClassListPanel`, `StudentListPanel` , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -90,7 +90,8 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- has specific updates based on certain commands e.g. `ListCommand` will update the `listPanelPlaceholder` to replace the `StudentListPanel` with the `ClassListPanel` and vice versa.
+- depends on some classes in the `Model` component, as it displays `Student` and `Class` object residing in the `Model`.
 
 ### Logic component
 
@@ -102,18 +103,18 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+<puml src="diagrams/RemoveClassSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `remove /c 1` Command" />
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `RemoveClassCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </box>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+1. When `Logic` is called upon to execute a command, it is passed to an `EduTrackParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `RemoveClassCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to remove a class).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -122,8 +123,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `EduTrackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduTrackParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `RemoveClassCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -133,18 +134,10 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the address book data i.e., all `Class` objects (which are contained in a `UniqueClassList` object) and `Student` objects (which are contained in a `UniqueStudentList`).
+- stores the currently 'selected' `Class` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Class>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
 
 ### Storage component
 
@@ -183,15 +176,15 @@ Step 4. `MarkStudentPresentCommandParser` creates a new `MarkStudentPresentComma
 
 Step 5. `LogicManager` calls `MarkStudentPresentCommand#excecute()`.
 
-Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student.
+Step 6. `MarkStudentPresentCommand` calls `Student#duplicateStudent` to create a duplicate Student, `duplicateS`.
 
-Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent` to mark the duplicate student present.
+Step 7. `MarkStudentPresentCommand` calls `Model#markStudentPresent`.
 
-Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the duplicate Student object as present.
+Step 8. `Model#markStudentPresent` calls `Student#markStudentPresent` to mark the `duplicateS` as present, this updates both `sLessonsAttended` and `sCurrentLessonAttendance`.
 
-Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set the existing Student the updated duplicate Student.
+Step 9. `Model#markStudentPresent` calls `EduTrack#setStudent` to set `s` as the newly updated `duplicateS` in `EduTrack`'s `globalStudentList`.
 
-Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set the existing Student attached to the Class as the updated duplicate Student.
+Step 10. `Model#markStudentPresent` calls the `Model#setStudentInClass` to set `s` attached to the Class as the updated `duplicateS`.
 
 Step 11. `Model#markStudentPresent` calls the `Model#updateFIlteredStudentList` to update the GUI of Students shown to user.
 
@@ -271,13 +264,33 @@ The following sequence diagram shows how the edit student operation works:
 
 The removal of Student implements the following operation:
 - `EduTrack#removeStudent(Student s)`  — Removes the Student s from List of Students in EduTrack that tracks all students.
-- `Class#removeStudentFromClass(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
+- `Class#removeStudent(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
 
-These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudentFromClass(Student s, Class sClass)`.
+These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudent(Student s, Class sClass)`.
 
-Given below is a list of variables used in walkthrough of the removal of Student mechanism.
+Given below is an example usage scenario of the remove student mechanism at a high level:
+
+Step 1. The user inputs `remove /s 1 /c CS2103T` command to remove the first `Student` in the class named "CS2103T".
+
+Step 2. `Logic`is called upon to execute the above command, it is passed to an `EduTrackParser` object which in turns 
+create a `RemoveStudentCommandParser` and uses it to parse the command.
+
+Step 3. This results in `RemoveStudentCommand`, referred as `cmd` in this scenario, which is executed by the `LogicManager`.
+
+Step 4. `cmd` communicates with the `Model` when executed to remove the first `Student` in `Class` CS2103T.
+
+Step 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back to `Logic`.
+
+The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand).
+##### Remove Student Mechanism
+<puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
+
+The mechanism to execute a `RemoveStudentCommand` is elaborated in the below walkthrough.
+This is a list of variables used in the walkthrough for clarity.
 
 **Variables used:**
+
+`cmd` - `RemoveStudentCommand` communicates with `Model` to remove a `Student`
 
 `s` - `Student` to be removed.
 
@@ -297,34 +310,37 @@ The relationship between variables can be summarised by this object diagram.
 
 **Walkthrough**
 
-Step 1. `LogicManager` calls `removeStudentCommand#execute()`
+Step 1. `LogicManager` calls `RemoveStudentCommand#execute()`.
+ 
+Step 2. `cmd` calls `Model#getClass(studentClassName)` to get `sClass`.
 
-Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
+Step 3. `cmd` calls `Model#getStudentList(sClass)` to get the `sClassStudentList` from `sClass`.
 
-Step 3. `removeStudentCommand` calls `Model#getStudentListFromClass` to get the `sClassStudentList` from `sClass`.
+Step 4. `cmd` calls `Model#getStudent(sClassStudentList, 1)` to get `s`, the first student in the `sClassStudentList`.
 
-Step 4. `removeStudentCommand` calls `Model#getStudentFromStudentList` to get `s` from the `sClassStudentList`.
+Step 5. `cmd` calls `Model#getStudentName(s)` to get `sName`.
 
-Step 5. `removeStudentCommand` calls `Model#getStudentName()` to get `sName`.
+Step 6. `cmd` calls  `Model#deleteStudent(s, sClass)` to remove `s` from `sClassStudentList`.
 
-Step 6. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+Step 7. `cmd` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
 
-Step 7. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+Step 8. The result of the `cmd`'s execution is encapsulated as a `CommandResult` object.
 
-Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
+Step 9. `cmd` returns `CommandResult` to `LogicManager`.
 
 The walkthrough can be summarised by this sequence diagram. (Some details are omitted in the diagram)
 
-<puml src="diagrams/RemoveStudentSequenceDiagram.puml" alt="RemoveStudentSequenceDiagram" />
+##### Execution of a `RemoveStudentCommand`
+<puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
 
-The following activity diagram summarises what happen when a user executes removeStudentCommand:
+The following activity diagram summarises what happen when a user removes a Student:
 
+##### Remove Student Workflow
 <puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
 
 **Implementation reasoning:**
-1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system.
-2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
-2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+1. `RemoveStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system.
+2. `RemoveStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 
 ### View Class feature
 
@@ -557,9 +573,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-University tutor who:
+School of Computing (SoC) tutor who:
 
 - has a need to manage classes with a significant number of students
+- needs to do tasks like taking attendance, and keeping track of class participation
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
@@ -633,10 +650,8 @@ _{More to be added}_
 1.  User requests to view the list of classes
 2.  EduTrack shows a list of classes
 3.  User requests to delete a specific class in the list
-4.  EduTrack requests for confirmation and waits for y/n response from user
-5.  User confirms
-6.  EduTrack deletes the class
-7.  EduTrack informs the user that the class is successfully deleted
+4.  EduTrack deletes the class
+5.  EduTrack informs the user that the class is successfully deleted
 
     Use case ends.
 
@@ -646,37 +661,24 @@ _{More to be added}_
 
   Use case ends.
 
-- 2a. User did not specify the class.
-
-  - 2a1. EduTrack informs user that class name is not specified in request.
-  - 2a2. EduTrack terminates the request.
-
-    Use case ends.
-
-- 2b. EduTrack detects that the class does not exist.
-
-  - 2b1. EduTrack informs user that the class does not exist.
-  - 2b2. EduTrack terminates the request.
-
-    Use case ends.
-
-- 3a. The given class name is invalid.
+- 3a. The given class index is invalid.
 
   - 3a1. EduTrack shows an error message.
 
   Use case ends.
 
-- 3b. No class name specified.
+- 3b. No class index specified.
 
-  - 3b1. EduTrack informs the user he should enter a class field
-
-  Use case ends.
-
-- 4a. User does not confirm, provides a `n` input
-
-  - 4a1. EduTrack confirms that the cancellation is successful
+  - 3b1. EduTrack shows an error message.
 
   Use case ends.
+
+- 4b. EduTrack detects that the class does not exist.
+
+  - 4b1. EduTrack informs user that the class does not exist.
+  - 4b2. EduTrack terminates the request.
+
+    Use case ends.
 
 ---
 
@@ -689,6 +691,8 @@ _{More to be added}_
 3. User accesses the sample data to see how the app works.
 
    Use case ends.
+
+---
 
 **Use case: Edit a Class**
 
@@ -726,15 +730,15 @@ _{More to be added}_
 
 ---
 
-**Use case: Adding a lesson to a Class Schedule**
+**Use case: Marking a student present for a lesson**
 
 **MSS**
 
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User requests to add a lesson for a particular class
-4.  EduTrack appends to the Class schedule of that particular class
-5.  EduTrack informs the user that the lesson was added to the class schedule
+1.  User requests to view the students in a particular class
+2.  EduTrack shows a list of students
+3.  User requests to mark a student present
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
+5.  EduTrack informs the user the student was successfully marked present
 
     Use case ends.
 
@@ -744,29 +748,67 @@ _{More to be added}_
 
   Use case ends
 
-- 3a. The given class name is invalid.
+- 3a. The given student index is invalid.
 
   - 3a1. EduTrack shows an error message.
 
     Use case ends.
 
-- 3b. No class name specified.
+- 3b. THe given student index is empty.
 
-  - 3b1. EduTrack informs the user he should enter a class field
-
-    Use case ends.
-
-- 3c. No lesson details was specified.
-
-  - 3c1. EduTrack informs the user that a lesson wasn't specified.
+  - 3b1. EduTrack shows an error message.
 
     Use case ends.
 
-- 3d. Lesson details was of invalid format.
+- 3c. The given class name is invalid.
 
-  - 3d1. EduTrack informs the user he should enter a lesson of the correct format
+  - 3c1. EduTrack shows an error message.
 
     Use case ends.
+
+- 3d. No class name specified.
+
+  - 3d1. EduTrack shows an error message
+
+    Use case ends.
+
+- 3e. Lesson details was of invalid format.
+
+  - 3e1. EduTrack informs the user he should enter a lesson of the correct format
+
+    Use case ends.
+
+---
+
+**Use case: Marking all students present in a class**
+
+**MSS**
+
+1.  User requests to view the students in a particular class
+2.  EduTrack shows a list of students
+3.  User requests to mark a student present
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
+5.  EduTrack informs the user the student was successfully marked present
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends
+
+- 3a. The given class index is invalid.
+
+  - 3a1. EduTrack shows an error message.
+
+    Use case ends.
+
+- 3b. The given class index is empty.
+
+  - 3b1. EduTrack shows an error message.
+
+    **Use case ends.**
 
 ---
 
@@ -809,21 +851,6 @@ _{More to be added}_
   - 3d1. EduTrack informs the user that the lesson does not exist.
 
     Use case ends.
-
----
-
-**Use case: Take attendance in a lesson**
-
-**MSS**
-
-1.  User choose a class from the list of classes
-2.  User requests to create a lesson of the class
-3.  EduTrack creates a lesson monitor for the class
-4.  User enters attendance of a student
-5.  EduTrack updates the attendance field of the student
-6.  User repeats step 3 for mutiple times
-7.  User requests to end the lesson
-8.  EduTrack ends the lesson and saves the data automatically
 
 ---
 
@@ -1222,5 +1249,11 @@ Given below are instructions to test the app manually.
 
 ## **Appendix: Planned Enhancements**
 
-1. Remove Student feature to display general message on restrictions of the input when user gives unhandled invalid input.
-2. Set Lesson feature to display general message on restrictions of the input when user gives unhandled invalid input.
+1. Enhancement to validation of identical students
+    <br><br>
+    As of now, to validate that 2 students are identical, the method `isSameStudent` check if all `Student`'s fields: name, id, total attendance, current attendance, memo and class participation are equal.
+    <br><br>
+    Thus, this allows the user to create (through adding or editing) 2 students that have 1 differing field apart from the name and id field. For example, there can be two `Student` with name Bob, id A0123456Z but one with a memo of "Actively asks question during class" and another with an empty memo. This can be confusing for the user if done unintentionally as the GUI would show 2 students that seem to represent the same student.
+    <br><br>
+    Enhancement to be made:
+    The method `isSameStudent` will be adjusted so that 2 students are identical if and only if both their name and id are the same. This will ensure every student is unique (based on name and id) in EduTrack (i.e. even between different classes).

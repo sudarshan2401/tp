@@ -163,11 +163,11 @@ public class EduTrack implements ReadOnlyEduTrack {
 
     public Class getClassByIndex(Index classIndex) {
         requireNonNull(classIndex);
-        return classes.get(classIndex);
+        return classes.getClassAtIndex(classIndex);
     }
 
     public int getClassListSize() {
-        return classes.size();
+        return classes.getSize();
     }
 
     /**
