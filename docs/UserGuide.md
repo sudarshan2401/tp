@@ -161,7 +161,7 @@ These are the common terms you will encounter throughout this user guide.
   E.g., you can choose to provide `CLASS_NAME`, `MEMO` and `SCHEDULE` in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command
 
 * Optional parameters can be in any order.<br>
-  E.g., you can choose to provide in the following order:`[/m MEMO] [/n CLASS_NAME]` if the command specifies `[/n CLASS_NAME] [/m MEMO]`.
+  E.g., if the command specifies `[/n CLASS_NAME] [/m MEMO]`, you can choose to provide them in the following order:`[/m MEMO] [/n CLASS_NAME]`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
 ignored.<br>
@@ -503,7 +503,7 @@ All students in class CS2103T has been marked present!
 
 ### Starting a lesson : `startlesson /c`
 
-Starts a lesson of your chosen class and facilitates the update of various class records for you. 
+Starts a lesson of your chosen class and enables you to start [attendance taking](#marking-a-student-present--mark-s).
 
 **Command Format:** `startlesson /c CLASS_NAME`
 
