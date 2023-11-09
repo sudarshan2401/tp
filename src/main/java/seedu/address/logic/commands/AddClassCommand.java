@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 
 /**
- * Adds a class to the list of classes
+ * Adds a class to the list of classes in EduTrack.
  */
 public class AddClassCommand extends Command {
 

@@ -104,7 +104,7 @@ public class UniqueClassList implements Iterable<Class> {
      * The index must be within the bounds of the list.
      * @param index The index of the class to retrieve.
      */
-    public Class get(Index index) {
+    public Class getClassAtIndex(Index index) {
         requireNonNull(index);
         if (index.getZeroBased() >= internalList.size()) {
             throw new IndexOutOfBoundsException();
@@ -151,7 +151,7 @@ public class UniqueClassList implements Iterable<Class> {
         return internalList.toString();
     }
 
-    public int size() {
+    public int getSize() {
         return internalList.size();
     }
 
