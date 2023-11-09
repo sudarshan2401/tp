@@ -28,7 +28,7 @@ public class EditClassDescriptorBuilder {
         descriptor = new EditClassDescriptor();
         descriptor.setClassName(c.getClassName());
         descriptor.setClassSchedule(c.getClassSchedule());
-        descriptor.setClassNote(c.getClassMemo());
+        descriptor.setClassMemo(c.getClassMemo());
     }
 
     /**
@@ -45,7 +45,7 @@ public class EditClassDescriptorBuilder {
      * building.
      */
     public EditClassDescriptorBuilder withMemo(String m) {
-        descriptor.setClassNote(new Memo(m));
+        descriptor.setClassMemo(new Memo(m));
         return this;
     }
 
