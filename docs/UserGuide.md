@@ -89,7 +89,7 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 
    - **Command box:** Where you can enter the commands.
    - **Command result output:** The resulting message will be shown here.
-   - **Class list:** Displays the list of all your classes
+   - **Class list:** Displays the list of all your classes.
 
 ![](images/classListDisplay.png)
 
@@ -108,7 +108,6 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 * If changes are made to a student in another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students.
 
 </box>
-
 
 ### Structure of This User Guide
 
@@ -817,7 +816,7 @@ There is no need to save manually.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **list**        | **Listing all classes** <br> **Format** `list`                                                                                                                                                                                                                                                                                                            |
+| **list**        | **Listing all classes:** <br> **Format** `list`                                                                                                                                                                                                                                                                                                          |
 | **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_INDEX` <br> **E.g:** `add /s John /c 3`                                                                                                                                          |
 | **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 3` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                             |
 | **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
