@@ -111,7 +111,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `EduTrackParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -154,8 +154,8 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- can save both EduTrack data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `EduTrackStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -894,49 +894,30 @@ _{More to be added}_
 
 1. User chooses to remove a student from a class.
 2. User requests to delete a specific student in a class.
-3. EduTrack deletes the student from that class.
+3. EduTrack removes the student from that class.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. Class name is not specified.
+- 2a. EduTrack detects that class name is not specified.
 
-  - 1a1. EduTrack informs user that class name is empty.
-
-    Use case ends.
-
-- 1b. Class name already exists.
-
-  - 1a1. EduTrack informs user that class already exists.
-
-    Use case ends.
-
-- 4a. Student does not exist
-
-  - 4a1. EduTrack informs user that student is not found.
-
-    Use case ends.
-
-- 2a. User did not specify the class.
-
-  - 2a1. EduTrack informs user that class name is not specified in the request.
+  - 2a1. EduTrack informs user that class name is empty.
   - 2a2. EduTrack terminates the request.
 
     Use case ends.
 
-- 2b. EduTrack detects that the student is not found in the class.
+- 2b. EduTrack detects that student index is not specified.
 
-  - 2b1. EduTrack informs user that student is not found in class.
+  - 2b1. EduTrack informs user that student index is empty.
   - 2b2. EduTrack terminates the request.
 
     Use case ends.
-
-- 2c. EduTrack detects that the class does not exist.
-
-  - 2c1. EduTrack informs user that the class does not exist.
+- 2c. EduTrack detects that student index is not valid.
+  
+  - 2c1. EduTrack inform user that student index is invalid.
   - 2c2. EduTrack terminates the request.
-
+  
     Use case ends.
 
 ---
