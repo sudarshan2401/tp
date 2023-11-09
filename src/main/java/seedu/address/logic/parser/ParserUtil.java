@@ -23,10 +23,10 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMLESSONS = "Number of lessons must be at least 0.";
-    public static final String MESSAGE_INVALID_INT_INPUT = "Number of lessons only accept numbers from" +
-            " 0 to 2147483647.";
-    public static final String MESSAGE_INVALID_INDEX_INPUT = "Index only accept number from" +
-            " 0 to 2147483647.";
+    public static final String MESSAGE_INVALID_INT_INPUT = "Number of lessons only accept numbers from"
+            + " 0 to 2147483647.";
+    public static final String MESSAGE_INVALID_INDEX_INPUT = "Index only accept number from"
+            + " 0 to 2147483647.";
 
 
     /**
