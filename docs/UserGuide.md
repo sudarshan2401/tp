@@ -165,18 +165,17 @@ Here are the common terms that is used throughout this user guide.
 #### Command format
 
 * Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
-  E.g. in `add /c CLASS_NAME` command, you must provide the `CLASS_NAME`.
+  Example: in `add /c CLASS_NAME` command, you must provide the `CLASS_NAME`.
 
 * Words in `UPPER_CASE` enclosed in square brackets are optional parameters. <br>
-  E.g: in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command, `CLASS_NAME`, `MEMO`, `SCHEDULE` are optional parameters.
+  Example: in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command, `CLASS_NAME`, `MEMO`, `SCHEDULE` are optional parameters.
 
 * Optional parameters can be in any order.<br>
-  E.g. if the command specifies `[/n CLASS_NAME] [/m MEMO]`, `[/m MEMO] [/n CLASS_NAME]` is also acceptable.
+  Example: if the command specifies `[/n CLASS_NAME] [/m MEMO]`, `[/m MEMO] [/n CLASS_NAME]` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
 ignored.<br>
-
-  E.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  Example: if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
