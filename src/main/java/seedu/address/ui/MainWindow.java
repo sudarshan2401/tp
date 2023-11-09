@@ -230,7 +230,12 @@ public class MainWindow extends UiPart<Stage> {
                 if (String.valueOf(classInfoDisplay.getClassName()).equals(current)) {
                     classInfoDisplay.setClassInfo(getClassInfo());
                 }
+            }
 
+            if (commandResult.isUpdatedStudent()) {
+                classInfoDisplay.setClassInfo(getClassInfo());
+                personListPanel = new StudentListPanel(logic.getFilteredPersonList());
+                displayListPanel(personListPanel.getRoot());
             }
 
             return commandResult;

@@ -45,9 +45,10 @@ public class StartLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        Class c = null;
+        Class copy = null;
         try {
-            c = model.getClass(className);
+            Class c = model.getClass(className);
+            copy = c;
             model.startLesson(c);
             // Mark everyone absent
             List<Student> studentList = c.getStudentList();
@@ -55,6 +56,7 @@ public class StartLessonCommand extends Command {
                 Student editedStudent = studentToUnmark.duplicateStudent();
                 try {
                     model.startLessonForStudent(studentToUnmark, c, editedStudent);
+                    model.updateFilteredClassList((cl) -> cl.isSameClass(c));
                 } catch (StudentAlreadyMarkedAbsent e) {
                     continue;
                 }
@@ -63,7 +65,7 @@ public class StartLessonCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_START_LESSON_SUCCESS,
-                Messages.formatClass(c)));
+                Messages.formatClass(copy)));
     }
 
     @Override

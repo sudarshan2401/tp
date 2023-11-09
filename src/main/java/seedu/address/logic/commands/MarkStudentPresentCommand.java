@@ -54,21 +54,23 @@ public class MarkStudentPresentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Class studentClass = null;
+        model.updateFilteredClassList(Model.PREDICATE_SHOW_ALL_CLASSES);
+        Class studentClassCopy = null;
         Student studentToMark = null;
         try {
-            studentClass = model.getClass(className);
+            Class studentClass = model.getClass(className);
+            studentClassCopy = studentClass;
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
             Student editedStudent = model.duplicateStudent(studentToMark);
             model.markStudentPresent(studentToMark, studentClass, editedStudent);
+            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,
                     Messages.formatStudent(studentToMark)));
         } catch (AttendanceDiscrepancy e) {
             throw new CommandException(String.format(MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL,
-                    Messages.formatClass(studentClass)));
-        }
-        catch (ClassNotFoundException e) {
+                    Messages.formatClass(studentClassCopy)));
+        } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
