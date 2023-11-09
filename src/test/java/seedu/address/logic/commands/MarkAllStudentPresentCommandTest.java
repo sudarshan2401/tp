@@ -41,18 +41,18 @@ public class MarkAllStudentPresentCommandTest {
     public void execute_userIsUnmarked_success() {
         // Set up test case
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
-        CS2109.setTotalLessons(10);
+        cs2109.setTotalLessons(10);
         Student studentToRemove1 = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(4).build();
         model.addStudent(studentToRemove1);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove1, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove1, cs2109);
         Student studentToRemove2 = new StudentBuilder().withName("John")
                 .withCurrentLessonAttendance(true).withLessonsAttended(2).build();
         model.addStudent(studentToRemove2);
-        model.addStudentToClass(studentToRemove2, CS2109);
+        model.addStudentToClass(studentToRemove2, cs2109);
 
         // Set up expected model
         Student editedStudent1 = new StudentBuilder().withName("Amy Bee")

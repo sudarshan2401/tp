@@ -13,7 +13,7 @@ You should expect **EduTrack** to be able to manage:
 * Student class participation
 
 ### Installation:
-* Ensure you have java 11 installed in your local computer 
+* Ensure you have java 11 installed in your local computer
   * If you are on **windows** or **linux**, download [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
   * If you on **macOS**, download [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
 * Download the [JAR file](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases)

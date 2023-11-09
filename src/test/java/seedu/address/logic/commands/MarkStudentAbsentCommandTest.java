@@ -28,13 +28,13 @@ public class MarkStudentAbsentCommandTest {
     @Test
     public void execute_userIsMarked_success() {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(true).withLessonsAttended(5).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         Student editedStudent = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(4).build();
@@ -52,13 +52,13 @@ public class MarkStudentAbsentCommandTest {
     public void execute_userIsUnmarked_throwsStudentAlreadyMarkedAbsentException() {
         // Setup - add in student who has been marked absent
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(5).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         ClassName className = new ClassName("CS2109");
         // Actual test
@@ -74,13 +74,13 @@ public class MarkStudentAbsentCommandTest {
     public void execute_invalidClass_throwsClassNotFoundException() {
         // Setup - add in student who has been marked absent
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(5).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         ClassName className = new ClassName("CS1101S");
         // Actual test
