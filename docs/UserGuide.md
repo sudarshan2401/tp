@@ -731,7 +731,7 @@ return to [Table of Contents](#table-of-contents)
 
 ### Viewing help : `help`
 
-Displays a pop-up window containing the link to the EduTrack user guide. You can use this command to quickly access the user guide.
+Displays a pop-up window containing the link to this user guide. You can use this command to quickly access the user guide.
 
 **Command Format:** `help`
 
