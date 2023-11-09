@@ -804,7 +804,7 @@ _{More to be added}_
 
     Use case ends.
 
-- 3b. THe given class index is empty.
+- 3b. The given class index is empty.
 
   - 3b1. EduTrack shows an error message.
 
