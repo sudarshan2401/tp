@@ -4,7 +4,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.model.student.Student;
 
@@ -12,13 +11,6 @@ import seedu.address.model.student.Student;
  * A utility class for Person.
  */
 public class StudentUtil {
-
-    /**
-     * Returns an add command string for adding the {@code person}.
-     */
-    public static String getAddCommand(Student person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
-    }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.

@@ -198,8 +198,6 @@ public class Class {
         students.setStudent(target, editedStudent);
     }
 
-
-
     @Override
     public String toString() {
         return new ToStringBuilder(this)

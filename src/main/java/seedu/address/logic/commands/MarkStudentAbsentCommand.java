@@ -16,7 +16,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 
 /**
- * Marks a student in a Class in teh EduTrack as absent.
+ * Marks a student in a Class in the EduTrack as absent.
  */
 public class MarkStudentAbsentCommand extends Command {
     public static final String COMMAND_WORD = "unmark" + " /s";

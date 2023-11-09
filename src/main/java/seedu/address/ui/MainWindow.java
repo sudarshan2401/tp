@@ -223,6 +223,16 @@ public class MainWindow extends UiPart<Stage> {
                 classInfoDisplay.setClassInfo("");
             }
 
+            if (commandResult.isEditClass()) {
+                //add the class info display only if already viewing that class' information
+                // (e.g. class in classinfodisplay is the same as the edited class)
+                String current = logic.getFilteredClassList().get(0).getClassName().toString();
+                if (String.valueOf(classInfoDisplay.getClassName()).equals(current)) {
+                    classInfoDisplay.setClassInfo(getClassInfo());
+                }
+
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
