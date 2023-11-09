@@ -55,7 +55,7 @@ public class StringUtil {
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonZeroUnsignedInteger(String s) {
+    public static boolean isNonZeroUnsignedInteger(String s) throws NumberFormatException {
         requireNonNull(s);
 
         try {
