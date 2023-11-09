@@ -134,7 +134,7 @@ public class Class {
             throw new CommandException(Messages.MESSAGE_EMPTY_STUDENT_LIST);
         }
         if (targetStudentIndex.getZeroBased() >= studentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         return studentList.get(targetStudentIndex.getZeroBased());
     }

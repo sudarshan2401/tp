@@ -158,7 +158,7 @@ public class UniqueClassListTest {
 
     @Test
     public void classesSize() {
-        assertEquals(uniqueClassList.asUnmodifiableObservableList().size(), uniqueClassList.size());
+        assertEquals(uniqueClassList.asUnmodifiableObservableList().size(), uniqueClassList.getSize());
     }
 
     /**

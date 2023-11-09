@@ -44,7 +44,8 @@ public class EditStudentDescriptorTest {
         String expected = EditStudentDescriptor.class.getCanonicalName() + "{name="
                 + editStudentDescriptor.getName().orElse(null) + ", id="
                 + editStudentDescriptor.getId().orElse(null) + ", memo="
-                + editStudentDescriptor.getMemo().orElse(null) + "}";
+                + editStudentDescriptor.getMemo().orElse(null) + ", classParticipation="
+                + editStudentDescriptor.getClassParticipation().orElse(null) + "}";
         assertEquals(expected, editStudentDescriptor.toString());
 
     }
