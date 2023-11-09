@@ -509,7 +509,7 @@ Starts a lesson of your chosen class and enables you to start [attendance taking
 
 **Example:**
 - `startlesson /c CS2103T`: Increases total number of lessons conducted for class "CS2103T" by 1 and marks all the students in "CS2103T" 
-as absent for attendance marking.
+as absent for attendance taking.
 
 
 **Sample Usage**:
