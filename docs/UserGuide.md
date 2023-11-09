@@ -12,9 +12,11 @@ Whether you find yourself juggling the management of numerous students or simply
 
 The application is optimized for use via a Command Line Interface ([CLI](#glossary)) while still having the benefits of a Graphical User Interface ([GUI](#glossary)).
 
-If you are new to this user guide, click [here](#about) to learn more .
+If you are new to this user guide, click [here](#about) to learn more.
 
 If you are keen to get started on using EduTrack, click [here](#quick-start) to see the instructions on how to kickstart your EduTrack experience! :rocket:
+
+If you are an experienced user of EduTrack, click [here](#command-summary) to see a summary of commands.
 
 ---
 
@@ -36,15 +38,15 @@ If you are keen to get started on using EduTrack, click [here](#quick-start) to 
      - [Removing a class : `remove /c`](#removing-a-class-remove-c)
      - [Viewing a class : `view /c`](#viewing-a-class-view-c)
      - [Editing a class: `edit /c`](#editing-a-class-edit-c)
-     - [Marking a student present : `mark /s`](#marking-a-student-present-mark-s)
-     - [Marking a student absent : `unmark /s`](#marking-a-student-absent-unmark-s)
-     - [Marking all students in a class present : `markall /c`](#marking-all-students-in-a-class-present-markall-c)
      - [Starting a lesson : `startlesson /c`](#starting-a-lesson-startlesson-c)
      - [Setting number of lessons of a class: `setlesson /c`](#setting-number-of-lessons-of-a-class-setlesson-c)
    - [Student commands](#student-commands)
      - [Adding a student : `add /s`](#adding-a-student-add-s)
      - [Removing a student : `remove /s`](#removing-a-student-remove-s)
      - [Editing a student : `edit /s`](#editing-a-student-edit-s)
+     - [Marking a student present : `mark /s`](#marking-a-student-present-mark-s)
+     - [Marking a student absent : `unmark /s`](#marking-a-student-absent-unmark-s)
+     - [Marking all students in a class present : `markall /c`](#marking-all-students-in-a-class-present-markall-c)
    - [Miscellaneous commands](#miscellaneous-commands)
      - [Viewing help : `help`](#viewing-help-help)
      - [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -188,7 +190,7 @@ Most commands in EduTrack require various parameters. You can find their constra
 
 <br>
 
-return to [Table of Contents](#table-of-contents)
+Return to [Table of Contents](#table-of-contents)
 
 ---
 
@@ -361,141 +363,6 @@ edit /c 2 /n cs2040s
 **Tip:**
 
 * To delete class memo or class schedule, you can type `/m` or `/t` without specifying anything after it.
-
-</box>
-
-<br>
-
-### Marking a student present : `mark /s`
-
-Marks your student present for your current lesson.
-
-**Command Format:** `mark /s STUDENT_INDEX /c CLASS_NAME`
-
-**Examples:**
-* `mark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as present.
-* `mark /s 3 /c CS2102` : Marks the third student in your class CS2102 as present.
-
-**Sample Usage:**
-
-1. Assuming you want to mark the second student (Jamie) in your class CS2103T, who is positioned at index 1 in your class list, as present.
-2. Enter the following commands:
-```
-view /c 1
-mark /s 2 /c CS2103T
-```
-3. The result box will display the following message:
-```
-Jamie successfully marked present!
-```
-
-4. You have successfully marked Jamie as present in CS2103T. :tada:
-
-<box type="info">
-
-**Information:**
-
-* CLASS_NAME must be the name of a class that already exists.
-
-</box>
-
-<box type="warning">
-
-**Caution:**
-
-* The student you want to mark should not already be marked present.
-
-</box>
-
-<box type="tip">
-
-**Tip:**
-
-* If all your students are present, you can use our [markall](#marking-all-students-in-a-class-present-markall) command instead!
-
-</box>
-
-<br>
-
-### Marking a student absent : `unmark /s`
-
-Marks your student absent for your current lesson.
-
-**Command Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME`
-
-**Examples:**
-* `unmark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as absent.
-* `unmark /s 3 /c CS2102` : Marks the third student in your class CS2102 as absent.
-
-**Sample Usage:**
-
-1. If you want to mark the second student in your class CS2103T, who is positioned at index 1 in your class list, as absent.
-2. Enter the following commands:
-```
-view /c 1
-mark /s 2 /c CS2103T
-```
-3. The result box will display the following message:
-```
-Jamie has been marked absent!
-```
-4. You have successfully marked Jamie as absent in CS2103T. :tada:
-
-<box type="info">
-
-**Information:**
-
-* CLASS_NAME must be the name of a class that already exists.
-
-</box>
-
-<box type="warning">
-
-**Caution:**
-
-* The student you want to mark absent should not already be marked absent.
-
-</box>
-
-<br>
-
-### Marking all students in a class present : `markall /c`
-
-Marks all students in your class as present. You can use this command if all your students are present for your current lesson.
-
-**Command Format:** `markall /c CLASS_INDEX`
-
-**Examples:**
-* `markall /c 1` : Marks all the student in your class at CLASS_INDEX 1 as present.
-* `markall /c 2` : Marks all the student in your class at CLASS_INDEX 2 as present.
-
-**Sample Usage:**
-
-1. If you want to mark all your students in your CS2103T class, who are located at index 1 in your class list, as present.
-2. Enter the following commands:
-```
-view /c 1
-markall /c 1
-```
-3. The result box will display the following message:
-```
-All students in class CS2103T has been marked present!
-```
-4. Successfully marked all students in CS2103T. :tada:
-
-<box type="info">
-
-**Information:**
-
-* Students who have already been marked present will not be affected by this command.
-
-</box>
-
-<box type="tip">
-
-**Tip:**
-
-* You can use `markall` in conjunction with `unmark` if most of your students are present, you can save more time doing it this way.
 
 </box>
 
@@ -717,7 +584,142 @@ Edits an existing student from your specified class. You can edit the student na
 
 <br>
 
-return to [Table of Contents](#table-of-contents)
+### Marking a student present : `mark /s`
+
+Marks your student present for your current lesson.
+
+**Command Format:** `mark /s STUDENT_INDEX /c CLASS_NAME`
+
+**Examples:**
+* `mark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as present.
+* `mark /s 3 /c CS2102` : Marks the third student in your class CS2102 as present.
+
+**Sample Usage:**
+
+1. Assuming you want to mark the second student (Jamie) in your class CS2103T, who is positioned at index 1 in your class list, as present.
+2. Enter the following commands:
+```
+view /c 1
+mark /s 2 /c CS2103T
+```
+3. The result box will display the following message:
+```
+Jamie successfully marked present!
+```
+
+4. You have successfully marked Jamie as present in CS2103T. :tada:
+
+<box type="info">
+
+**Information:**
+
+* CLASS_NAME must be the name of a class that already exists.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The student you want to mark should not already be marked present.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+
+* If all your students are present, you can use our [markall](#marking-all-students-in-a-class-present-markall) command instead!
+
+</box>
+
+<br>
+
+### Marking a student absent : `unmark /s`
+
+Marks your student absent for your current lesson.
+
+**Command Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME`
+
+**Examples:**
+* `unmark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as absent.
+* `unmark /s 3 /c CS2102` : Marks the third student in your class CS2102 as absent.
+
+**Sample Usage:**
+
+1. If you want to mark the second student in your class CS2103T, who is positioned at index 1 in your class list, as absent.
+2. Enter the following commands:
+```
+view /c 1
+mark /s 2 /c CS2103T
+```
+3. The result box will display the following message:
+```
+Jamie has been marked absent!
+```
+4. You have successfully marked Jamie as absent in CS2103T. :tada:
+
+<box type="info">
+
+**Information:**
+
+* CLASS_NAME must be the name of a class that already exists.
+
+</box>
+
+<box type="warning">
+
+**Caution:**
+
+* The student you want to mark absent should not already be marked absent.
+
+</box>
+
+<br>
+
+### Marking all students in a class present : `markall /c`
+
+Marks all students in your class as present. You can use this command if all your students are present for your current lesson.
+
+**Command Format:** `markall /c CLASS_INDEX`
+
+**Examples:**
+* `markall /c 1` : Marks all the student in your class at CLASS_INDEX 1 as present.
+* `markall /c 2` : Marks all the student in your class at CLASS_INDEX 2 as present.
+
+**Sample Usage:**
+
+1. If you want to mark all your students in your CS2103T class, who are located at index 1 in your class list, as present.
+2. Enter the following commands:
+```
+view /c 1
+markall /c 1
+```
+3. The result box will display the following message:
+```
+All students in class CS2103T has been marked present!
+```
+4. Successfully marked all students in CS2103T. :tada:
+
+<box type="info">
+
+**Information:**
+
+* Students who have already been marked present will not be affected by this command.
+
+</box>
+
+<box type="tip">
+
+**Tip:**
+
+* You can use `markall` in conjunction with `unmark` if most of your students are present, you can save more time doing it this way.
+
+</box>
+
+<br>
+
+Return to [Table of Contents](#table-of-contents)
 
 ## Miscellaneous commands 🛠️
 

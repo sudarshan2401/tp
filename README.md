@@ -6,7 +6,7 @@ Here is a glimpse of what EduTrack looks like!
 
 ![Ui](docs/images/Ui.png)
 
-### **EduTrack** provides a **centralised system** to help teaching assistants manage multiple classes.<br>
+### **EduTrack** provides a **centralised system** to help SOC teaching assistants manage multiple classes.<br>
 You should expect **EduTrack** to be able to manage:
 * Student attendance
 * Additional notes for each student
