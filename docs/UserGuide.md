@@ -501,8 +501,7 @@ All students in class CS2103T has been marked present!
 
 ### Starting a lesson : `startlesson /c`
 
-Starts a lesson of your chosen class. <br>
-This increases the total number of lessons conducted in your class and automatically mark all students to absent.
+Starts a lesson of your chosen class. This increases the total number of lessons conducted in your class and automatically marks all students as absent for attendance taking.
 
 **Command Format:** `startlesson /c CLASS_NAME`
 
@@ -543,8 +542,7 @@ as absent.
 
 ### Setting number of lessons of a class : `setlesson /c`
 
-Sets the total number of lessons of your chosen class manually.<br>
-This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) by accident.
+Sets the total number of lessons conducted for your chosen class manually.
 
 **Command Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
 
@@ -569,9 +567,8 @@ This can be useful when you [start a lesson](#starting-a-lesson-startlesson-c) b
 
 **Information:**
 
-- NUMBER_OF_LESSONS do not take `zero`, `one`, `two`, `three`.
-- If a `Student`'s number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
-    - Example: John's current attendance in CS2103T is 5/7. <br> If you call `setlesson /c CS2103T /l 3`, it will adjust John's attendance to 3/3.
+- If one of your student's number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
+    - Example: John's current attendance in CS2103T is 5/7. <br> If you enter the command `setlesson /c CS2103T /l 3`, it will adjust John's attendance to 3/3.
 
 </box>
 
