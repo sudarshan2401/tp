@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLASSES;
 
 import java.util.List;
@@ -32,11 +33,12 @@ public class EditClassCommand extends Command {
             + "by the index number used in the displayed class list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MEMO + "NOTE] "
+            + "[" + PREFIX_NAME + " CLASS_NAME] "
+            + "[" + PREFIX_MEMO + " MEMO] "
+            + "[" + PREFIX_SCHEDULE + " SCHEDULE] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "cs2100 "
-            + PREFIX_MEMO + "prepare material";
+            + PREFIX_NAME + " cs2100 "
+            + PREFIX_MEMO + " prepare material";
 
     public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s\n"
             + "Schedule: %2$s\n"
@@ -97,7 +99,7 @@ public class EditClassCommand extends Command {
         assert classToEdit != null;
 
         ClassName updatedClassName = editClassDescriptor.getClassName().orElse(classToEdit.getClassName());
-        Memo memo = editClassDescriptor.getClassNote().orElse(classToEdit.getClassMemo());
+        Memo memo = editClassDescriptor.getClassMemo().orElse(classToEdit.getClassMemo());
         Schedule schedule = editClassDescriptor.getClassSchedule().orElse(classToEdit.getClassSchedule());
         int totalLessons = classToEdit.getTotalLessons();
 
@@ -149,7 +151,7 @@ public class EditClassCommand extends Command {
          */
         public EditClassDescriptor(EditClassDescriptor toCopy) {
             setClassName(toCopy.className);
-            setClassNote(toCopy.classMemo);
+            setClassMemo(toCopy.classMemo);
             setClassSchedule(toCopy.classSchedule);
         }
 
@@ -168,11 +170,11 @@ public class EditClassCommand extends Command {
             return Optional.ofNullable(className);
         }
 
-        public void setClassNote(Memo classMemo) {
+        public void setClassMemo(Memo classMemo) {
             this.classMemo = classMemo;
         }
 
-        public Optional<Memo> getClassNote() {
+        public Optional<Memo> getClassMemo() {
             return Optional.ofNullable(classMemo);
         }
 

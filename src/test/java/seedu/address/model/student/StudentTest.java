@@ -84,8 +84,8 @@ public class StudentTest {
     @Test
     public void markStudentAbsent_studentDidNotAttend_throwsStudentAlreadyMarkedAbsentException() {
         // DANIEL was already marked absent
-        Student Daniel = new StudentBuilder(DANIEL).build();
-        assertThrows(StudentAlreadyMarkedAbsent.class, () -> Daniel.markStudentAbsent());
+        Student daniel = new StudentBuilder(DANIEL).build();
+        assertThrows(StudentAlreadyMarkedAbsent.class, () -> daniel.markStudentAbsent());
     }
 
     @Test
@@ -101,10 +101,10 @@ public class StudentTest {
     public void getAttendanceStringRep() {
         // BOB was marked present beforehand
         // DANIEL was already marked absent
-        Student Bob = new StudentBuilder(BOB).build();
-        Student Daniel = new StudentBuilder(DANIEL).build();
-        assertEquals(Bob.getAttendanceStringRep(), "Y");
-        assertEquals(Daniel.getAttendanceStringRep(), "N");
+        Student bob = new StudentBuilder(BOB).build();
+        Student daniel = new StudentBuilder(DANIEL).build();
+        assertEquals(bob.getAttendanceStringRep(), "Y");
+        assertEquals(daniel.getAttendanceStringRep(), "N");
     }
 
     @Test

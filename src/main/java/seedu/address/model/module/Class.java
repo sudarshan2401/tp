@@ -115,7 +115,7 @@ public class Class {
      * Removes Student from the Class it is in.
      * @param s Student to be removed from its Class.
      */
-    public void removeStudentFromClass(Student s) {
+    public void removeStudent(Student s) {
         students.remove(s);
         assert(this.hasStudentInClass(s) == false) : "Class should not have studentToBeDeleted anymore.";
     }
@@ -134,7 +134,7 @@ public class Class {
             throw new CommandException(Messages.MESSAGE_EMPTY_STUDENT_LIST);
         }
         if (targetStudentIndex.getZeroBased() >= studentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_INPUT_TOO_LARGE);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         return studentList.get(targetStudentIndex.getZeroBased());
     }

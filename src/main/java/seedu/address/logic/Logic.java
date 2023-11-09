@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the EduTrack.
      *
      * @see seedu.address.model.Model#getEduTrack()
      */
-    ReadOnlyEduTrack getAddressBook();
+    ReadOnlyEduTrack getEduTrack();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredPersonList();
@@ -37,9 +37,9 @@ public interface Logic {
     ObservableList<Class> getFilteredClassList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' EduTrack file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduTrackFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

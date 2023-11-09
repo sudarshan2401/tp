@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Updated the AB3 User Interface (UI) to match our product needs
   * **What it does:** Updated the UI to include sections for the class information, class list as well as the student list.
-  * **Justification:** In order for users to be able to understand the information provided by the product, updating the UI was necessary as the existing AB3 UI did not provide us with ways to dipslay and update the new information such as class attendance and class notes. 
+  * **Justification:** In order for users to be able to understand the information provided by the product, updating the UI was necessary as the existing AB3 UI did not provide us with ways to dipslay and update the new information such as class attendance and class notes.
   * **Highlights:** Understanding how the AB3 UI functioned took time to understand. On top of this, as we implemented new fields and features, the UI had to be constantly updated.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=sudarshan2401&breakdown=true)
