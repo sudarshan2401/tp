@@ -54,14 +54,14 @@ public class RemoveStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Class studentClass = model.getClass(studentClassName);
-        ObservableList<Student> studentList = model.getStudentListFromClass(studentClass);
+        ObservableList<Student> studentList = model.getStudentList(studentClass);
         if (studentIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Student studentToDelete = model.getStudentFromStudentList(studentList, studentIndex);
+        Student studentToDelete = model.getStudent(studentList, studentIndex);
         Name studentName = model.getStudentName(studentToDelete);
         model.deleteStudent(studentToDelete);
-        model.deleteStudentFromClass(studentToDelete, studentClass);
+        model.deleteStudent(studentToDelete, studentClass);
         model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
         return new CommandResult(String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, studentName,
                 Messages.formatClass(studentClass)));
