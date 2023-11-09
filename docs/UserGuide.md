@@ -179,11 +179,11 @@ Most commands in EduTrack require various parameters. You can find their constra
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CLASS_NAME          | A single-word string consists of any characters and not case-sensitive. <br> When CLASS_NAME is displayed on the screen, it will always be in uppercase.                                                                                            |
 | CLASS_INDEX         | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
-| STUDENT_NAME        | A string consists of alphanumeric characters.                                                                                                                                                                                                       |
+| STUDENT_NAME        | A string consisting of alphanumeric characters.                                                                                                                                                                                                     |
 | STUDENT_INDEX       | A valid positive integer shown in displayed student list.                                                                                                                                                                                           |
-| MEMO, PARTICIPATION | A string consists of any characters.                                                                                                                                                                                                                |
+| MEMO, PARTICIPATION | A string consisting of any characters.                                                                                                                                                                                                              |
 | SCHEDULE            | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
-| ID                  | A string consists of alphanumeric characters, and it should begin with "A" and end with a capital letter (A to Z).                                                                                                                                  |
+| ID                  | A string that starts with "A", followed by only numerical characters (0-9) and end with a single capitalised alphabet (A-Z).                                                                                                                        |
 | NUMBER_OF_LESSONS   | A non-negative integer.                                                                                                                                                                                                                             |
 
 <br>
@@ -514,13 +514,13 @@ Starts a lesson of your chosen class. This increases the total number of lessons
 
 1. Assuming you want to start a lesson for your CS2103T class.
 2. Enter the following command:
-   ```
-   startlesson /c CS2103T
-   ```
+```
+startlesson /c CS2103T
+```
 3. The result box will display the following message:
-   ```
-   CS2103T started a new lesson!
-   ```
+```
+CS2103T started a new lesson!
+```
 4. You have successfully started a lesson in CS2103T. :tada:
 
 <box type="info">
@@ -555,13 +555,13 @@ Sets the total number of lessons conducted for your chosen class manually.
 
 1. Assuming you want to set the number of lessons conducted for the class CS2103T to 5.
 2. Enter the following command:
-   ```
-   setlesson /c CS2103T /l 5
-   ```
+```
+setlesson /c CS2103T /l 5
+```
 3. The result box will display the following message:
-   ```
-   Successfully set the number of lessons in CS2103T to 5!
-   ```
+```
+Successfully set the number of lessons in CS2103T to 5!
+```
 4. You have successfully set the total number of lessons in CS2103T to 5. :tada:
 
 <box type="info">
@@ -593,29 +593,30 @@ Adds a new student to your existing class.
 **Command Format:** `add /s STUDENT_NAME /c CLASS_INDEX`
 
 **Examples:**
-* `add /s John /c 1`: Adds a new student named "John" into the first class on the displayed class list.
-* `add /s Bob /c 2`: Adds a new student named "Bob" into the second class on the displayed class list.
+* `add /s John /c 1` : Adds a new student named "John" into the first class on the displayed class list.
+* `add /s Bob /c 2` : Adds a new student named "Bob" into the second class on the displayed class list.
 
 **Sample Usage:**
 
 1. Assuming you want to add a student named "John" into the class "CS2103T", and the class index in the displayed list is "1".
 2. Enter the following commands:
-   ````
-   list
-   add /s John /c 1
-   ````
+````
+list
+add /s John /c 1
+````
 3. The result box will display the following message:
-   ````
-   Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
-   ````
+````
+Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
+````
 4. You have successfully added the John into CS2103T. :tada:
 
 <box type="info">
 
 **Information:**
 * Every student must be assigned to a class, i.e. a student should always appear in one of the classes.
-* An identical student (ie. all student information are the same) cannot be in more than 1 class at the same time.
 * A default id "A0000000Z" will be assigned to the student.
+* An identical student (ie. all student information are the same) cannot be in more than 1 class at the same time.
+  * These include the student's name, id, memo, participation, current attendance and total attendance.
 
 </box>
 
@@ -646,20 +647,20 @@ Removes a student in your chosen class.
 
 **Examples:**
 
-- `remove /s 1 /c CS2103T`: Removes the first student in the class named "CS2103T".
-- `remove /s 2 /c CS2100`: Removes the second student in the class named "CS2100".
+- `remove /s 1 /c CS2103T` : Removes the first student in the class named "CS2103T".
+- `remove /s 2 /c CS2100` : Removes the second student in the class named "CS2100".
 
 **Sample Usage:**
 
 1. You want to remove a student named "John" and he is the second student from the class named "CS2103T".
 2. Enter the following command:
-   ```
-   remove /s 2 /c CS2103T
-   ```
+```
+remove /s 2 /c CS2103T
+```
 3. The result box will display the following message:
-   ```
-   John has been removed from CS2103T
-   ```
+```
+John has been removed from CS2103T
+```
 4. You have successfully removed John from CS2103T. :tada:
 
 <box type="info">
@@ -678,21 +679,21 @@ Edits an existing student from your specified class. You can edit the student na
 **Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
 **Examples:**
-* `edit /s 1 /c CS2103T /n Bob`: Edits the name of the first student in the class CS2103T to "Bob".
-* `edit /s 2 /c CS2103T /id A0231234U`: Edits the id of the second student in the class CS2103T to "A0231234U".
+* `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to "Bob".
+* `edit /s 2 /c CS2103T /id A0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
 
 **Sample Usage:**
 
 1. Assuming you want to edit the ID of the second student to "A010193Z", who is from "CS2103T" class, and the class index in the displayed list is "1".
 2. Enter the following commands:
-   ```
-   view /c 1
-   edit /s 2 /c CS2103T /id A010193Z
-   ```
+```
+view /c 1
+edit /s 2 /c CS2103T /id A010193Z
+```
 3. The result box will display the following message:
-   ```
-   Edited Student: John; Id: A010193Z; Memo:
-   ```
+```
+Edited Student: John; Id: A010193Z; Memo:
+```
 4. You have successfully edited your student's details. :tada:
 
 <box type="info">
@@ -711,6 +712,8 @@ Edits an existing student from your specified class. You can edit the student na
 
 - Only valid ids will be recognised. It has to start with "A", followed by only numerical characters (0-9) and end with a single capitalised alphabet (A-Z).
 - After editing the student, the `UI` will update to show you the student list of the class that the edited student is in.
+- Be careful of any unintended edits that might lead to unwanted results (eg. 2 students with the same name) as they will not be counted as identical students as mentioned in the `Adding a student feature`.
+
 
 </box>
 
