@@ -8,7 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.EduTrack;
+import seedu.address.model.common.Memo;
+import seedu.address.model.module.Class;
+import seedu.address.model.module.ClassName;
+import seedu.address.model.module.Schedule;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in
@@ -94,22 +99,24 @@ public class TypicalStudents {
             .withClassParticipation("")
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalStudents() {
     } // prevents instantiation
-
 
     /**
      * Returns an {@code EduTrack} with all the typical persons.
      */
     public static EduTrack getTypicalEduTrack() {
-        EduTrack ab = new EduTrack();
+        EduTrack et = new EduTrack();
+        Class t1 = new Class(new ClassName("T1"), new UniqueStudentList(),
+                new Memo(""), new Schedule());
+        et.addClass(t1);
         for (Student student : getTypicalStudents()) {
-            ab.addStudent(student);
+            et.addStudent(student);
+            t1.addStudentToClass(student);
         }
-        return ab;
+        return et;
     }
+
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }

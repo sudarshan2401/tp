@@ -28,7 +28,7 @@ public class AddStudentCommand extends Command {
             + " John Doe "
             + PREFIX_CLASS + " 1";
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added New Student: %1$s to the class: %2$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in a class";
     private final Student toAdd;
     private final Index classIndex;
 
@@ -54,11 +54,11 @@ public class AddStudentCommand extends Command {
 
         Class classToAddStudent = lastShownClassList.get(classIndex.getZeroBased());
 
-        if (classToAddStudent.hasStudentInClass(this.toAdd)) {
+        if (classToAddStudent.hasStudentInClass(this.toAdd) || model.hasStudent(this.toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addStudent(toAdd);
+        model.addStudent(this.toAdd);
         model.addStudentToClass(this.toAdd, classToAddStudent);
         model.updateFilteredClassList((c) -> c.isSameClass(classToAddStudent));
         return new CommandResult(String.format(MESSAGE_ADD_STUDENT_SUCCESS,

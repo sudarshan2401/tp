@@ -593,8 +593,8 @@ Adds a new student to your existing class.
 **Command Format:** `add /s STUDENT_NAME /c CLASS_INDEX`
 
 **Examples:**
-* `add /s John /c 1` : Adds a new student named "John" into the first class on the displayed class list.
-* `add /s Bob /c 2` : Adds a new student named "Bob" into the second class on the displayed class list.
+* `add /s John /c 1`: Adds a new student named "John" into the first class on the displayed class list.
+* `add /s Bob /c 2`: Adds a new student named "Bob" into the second class on the displayed class list.
 
 **Sample Usage:**
 
@@ -613,9 +613,8 @@ Adds a new student to your existing class.
 <box type="info">
 
 **Information:**
-
 * Every student must be assigned to a class, i.e. a student should always appear in one of the classes.
-* A student cannot be in more than 1 class at the same time.
+* An identical student (ie. all student information are the same) cannot be in more than 1 class at the same time.
 * A default id "A0000000Z" will be assigned to the student.
 
 </box>
@@ -623,18 +622,17 @@ Adds a new student to your existing class.
 <box type="warning">
 
 **Caution:**
-
-* The class which you intend to add the student into, must already exist.
-* If you are currently viewing a different class from the one you are adding the student into, the `UI` will update to show you the student list of the class you added the new student into.
+* The class to add the student into must already exist.
+* After adding the student, the `UI` will update to show you the student list of the class you added the new student into.
 
 </box>
 
 <box type="tip">
 
 **Tip:**
-* If you want to see the student show up in the student list of the class, perform a `view` command first. Be sure to remember the `CLASS_INDEX` though!
+* If you want to see the student show up in the student list of the class, perform a [view command](#viewing-a-class-view-c) first. Be sure to remember the `CLASS_INDEX` though!
 * You can edit the student's id using the [edit student command](#editing-a-student-edit-s) once you have added the student!
-* You can also add a memo for a particular student using the same [edit student command](#editing-a-student-edit-s)!
+* You can also add a memo or class participation for a particular student using the same [edit student command](#editing-a-student-edit-s)!
 
 </box>
 
@@ -680,8 +678,8 @@ Edits an existing student from your specified class. You can edit the student na
 **Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
 **Examples:**
-* `edit /s 1 /c CS2103T /n Bob` : Edits the name of the first student in the class CS2103T to "Bob".
-* `edit /s 2 /c CS2103T /id A0231234U` : Edits the id of the second student in the class CS2103T to "A0231234U".
+* `edit /s 1 /c CS2103T /n Bob`: Edits the name of the first student in the class CS2103T to "Bob".
+* `edit /s 2 /c CS2103T /id A0231234U`: Edits the id of the second student in the class CS2103T to "A0231234U".
 
 **Sample Usage:**
 
@@ -703,7 +701,7 @@ Edits an existing student from your specified class. You can edit the student na
 
 - Edits the student at the specified `STUDENT_INDEX` in the specified `CLASS_NAME`.
 - At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
+- Existing values will be updated to the input values. This means you can use the command to remove a student memo or student participation!
 
 </box>
 
@@ -711,7 +709,8 @@ Edits an existing student from your specified class. You can edit the student na
 
 **Caution:**
 
-- Only valid ids will be recognised. It has to start with "A", followed by only numerical characters and end of with "A-Z".
+- Only valid ids will be recognised. It has to start with "A", followed by only numerical characters (0-9) and end with a single capitalised alphabet (A-Z).
+- After editing the student, the `UI` will update to show you the student list of the class that the edited student is in.
 
 </box>
 
@@ -735,7 +734,7 @@ Receives instruction on how to access EduTrack's user guide if you need assistan
 
   ![Help message box](images/helpMessage.png)
 
-- To read the user guide, you can click on the "Copy URL" button and paste the link in your web browser. 
+- To read the user guide, you can click on the "Copy URL" button and paste the link in your web browser.
 
 </box>
 
@@ -779,7 +778,7 @@ Removes all your entries from EduTrack when you want to start fresh.
 
 EduTrack's got your back. Your data is automatically saved on your hard disk after any command that changes the data, so no need to worry about saving manually.
 
-<br> 
+<br>
 
 Return to [Table of Contents](#table-of-contents)
 

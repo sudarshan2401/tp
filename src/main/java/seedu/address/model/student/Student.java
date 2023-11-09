@@ -28,14 +28,14 @@ public class Student {
 
     // Data fields
     private final Memo memo;
-    private Memo classParticipation;
+    private final Memo classParticipation;
 
     private Class studentClass = null;
 
     // The current lesson's attendance (Present/Absent)
-    private CurrentLessonAttendance currentLessonAttendance;
+    private final CurrentLessonAttendance currentLessonAttendance;
     // Cumulative number of lessons attended
-    private LessonsAttended lessonsAttended;
+    private final LessonsAttended lessonsAttended;
 
     /**
      * Constructs a Student with Name and Index that represents one-based class index.

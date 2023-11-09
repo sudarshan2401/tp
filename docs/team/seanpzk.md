@@ -10,7 +10,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Features**: 
+* **New Features**:
   * Added the ability to remove student from his or her class.
     * <u>What it does</u>
     <br>It allows users to easily remove a student from their class.
@@ -19,9 +19,9 @@ Given below are my contributions to the project.
     facilitating adjustments when students leave their classes for various reasons.
 
   * Added the ability to simulate the start of a lesson.
-    * <u>What it does</u> 
+    * <u>What it does</u>
     <br>It helps user to update multiple class records when initiating a new lesson. It automatically increments the total lesson count and resets the attendance sheet for marking student attendance.
-    * <u>Justification</u> 
+    * <u>Justification</u>
     <br>This feature streamlines class record updates, eliminating the need for multiple manual commands.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=seanpzk&breakdown=true)

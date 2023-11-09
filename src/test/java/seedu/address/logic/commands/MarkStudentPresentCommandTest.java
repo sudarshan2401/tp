@@ -28,14 +28,14 @@ public class MarkStudentPresentCommandTest {
     @Test
     public void execute_userIsMarked_throwsStudentAlreadyMarkedPresentException() {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
-        CS2109.setTotalLessons(10);
+        cs2109.setTotalLessons(10);
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(true).withLessonsAttended(4).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         ClassName className = new ClassName("CS2109");
         Index index = Index.fromOneBased(1);
@@ -48,20 +48,20 @@ public class MarkStudentPresentCommandTest {
     @Test
     public void execute_userIsMarked_throwsAttendanceDiscrepancyException() {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
-        CS2109.setTotalLessons(0);
+        cs2109.setTotalLessons(0);
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(true).withLessonsAttended(4).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         ClassName className = new ClassName("CS2109");
         Index index = Index.fromOneBased(1);
         MarkStudentPresentCommand command = new MarkStudentPresentCommand(index, className);
         String expectedMessage = String.format(MarkStudentPresentCommand.MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL,
-                Messages.formatClass(CS2109));
+                Messages.formatClass(cs2109));
         assertCommandFailure(command, model, expectedMessage);
     }
 
@@ -69,14 +69,14 @@ public class MarkStudentPresentCommandTest {
     public void execute_userIsUnmarked_success() {
         // set up SUT
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
-        CS2109.setTotalLessons(10);
+        cs2109.setTotalLessons(10);
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(4).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         // set up expected model
         Student editedStudent = new StudentBuilder().withName("Amy Bee")
@@ -95,13 +95,13 @@ public class MarkStudentPresentCommandTest {
     @Test
     public void execute_invalidClass_throwsClassNotFoundException() {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
-        Class CS2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
+        Class cs2109 = new Class(new ClassName("cs2109"), new UniqueStudentList(),
                 new Memo(" "), new Schedule());
         Student studentToRemove = new StudentBuilder().withName("Amy Bee")
                 .withCurrentLessonAttendance(false).withLessonsAttended(5).build();
         model.addStudent(studentToRemove);
-        model.addClass(CS2109);
-        model.addStudentToClass(studentToRemove, CS2109);
+        model.addClass(cs2109);
+        model.addStudentToClass(studentToRemove, cs2109);
 
         ClassName className = new ClassName("CS1101S");
         // Actual test

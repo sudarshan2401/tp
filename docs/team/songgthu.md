@@ -7,7 +7,7 @@ title: "Sarah's Project Portfolio Page"
 
 #### Overview
 
-EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records. 
+EduTrack is a **powerful desktop app designed for SOC tutors**, allowing you to streamline your teaching tasks and effortlessly track your student records.
 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 11 kLoC.
 
@@ -15,13 +15,13 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-**Code contributed:** 
+**Code contributed:**
 [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=songgthu&breakdown=true)
 
 **Enhancements implemented:**
 1. **Adding a class**
 
-- **What it does:** This feature allows users to add a new class to the class list. 
+- **What it does:** This feature allows users to add a new class to the class list.
 
 - **Justification:** This feature plays a role as a must-have feature because the ability to add classes is fundamental in EduTrack.
 
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 2. **Editing a class**
 
-- **What it does:**  This feature allows users to edit various attributes of an existing class, including its name, memo, and schedule. 
+- **What it does:**  This feature allows users to edit various attributes of an existing class, including its name, memo, and schedule.
 
 - **Justification:** This feature significantly enhances the user experience as it offers a convenient way to rectify any mistakes made while entering class information.
 
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 
 - Added documentation for the features `adding a class` and `editing a class`: Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
 - Modified existing documentation of `Miscellaneous features`: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
-- Added the following sections: `Command Parameters`, `EduTrack's Graphical User Interface` 
+- Added the following sections: `Command Parameters`, `EduTrack's Graphical User Interface`
 - Contributed in standardising language use: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
 
 **Contributions to the DG:**

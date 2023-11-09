@@ -34,6 +34,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setMemo(student.getMemo());
         descriptor.setCurrentLessonAttendance(student.getCurrentAttendance());
         descriptor.setLessonsAttended(student.getLessonsAttended());
+        descriptor.setClassParticipation(student.getClassParticipation());
     }
 
     /**
@@ -78,6 +79,15 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withLessonsAttended(Integer lessonsAttended) {
         descriptor.setLessonsAttended(new LessonsAttended(lessonsAttended));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Class Participation} of the {@code EditStudentDescriptor} that we are
+     * building.
+     */
+    public EditStudentDescriptorBuilder withClassParticipation(String classParticipation) {
+        descriptor.setClassParticipation(new Memo(classParticipation));
         return this;
     }
 
