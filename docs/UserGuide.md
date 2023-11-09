@@ -89,19 +89,27 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 
 1. **Overview of All Classes**
 
-- **Command box:** Where you can enter the commands.
-- **Command result output:** The resulting message will be shown here.
-- **Class list:** Displays the list of all your classes.
+   - **Command box:** Where you can enter the commands.
+   - **Command result output:** The resulting message will be shown here.
+   - **Class list:** Displays the list of all your classes.
 
 ![](images/classListDisplay.png)
 
 2. **Overview of A Specific Class**
 
-- **Class information:** Displays the details of your selected class.
-- **Student list:** Displays the list of all students in your selected class.
+   - **Class information:** Displays the details of your selected class.
+   - **Student list:** Displays the list of all students in your selected class.
 
 ![](images/specificClassDisplay.png)
 
+<box type="info">
+
+**Information:**
+
+* The `UI` will refresh upon any changes to the class list or student list.
+* If changes are made to a student in another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students.
+
+</box>
 
 ### Structure of This User Guide
 
@@ -724,7 +732,7 @@ _Return to [Table of Contents](#table-of-contents)_
 
 ### Viewing help : `help`
 
-Receives instruction on how to access EduTrack's user guide if you need assistance while using the app.
+Displays a pop-up window containing the link to this user guide. You can use this command to quickly access the user guide.
 
 **Command Format:** `help`
 
@@ -800,6 +808,8 @@ There is no need to save manually.
 ## Known issues
 
 1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. When attempting to view a long string of text, the text may be truncated with "..." at the end. The remedy is to resize the window to be larger if possible.
+3. When the window size is too small, the alignment of the columns when viewing a class may be off. The remedy is to resize the window to be larger if possible.
 
 ---
 
@@ -807,6 +817,7 @@ There is no need to save manually.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **list**        | **Listing all classes:** <br> **Format:** `list`                                                                                                                                                                                                                                                                                                         |
 | **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_INDEX` <br> **E.g:** `add /s John /c 3`                                                                                                                                          |
 | **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 3` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                             |
 | **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
