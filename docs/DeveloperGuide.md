@@ -1058,5 +1058,11 @@ Given below are instructions to test the app manually.
 
 ## **Appendix: Planned Enhancements**
 
-1. Remove Student feature to display general message on restrictions of the input when user gives unhandled invalid input.
-2. Set Lesson feature to display general message on restrictions of the input when user gives unhandled invalid input.
+1. Enhancement to validation of identical students
+    <br><br>
+    As of now, to validate that 2 students are identical, the method `isSameStudent` check if all `Student`'s fields: name, id, total attendance, current attendance, memo and class participation are equal.
+    <br><br>
+    Thus, this allows the user to create (through adding or editing) 2 students that have 1 differing field apart from the name and id field. For example, there can be two `Student` with name Bob, id A0123456Z but one with a memo of "Actively asks question during class" and another with an empty memo. This can be confusing for the user if done unintentionally as the GUI would show 2 students that seem to represent the same student.
+    <br><br>
+    Enhancement to be made:
+    The method `isSameStudent` will be adjusted so that 2 students are identical if and only if both their name and id are the same. This will ensure every student is unique (based on name and id) in EduTrack (i.e. even between different classes).
