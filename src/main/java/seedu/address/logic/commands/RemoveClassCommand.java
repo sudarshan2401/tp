@@ -57,7 +57,7 @@ public class RemoveClassCommand extends Command {
             for (Student studentToRemove : studentListCopy) {
                 try {
                     model.deleteStudent(studentToRemove);
-                    model.deleteStudentFromClass(studentToRemove, classToRemove);
+                    model.deleteStudent(studentToRemove, classToRemove);
                 } catch (StudentNotFoundException e) {
                     //  do nothing
                 }

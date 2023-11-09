@@ -112,8 +112,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudentFromClass(Student student, Class studentClass) {
-        studentClass.removeStudentFromClass(student);
+    public void deleteStudent(Student student, Class studentClass) {
+        studentClass.removeStudent(student);
         updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
     }
 
@@ -251,12 +251,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Student getStudentFromStudentList(ObservableList<Student> list, Index index) {
+    public Student getStudent(ObservableList<Student> list, Index index) {
         return list.get(index.getZeroBased());
     }
 
     @Override
-    public ObservableList<Student> getStudentListFromClass(Class studentClass) {
+    public ObservableList<Student> getStudentList(Class studentClass) {
         return studentClass.getStudentList();
     }
 

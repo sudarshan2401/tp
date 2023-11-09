@@ -271,13 +271,33 @@ The following sequence diagram shows how the edit student operation works:
 
 The removal of Student implements the following operation:
 - `EduTrack#removeStudent(Student s)`  — Removes the Student s from List of Students in EduTrack that tracks all students.
-- `Class#removeStudentFromClass(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
+- `Class#removeStudent(Student s)`  — Removes the Student s from List of Students in Class that tracks all students in Class.
 
-These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudentFromClass(Student s, Class sClass)`.
+These operations are exposed in the `Model` interface as `Model#deleteStudent(Student s)` and `Model#deleteStudent(Student s, Class sClass)`.
 
-Given below is a list of variables used in walkthrough of the removal of Student mechanism.
+Given below is an example usage scenario of the remove student mechanism at a high level:
+
+Step 1. The user inputs `remove /s 1 /c CS2103T` command to remove the first `Student` in the class named "CS2103T".
+
+Step 2. `Logic`is called upon to execute the above command, it is passed to an `EduTrackParser` object which in turns 
+create a `RemoveStudentCommandParser` and uses it to parse the command.
+
+Step 3. This results in `RemoveStudentCommand`, referred as `cmd` in this scenario, which is executed by the `LogicManager`.
+
+Step 4. `cmd` communicates with the `Model` when executed to remove the first `Student` in `Class` CS2103T.
+
+Step 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back to `Logic`.
+
+The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand).
+##### Remove Student Mechanism
+<puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
+
+The mechanism to execute a `RemoveStudentCommand` is elaborated in the below walkthrough.
+This is a list of variables used in the walkthrough for clarity.
 
 **Variables used:**
+
+`cmd` - `RemoveStudentCommand` communicates with `Model` to remove a `Student`
 
 `s` - `Student` to be removed.
 
@@ -297,34 +317,37 @@ The relationship between variables can be summarised by this object diagram.
 
 **Walkthrough**
 
-Step 1. `LogicManager` calls `removeStudentCommand#execute()`
+Step 1. `LogicManager` calls `RemoveStudentCommand#execute()`.
  
-Step 2. `removeStudentCommand` calls `Model#getClass(studentClassName)` to get `sClass`.
+Step 2. `cmd` calls `Model#getClass(studentClassName)` to get `sClass`.
 
-Step 3. `removeStudentCommand` calls `Model#getStudentListFromClass` to get the `sClassStudentList` from `sClass`.
+Step 3. `cmd` calls `Model#getStudentList(sClass)` to get the `sClassStudentList` from `sClass`.
 
-Step 4. `removeStudentCommand` calls `Model#getStudentFromStudentList` to get `s` from the `sClassStudentList`.
+Step 4. `cmd` calls `Model#getStudent(sClassStudentList, 1)` to get `s`, the first student in the `sClassStudentList`.
 
-Step 5. `removeStudentCommand` calls `Model#getStudentName()` to get `sName`.
+Step 5. `cmd` calls `Model#getStudentName(s)` to get `sName`.
 
-Step 6. `removeStudentCommand` calls  `Model#deleteStudentFromClass(s, sClass)` to remove `s` from `sClassStudentList`.
+Step 6. `cmd` calls  `Model#deleteStudent(s, sClass)` to remove `s` from `sClassStudentList`.
 
-Step 7. `removeStudentCommand` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
+Step 7. `cmd` calls `Model#deleteStudent(s)` to remove `s` from `globalStudentList`.
 
-Step 8. `removeStudentCommand` returns `CommandResult` to `LogicManager`.
+Step 8. The result of the `cmd`'s execution is encapsulated as a `CommandResult` object.
+
+Step 9. `cmd` returns `CommandResult` to `LogicManager`.
 
 The walkthrough can be summarised by this sequence diagram. (Some details are omitted in the diagram)
 
-<puml src="diagrams/RemoveStudentSequenceDiagram.puml" alt="RemoveStudentSequenceDiagram" />
+##### Execution of a `RemoveStudentCommand`
+<puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
 
-The following activity diagram summarises what happen when a user executes removeStudentCommand:
+The following activity diagram summarises what happen when a user removes a Student:
 
+##### Remove Student Workflow
 <puml src="diagrams/RemoveStudentActivityDiagram.puml" alt="RemoveStudentActivityDiagram" />
 
 **Implementation reasoning:**
-1. `removeStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system.
-2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
-2. `removeStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
+1. `RemoveStudentCommand` leverages multiple methods from other classes to enhance abstraction, ultimately promoting higher cohesion within the system.
+2. `RemoveStudentCommand` is responsible for deletion of `s` from `globalStudentList` under `EduTrack` to enable creation of `Student` with same `Name` in the future. This is necessary because `EduTrack` enforces the uniqueness of student names in the `globalStudentList`.
 
 ### View Class feature
 
@@ -1035,5 +1058,11 @@ Given below are instructions to test the app manually.
 
 ## **Appendix: Planned Enhancements**
 
-1. Remove Student feature to display general message on restrictions of the input when user gives unhandled invalid input.
-2. Set Lesson feature to display general message on restrictions of the input when user gives unhandled invalid input.
+1. Enhancement to validation of identical students
+    <br><br>
+    As of now, to validate that 2 students are identical, the method `isSameStudent` check if all `Student`'s fields: name, id, total attendance, current attendance, memo and class participation are equal.
+    <br><br>
+    Thus, this allows the user to create (through adding or editing) 2 students that have 1 differing field apart from the name and id field. For example, there can be two `Student` with name Bob, id A0123456Z but one with a memo of "Actively asks question during class" and another with an empty memo. This can be confusing for the user if done unintentionally as the GUI would show 2 students that seem to represent the same student.
+    <br><br>
+    Enhancement to be made:
+    The method `isSameStudent` will be adjusted so that 2 students are identical if and only if both their name and id are the same. This will ensure every student is unique (based on name and id) in EduTrack (i.e. even between different classes).
