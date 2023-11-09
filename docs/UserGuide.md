@@ -312,14 +312,14 @@ Listed all students in CS2103T-T15-3
 
 ### Editing a class : `edit /c`
 
-Edits your class information at the specified index. You can update the class name, class memo and class schedule. This helps keep your class information up-to-date.
+Edits your class information at the specified index. You can update the name of your class, memo and schedule. This helps to keep your class information up-to-date.
 
 **Command Format:** `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]`
 
 **Examples:**
-* `edit /c 1 /n cs2100` : Edits the class name to "CS2100".
-* `edit /c 1 /m submit attendance report /n cs2100` : Edits the class name to "CS2100" and the class memo to "submit attendance report".
-* `edit /c 1 /t mon, 10:00-12:00 /m` : Edits the schedule to "mon, 10:00-12:00" and removes the class memo.
+* `edit /c 1 /n cs2100` : Edits the name of your class to "CS2100".
+* `edit /c 1 /m submit attendance report /n cs2100` : Edits the name of your class to "CS2100" and its memo to "submit attendance report".
+* `edit /c 1 /t mon, 10:00-12:00 /m` : Edits the schedule of your class to "mon, 10:00-12:00" and removes its memo.
 
 **Sample Usage:**
 
@@ -338,7 +338,7 @@ edit /c 2 /n cs2040s
 
 ![](images/editClassUsage_2.png)
 
-5. You have successfully edited the class name. :tada:
+5. You have successfully edited the name of your class. :tada:
 
 <box type="info">
 
@@ -354,7 +354,7 @@ edit /c 2 /n cs2040s
 **Caution:**
 
 * The class to be edited must already exist.
-* If you want to edit the class name, the provided `CLASS_NAME` must be unique.
+* When editing the name of your class, ensure that the provided `CLASS_NAME` is unique.
 
 </box>
 
@@ -362,7 +362,7 @@ edit /c 2 /n cs2040s
 
 **Tip:**
 
-* To delete class memo or class schedule, you can type `/m` or `/t` without specifying anything after it.
+* To delete the memo or schedule of your class, you can type `/m` or `/t` without specifying anything after it.
 
 </box>
 
@@ -415,12 +415,12 @@ Sets the total number of lessons conducted for your chosen class manually.
 **Command Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
 
 **Examples:**
-- `setlesson /c CS2103T /l 10` : Sets the total number of lessons of class "CS2103T" to 10.
-- `setlesson /c CS2103T /l 0` : Sets the total number of lessons of class "CS2103T" to 0.
+- `setlesson /c CS2103T /l 10` : Sets the total number of lessons conducted for the class "CS2103T" to "10".
+- `setlesson /c CS2103T /l 0` : Sets the total number of lessons conducted for the class "CS2103T" to "0".
 
 **Sample Usage:**
 
-1. Assuming you want to set the number of lessons conducted for the class "CS2103T" to 5.
+1. Assuming you want to set the number of lessons conducted for the class "CS2103T" to "5".
 2. Enter the following command:
 ```
 setlesson /c CS2103T /l 5
@@ -460,8 +460,8 @@ Adds a new student to your existing class.
 **Command Format:** `add /s STUDENT_NAME /c CLASS_INDEX`
 
 **Examples:**
-* `add /s John /c 1`: Adds a new student named "John" into the first class on the displayed class list.
-* `add /s Bob /c 2`: Adds a new student named "Bob" into the second class on the displayed class list.
+* `add /s John /c 1`: Adds a new student named "John" into the first class in the displayed class list.
+* `add /s Bob /c 2`: Adds a new student named "Bob" into the second class in the displayed class list.
 
 **Sample Usage:**
 
@@ -481,7 +481,7 @@ Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
 
 **Information:**
 * Every student must be assigned to a class, i.e. a student should always appear in one of the classes.
-* An identical student (ie. all student information are the same) cannot be in more than 1 class at the same time.
+* An identical student (ie. all student information are the same) cannot be in more than one class at the same time.
 * A default id "A0000000Z" will be assigned to the student.
 
 </box>
@@ -490,7 +490,7 @@ Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
 
 **Caution:**
 * The class to add the student into must already exist.
-* After adding the student, the `UI` will update to show you the student list of the class you added the new student into.
+* After adding the student, the `UI` will update to show you the student list of the class which you added the new student into.
 
 </box>
 
@@ -499,7 +499,7 @@ Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
 **Tip:**
 * If you want to see the student show up in the student list of the class, perform a [view command](#viewing-a-class-view-c) first. Be sure to remember the `CLASS_INDEX` though!
 * You can edit the student's id using the [edit student command](#editing-a-student-edit-s) once you have added the student!
-* You can also add a memo or class participation for a particular student using the same [edit student command](#editing-a-student-edit-s)!
+* You can also add the memo or class participation for a particular student using the same [edit student command](#editing-a-student-edit-s)!
 
 </box>
 
@@ -540,7 +540,7 @@ John has been removed from CS2103T
 
 ### Editing a student : `edit /s`
 
-Edits an existing student from your specified class. You can edit your student's name, memo and participation. This will help keep your student records up-to-date.
+Edits an existing student from your specified class. You can edit your student's name, memo and participation. This will help to keep your student records up-to-date.
 
 **Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
@@ -550,7 +550,7 @@ Edits an existing student from your specified class. You can edit your student's
 
 **Sample Usage:**
 
-1. Assuming you want to edit the ID of the second student to "A010193Z", who is from "CS2103T" class, and the class index in the displayed list is "1".
+1. Assuming you want to edit the id of the second student to "A010193Z", who is from "CS2103T" class, and the class index in the displayed list is "1".
 2. Enter the following commands:
 ```
 view /c 1
@@ -585,7 +585,7 @@ Edited Student: John; Id: A010193Z; Memo:
 
 ### Marking a student present : `mark /s`
 
-Marks your student present for your current lesson.
+Marks a student present for your current lesson.
 
 **Command Format:** `mark /s STUDENT_INDEX /c CLASS_NAME`
 
@@ -595,7 +595,7 @@ Marks your student present for your current lesson.
 
 **Sample Usage:**
 
-1. Assuming you want to mark the second student, "Jamie" in your class "CS2103T", who is positioned at index 1 in your class list, as present.
+1. Assuming you want to mark the second student named "Jamie" in your class "CS2103T", whereby the class is positioned at index "1" in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
@@ -620,7 +620,7 @@ Jamie successfully marked present!
 
 **Caution:**
 
-* The student you want to mark should not already be marked present.
+* Your target student should not already be marked present.
 
 </box>
 
@@ -636,7 +636,7 @@ Jamie successfully marked present!
 
 ### Marking a student absent : `unmark /s`
 
-Marks your student absent for your current lesson.
+Marks a student absent for your current lesson.
 
 **Command Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME`
 
@@ -646,7 +646,7 @@ Marks your student absent for your current lesson.
 
 **Sample Usage:**
 
-1. If you want to mark the second student in your class "CS2103T", whereby the class is positioned at index 1 in your class list, as absent.
+1. Assuming you want to mark the second student named "Jamie" in your class "CS2103T", whereby the class is positioned at index "1" in your class list, as absent.
 2. Enter the following commands:
 ```
 view /c 1
@@ -670,7 +670,7 @@ Jamie has been marked absent!
 
 **Caution:**
 
-* The student you want to mark absent should not already be marked absent.
+* Your target student should not already be marked absent.
 
 </box>
 
@@ -688,7 +688,7 @@ Marks all students in your class as present. You can use this command if all you
 
 **Sample Usage:**
 
-1. If you want to mark all your students in your CS2103T class, who are located at index 1 in your class list, as present.
+1. If you want to mark all your students in the class named "CS2103T", whereby the class is positioned at index "1" in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
