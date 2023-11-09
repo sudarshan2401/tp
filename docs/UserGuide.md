@@ -73,8 +73,8 @@ If you are an experienced user of EduTrack, click [here](#command-summary) to se
    Some example commands you can try:
    - `list` : Lists all classes.
    - `view /c 1` : Shows the class information and all students of the first class in the class list.
-   - `add /c CS2103T` : Adds a class named `CS2103T` to the list of classes.
-   - `add /s John /c 1` : Adds a student named `John` to the first class in the class list.
+   - `add /c CS2103T` : Adds a class named "CS2103T" to the list of classes.
+   - `add /s John /c 1` : Adds a student named "John" to the first class in the class list.
    - `remove /c 1` : Removes the first class in the class list.
    - `exit` : Exits the app.
 6. Refer to the [Features](#features) for more details of each command.
@@ -179,7 +179,7 @@ Most commands in EduTrack require various parameters. You can find their constra
 
 | Parameters          | Constraints                                                                                                                                                                                                                                         |
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLASS_NAME          | A single-word string consists of any characters and not case-sensitive. <br> When CLASS_NAME is displayed on the screen, it will always be in uppercase.                                                                                            |
+| CLASS_NAME          | A single-word string consists of any characters and not case-sensitive. <br> When `CLASS_NAME` is displayed on the screen, it will always be in uppercase.                                                                                          |
 | CLASS_INDEX         | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
 | STUDENT_NAME        | A string consists of alphanumeric characters.                                                                                                                                                                                                       |
 | STUDENT_INDEX       | A valid positive integer shown in displayed student list.                                                                                                                                                                                           |
@@ -190,7 +190,7 @@ Most commands in EduTrack require various parameters. You can find their constra
 
 <br>
 
-Return to [Table of Contents](#table-of-contents)
+_Return to [Table of Contents](#table-of-contents)_
 
 ---
 
@@ -216,7 +216,7 @@ Shows an overview of all your existing classes. You will be able to have a conci
 
 ### Adding a class : `add /c`
 
-Adds a new class to your list of classes. This feature allows you to manage multiple classes at once.
+Adds a new class to your list of classes. You can manage multiple classes at once with this feature.
 
 **Command Format:** `add /c CLASS_NAME`
 
@@ -245,7 +245,7 @@ CS2103T has been added
 
 **Caution:**
 
-* The CLASS_NAME provided must be **unique**, meaning that two classes with the same CLASS_NAME cannot coexist in EduTrack.
+* The `CLASS_NAME` provided must be **unique**, meaning that two classes with the same `CLASS_NAME` cannot coexist in EduTrack.
 
 </box>
 
@@ -258,8 +258,8 @@ Removes an existing class from your list of classes.
 **Command Format:** `remove /c CLASS_INDEX`
 
 **Examples:**
-* `remove /c 1` : Removes your first class in the class list.
-* `remove /c 2` : Removes your second class in the class list.
+* `remove /c 1` : Removes the first class in your class list.
+* `remove /c 2` : Removes the second class in your class list.
 
 **Sample Usage:**
 
@@ -354,7 +354,7 @@ edit /c 2 /n cs2040s
 **Caution:**
 
 * The class to be edited must already exist.
-* If you want to edit the class name, the provided CLASS_NAME must be unique.
+* If you want to edit the class name, the provided `CLASS_NAME` must be unique.
 
 </box>
 
@@ -375,19 +375,19 @@ Starts a lesson of your chosen class. This increases the total number of lessons
 **Command Format:** `startlesson /c CLASS_NAME`
 
 **Example:**
-- `startlesson /c CS2103T`: Increases CS2103T's total number of lessons by 1 and marks all students in CS2103T absent.
+- `startlesson /c CS2103T`: Increases "CS2103T"'s total number of lessons by 1 and marks all students in "CS2103T" absent.
 
 **Sample Usage**:
 
-1. Assuming you want to start a lesson for your CS2103T class.
+1. Assuming you want to start a lesson for your class "CS2103T".
 2. Enter the following command:
-   ```
-   startlesson /c CS2103T
-   ```
+```
+startlesson /c CS2103T
+```
 3. The result box will display the following message:
-   ```
-   CS2103T started a new lesson!
-   ```
+```
+CS2103T started a new lesson!
+```
 4. You have successfully started a lesson in CS2103T. :tada:
 
 <box type="info">
@@ -415,28 +415,28 @@ Sets the total number of lessons conducted for your chosen class manually.
 **Command Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
 
 **Examples:**
-- `setlesson /c CS2103T /l 10` : Sets the total number of lessons of CS2103T to 10.
-- `setlesson /c CS2103T /l 0` : Sets the total number of lessons of CS2103T to 0.
+- `setlesson /c CS2103T /l 10` : Sets the total number of lessons of class "CS2103T" to 10.
+- `setlesson /c CS2103T /l 0` : Sets the total number of lessons of class "CS2103T" to 0.
 
 **Sample Usage:**
 
-1. Assuming you want to set the number of lessons conducted for the class CS2103T to 5.
+1. Assuming you want to set the number of lessons conducted for the class "CS2103T" to 5.
 2. Enter the following command:
-   ```
-   setlesson /c CS2103T /l 5
-   ```
+```
+setlesson /c CS2103T /l 5
+```
 3. The result box will display the following message:
-   ```
-   Successfully set the number of lessons in CS2103T to 5!
-   ```
+```
+Successfully set the number of lessons in CS2103T to 5!
+```
 4. You have successfully set the total number of lessons in CS2103T to 5. :tada:
 
 <box type="info">
 
 **Information:**
 
-- If one of your student's number of lessons attended <u>exceeds</u> the NUMBER_OF_LESSONS, it is automatically reduced to NUMBER_OF_LESSONS.
-    - Example: John's current attendance in CS2103T is 5/7. <br> If you enter the command `setlesson /c CS2103T /l 3`, it will adjust John's attendance to 3/3.
+- If one of your student's number of lessons attended <u>exceeds</u> the `NUMBER_OF_LESSONS`, it is automatically reduced to `NUMBER_OF_LESSONS`.
+    - Example: John's current attendance in "CS2103T" is 5/7. <br> If you enter the command `setlesson /c CS2103T /l 3`, it will adjust John's attendance to 3/3.
 
 </box>
 
@@ -449,7 +449,7 @@ Sets the total number of lessons conducted for your chosen class manually.
 
 <br>
 
-Return to [Table of Contents](#table-of-contents)
+_Return to [Table of Contents](#table-of-contents)_
 
 ## Student commands :mortar_board:
 
@@ -467,14 +467,14 @@ Adds a new student to your existing class.
 
 1. Assuming you want to add a student named "John" into the class "CS2103T", and the class index in the displayed list is "1".
 2. Enter the following commands:
-   ````
-   list
-   add /s John /c 1
-   ````
+````
+list
+add /s John /c 1
+````
 3. The result box will display the following message:
-   ````
-   Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
-   ````
+````
+Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
+````
 4. You have successfully added the John into CS2103T. :tada:
 
 <box type="info">
@@ -518,21 +518,21 @@ Removes a student in your chosen class.
 
 **Sample Usage:**
 
-1. You want to remove a student named "John" and he is the second student from the class named "CS2103T".
+1. You want to remove a student named "John" and he is the second student in the class named "CS2103T".
 2. Enter the following command:
-   ```
-   remove /s 2 /c CS2103T
-   ```
+```
+remove /s 2 /c CS2103T
+```
 3. The result box will display the following message:
-   ```
-   John has been removed from CS2103T
-   ```
+```
+John has been removed from CS2103T
+```
 4. You have successfully removed John from CS2103T. :tada:
 
 <box type="info">
 
 **Information:**
-- You can identify the STUDENT_INDEX of a student by using the [viewing a class](#viewing-a-class--view) command.
+- You can identify the `STUDENT_INDEX` of a student by using the [viewing a class](#viewing-a-class--view) command.
 
 </box>
 
@@ -540,26 +540,26 @@ Removes a student in your chosen class.
 
 ### Editing a student : `edit /s`
 
-Edits an existing student from your specified class. You can edit the student name, student memo and student participation. This will help keep your student records up-to-date.
+Edits an existing student from your specified class. You can edit your student's name, memo and participation. This will help keep your student records up-to-date.
 
 **Command Format:** `edit /s STUDENT_INDEX /c CLASS_NAME [/n STUDENT_NAME] [/id ID] [/m MEMO] [/p PARTICIPATION]`
 
 **Examples:**
 * `edit /s 1 /c CS2103T /n Bob`: Edits the name of the first student in the class CS2103T to "Bob".
-* `edit /s 2 /c CS2103T /id A0231234U`: Edits the id of the second student in the class CS2103T to "A0231234U".
+* `edit /s 2 /c CS2103T /id A0231234U`: Edits the id of the second student in the class "CS2103T" to "A0231234U".
 
 **Sample Usage:**
 
 1. Assuming you want to edit the ID of the second student to "A010193Z", who is from "CS2103T" class, and the class index in the displayed list is "1".
 2. Enter the following commands:
-   ```
-   view /c 1
-   edit /s 2 /c CS2103T /id A010193Z
-   ```
+```
+view /c 1
+edit /s 2 /c CS2103T /id A010193Z
+```
 3. The result box will display the following message:
-   ```
-   Edited Student: John; Id: A010193Z; Memo:
-   ```
+```
+Edited Student: John; Id: A010193Z; Memo:
+```
 4. You have successfully edited your student's details. :tada:
 
 <box type="info">
@@ -568,7 +568,7 @@ Edits an existing student from your specified class. You can edit the student na
 
 - Edits the student at the specified `STUDENT_INDEX` in the specified `CLASS_NAME`.
 - At least one of the optional fields must be provided.
-- Existing values will be updated to the input values. This means you can use the command to remove a student memo or student participation!
+- Existing values will be updated to the input values. This means you can use the command to remove a student's memo or student's participation!
 
 </box>
 
@@ -590,12 +590,12 @@ Marks your student present for your current lesson.
 **Command Format:** `mark /s STUDENT_INDEX /c CLASS_NAME`
 
 **Examples:**
-* `mark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as present.
-* `mark /s 3 /c CS2102` : Marks the third student in your class CS2102 as present.
+* `mark /s 2 /c CS2103T` : Marks the second student in your class "CS2103T" as present.
+* `mark /s 3 /c CS2102` : Marks the third student in your class "CS2102" as present.
 
 **Sample Usage:**
 
-1. Assuming you want to mark the second student (Jamie) in your class CS2103T, who is positioned at index 1 in your class list, as present.
+1. Assuming you want to mark the second student, "Jamie" in your class "CS2103T", who is positioned at index 1 in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
@@ -612,7 +612,7 @@ Jamie successfully marked present!
 
 **Information:**
 
-* CLASS_NAME must be the name of a class that already exists.
+* `CLASS_NAME` must be the name of a class that already exists.
 
 </box>
 
@@ -641,12 +641,12 @@ Marks your student absent for your current lesson.
 **Command Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME`
 
 **Examples:**
-* `unmark /s 2 /c CS2103T` : Marks the second student in your class CS2103T as absent.
-* `unmark /s 3 /c CS2102` : Marks the third student in your class CS2102 as absent.
+* `unmark /s 2 /c CS2103T` : Marks the second student in your class "CS2103T" as absent.
+* `unmark /s 3 /c CS2102` : Marks the third student in your class "CS2102" as absent.
 
 **Sample Usage:**
 
-1. If you want to mark the second student in your class CS2103T, who is positioned at index 1 in your class list, as absent.
+1. If you want to mark the second student in your class "CS2103T", whereby the class is positioned at index 1 in your class list, as absent.
 2. Enter the following commands:
 ```
 view /c 1
@@ -662,7 +662,7 @@ Jamie has been marked absent!
 
 **Information:**
 
-* CLASS_NAME must be the name of a class that already exists.
+* `CLASS_NAME` must be the name of a class that already exists.
 
 </box>
 
@@ -683,8 +683,8 @@ Marks all students in your class as present. You can use this command if all you
 **Command Format:** `markall /c CLASS_INDEX`
 
 **Examples:**
-* `markall /c 1` : Marks all the student in your class at CLASS_INDEX 1 as present.
-* `markall /c 2` : Marks all the student in your class at CLASS_INDEX 2 as present.
+* `markall /c 1` : Marks all the students in your first class in the class list as present.
+* `markall /c 2` : Marks all the students in your second class in the class list as present.
 
 **Sample Usage:**
 
@@ -718,7 +718,7 @@ All students in class CS2103T has been marked present!
 
 <br>
 
-Return to [Table of Contents](#table-of-contents)
+_Return to [Table of Contents](#table-of-contents)_
 
 ## Miscellaneous commands 🛠️
 
@@ -739,7 +739,6 @@ Receives instruction on how to access EduTrack's user guide if you need assistan
 - To read the user guide, you can click on the "Copy URL" button and paste the link in your web browser.
 
 </box>
-
 
 <br>
 
@@ -782,7 +781,7 @@ EduTrack's got your back. Your data is automatically saved on your hard disk aft
 
 <br>
 
-Return to [Table of Contents](#table-of-contents)
+_Return to [Table of Contents](#table-of-contents)_
 
 ---
 
