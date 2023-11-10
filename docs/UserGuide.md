@@ -65,7 +65,7 @@ If you are an experienced user of EduTrack, click [here](#command-summary) to se
 2. Download the latest `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your EduTrack.
 4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and type `java -jar EduTrack.jar` to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Refer to [EduTrack's Graphical User Interface](#edutracks-graphical-user-interface) if you want to learn more about EduTrack's interface.
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Refer to [EduTrack's Graphical User Interface](#edutrack-s-graphical-user-interface) if you want to learn more about EduTrack's interface.
 
 ![Ui](images/quickstart.png) <br>
 
@@ -157,20 +157,23 @@ The text displayed in a tip box indicates handy tips to enhance your user experi
 
 These are the common terms you will encounter throughout this user guide.
 
-| Terms      | Meaning                                                                         |
-|------------|---------------------------------------------------------------------------------|
-| Command    | The instruction you enter into the application.                                 |
-| Parameter  | The additional information you provide for the instruction you intend to enter. |
+| Terms         | Meaning                                                                         |
+|---------------|---------------------------------------------------------------------------------|
+| **Command**   | The instruction you enter into the application.                                 |
+| **Parameter** | The additional information you provide for the instruction you intend to enter. |
 
 #### Command format
 
-* Words in `UPPER_CASE` are compulsory parameters to be supplied.<br>
+* Words in `UPPER_CASE` are **compulsory parameters** to be supplied.<br>
+
   E.g., you are to provide the `CLASS_NAME` in `add /c CLASS_NAME` command.
 
-* Words in `UPPER_CASE` enclosed in square brackets are optional parameters. <br>
-  E.g., you can choose to provide `CLASS_NAME`, `MEMO` and `SCHEDULE` in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command
+* Words in `UPPER_CASE` enclosed in square brackets are **optional parameters**. <br>
+  
+  E.g., you can choose to provide either `CLASS_NAME`, `MEMO` and `SCHEDULE` in the `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command.
 
-* Optional parameters can be in any order.<br>
+* **Optional parameters** can be in any order.<br>
+  
   E.g., if the command specifies `[/n CLASS_NAME] [/m MEMO]`, you can choose to provide them in the following order:`[/m MEMO] [/n CLASS_NAME]`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
@@ -178,27 +181,27 @@ ignored.<br>
 
   E.g., you enter the command `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
+* If you are using a **PDF version** of this document, be careful when copying and pasting commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 #### Command parameters
 
 Most commands in EduTrack require various parameters. You can find their constraints in the table below:
 
-| Parameters          | Constraints                                                                                                                                                                                                                                         |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLASS_NAME          | A single-word string consists of any characters and not case-sensitive. <br> When `CLASS_NAME` is displayed on the screen, it will always be in uppercase.                                                                                          |
-| CLASS_INDEX         | A valid positive integer shown in displayed class list.                                                                                                                                                                                             |
-| STUDENT_NAME        | A string consisting of alphanumeric characters.                                                                                                                                                                                                     |
-| STUDENT_INDEX       | A valid positive integer shown in displayed student list.                                                                                                                                                                                           |
-| MEMO, PARTICIPATION | A string consisting of any characters.                                                                                                                                                                                                              |
-| SCHEDULE            | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
-| ID                  | A string that starts with "A", followed by only numerical characters (0-9) and ends with a single capitalised alphabet (A-Z).                                                                                                                       |
-| NUMBER_OF_LESSONS   | A non-negative integer.                                                                                                                                                                                                                             |
+| Parameters              | Constraints                                                                                                                                                                                                                                             |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CLASS_NAME`            | A single-word string consists of any characters and not case-sensitive. <br> When `CLASS_NAME` is displayed on the screen, it will always be in uppercase.                                                                                              |
+| `CLASS_INDEX`           | A valid positive integer shown in displayed class list.                                                                                                                                                                                                 |
+| `STUDENT_NAME`          | A string consisting of alphanumeric characters.                                                                                                                                                                                                         |
+| `STUDENT_INDEX`         | A valid positive integer shown in displayed student list.                                                                                                                                                                                               |
+| `MEMO`, `PARTICIPATION` | A string consisting of any characters.                                                                                                                                                                                                                  |
+| `SCHEDULE`              | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon", "tue", "wed", "thu", "fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
+| `ID`                    | A string that starts with "A", followed by only numerical characters (0-9) and ends with a single capitalised alphabet (A-Z).                                                                                                                           |
+| `NUMBER_OF_LESSONS`     | A non-negative integer.                                                                                                                                                                                                                                 |
 
 <br>
 
-_Return to [Table of Contents](#table-of-contents)_
+:arrow_up: _Return to [Table of Contents](#table-of-contents)_ 
 
 ---
 
@@ -248,6 +251,8 @@ CS2103T has been added
 ````
 
 4. You have successfully added the class. :tada:
+
+<br>
 
 <box type="warning">
 
@@ -334,7 +339,11 @@ Edits your class information at the specified index. You can update the name of 
 1. Assuming you want to edit the name of the second class to "CS2040S".
 2. You can enter `view /c 2` to see what your original class looks like, as shown below:
 
+<br>
+
 ![](images/editClassUsage_1.png)
+
+<br>
 
 3. Enter the following command:
 
@@ -344,9 +353,15 @@ edit /c 2 /n cs2040s
 
 4. The result box will display the following message:
 
+<br>
+
 ![](images/editClassUsage_2.png)
 
+<br>
+
 5. You have successfully edited the name of your class. :tada:
+
+<br>
 
 <box type="info">
 
@@ -400,6 +415,7 @@ CS2103T started a new lesson!
 ```
 4. You have successfully started a lesson in "CS2103T". :tada:
 
+<br>
 
 <box type="info">
 
@@ -444,6 +460,8 @@ Successfully set the number of lessons in CS2103T to 5!
 ```
 4. You have successfully set the total number of lessons in "CS2103T" to "5". :tada:
 
+<br>
+
 <box type="info">
 
 **Information:**
@@ -464,7 +482,7 @@ Successfully set the number of lessons in CS2103T to 5!
 
 <br>
 
-_Return to [Table of Contents](#table-of-contents)_
+:arrow_up: _Return to [Table of Contents](#table-of-contents)_
 
 ## Student commands :mortar_board:
 
@@ -491,6 +509,8 @@ add /s John /c 1
 Added New Student: John; Id: A0000000Z; Memo:  to the class: CS2103T
 ````
 4. You have successfully added the "John" into "CS2103T". :tada:
+
+<br>
 
 <box type="info">
 
@@ -545,6 +565,8 @@ John has been removed from CS2103T
 ```
 4. You have successfully removed "John" from "CS2103T". :tada:
 
+<br>
+
 <box type="info">
 
 **Information:**
@@ -577,6 +599,8 @@ edit /s 2 /c CS2103T /id A010193Z
 ![EditStudentExample.png](images/EditStudentExample.png)
 
 4. You have successfully edited your student's details. :tada:
+
+<br>
 
 <box type="info">
 
@@ -630,6 +654,8 @@ Jamie successfully marked present!
 ![](images/markStudentPresent_UG.png)
 
 5. You have successfully marked "Jamie" as present in "CS2103T". :tada:
+
+<br>
 
 <box type="info">
 
@@ -685,6 +711,8 @@ Jamie has been marked absent!
 ![](images/unmarkStudent_UG.png)
 
 5. You have successfully marked "Jamie" as absent in "CS2103T". :tada:
+
+<br>
 
 <box type="info">
 
@@ -746,7 +774,7 @@ All students in class CS2103T has been marked present!
 
 <br>
 
-_Return to [Table of Contents](#table-of-contents)_
+:arrow_up: _Return to [Table of Contents](#table-of-contents)_
 
 ## Miscellaneous commands 🛠️
 
@@ -760,7 +788,7 @@ Displays a pop-up window containing the link to this user guide. You can use thi
 
 **Information:**
 
-- You will see the following box once you executed the command:
+- You will see the following box once you have successfully executed the command:
 
   ![Help message box](images/helpMessage.png)
 
@@ -810,7 +838,7 @@ EduTrack's got your back. Your data is automatically saved on your hard disk aft
 
 <br>
 
-_Return to [Table of Contents](#table-of-contents)_
+:arrow_up: _Return to [Table of Contents](#table-of-contents)_
 
 ---
 
