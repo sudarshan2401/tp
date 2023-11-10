@@ -12,11 +12,11 @@ Whether you find yourself juggling the management of numerous students or simply
 
 The application is optimized for use via a Command Line Interface ([CLI](#glossary)) while still having the benefits of a Graphical User Interface ([GUI](#glossary)).
 
-If you are new to this user guide, click [here](#about) to learn more.
+If you are **new** to this user guide, click [here](#about) to learn more.
 
 If you are keen to get started on using EduTrack, click [here](#quick-start) to see the instructions on how to kickstart your EduTrack experience! :rocket:
 
-If you are an experienced user of EduTrack, click [here](#command-summary) to see a summary of commands.
+If you are an **experienced user** of EduTrack, click [here](#command-summary) to see a summary of commands.
 
 ---
 
@@ -67,7 +67,9 @@ If you are an experienced user of EduTrack, click [here](#command-summary) to se
 4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and type `java -jar EduTrack.jar` to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Refer to [EduTrack's Graphical User Interface](#edutrack-s-graphical-user-interface) if you want to learn more about EduTrack's interface.
 
-![Ui](images/quickstart.png) <br>
+![Ui](images/quickstart.png) 
+
+<br>
 
 5. Type the command in the command box and press `Enter` to execute it. eg. typing `help` and `Enter` again will open the help window.<br>
    Some example commands you can try:
@@ -403,17 +405,21 @@ as absent for attendance taking.
 
 **Sample Usage**:
 
-1. Assuming you want to start a lesson for your "CS2103T" class.
+1. Assuming you want to start a lesson for your "CS2103T" class, and the class index in the displayed list is "1".
 
 2. Enter the following command:
 ```
 startlesson /c CS2103T
 ```
-3. The result box will display the following message:
-```
-CS2103T started a new lesson!
-```
-4. You have successfully started a lesson in "CS2103T". :tada:
+3. You can enter `view /c 1` to see what your original class looks like, as shown below:
+
+![](images/startlesson_example_before.png)
+
+4. The result box will display the following message:
+
+![](images/startlesson_example_after.png)
+
+5. You have successfully started a lesson in "CS2103T". :tada:
 
 <br>
 
@@ -651,7 +657,11 @@ Jamie successfully marked present!
 
 4. Below is a sample of the result outcome of the command:
 
+<br>
+
 ![](images/markStudentPresent_UG.png)
+
+<br>
 
 5. You have successfully marked "Jamie" as present in "CS2103T". :tada:
 
@@ -708,7 +718,11 @@ Jamie has been marked absent!
 
 4. Below is a sample of the result outcome:
 
+<br>
+
 ![](images/unmarkStudent_UG.png)
+
+<br>
 
 5. You have successfully marked "Jamie" as absent in "CS2103T". :tada:
 
