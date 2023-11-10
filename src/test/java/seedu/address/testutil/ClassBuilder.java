@@ -19,6 +19,7 @@ public class ClassBuilder {
     private ClassName className;
     private Memo memo;
     private Schedule schedule;
+    private int totalLessons;
 
     /**
      * Creates a {@code ClassBuilder} with the default details.
@@ -27,6 +28,7 @@ public class ClassBuilder {
         className = new ClassName(DEFAULT_CLASS_NAME);
         memo = new Memo(DEFAULT_MEMO);
         schedule = new Schedule(DEFAULT_SCHEDULE);
+        totalLessons = 0;
     }
 
     /**
@@ -34,6 +36,9 @@ public class ClassBuilder {
      */
     public ClassBuilder(Class classToCopy) {
         className = classToCopy.getClassName();
+        memo = classToCopy.getClassMemo();
+        schedule = classToCopy.getClassSchedule();
+        totalLessons = classToCopy.getTotalLessons();
     }
 
     /**

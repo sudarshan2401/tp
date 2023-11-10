@@ -14,7 +14,7 @@ import seedu.address.model.student.Student;
  */
 public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StudentListCard.fxml";
 
     /**
      * Memo: Certain keywords such as "location" and "resources" are reserved
