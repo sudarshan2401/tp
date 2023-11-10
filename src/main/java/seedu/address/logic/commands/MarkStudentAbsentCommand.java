@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
@@ -68,7 +67,7 @@ public class MarkStudentAbsentCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(studentToMark)));
+                studentToMark.getName()));
     }
 
     @Override

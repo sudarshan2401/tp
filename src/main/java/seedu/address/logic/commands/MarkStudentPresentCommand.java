@@ -66,7 +66,7 @@ public class MarkStudentPresentCommand extends Command {
             model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,
-                    Messages.formatStudent(studentToMark)));
+                    studentToMark.getName()));
         } catch (AttendanceDiscrepancy e) {
             throw new CommandException(String.format(MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL,
                     Messages.formatClass(studentClassCopy)));
@@ -74,7 +74,7 @@ public class MarkStudentPresentCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(studentToMark)));
+                studentToMark.getName()));
     }
 
     @Override
