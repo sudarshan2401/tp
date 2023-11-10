@@ -113,9 +113,9 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `EduTrackParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `RemoveClassCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to remove a class).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `RemoveClassCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to remove a class).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -123,7 +123,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `EduTrackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduTrackParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `EduTrackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `EduTrackParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `RemoveClassCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -134,7 +134,7 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Class` objects (which are contained in a `UniqueClassList` object) and `Student` objects (which are contained in a `UniqueStudentList`).
+- stores the class administrative data i.e., all `Class` objects (which are contained in a `UniqueClassList` object) and `Student` objects (which are contained in a `UniqueStudentList`).
 - stores the currently 'selected' `Class` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Class>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -147,8 +147,8 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- can save both EduTrack data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `EduTrackStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -304,8 +304,9 @@ This is a list of variables used in the walkthrough for clarity.
 
 `globalStudentList` - `UniqueStudentList` in `EduTrack` containing all `Student` across all `Class`.
 
-The relationship between variables can be summarised by this object diagram.
+The relationship between variables can be summarised by this object [diagram](#relationship-between-key-variables).
 
+##### Relationship between key variables
 <puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
 
 **Walkthrough**
@@ -898,49 +899,30 @@ _{More to be added}_
 
 1. User chooses to remove a student from a class.
 2. User requests to delete a specific student in a class.
-3. EduTrack deletes the student from that class.
+3. EduTrack removes the student from that class.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. Class name is not specified.
+- 2a. EduTrack detects that class name is not specified.
 
-  - 1a1. EduTrack informs user that class name is empty.
-
-    Use case ends.
-
-- 1b. Class name already exists.
-
-  - 1a1. EduTrack informs user that class already exists.
-
-    Use case ends.
-
-- 4a. Student does not exist
-
-  - 4a1. EduTrack informs user that student is not found.
-
-    Use case ends.
-
-- 2a. User did not specify the class.
-
-  - 2a1. EduTrack informs user that class name is not specified in the request.
+  - 2a1. EduTrack informs user that class name is empty.
   - 2a2. EduTrack terminates the request.
 
     Use case ends.
 
-- 2b. EduTrack detects that the student is not found in the class.
+- 2b. EduTrack detects that student index is not specified.
 
-  - 2b1. EduTrack informs user that student is not found in class.
+  - 2b1. EduTrack informs user that student index is empty.
   - 2b2. EduTrack terminates the request.
 
     Use case ends.
-
-- 2c. EduTrack detects that the class does not exist.
-
-  - 2c1. EduTrack informs user that the class does not exist.
+- 2c. EduTrack detects that student index is not valid.
+  
+  - 2c1. EduTrack inform user that student index is invalid.
   - 2c2. EduTrack terminates the request.
-
+  
     Use case ends.
 
 ---
