@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkAllStudentAbsentCommand;
-import seedu.address.logic.commands.MarkAllStudentPresentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
