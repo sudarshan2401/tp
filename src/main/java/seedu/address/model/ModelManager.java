@@ -24,7 +24,7 @@ import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the EduTrack data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

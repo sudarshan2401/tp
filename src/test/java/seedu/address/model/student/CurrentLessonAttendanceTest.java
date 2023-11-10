@@ -80,4 +80,10 @@ public class CurrentLessonAttendanceTest {
         // null -> returns false
         assertFalse(presentLessonAttendance.equals(null));
     }
+
+    @Test
+    public void hashCode_sameInstance_sameHashCode() {
+        CurrentLessonAttendance presentLessonAttendance = new CurrentLessonAttendance(true);
+        assertTrue(presentLessonAttendance.hashCode() == presentLessonAttendance.hashCode());
+    }
 }

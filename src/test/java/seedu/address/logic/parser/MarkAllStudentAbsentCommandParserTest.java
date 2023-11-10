@@ -1,29 +1,27 @@
 package seedu.address.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.MarkAllStudentAbsentCommand;
+
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import org.junit.jupiter.api.Test;
+public class MarkAllStudentAbsentCommandParserTest {
+    private MarkAllStudentAbsentCommandParser parser = new MarkAllStudentAbsentCommandParser();
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkAllStudentPresentCommand;
-
-public class MarkAllStudentPresentCommandParserTest {
-    private MarkAllStudentPresentCommandParser parser = new MarkAllStudentPresentCommandParser();
     @Test
-    public void parse_validArgs_returnMarkStudentPresentCommand() {
-        int index = 1;
-        MarkAllStudentPresentCommand expectedCommand = new MarkAllStudentPresentCommand(Index.fromOneBased(index));
-        assertParseSuccess(parser, " /c " + index, expectedCommand);
+    public void parse_validArgs_success() {
+        MarkAllStudentAbsentCommand expectedCommand = new MarkAllStudentAbsentCommand(Index.fromOneBased(2));
+        assertParseSuccess(parser, " /c 2", expectedCommand);
     }
-
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // Argument should be numbers
         int index = 1;
         assertParseFailure(parser, "/c " + index,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -31,7 +29,7 @@ public class MarkAllStudentPresentCommandParserTest {
         // Argument should be numbers
         int index = 1;
         assertParseFailure(parser, "/c " + "cs2102",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -39,7 +37,7 @@ public class MarkAllStudentPresentCommandParserTest {
         // Argument should be numbers
         int index = 1;
         assertParseFailure(parser, "/c " + -1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -47,12 +45,12 @@ public class MarkAllStudentPresentCommandParserTest {
         // Argument should be numbers
         int index = 1;
         assertParseFailure(parser, "/s " + index,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_nonIntClassIndex_throwsParseException() {
         assertParseFailure(parser, " /c shouldBeClassIndex",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE));
     }
 }

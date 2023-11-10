@@ -70,7 +70,7 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the EduTrack.
      */
     void deleteStudent(Student target);
 
