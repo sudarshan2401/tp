@@ -183,7 +183,7 @@ Most commands in EduTrack require various parameters. You can find their constra
 | STUDENT_INDEX       | A valid positive integer shown in displayed student list.                                                                                                                                                                                           |
 | MEMO, PARTICIPATION | A string consisting of any characters.                                                                                                                                                                                                              |
 | SCHEDULE            | A string that follows the format `day, HH:MM-HH:MM`: <br> - `day` can be one of the following options: "mon","tue","wed","thu","fri" <br> - `HH:MM-HH:MM` signifies a 24-hour clock format, where the start time must be earlier than the end time. |
-| ID                  | A string that starts with "A", followed by only numerical characters (0-9) and end with a single capitalised alphabet (A-Z).                                                                                                                        |
+| ID                  | A string that starts with "A", followed by only numerical characters (0-9) and ends with a single capitalised alphabet (A-Z).                                                                                                                       |
 | NUMBER_OF_LESSONS   | A non-negative integer.                                                                                                                                                                                                                             |
 
 <br>
@@ -690,10 +690,10 @@ Edits an existing student from your specified class. You can edit the student na
 view /c 1
 edit /s 2 /c CS2103T /id A010193Z
 ```
-3. The result box will display the following message:
-```
-Edited Student: John; Id: A010193Z; Memo:
-```
+3. The result box will display the following message:<br>
+
+![EditStudentExample.png](images/EditStudentExample.png)
+
 4. You have successfully edited your student's details. :tada:
 
 <box type="info">
