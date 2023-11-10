@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLASS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLASS;
 import static seedu.address.testutil.TypicalStudents.getTypicalEduTrack;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ import seedu.address.testutil.ClassBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalClasses;
 
-public class StartLessonCommandTest {
+public class SetLessonCommandTest {
     private Model model = new ModelManager(getTypicalEduTrack(), new UserPrefs());
     private Class classStub;
     private Student studentStub;
@@ -40,13 +39,71 @@ public class StartLessonCommandTest {
         model = new ModelManager(TypicalClasses.getTypicalEduTrack(), new UserPrefs());
         classStub = model.getFilteredClassList().get(INDEX_FIRST_CLASS.getZeroBased());
         classStubName = classStub.getClassName();
+    }
+
+
+
+    @Test
+    public void constructor_nullClassName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SetLessonCommand(null, 0));
+    }
+
+    @Test
+    public void constructor_negativeNumLessons_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> new SetLessonCommand(classStubName, -1));
+    }
+
+    @Test
+    public void execute_valid_success() {
+        SetLessonCommand setLessonCommand = new SetLessonCommand(classStubName, 0);
+        String expectedMessage = String.format(SetLessonCommand.MESSAGE_SET_LESSON_SUCCESS, classStubName, 0);
+        ModelManager expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
+        assertCommandSuccess(setLessonCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidClass_throwsClassNotFoundException() {
+        ClassName invalidClassName = new ClassName("invalidClass");
+        SetLessonCommand setLessonCommand = new SetLessonCommand(invalidClassName, 0);
+
+        assertCommandFailure(setLessonCommand, model, String.format(Messages.MESSAGE_MISSING_CLASS_NAME,
+                invalidClassName.toString()));
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        SetLessonCommand setLessonCommand = new SetLessonCommand(classStubName, 0);
+        assertThrows(NullPointerException.class, () -> setLessonCommand.execute(null));
+    }
+
+    @Test
+    public void execute_reduceStudentAttendance_success() {
+        SetLessonCommand setLessonCommand = new SetLessonCommand(classStubName, 3);
+
         studentStub = new StudentBuilder().build();
         model.addStudent(studentStub);
         classStub.addStudentToClass(studentStub);
-    }
+        classStub.setTotalLessons(10);
+        studentStub.setLessonsAttended(5);
 
-    @AfterEach
-    public void cleanUp() {
+        Class expectedClass = new ClassBuilder(classStub).build();
+        Student studentStubCopy = new StudentBuilder(studentStub).build();
+        Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
+        expectedModel.setClass(Index.fromOneBased(1), expectedClass);
+        expectedClass.setTotalLessons(3);
+        expectedClass.addStudentToClass(studentStubCopy);
+        studentStubCopy.setLessonsAttended(3);
+
+        try {
+            setLessonCommand.execute(model);
+        } catch (CommandException e) {
+            Assertions.fail();
+        }
+
+        assertEquals(model.getStudent(model.getStudentList(classStub), Index.fromOneBased(1)),
+                expectedModel.getStudent(expectedModel.getStudentList(expectedClass), Index.fromOneBased(1)));
+
+        // clean up
         for (Class c : model.getFilteredClassList()) {
             c.setTotalLessons(0);
         }
@@ -57,97 +114,41 @@ public class StartLessonCommandTest {
         }
     }
 
-
-    @Test
-    public void constructor_nullClassName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new StartLessonCommand(null));
-    }
-
-    @Test
-    public void execute_valid_success() {
-        StartLessonCommand startLessonCommand = new StartLessonCommand(classStubName);
-        String expectedMessage = String.format(StartLessonCommand.MESSAGE_START_LESSON_SUCCESS,
-                classStubName.toString());
-        ModelManager expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
-        assertCommandSuccess(startLessonCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidClass_throwsClassNotFoundException() {
-        ClassName invalidClassName = new ClassName("invalidClass");
-        StartLessonCommand startLessonCommand = new StartLessonCommand(invalidClassName);
-
-        assertCommandFailure(startLessonCommand, model, String.format(Messages.MESSAGE_MISSING_CLASS_NAME,
-                invalidClassName.toString()));
-    }
-
-    @Test
-    public void execute_lessonIncrease_success() {
-        StartLessonCommand startLessonCommand = new StartLessonCommand(classStubName);
-        Class expectedClass = new ClassBuilder(classStub).build();
-        ClassName expectedClassName = expectedClass.getClassName();
-        expectedClass.setTotalLessons(expectedClass.getTotalLessons() + 1);
-        Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
-        expectedModel.setClass(Index.fromOneBased(1), expectedClass);
-        try {
-            startLessonCommand.execute(model);
-        } catch (CommandException e) {
-            Assertions.fail();
-        }
-        assertEquals(model.getClass(classStubName).getTotalLessons(),
-                expectedModel.getClass(expectedClassName).getTotalLessons());
-    }
-
-    @Test
-    public void execute_studentMarkAbsent_success() {
-        StartLessonCommand startLessonCommand = new StartLessonCommand(classStubName);
-        studentStub.getCurrentAttendance().setPresent();
-
-        Class expectedClass = new ClassBuilder(classStub).build();
-        Student studentStubCopy = new StudentBuilder(studentStub).build();
-        Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
-        expectedModel.setClass(Index.fromOneBased(1), expectedClass);
-        expectedClass.addStudentToClass(studentStubCopy);
-        studentStubCopy.markStudentAbsent();
-
-        try {
-            startLessonCommand.execute(model);
-        } catch (CommandException e) {
-            Assertions.fail();
-        }
-        assertEquals(model.getStudent(model.getStudentList(classStub), Index.fromOneBased(1)),
-                expectedModel.getStudent(expectedModel.getStudentList(expectedClass), Index.fromOneBased(1)));
-    }
-
     @Test
     public void equals() {
         Class classStub2 = model.getFilteredClassList().get(INDEX_SECOND_CLASS.getZeroBased());
         ClassName classStubName2 = classStub2.getClassName();
 
-        StartLessonCommand firstStartLessonCommand = new StartLessonCommand(classStubName);
-        StartLessonCommand secondStartLessonCommand = new StartLessonCommand(classStubName2);
+        SetLessonCommand firstSetLessonCommand = new SetLessonCommand(classStubName, 0);
+        SetLessonCommand secondSetLessonCommand = new SetLessonCommand(classStubName2, 0);
+        SetLessonCommand thirdSetLessonCommand = new SetLessonCommand(classStubName, 1);
+
         // same object -> returns true
-        assertTrue(firstStartLessonCommand.equals(firstStartLessonCommand));
+        assertTrue(firstSetLessonCommand.equals(firstSetLessonCommand));
 
         // same values -> returns true
-        StartLessonCommand firstStartLessonCommandCopy = new StartLessonCommand(classStubName);
-        assertTrue(firstStartLessonCommand.equals(firstStartLessonCommandCopy));
+        SetLessonCommand firstSetLessonCommandCopy = new SetLessonCommand(classStubName, 0);
+        assertTrue(firstSetLessonCommand.equals(firstSetLessonCommandCopy));
 
         // different types -> return false
-        assertFalse(firstStartLessonCommand.equals(1));
+        assertFalse(firstSetLessonCommand.equals(1));
 
         // null -> return false
-        assertFalse(firstStartLessonCommand.equals(null));
+        assertFalse(firstSetLessonCommand.equals(null));
 
         // different classname
-        assertFalse(firstStartLessonCommand.equals(secondStartLessonCommand));
+        assertFalse(firstSetLessonCommand.equals(secondSetLessonCommand));
+
+        // different numlesson
+        assertFalse(firstSetLessonCommand.equals(thirdSetLessonCommand));
     }
 
     @Test
     public void toStringMethod() {
-        StartLessonCommand startLessonCommand = new StartLessonCommand(classStubName);
-        String expected = StartLessonCommand.class.getCanonicalName() + "{className=" + classStubName.toString() + "}";
+        SetLessonCommand setLessonCommand = new SetLessonCommand(classStubName, 0);
+        String expected = SetLessonCommand.class.getCanonicalName() + "{className=" + classStubName.toString()
+                + ", numLessons=" + "0}";
 
-        assertEquals(expected, startLessonCommand.toString());
+        assertEquals(expected, setLessonCommand.toString());
     }
 }
