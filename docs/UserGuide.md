@@ -87,34 +87,42 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 
 1. **Overview of All Classes**
 
-- **Command box:** Where you can enter the commands.
-- **Command result output:** The resulting message will be shown here.
-- **Class list:** Displays the list of all your classes.
+   - **Command box:** Where you can enter the commands.
+   - **Command result output:** The resulting message will be shown here.
+   - **Class list:** Displays the list of all your classes.
 
 ![](images/classListDisplay.png)
 
 2. **Overview of A Specific Class**
 
-- **Class information:** Displays the details of your selected class.
-- **Student list:** Displays the list of all students in your selected class.
+   - **Class information:** Displays the details of your selected class.
+   - **Student list:** Displays the list of all students in your selected class.
 
 ![](images/specificClassDisplay.png)
 
+<box type="info">
+
+**Information:**
+
+* The `UI` will refresh upon any changes to the class list or student list.
+* If changes are made to a student in another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students.
+
+</box>
 
 ### Structure of This User Guide
 
-We understand that reading a new user guide can be overwhelming. That is why this user guide is structured in a manner that lets you find what you need fast and easily. To jump to various sections, you can refer to the [Table of Contents](#table-of-contents).
+We understand that reading a new user guide can be overwhelming. That is why this user guide is structured to let you find what you need fast and easily. You can refer to the [Table of Contents](#table-of-contents) to jump to various sections of this user guide.
 
-In the following [subsection](#reading-this-user-guide), you can find several tips that could be beneficial when reading this guide. The [next section](#features), documents the _main features_ that EduTrack offers and provides you instructions on how to use them!
+In the following [subsection](#reading-this-user-guide), you can find several tips that could be beneficial when reading this guide. The [next section](#features) documents the _main features_ that EduTrack offers and provides you with instructions on how to use them!
 
 <br>
 
 ### Reading This User Guide
 
-In this section, we will provide you with essential information to help you understand this user guide effectively.
+In this section, you will be provided with essential information to help you understand this user guide effectively.
 
 #### Common icons
-Here are the common icons that is used throughout this user guide.
+These are the common icons you will encounter throughout this user guide.
 
 **Additional Information**<br>
 The text displayed in an information box indicates additional details that you might find useful to know while using the commands.
@@ -126,7 +134,7 @@ The text displayed in an information box indicates additional details that you m
 </box>
 
 **Caution**<br>
-The text displayed in a caution box indicates what should be followed carefully, else unintended consequences might arise.
+The text displayed in a caution box indicates what should be followed carefully; otherwise, unintended consequences might arise.
 
 <box type="warning">
 
@@ -145,7 +153,7 @@ The text displayed in a tip box indicates handy tips to enhance your user experi
 
 #### Common terms
 
-Here are the common terms that is used throughout this user guide.
+These are the common terms you will encounter throughout this user guide.
 
 | Terms      | Meaning                                                                         |
 |------------|---------------------------------------------------------------------------------|
@@ -154,19 +162,19 @@ Here are the common terms that is used throughout this user guide.
 
 #### Command format
 
-* Words in `UPPER_CASE` are compulsory parameters to be supplied by the user.<br>
-  E.g. in `add /c CLASS_NAME` command, you must provide the `CLASS_NAME`.
+* Words in `UPPER_CASE` are compulsory parameters to be supplied.<br>
+  E.g., you are to provide the `CLASS_NAME` in `add /c CLASS_NAME` command.
 
 * Words in `UPPER_CASE` enclosed in square brackets are optional parameters. <br>
-  E.g: in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command, `CLASS_NAME`, `MEMO`, `SCHEDULE` are optional parameters.
+  E.g., you can choose to provide `CLASS_NAME`, `MEMO` and `SCHEDULE` in `edit /c CLASS_INDEX [/n CLASS_NAME] [/m MEMO] [/t SCHEDULE]` command
 
 * Optional parameters can be in any order.<br>
-  E.g. if the command specifies `[/n CLASS_NAME] [/m MEMO]`, `[/m MEMO] [/n CLASS_NAME]` is also acceptable.
+  E.g., if the command specifies `[/n CLASS_NAME] [/m MEMO]`, you can choose to provide them in the following order:`[/m MEMO] [/n CLASS_NAME]`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
 ignored.<br>
 
-  E.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  E.g., you enter the command `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -200,7 +208,7 @@ The features are broken down into their following subsections:
 2. [Student commands](#student-commands)
 3. [Miscellaneous commands](#miscellaneous-commands)
 
-Make sure that you have read the [Command format](#command-format) and [Command parameters](#command-parameters) sections to understand their constraints before using our features.
+We highly recommend you to read the [Command format](#command-format) and [Command parameters](#command-parameters) sections to understand their constraints before using our features.
 
 ## Class commands :school:
 
@@ -503,16 +511,18 @@ All students in class CS2103T has been marked present!
 
 ### Starting a lesson : `startlesson /c`
 
-Starts a lesson of your chosen class. This increases the total number of lessons conducted in your class and automatically marks all students as absent for attendance taking.
+Starts a lesson of your chosen class and enables you to start [attendance taking](#marking-a-student-present--mark-s).
 
 **Command Format:** `startlesson /c CLASS_NAME`
 
 **Example:**
-- `startlesson /c CS2103T`: Increases CS2103T's total number of lessons by 1 and marks all students in CS2103T absent.
+- `startlesson /c CS2103T`: Increases total number of lessons conducted for class "CS2103T" by 1 and marks all the students in "CS2103T" 
+as absent for attendance taking.
+
 
 **Sample Usage**:
 
-1. Assuming you want to start a lesson for your CS2103T class.
+1. Assuming you want to start a lesson for your "CS2103T" class.
 2. Enter the following command:
 ```
 startlesson /c CS2103T
@@ -521,12 +531,14 @@ startlesson /c CS2103T
 ```
 CS2103T started a new lesson!
 ```
-4. You have successfully started a lesson in CS2103T. :tada:
+4. You have successfully started a lesson in "CS2103T". :tada:
+
 
 <box type="info">
 
 **Information:**
 - Class must already exist
+- The update of class records consists of increasing number of lessons conducted in your class by 1 and marking all your students as absent to facilitate attendance marking.
 
 </box>
 
@@ -534,7 +546,7 @@ CS2103T started a new lesson!
 
 **Tip:**
 
-- You can use this command at the beginning of your class to start a lesson and take attendance.
+- You might find it helpful to use this command at the beginning of your class.
 - If you started a lesson by accident, you can manually [set the number of lessons](#setting-number-of-lessons-of-a-class-setlesson-c) back.
 
 </box>
@@ -548,12 +560,12 @@ Sets the total number of lessons conducted for your chosen class manually.
 **Command Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS`
 
 **Examples:**
-- `setlesson /c CS2103T /l 10` : Sets the total number of lessons of CS2103T to 10.
-- `setlesson /c CS2103T /l 0` : Sets the total number of lessons of CS2103T to 0.
+- `setlesson /c CS2103T /l 10` : Sets the total number of lessons of class "CS2103T" to 10.
+- `setlesson /c CS2103T /l 0` : Sets the total number of lessons of class "CS2103T" to 0.
 
 **Sample Usage:**
 
-1. Assuming you want to set the number of lessons conducted for the class CS2103T to 5.
+1. Assuming you want to set the number of lessons conducted for your class "CS2103T" to 5.
 2. Enter the following command:
 ```
 setlesson /c CS2103T /l 5
@@ -562,7 +574,7 @@ setlesson /c CS2103T /l 5
 ```
 Successfully set the number of lessons in CS2103T to 5!
 ```
-4. You have successfully set the total number of lessons in CS2103T to 5. :tada:
+4. You have successfully set the total number of lessons in "CS2103T" to 5. :tada:
 
 <box type="info">
 
@@ -576,7 +588,9 @@ Successfully set the number of lessons in CS2103T to 5!
 <box type="tip">
 
 **Tip:**
-- This is useful when you accidentally [start a lesson](#starting-a-lesson-startlesson-c) and want to decrease the number of lesson(s) by 1.
+
+- You might find this command useful when you accidentally [start a lesson](#starting-a-lesson-startlesson-c) and need to revert the number of lesson(s).
+
 
 </box>
 
@@ -725,7 +739,7 @@ return to [Table of Contents](#table-of-contents)
 
 ### Viewing help : `help`
 
-Receives instruction on how to access EduTrack's user guide if you need assistance while using the app.
+Displays a pop-up window containing the link to this user guide. You can use this command to quickly access the user guide.
 
 **Command Format:** `help`
 
@@ -771,7 +785,8 @@ Removes all your entries from EduTrack when you want to start fresh.
 <box type="warning">
 
 **Caution:**
-* Make sure to think carefully before you execute this command as the action **cannot be undone**.
+
+* Please ensure to think carefully before you execute this command as the action **cannot be undone**.
 
 </box>
 
@@ -802,6 +817,8 @@ There is no need to save manually.
 ## Known issues
 
 1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. When attempting to view a long string of text, the text may be truncated with "..." at the end. The remedy is to resize the window to be larger if possible.
+3. When the window size is too small, the alignment of the columns when viewing a class may be off. The remedy is to resize the window to be larger if possible.
 
 ---
 
@@ -809,6 +826,7 @@ There is no need to save manually.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **list**        | **Listing all classes:** <br> **Format:** `list`                                                                                                                                                                                                                                                                                                         |
 | **add**         | **Adding a class:** <br> **Format:** `add /c CLASS_NAME` <br> **E.g:** `add /c CS2103T` <br> <br> **Adding a student:** <br> **Format:** `add /s STUDENT_NAME  /c CLASS_INDEX` <br> **E.g:** `add /s John /c 3`                                                                                                                                          |
 | **remove**      | **Removing a class:** <br> **Format:** `remove /c CLASS_INDEX` <br> **E.g:** `remove /c 3` <br> <br> **Removing a student:** <br> **Format:** `remove /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `remove /s 1 /c CS2103T`                                                                                                                             |
 | **view**        | **Viewing a class:** <br> **Format:** `view /c CLASS_INDEX` <br> **E.g:** `view /c 1`                                                                                                                                                                                                                                                                    |
