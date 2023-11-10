@@ -284,7 +284,7 @@ Step 5. The result of the command execution is encapsulated as a `CommandResult`
 The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand).
 ##### Remove Student Mechanism
 <puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
-
+**Note:** The lifeline for `RemoveStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 The mechanism to execute a `RemoveStudentCommand` is elaborated in the below walkthrough.
 This is a list of variables used in the walkthrough for clarity.
 
@@ -333,7 +333,7 @@ The walkthrough can be summarised by this sequence diagram. (Some details are om
 
 ##### Execution of a `RemoveStudentCommand`
 <puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
-
+**Note:** The lifeline for `Student` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 The following activity diagram summarises what happen when a user removes a Student:
 
 ##### Remove Student Workflow
