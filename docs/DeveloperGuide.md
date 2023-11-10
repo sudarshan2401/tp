@@ -304,8 +304,9 @@ This is a list of variables used in the walkthrough for clarity.
 
 `globalStudentList` - `UniqueStudentList` in `EduTrack` containing all `Student` across all `Class`.
 
-The relationship between variables can be summarised by this object diagram.
+The relationship between variables can be summarised by this object [diagram](#relationship-between-key-variables).
 
+##### Relationship between key variables
 <puml src="diagrams/RemoveStudentObjectDiagram.puml" alt="RemoveStudentObjectDiagram" />
 
 **Walkthrough**
