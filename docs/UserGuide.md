@@ -534,7 +534,7 @@ remove /s 2 /c CS2103T
 ```
 John has been removed from CS2103T
 ```
-4. You have successfully removed John from CS2103T. :tada:
+4. You have successfully removed "John" from "CS2103T". :tada:
 
 <box type="info">
 
@@ -608,12 +608,17 @@ Marks a student present for your current lesson.
 view /c 1
 mark /s 2 /c CS2103T
 ```
+
 3. The result box will display the following message:
 ```
 Jamie successfully marked present!
 ```
 
-4. You have successfully marked Jamie as present in CS2103T. :tada:
+4. Below is a sample of the result outcome of the command:
+
+![](images/markStudentPresent_UG.png)
+
+5. You have successfully marked "Jamie" as present in "CS2103T". :tada:
 
 <box type="info">
 
@@ -635,7 +640,7 @@ Jamie successfully marked present!
 
 **Tip:**
 
-* If all your students are present, you can use our [markall](#marking-all-students-in-a-class-present-markall) command instead!
+* If all your students are present, you can use our [markall](#marking-all-students-in-a-class-present-markall-c) command instead!
 
 </box>
 
@@ -663,7 +668,12 @@ mark /s 2 /c CS2103T
 ```
 Jamie has been marked absent!
 ```
-4. You have successfully marked Jamie as absent in CS2103T. :tada:
+
+4. Below is a sample of the result outcome:
+
+![](images/unmarkStudent_UG.png)
+
+5. You have successfully marked "Jamie" as absent in "CS2103T". :tada:
 
 <box type="info">
 
@@ -695,7 +705,7 @@ Marks all students in your class as present. You can use this command if all you
 
 **Sample Usage:**
 
-1. If you want to mark all your students in the class named "CS2103T", whereby the class is positioned at index "1" in your class list, as present.
+1. Assuming you want to mark all the students in your class named "CS2103T", whereby the class is positioned at index "1" in your class list, as present.
 2. Enter the following commands:
 ```
 view /c 1
@@ -705,7 +715,7 @@ markall /c 1
 ```
 All students in class CS2103T has been marked present!
 ```
-4. Successfully marked all students in CS2103T. :tada:
+4. Successfully marked all students in "CS2103T". :tada:
 
 <box type="info">
 

@@ -44,7 +44,7 @@ public class MarkStudentAbsentCommandTest {
         Model expectedModel = new ModelManager(new EduTrack(model.getEduTrack()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         String expectedMessage = String.format(MarkStudentAbsentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(editedStudent));
+                editedStudent.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

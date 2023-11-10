@@ -68,7 +68,7 @@ public class MarkStudentAbsentCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(studentToMark)));
+                studentToMark.getName()));
     }
 
     @Override

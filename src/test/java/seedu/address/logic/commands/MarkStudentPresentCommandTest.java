@@ -41,7 +41,7 @@ public class MarkStudentPresentCommandTest {
         Index index = Index.fromOneBased(1);
         MarkStudentPresentCommand command = new MarkStudentPresentCommand(index, className);
         String expectedMessage = String.format(MarkStudentPresentCommand.MESSAGE_STUDENT_ALREADY_MARKED,
-                Messages.formatStudent(studentToRemove));
+                studentToRemove.getName());
         assertCommandFailure(command, model, expectedMessage);
     }
 
@@ -88,7 +88,7 @@ public class MarkStudentPresentCommandTest {
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         String expectedMessage = String.format(MarkStudentPresentCommand.MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(editedStudent));
+                editedStudent.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

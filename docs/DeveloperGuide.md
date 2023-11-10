@@ -1168,7 +1168,7 @@ Given below are instructions to test the app manually.
 
 1. Marks a student present for the current class.
 
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has not been marked present.
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has not been marked present.
 
    2. Test case: `mark /s 2 /c CS2103T`<br>
       Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
@@ -1183,7 +1183,7 @@ Given below are instructions to test the app manually.
 
 1. Marks a student present for the current class.
 
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has been marked present.
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has been marked present.
 
    2. Test case: `unmark /s 2 /c CS2103T`<br>
       Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
