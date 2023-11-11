@@ -57,10 +57,7 @@ public class MarkStudentAbsentCommand extends Command {
         try {
             Class studentClass = model.getClass(className);
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
-            Student editedStudent = model.duplicateStudent(studentToMark);
-            model.markStudentAbsent(studentToMark, studentClass, editedStudent);
-            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-
+            markAbsent(model, studentToMark, studentClass);
         } catch (StudentAlreadyMarkedAbsent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
@@ -68,6 +65,19 @@ public class MarkStudentAbsentCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 studentToMark.getName()));
+    }
+
+    /**
+     * Marks the student absent by creating a new edited Student.
+     *
+     * @param model Model manager of EduTrack
+     * @param studentToMark Student to be marked absent
+     * @param studentClass Class the target student belongs to
+     */
+    private static void markAbsent(Model model, Student studentToMark, Class studentClass) {
+        Student editedStudent = model.duplicateStudent(studentToMark);
+        model.markStudentAbsent(studentToMark, studentClass, editedStudent);
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
     }
 
     @Override

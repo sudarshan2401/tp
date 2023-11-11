@@ -58,12 +58,10 @@ public class MarkStudentPresentCommand extends Command {
         Class studentClassCopy = null;
         Student studentToMark = null;
         try {
-            Class studentClass = model.getClass(className);
+            Class studentClass = model.getClass(this.className);
             studentClassCopy = studentClass;
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
-            Student editedStudent = model.duplicateStudent(studentToMark);
-            model.markStudentPresent(studentToMark, studentClass, editedStudent);
-            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
+            markPresent(studentClass, studentToMark, model);
         } catch (StudentAlreadyMarkedPresent e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,
                     studentToMark.getName()));
@@ -75,6 +73,23 @@ public class MarkStudentPresentCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 studentToMark.getName()));
+    }
+
+    /**
+     * Marks the student present using a new edited student in both EduTrack and class list.
+     *
+     * @param studentClass Class the student is in
+     * @param studentToMark Student instance you want to mark present
+     * @param model Model manager of EduTrack
+     * @throws StudentAlreadyMarkedPresent If student has been marked present
+     * @throws AttendanceDiscrepancy If marking attendance causes the total lesson sum to be less than attended lesson
+     * @throws ClassNotFoundException If the class indicated does not exist
+     */
+    private void markPresent(Class studentClass, Student studentToMark, Model model) throws StudentAlreadyMarkedPresent,
+            AttendanceDiscrepancy, ClassNotFoundException {
+        Student editedStudent = model.duplicateStudent(studentToMark);
+        model.markStudentPresent(studentToMark, studentClass, editedStudent);
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
     }
 
     @Override
