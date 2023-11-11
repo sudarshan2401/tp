@@ -17,8 +17,8 @@ import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.Schedule;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -64,7 +64,7 @@ public class StudentTest {
         Class c = new Class(new ClassName("CS1101S"), new UniqueStudentList(), new Memo(" "), new Schedule());
         bob.setStudentClass(c);
         c.setTotalLessons(6);
-        assertThrows(StudentAlreadyMarkedPresent.class, () -> bob.markStudentPresent());
+        assertThrows(StudentAlreadyMarkedPresentException.class, () -> bob.markStudentPresent());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class StudentTest {
     public void markStudentAbsent_studentDidNotAttend_throwsStudentAlreadyMarkedAbsentException() {
         // DANIEL was already marked absent
         Student daniel = new StudentBuilder(DANIEL).build();
-        assertThrows(StudentAlreadyMarkedAbsent.class, () -> daniel.markStudentAbsent());
+        assertThrows(StudentAlreadyMarkedAbsentException.class, () -> daniel.markStudentAbsent());
     }
 
     @Test

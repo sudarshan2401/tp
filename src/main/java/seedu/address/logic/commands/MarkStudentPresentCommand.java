@@ -13,8 +13,8 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancyException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 /**
  * Marks a student in a Class in teh EduTrack as present.
@@ -58,16 +58,14 @@ public class MarkStudentPresentCommand extends Command {
         Class studentClassCopy = null;
         Student studentToMark = null;
         try {
-            Class studentClass = model.getClass(className);
+            Class studentClass = model.getClass(this.className);
             studentClassCopy = studentClass;
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
-            Student editedStudent = model.duplicateStudent(studentToMark);
-            model.markStudentPresent(studentToMark, studentClass, editedStudent);
-            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-        } catch (StudentAlreadyMarkedPresent e) {
+            markPresent(studentClass, studentToMark, model);
+        } catch (StudentAlreadyMarkedPresentException e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED,
                     studentToMark.getName()));
-        } catch (AttendanceDiscrepancy e) {
+        } catch (AttendanceDiscrepancyException e) {
             throw new CommandException(String.format(MESSAGE_EXISTING_ATTENDANCE_LARGER_THAN_TOTAL,
                     Messages.formatClass(studentClassCopy)));
         } catch (ClassNotFoundException e) {
@@ -75,6 +73,23 @@ public class MarkStudentPresentCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 studentToMark.getName()));
+    }
+
+    /**
+     * Marks the student present using a new edited student in both EduTrack and class list.
+     *
+     * @param studentClass Class the student is in
+     * @param studentToMark Student instance you want to mark present
+     * @param model Model manager of EduTrack
+     * @throws StudentAlreadyMarkedPresentException If student has been marked present
+     * @throws AttendanceDiscrepancyException If marking attendance causes the total lesson sum < attended lesson
+     * @throws ClassNotFoundException If the class indicated does not exist
+     */
+    private void markPresent(Class studentClass, Student studentToMark, Model model) throws
+            StudentAlreadyMarkedPresentException, AttendanceDiscrepancyException, ClassNotFoundException {
+        Student editedStudent = model.duplicateStudent(studentToMark);
+        model.markStudentPresent(studentToMark, studentClass, editedStudent);
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
     }
 
     @Override

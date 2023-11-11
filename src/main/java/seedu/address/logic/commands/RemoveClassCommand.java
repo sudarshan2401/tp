@@ -47,28 +47,36 @@ public class RemoveClassCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Class classToRemove = model.retrieveClass(targetClassIndex);
+        removeAllClassStudents(model, classToRemove);
+        try {
+            model.removeClass(classToRemove);
+        } catch (ClassNotFoundException e) {
+            // typically will not occur unless the model and student list are not in sync
+            throw new CommandException(MESSAGE_MISSING_CLASS_INDEX);
+        }
+        return new CommandResult(String.format(MESSAGE_REMOVE_CLASS_SUCCESS, Messages.formatClass(classToRemove)));
+    }
+
+    /**
+     * Removes all students in the given class.
+     *
+     * @param model The model manager of the application
+     * @param classToRemove Class instance which the user chose to delete
+     */
+    private static void removeAllClassStudents(Model model, Class classToRemove) {
         List<Student> studentList = classToRemove.getStudentList();
-        // Copy is required because cannot delete item from iterating array while looping
+        // Copy is required because cannot delete item while iterating through array
         List<Student> studentListCopy = new ArrayList<>(studentList);
-        if (studentListCopy.isEmpty()) {
-            // do nothing
-        } else {
+        if (!studentListCopy.isEmpty()) {
             // Removes existing students in this class as well
             for (Student studentToRemove : studentListCopy) {
                 try {
-                    model.deleteStudent(studentToRemove);
                     model.deleteStudent(studentToRemove, classToRemove);
                 } catch (StudentNotFoundException e) {
                     //  do nothing
                 }
             }
         }
-        try {
-            model.removeClass(classToRemove);
-        } catch (ClassNotFoundException e) {
-            throw new CommandException(MESSAGE_MISSING_CLASS_INDEX);
-        }
-        return new CommandResult(String.format(MESSAGE_REMOVE_CLASS_SUCCESS, Messages.formatClass(classToRemove)));
     }
 
     @Override

@@ -2,8 +2,8 @@ package seedu.address.model.student;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 /**
  * Represents a Student's current lesson's attendance in the EduTrack.
@@ -28,11 +28,11 @@ public class CurrentLessonAttendance {
     /**
      * Sets the attendance of the current student to be present.
      *
-     * @throws StudentAlreadyMarkedPresent - Student already marked present
+     * @throws StudentAlreadyMarkedPresentException - Student already marked present
      */
-    public void setPresent() throws StudentAlreadyMarkedPresent {
+    public void setPresent() throws StudentAlreadyMarkedPresentException {
         if (this.isPresent) {
-            throw new StudentAlreadyMarkedPresent();
+            throw new StudentAlreadyMarkedPresentException();
         }
         this.isPresent = true;
     }
@@ -40,11 +40,11 @@ public class CurrentLessonAttendance {
     /**
      * Sets the attendance of the current student to be absent.
      *
-     * @throws StudentAlreadyMarkedAbsent - Student already marked absent
+     * @throws StudentAlreadyMarkedAbsentException - Student already marked absent
      */
-    public void setAbsent() throws StudentAlreadyMarkedAbsent {
+    public void setAbsent() throws StudentAlreadyMarkedAbsentException {
         if (!this.isPresent) {
-            throw new StudentAlreadyMarkedAbsent();
+            throw new StudentAlreadyMarkedAbsentException();
         }
         this.isPresent = false;
     }

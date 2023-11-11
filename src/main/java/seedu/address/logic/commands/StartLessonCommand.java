@@ -14,7 +14,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
  * Starts a lesson of a Class.
@@ -57,7 +57,7 @@ public class StartLessonCommand extends Command {
                 try {
                     model.startLessonForStudent(studentToUnmark, c, editedStudent);
                     model.updateFilteredClassList((cl) -> cl.isSameClass(c));
-                } catch (StudentAlreadyMarkedAbsent e) {
+                } catch (StudentAlreadyMarkedAbsentException e) {
                     continue;
                 }
             }
