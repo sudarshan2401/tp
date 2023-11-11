@@ -13,7 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
 
 /**
  * Unmarks all the student in a class as present.
