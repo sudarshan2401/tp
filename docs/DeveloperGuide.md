@@ -367,7 +367,7 @@ The workflow of the View Command feature is outlined below:
 
 2. The command is executed, calling the appropriate methods in the `Model`.
 
-3. The `Model` updates the filtered class list to show all classes.
+3. The `Model` updates the filtered class list to be reset to all classes.
 
 4. The specified class is retrieved using the class index.
 

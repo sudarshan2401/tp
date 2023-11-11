@@ -5,7 +5,7 @@ title: "Sudarshan's Project Portfolio Page"
 
 ### Project: EduTrack
 
-EduTrack is a  product is for teaching assistants in universities who type fast and have many classes to manage. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduTrack can get your student and class management tasks done faster than traditional GUI apps.
+EduTrack is a **powerful** product is for teaching assistants in the School of Computing (SoC) who type fast and have many classes and students to manage. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduTrack can get your student and class management tasks done faster than traditional GUI apps. It is written in Java and has more than 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -37,14 +37,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * **view class:** Added and maintained the documentation for the `view class` feature in our user guide
-    * **list class:** Added and maintained the documentation for the `list class` feature in our user guide
+    * **view class:** Added and maintained the documentation for the `view` feature in our user guide
+    * **list class:** Added and maintained the documentation for the `list` feature in our user guide
+    * **help:** Added and maintained the documentation for the `help` command in our user guide
+    * **EduTrack's Graphical User Interface** section: Added and maintained the documentation for the UI changes made to EduTrack
+    * **Known Issues:** Added and maintained the documentation for the known issues in our user guide such as the UI bugs regarding resizing of the application
 
   * Developer Guide:
     * Added use cases for the following features:
-      * **view class:** Added and maintained the documentation for the `view class` feature in our developer guide
-      * **list class:** Added and maintained the documentation for the `list class` feature in our developer guide
-    * Added UML diagrams for `view class` feature
+      * **view class:** Added and maintained the documentation for the `view` feature in our developer guide
+      * **list class:** Added and maintained the documentation for the `list` feature in our developer guide
+    * Added UML diagrams for `view` feature
       * Object Diagram
       * Sequence Diagram
       * Activity Diagram
