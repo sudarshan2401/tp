@@ -82,11 +82,11 @@ public class MarkStudentPresentCommand extends Command {
      * @param studentToMark Student instance you want to mark present
      * @param model Model manager of EduTrack
      * @throws StudentAlreadyMarkedPresentException If student has been marked present
-     * @throws AttendanceDiscrepancyException If marking attendance causes the total lesson sum to be less than attended lesson
+     * @throws AttendanceDiscrepancyException If marking attendance causes the total lesson sum < attended lesson
      * @throws ClassNotFoundException If the class indicated does not exist
      */
-    private void markPresent(Class studentClass, Student studentToMark, Model model) throws StudentAlreadyMarkedPresentException,
-            AttendanceDiscrepancyException, ClassNotFoundException {
+    private void markPresent(Class studentClass, Student studentToMark, Model model) throws
+            StudentAlreadyMarkedPresentException, AttendanceDiscrepancyException, ClassNotFoundException {
         Student editedStudent = model.duplicateStudent(studentToMark);
         model.markStudentPresent(studentToMark, studentClass, editedStudent);
         model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
