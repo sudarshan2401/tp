@@ -3,9 +3,13 @@
   title: "Wang Helin's Project Portfolio Page"
 ---
 
+## revdrag's Project Porfolio Page
+
+### Project: EduTrack
+
 #### Overview
 
-EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization.
+EduTrack is a **powerful desktop app** designed for SOC tutors, allowing them to streamline their teaching tasks and effortlessly track their student records. The user interacts with it using a Command Line Interface (CLI), and it has a Graphical User Interface (GUI) created with JavaFX. It is written in Java, and has about 12 kLOC.
 
 #### Summary of Contributions
 Given below are my contributions to the project.
@@ -20,12 +24,13 @@ Given below are my contributions to the project.
   * What it does: Allows the user to make changes to student records such as name, student number and memo.
   * Justification: This feature improves the product significantly as the user is able to keep track of their student records and write personalised memos for them.
   * Highlights: Because the adding student feature does not allow any change in student record such as student number or memo, it is necessary for an edit feature for users to edit such information.
-* **New Feature**: Added sample data to EduTrack.
-  * What it does: Populates EduTrack on launch with sample data for first time users.
-  * Highlights: This feature improves the product as users are now able to tinker around with EduTrack before they start using EduTrack. This will allow them to familiarise themselves with all the commands with the help of the sample data.
+* **New Feature**: Added sample data generation to EduTrack.
+  * What it does: Populates EduTrack on launch with sample data for first time users or developers.
+  * Highlights: This feature improves the product as users are now able to tinker around with EduTrack before they start using the application. This will allow them to familiarise themselves with how the GUI looks like in a typical EduTrack application. They will also be able to experiment with all the commands available and perform some manual testing with the help of the sample data.
 * **Project Management**:
   * Setup GitHub Team Organisation and Repository
   * Setup Project Website: Migrate to MarkDown and set up GitHub Pages, helped partially to change names and links from AddressBook to EduTrack on the website such as `index.md`. (Pull Requests [#1](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/1), [#30](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/30))
+  * Add `Appendix - Planned Enhancements` into website layout for easier navigation (Pull Request [#153](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/153))
 * **Enhancements to existing features**:
   * Added the ability to store `Memo` information (was initially `Note` but changed to de-conflict `Prefix` used) in `Student` and `Class` objects. (Pull Request [#58](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/58))
   * Added the ability to store `Id` information in `Student` objects. (Pull Request [#58](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/58))
@@ -37,6 +42,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added use cases. (Pull Request [#35](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/35))
     * Added implementation details for the Edit Student feature. (Pull Request [#63](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/63))
+    * Updated the section `Appendix - Instructions for manual testing` (Pull Request [#149](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/149))
 * **Community**:
-  * PRS reviews: [#21](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/21), [#57](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/57), [#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [#85](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/85), [#146](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/146)
+  * Pull Request reviews: [#57](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/57), [#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [#85](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/85), [#146](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/146), [#156](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/156)
   * Reported bugs and provided suggestions whenever possible for other teams in the class during PE-D. (Issues created: [Repo](https://github.com/revdrag/ped/issues))
+  * 
