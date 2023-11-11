@@ -62,7 +62,7 @@ Given below are my contributions to EduTrack.
   * Adjustment of [Storage Component](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#storage-component)
   * UML Diagrams 
     * [Remove Student Mechanism](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#remove-student-mechanism)
-    * [Execution of a `RemoveStudentCommand`](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#execution-of-a-removestudentcommand)
+    * [Execution of a RemoveStudentCommand](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#execution-of-a-removestudentcommand)
     * [Relationship between objects involved](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#relationship-between-key-variables)
     * [Remove Student Workflow](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#remove-student-workflow)
     * [Storage Component for EduTrack](https://ay2324s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html#storage-component)

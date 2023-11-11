@@ -12,13 +12,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ClassName;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new RemoveStudentCommand object
  */
 public class RemoveStudentCommandParser implements Parser<RemoveStudentCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the RemoveStudentCommand
+     * and returns a RemoveStudentCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -37,6 +36,7 @@ public class RemoveStudentCommandParser implements Parser<RemoveStudentCommand> 
         return new RemoveStudentCommand(studentIndex, className);
     }
 
+    // Checks if all the prefixes are supplied by the user
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

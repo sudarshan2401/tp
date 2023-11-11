@@ -16,7 +16,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
- * Removes a Student identified by Name from a Class.
+ * Removes a Student identified by Index from a Class.
  */
 public class RemoveStudentCommand extends Command {
 
@@ -38,7 +38,7 @@ public class RemoveStudentCommand extends Command {
     private final ClassName studentClassName;
 
     /**
-     * Command to remove Student based on its index in the UniqueStudentList in Class with ClassName
+     * Command to remove Student based on its Index in the UniqueStudentList in Class with ClassName
      * @param index Index of student in List
      * @param studentClassName ClassName of the Student's Class
      */
