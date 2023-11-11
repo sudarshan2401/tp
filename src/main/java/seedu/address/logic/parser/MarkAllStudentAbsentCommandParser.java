@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MarkAllStudentAbsentCommandParser implements Parser<MarkAllStudentAbsentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MarkAllStudentPresentCommand
-     * and returns an MarkAllStudentPresentCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MarkAllStudentAbsentCommand
+     * and returns an MarkAllStudentAbsentCommand object for execution.
      * @throws ParseException if the user input does not follow the expected format
      */
     public MarkAllStudentAbsentCommand parse(String args) throws ParseException {
@@ -40,6 +40,7 @@ public class MarkAllStudentAbsentCommandParser implements Parser<MarkAllStudentA
         }
     }
 
+    // Checks if all the prefixes are supplied by the user
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

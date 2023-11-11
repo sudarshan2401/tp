@@ -33,7 +33,8 @@ public class StartLessonCommand extends Command {
     private ClassName className;
 
     /**
-     * Command to simulate starting a lesson of a Class thus increasing total lessons conducted of the Class by one.
+     * Command to start a lesson of a Class. This increases total lessons conducted of the Class by one and
+     * mark all the students as absent to facilitate attendance taking.
      * @param className Classname to represent the Class.
      */
     public StartLessonCommand(ClassName className) {

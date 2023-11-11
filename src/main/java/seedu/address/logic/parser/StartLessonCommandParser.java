@@ -18,6 +18,7 @@ public class StartLessonCommandParser implements Parser<StartLessonCommand> {
      * Parses the input arguments and create a StartLessonCommand based on input arguments.
      * @param args Inputs by user to determine Class that StartLessonCommand should work on.
      * @return StartLessonCommand with user's chosen Class.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public StartLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -33,6 +34,7 @@ public class StartLessonCommandParser implements Parser<StartLessonCommand> {
         return new StartLessonCommand(className);
     }
 
+    // Checks if all the prefixes are supplied by the user
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

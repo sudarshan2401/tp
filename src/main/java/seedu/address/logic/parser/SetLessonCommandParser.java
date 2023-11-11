@@ -19,6 +19,7 @@ public class SetLessonCommandParser implements Parser<SetLessonCommand> {
      * Parses the input arguments and creates a SetLessonCommand based on input arguments.
      * @param args Inputs by user to determine Class that SetLessonCommand should work on.
      * @return SetLessonCommand with user's chosen Class.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public SetLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -35,6 +36,7 @@ public class SetLessonCommandParser implements Parser<SetLessonCommand> {
         return new SetLessonCommand(className, numLessons);
     }
 
+    // Checks if all the prefixes are supplied by the user
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
