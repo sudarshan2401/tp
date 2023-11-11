@@ -12,7 +12,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
  * Marks a student in a Class in the EduTrack as absent.
@@ -58,7 +58,7 @@ public class MarkStudentAbsentCommand extends Command {
             Class studentClass = model.getClass(className);
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
             markAbsent(model, studentToMark, studentClass);
-        } catch (StudentAlreadyMarkedAbsent e) {
+        } catch (StudentAlreadyMarkedAbsentException e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));

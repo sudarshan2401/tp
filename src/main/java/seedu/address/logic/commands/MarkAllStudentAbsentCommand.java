@@ -12,7 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
  * Unmarks all the student in a class as present.
@@ -47,7 +47,7 @@ public class MarkAllStudentAbsentCommand extends Command {
             try {
                 model.markStudentAbsent(studentToUnmark, studentClass, editedStudent);
                 model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-            } catch (StudentAlreadyMarkedAbsent e) {
+            } catch (StudentAlreadyMarkedAbsentException e) {
                 continue;
             }
         }

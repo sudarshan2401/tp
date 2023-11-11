@@ -8,9 +8,9 @@ import java.util.Objects;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.common.Memo;
 import seedu.address.model.module.Class;
-import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancyException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 /**
  * Represents a Student in the address book.
@@ -167,13 +167,13 @@ public class Student {
     /**
      * Marks a student as present for the current lesson.
      *
-     * @throws StudentAlreadyMarkedPresent If the Student has already been marked present
-     * @throws AttendanceDiscrepancy If the marking of Student's attendance causes current to
+     * @throws StudentAlreadyMarkedPresentException If the Student has already been marked present
+     * @throws AttendanceDiscrepancyException If the marking of Student's attendance causes current to
      *          exceed class total attendance
      */
-    public void markStudentPresent() throws StudentAlreadyMarkedPresent, AttendanceDiscrepancy {
+    public void markStudentPresent() throws StudentAlreadyMarkedPresentException, AttendanceDiscrepancyException {
         if (this.lessonsAttended.getTotalLessons() >= studentClass.getTotalLessons()) {
-            throw new AttendanceDiscrepancy();
+            throw new AttendanceDiscrepancyException();
         }
         this.currentLessonAttendance.setPresent();
         this.lessonsAttended.incrementLessons();
@@ -182,9 +182,9 @@ public class Student {
     /**
      * Marks a student as absent for the current lesson.
      *
-     * @throws StudentAlreadyMarkedAbsent If the Student has already been marked absent
+     * @throws StudentAlreadyMarkedAbsentException If the Student has already been marked absent
      */
-    public void markStudentAbsent() throws StudentAlreadyMarkedAbsent {
+    public void markStudentAbsent() throws StudentAlreadyMarkedAbsentException {
         this.currentLessonAttendance.setAbsent();
         if (this.lessonsAttended.getTotalLessons() > 0) {
             this.lessonsAttended.decrementLessons();
@@ -197,7 +197,7 @@ public class Student {
     public void startNewLesson() {
         try {
             this.currentLessonAttendance.setAbsent();
-        } catch (StudentAlreadyMarkedAbsent ignored) {
+        } catch (StudentAlreadyMarkedAbsentException ignored) {
             // do nothing
         }
     }

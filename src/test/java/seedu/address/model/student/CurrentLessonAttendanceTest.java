@@ -8,8 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 public class CurrentLessonAttendanceTest {
     @Test
@@ -34,7 +34,7 @@ public class CurrentLessonAttendanceTest {
     @Test
     public void setPresent_studentPresent_throwsStudentAlreadyMarkedPresentException() {
         CurrentLessonAttendance presentLessonAttendance = new CurrentLessonAttendance(true);
-        assertThrows(StudentAlreadyMarkedPresent.class, () -> presentLessonAttendance.setPresent());
+        assertThrows(StudentAlreadyMarkedPresentException.class, () -> presentLessonAttendance.setPresent());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CurrentLessonAttendanceTest {
     @Test
     public void setAbsent_studentAbsent_throwsStudentAlreadyMarkedAbsentException() {
         CurrentLessonAttendance absentLessonAttendance = new CurrentLessonAttendance(false);
-        assertThrows(StudentAlreadyMarkedAbsent.class, () -> absentLessonAttendance.setAbsent());
+        assertThrows(StudentAlreadyMarkedAbsentException.class, () -> absentLessonAttendance.setAbsent());
     }
 
     @Test
