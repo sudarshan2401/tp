@@ -46,4 +46,3 @@ Given below are my contributions to the project.
 * **Community**:
   * Pull Request reviews: [#57](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/57), [#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [#85](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/85), [#146](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/146), [#156](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/156)
   * Reported bugs and provided suggestions whenever possible for other teams in the class during PE-D. (Issues created: [Repo](https://github.com/revdrag/ped/issues))
-  * 
