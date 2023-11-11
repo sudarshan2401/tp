@@ -43,14 +43,16 @@ Given below are my contributions to the project.
 
 - Added documentation for the features `adding a class` and `editing a class`: Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
 - Modified existing documentation of `Miscellaneous features`: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
-- Added the following sections: `Command Parameters`, `EduTrack's Graphical User Interface`
-- Contributed in standardising language use: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86)
+- Added the following sections: `Command Parameters`, `EduTrack's Graphical User Interface`: [#139](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/139)
+- Contributed in standardising language use and enhance formatting: Pull request [#86](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/86), [#155](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/155)
 
 **Contributions to the DG:**
+
 - Described the implementation of the feature `adding a class`: Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
 - Added activity diagram, object diagram and sequence diagram of the feature `adding a class`: : Pull request [#61](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/61)
 - Added target user profile, user stories, value proposition and non-functional requirements: Pull request [#26](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/26)
 - Added use cases for the features `adding a class` and `editing a class`: Pull request [#26](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/26)
 
 **Other contributions:**
-- Recorded product demos for `v1.2` and `v1.3`.
+- **Team-based tasks:** Recorded product demos for `v1.2` and `v1.3`.
+- **Community:** PRs reviewed (with non-trivial review comments): [#154](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/154), [#153](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/153), [#152](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/152), [#151](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/151)
