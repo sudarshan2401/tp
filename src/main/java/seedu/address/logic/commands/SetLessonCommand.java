@@ -32,7 +32,7 @@ public class SetLessonCommand extends Command {
             + "\n"
             + "Example: "
             + COMMAND_WORD + " cs2103" + " /l 5";
-    public static final String MESSAGE_START_LESSON_SUCCESS = "Successfully set the number of lessons in %s to %d!";
+    public static final String MESSAGE_SET_LESSON_SUCCESS = "Successfully set the number of lessons in %s to %d!";
     private ClassName className;
     private int numLessons;
 
@@ -41,7 +41,8 @@ public class SetLessonCommand extends Command {
      * @param className Classname to represent the Class.
      */
     public SetLessonCommand(ClassName className, int numLessons) {
-        requireAllNonNull(className, numLessons);
+        requireAllNonNull(className);
+        assert numLessons >= 0 : "number of lessons should be at least 0";
         this.className = className;
         this.numLessons = numLessons;
     }
@@ -69,7 +70,7 @@ public class SetLessonCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
 
-        return new CommandResult(String.format(MESSAGE_START_LESSON_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_SET_LESSON_SUCCESS,
                 Messages.formatClass(c), numLessons));
     }
 
@@ -85,7 +86,8 @@ public class SetLessonCommand extends Command {
         }
 
         SetLessonCommand otherSetLessonCommand = (SetLessonCommand) other;
-        return this.className.equals(otherSetLessonCommand.className);
+        return this.className.equals(otherSetLessonCommand.className)
+                && this.numLessons == otherSetLessonCommand.numLessons;
     }
     @Override
     public String toString() {

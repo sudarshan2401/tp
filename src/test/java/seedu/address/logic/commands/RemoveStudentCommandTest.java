@@ -62,7 +62,7 @@ public class RemoveStudentCommandTest {
     }
 
     @Test
-    public void execute_validStudentName_success() {
+    public void execute_validStudentIndex_success() {
         Student studentToDelete = studentStub;
         Name studentName = studentToDelete.getName();
         RemoveStudentCommand removeStudentCommand = new RemoveStudentCommand(Index.fromOneBased(1), classStubName);

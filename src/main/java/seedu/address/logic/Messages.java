@@ -23,11 +23,13 @@ public class Messages {
     public static final String MESSAGE_EMPTY_CLASS_LIST = "There are no classes available at the moment! Create one!";
     public static final String MESSAGE_CLASS_NAME_CONTAINS_SPACE = "Class name should not contain spaces.";
     public static final String MESSAGE_EMPTY_CLASS_NAME = "Class name not specified.";
+    public static final String MESSAGE_MISSING_CLASS_NAME = "The Class name (%s) you provided does not exist!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_EMPTY_STUDENT_LIST = "There are no students available at the moment! "
             + "Create one!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified for the following single-valued "
             + "field(s): ";
+
 
 
     /**
