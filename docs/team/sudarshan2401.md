@@ -5,7 +5,7 @@ title: "Sudarshan's Project Portfolio Page"
 
 ### Project: EduTrack
 
-EduTrack is a **powerful** product is for teaching assistants in the School of Computing (SoC) who type fast and have many classes and students to manage. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduTrack can get your student and class management tasks done faster than traditional GUI apps. It is written in Java and has more than 10 kLoC.
+EduTrack is a **powerful** product that is designed for teaching assistants in the School of Computing (SoC) who type fast and have many classes and students to manage. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduTrack can get your student and class management tasks done faster than traditional GUI apps. It is written in Java and has more than 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -53,7 +53,7 @@ Given below are my contributions to the project.
       * Activity Diagram
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): (Pull Request [#40](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/40))
+  * PRs reviewed (with non-trivial review comments): (Pull Request [18](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/18), [34]((https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/34)), [#40](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/40), [#59](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/59) ,[#150](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/150))
   * Reported bugs and suggestions for other features such as the `edit student` command and the `add student` command due to linkage with the `view class` feature
 
 * **Miscellaneous Contributions**:
