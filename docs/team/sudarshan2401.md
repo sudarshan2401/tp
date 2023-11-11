@@ -37,14 +37,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * **view class:** Added and maintained the documentation for the `view class` feature in our user guide
-    * **list class:** Added and maintained the documentation for the `list class` feature in our user guide
+    * **view class:** Added and maintained the documentation for the `view` feature in our user guide
+    * **list class:** Added and maintained the documentation for the `list` feature in our user guide
+    * **help:** Added and maintained the documentation for the `help` command in our user guide
+    * **EduTrack's Graphical User Interface** section: Added and maintained the documentation for the UI changes made to EduTrack
+    * **Known Issues:** Added and maintained the documentation for the known issues in our user guide such as the UI bugs regarding resizing of the application
 
   * Developer Guide:
     * Added use cases for the following features:
-      * **view class:** Added and maintained the documentation for the `view class` feature in our developer guide
-      * **list class:** Added and maintained the documentation for the `list class` feature in our developer guide
-    * Added UML diagrams for `view class` feature
+      * **view class:** Added and maintained the documentation for the `view` feature in our developer guide
+      * **list class:** Added and maintained the documentation for the `list` feature in our developer guide
+    * Added UML diagrams for `view` feature
       * Object Diagram
       * Sequence Diagram
       * Activity Diagram
