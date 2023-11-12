@@ -47,6 +47,7 @@ If you are an **experienced user** of EduTrack, click [here](#command-summary) t
      - [Marking a student present : `mark /s`](#marking-a-student-present-mark-s)
      - [Marking a student absent : `unmark /s`](#marking-a-student-absent-unmark-s)
      - [Marking all students in a class present : `markall /c`](#marking-all-students-in-a-class-present-markall-c)
+     - [Marking all students in a class absent : `unmarkall /c`](#marking-all-students-in-a-class-absent-unmarkall-c)
    - [Miscellaneous commands](#miscellaneous-commands)
      - [Viewing help : `help`](#viewing-help-help)
      - [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -922,6 +923,7 @@ There is no need to save manually.
 | **mark**        | **Marking a student present:** <br> **Format:** `mark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `mark /s 1 /c CS2103T`                                                                                                                                                                                                                               |
 | **unmark**      | **Marking a student absent:** <br> **Format:** `unmark /s STUDENT_INDEX /c CLASS_NAME` <br> **E.g:** `unmark /s 1 /c CS2103T`                                                                                                                                                                                                                            |
 | **markall**     | **Marking all students in a class present:** <br> **Format:** `markall /c CLASS_INDEX` <br> **E.g:** `markall /c 1`                                                                                                                                                                                                                                      |
+| **unmarkall**   | **Marking all students in a class absent:** <br> **Format:** `unmarkall /c CLASS_INDEX` <br> **E.g:** `unmrkall /c 1`                                                                                                                                                                                                                                    |
 | **startlesson** | **Starting a lesson of a class:** <br> **Format:** `startlesson /c CLASS_NAME` <br> **E.g:** `startlesson /c CS2103T`                                                                                                                                                                                                                                    |
 | **setlesson**   | **Setting the number of lessons in a class:** <br> **Format:** `setlesson /c CLASS_NAME /l NUMBER_OF_LESSONS` <br> **E.g:** `setlesson /c CS2103T /l 5`                                                                                                                                                                                                  |
 
