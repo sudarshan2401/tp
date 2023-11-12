@@ -223,16 +223,9 @@ public class MainWindow extends UiPart<Stage> {
                 classInfoDisplay.setClassInfo("");
             }
 
-            if (commandResult.isEditClass()) {
+            if (commandResult.isEditClass() || commandResult.isUpdatedStudent()) {
                 //add the class info display only if already viewing that class' information
                 // (e.g. class in classinfodisplay is the same as the edited class)
-                String current = logic.getFilteredClassList().get(0).getClassName().toString();
-                if (String.valueOf(classInfoDisplay.getClassName()).equals(current)) {
-                    classInfoDisplay.setClassInfo(getClassInfo());
-                }
-            }
-
-            if (commandResult.isUpdatedStudent()) {
                 classInfoDisplay.setClassInfo(getClassInfo());
                 personListPanel = new StudentListPanel(logic.getFilteredPersonList());
                 displayListPanel(personListPanel.getRoot());

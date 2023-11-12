@@ -18,7 +18,7 @@ import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 
 /**
- * Sets the number of lessons of a Class.
+ * Sets the number of lessons conducted for a Class.
  */
 public class SetLessonCommand extends Command {
     public static final String COMMAND_WORD = "setlesson /c";
@@ -37,7 +37,7 @@ public class SetLessonCommand extends Command {
     private int numLessons;
 
     /**
-     * Command to forcefully set the total number of lessons of a Class.
+     * Command to set the total number of lessons of a Class.
      * @param className Classname to represent the Class.
      */
     public SetLessonCommand(ClassName className, int numLessons) {
