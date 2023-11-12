@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.RemoveClassCommand;
 
 public class RemoveClassCommandParserTest {
@@ -16,7 +17,6 @@ public class RemoveClassCommandParserTest {
     @Test
     public void parse_validArgs_returnRemoveClassCommand() {
         int index = 1;
-        Index classIndexToRemove = Index.fromOneBased(index);
         RemoveClassCommand expectedCommand = new RemoveClassCommand(Index.fromOneBased(1));
         assertParseSuccess(parser, " /c " + index, expectedCommand);
     }
@@ -26,5 +26,11 @@ public class RemoveClassCommandParserTest {
         // Argument should be numbers
         assertParseFailure(parser, "/c" + missingClassName,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveClassCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parase_nonIntClassIndex_throwsParseException() {
+        assertParseFailure(parser, " /c shouldBeClassIndex",
+                Messages.MESSAGE_INVALID_CLASS_DISPLAYED_INDEX);
     }
 }

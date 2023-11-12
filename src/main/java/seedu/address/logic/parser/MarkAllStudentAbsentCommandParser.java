@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkAllStudentAbsentCommand;
-import seedu.address.logic.commands.MarkAllStudentPresentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,7 +35,7 @@ public class MarkAllStudentAbsentCommandParser implements Parser<MarkAllStudentA
             return new MarkAllStudentAbsentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentPresentCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAllStudentAbsentCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -6,14 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
  * Marks a student in a Class in the EduTrack as absent.
@@ -58,17 +57,27 @@ public class MarkStudentAbsentCommand extends Command {
         try {
             Class studentClass = model.getClass(className);
             studentToMark = model.getStudentInClass(targetStudentIndex, studentClass);
-            Student editedStudent = model.duplicateStudent(studentToMark);
-            model.markStudentAbsent(studentToMark, studentClass, editedStudent);
-            model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-
-        } catch (StudentAlreadyMarkedAbsent e) {
+            markAbsent(model, studentToMark, studentClass);
+        } catch (StudentAlreadyMarkedAbsentException e) {
             throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_MARKED, studentToMark.getName()));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
-                Messages.formatStudent(studentToMark)));
+                studentToMark.getName()));
+    }
+
+    /**
+     * Marks the student absent by creating a new edited Student.
+     *
+     * @param model Model manager of EduTrack
+     * @param studentToMark Student to be marked absent
+     * @param studentClass Class the target student belongs to
+     */
+    private static void markAbsent(Model model, Student studentToMark, Class studentClass) {
+        Student editedStudent = model.duplicateStudent(studentToMark);
+        model.markStudentAbsent(studentToMark, studentClass, editedStudent);
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
     }
 
     @Override

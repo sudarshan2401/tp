@@ -367,7 +367,7 @@ The workflow of the View Command feature is outlined below:
 
 2. The command is executed, calling the appropriate methods in the `Model`.
 
-3. The `Model` updates the filtered class list to show all classes.
+3. The `Model` updates the filtered class list to be reset to all classes.
 
 4. The specified class is retrieved using the class index.
 
@@ -1076,50 +1076,6 @@ Given below are instructions to test the app manually.
    2. Test case: `edit /c 1 /n T0`<br>
       Expected: Name of the class is replaced with `T0`. Displays only the edited class and the edited details.
 
-### Marking a student present
-
-1. Marks a student present for the current class.
-
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has not been marked present.
-
-   2. Test case: `mark /s 2 /c CS2103T`<br>
-      Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Student index = 0: `mark /s 0 /c CS2103T`
-      * Student index larger than student list: `mark /s 100 /c CS2103T`
-      * Class name that does not exist: `mark /s 100 /c NOTACLASS`
-      * Marking a student present again: `mark /s 2 /c CS2103T`
-
-### Marking a student absent
-
-1. Marks a student present for the current class.
-
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has been marked present.
-
-   2. Test case: `unmark /s 2 /c CS2103T`<br>
-     Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Student index = 0: `unmark /s 0 /c CS2103T`
-      * Student index larger than student list: `unmark /s 100 /c CS2103T`
-      * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
-      * Marking a student absent again: `unmark /s 2 /c CS2103T`
-
-### Marking all students in a class present
-
-1. Marks all student present for the current class.
-
-   1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
-
-   2. Test case: `markall /c 1`<br>
-     Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Missing `/c` prefix: `markall 1`
-      * Missing class index: `markall /c`
-      * Class index larger than class list: `markall /c 100`
-
 ### Starting a lesson
 
 1. Starts the lesson of a class.
@@ -1189,6 +1145,50 @@ Given below are instructions to test the app manually.
    4. Some invalid test cases to try (Error details shown):<br>
       * No optional fields: `edit /s 1 /c CS2103T`
       * Student index larger than number of students in the class: `edit /s 100 /c CS2103T /m Bob`
+
+### Marking a student present
+
+1. Marks a student present for the current class.
+
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has not been marked present.
+
+   2. Test case: `mark /s 2 /c CS2103T`<br>
+      Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+      * Student index = 0: `mark /s 0 /c CS2103T`
+      * Student index larger than student list: `mark /s 100 /c CS2103T`
+      * Class name that does not exist: `mark /s 100 /c NOTACLASS`
+      * Marking a student present again: `mark /s 2 /c CS2103T`
+
+### Marking a student absent
+
+1. Marks a student present for the current class.
+
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has been marked present.
+
+   2. Test case: `unmark /s 2 /c CS2103T`<br>
+      Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+     * Student index = 0: `unmark /s 0 /c CS2103T`
+     * Student index larger than student list: `unmark /s 100 /c CS2103T`
+     * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
+     * Marking a student absent again: `unmark /s 2 /c CS2103T`
+
+### Marking all students in a class present
+
+1. Marks all student present for the current class.
+
+   1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
+
+   2. Test case: `markall /c 1`<br>
+      Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+     * Missing `/c` prefix: `markall 1`
+     * Missing class index: `markall /c`
+     * Class index larger than class list: `markall /c 100`
 
 ### Help
 

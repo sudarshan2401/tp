@@ -12,8 +12,8 @@ import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 /**
  * The API of the Model component.
@@ -70,7 +70,7 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the EduTrack.
      */
     void deleteStudent(Student target);
 
@@ -146,9 +146,9 @@ public interface Model {
     Class retrieveClass(Index classListIndex) throws CommandException;
 
     void markStudentPresent(Student student, Class studentClass, Student editedStudent)
-            throws StudentAlreadyMarkedPresent;
+            throws StudentAlreadyMarkedPresentException;
     void markStudentAbsent(Student student, Class studentClass, Student editedStudent)
-            throws StudentAlreadyMarkedAbsent;
+            throws StudentAlreadyMarkedAbsentException;
     void updateClassChange(Student student, Class studentClass, Student editedStudent);
     void startLessonForStudent(Student student, Class studentClass, Student editedStudent);
     boolean isValidAttendanceForStudent(Student student, Class studentClass);

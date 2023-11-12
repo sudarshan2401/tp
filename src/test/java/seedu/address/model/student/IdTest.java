@@ -69,4 +69,10 @@ public class IdTest {
         // different values -> returns false
         assertFalse(id.equals(new Id("A11111111Z")));
     }
+
+    @Test
+    public void hashCode_sameInstance_sameHashCode() {
+        Id presentLessonAttendance = new Id("A0123323P");
+        assertTrue(presentLessonAttendance.hashCode() == presentLessonAttendance.hashCode());
+    }
 }
