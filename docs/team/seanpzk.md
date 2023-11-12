@@ -45,10 +45,12 @@ Given below are my contributions to EduTrack.
         3. Added and updated documentation of the feature `setting number of lessons of a class`: [#85](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/85)
         4. Tweaked documentation of command format from [original UserGuide](https://github.com/nus-cs2103-AY2324S1/tp/blob/master/docs/UserGuide.md): [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25)
         5. Improve user-centricity and tone: [#151](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/151)
+        6. Improve grammar for final submission : [#161](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/162)
     * Developer Guide:
         1. Added UML diagrams for implementation of `Remove Student` feature: [\#56](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/56), [\#64](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/64), [\#67](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/67), [#144](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/144)
         2. Added and updated use cases for `Remove a student`, `Modify an existing student record`, and `Use auto-save feature`: [\#25](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/25), [#151](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/151)
         3. Adjusted the description and UML diagram for `Storage Component` [#151](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/151)
+        4. Improve grammar for final submission : [#161](https://github.com/AY2324S1-CS2103T-T15-3/tp/pull/162)
 * **Contribution to team**:
   * Responsible for overall project coordination
     * Setting agendas for weekly meet-ups
