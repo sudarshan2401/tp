@@ -223,8 +223,8 @@ This command will update the student's details and update the `model` accordingl
 
 The edit student command accepts:
 - Compulsory parameters
-  - Student index in the class
-  - Class Name
+  - Student's index in the class
+  - Class name of the student's class
 - At least one of these parameters
   - Name
   - Id
@@ -236,11 +236,11 @@ The following activity diagram summarizes what happens when a user executes an `
 
 Given below is an example usage scenario and how the edit student operation behaves at each step.
 
-Step 1. A valid command `edit /s 1 /c CS2103T /nJohn` is given as a user input. This invokes `LogicManager#execute()`, which calls `EduTrackParser#parseCommand()` to parse the above command into command word `edit /s` and command argument `/s 1 /c CS2103T /nJohn`.
+Step 1. A valid command `edit /s 1 /c CS2103T /n John` is given as a user input. This invokes `LogicManager#execute()`, which calls `EduTrackParser#parseCommand()` to parse the above command into command word `edit /s` and command argument `/s 1 /c CS2103T /n John`.
 
 Step 2. `EditStudentCommandParser` is initialised based on the parse results and `EditStudentCommandParser#parse()` is called. `EditStudentCommandParser#parse()` will call `ArgumentTokenizer#tokenize()` to identify all the prefixes such as `Index` of the Student being edited as well as the `ClassName` the student is supposed to be in. (ie. `1` and `CS2103T` respectively). It will also obtain an `ArgumentMultimap` of prefixes to their respective arguments (ie. `/n` is mapped to `John`).
 
-Step 3. `EditStudentCommandParser#parse()` then initialises and EditStudentDescriptor that stores the details to edit the student with. Thus, `EditStudentDescriptor#setName()` will be called to store `John Doe` as the `Name` to be edited.
+Step 3. `EditStudentCommandParser#parse()` then initialises and EditStudentDescriptor that stores the details to edit the student with. Thus, `EditStudentDescriptor#setName()` will be called to store `John` as the `Name` to be edited.
 
 Step 4. `EditStudentCommandParser#parse()` then initialises an EditStudentCommand with the `Index`, `ClassName` and `EditStudentDescriptor` as an argument. `EditStudentCommand#execute()` is then called, which creates a new `Student` and copies over the details to be edited from the `EditStudentDescriptor` into both the `UniqueStudentList` of the `Class` and `EduTrack`.
 
@@ -688,8 +688,7 @@ _{More to be added}_
 **MSS**
 
 1. User launches the app for the first time.
-2. EduTrack populates the app with sample data for a class.
-3. User accesses the sample data to see how the app works.
+2. EduTrack populates the app with sample data.
 
    Use case ends.
 
@@ -837,7 +836,7 @@ _{More to be added}_
 
 - 3b. No class name specified.
 
-  - 3b1. EduTrack informs the user he should enter a class field
+  - 3b1. EduTrack informs the user he should enter a class field.
 
     Use case ends.
 
@@ -859,35 +858,26 @@ _{More to be added}_
 
 **MSS**
 
-1. User chooses to add a student to an existing class.
-2. User requests to add a new student to an existing class.
-3. EduTrack adds the student into the specified class.
+1. User requests to add a new student to an existing class.
+2. EduTrack adds the student into the specified class.
 
 **Extensions**
 
-- 1a. Student name is not specified.
+- 1a. Not all required parameters are present.
 
-  - 1a1. EduTrack informs user that the student name is empty.
-
-    Use case ends.
-
-- 1b. Class name is not specified.
-
-  - 1b1. EduTrack informs user that the class name is empty.
+  - 1a1. EduTrack shows an error message.
 
     Use case ends.
 
-- 2a. Student name already exists.
+- 1b. Student already exists.
 
-  - 2a1. EduTrack informs user that student name already exists.
-  - 2a2. EduTrack terminates the request.
+  - 1b1. EduTrack informs user that the student already exists.
 
     Use case ends.
 
-- 2b. Class does not exist.
+- 1c. Class index is invalid.
 
-  - 2b1. EduTrack informs user that the class is not found.
-  - 2b2. EduTrack terminates the request.
+  - 1c1. EduTrack informs user that the class index is invalid.
 
     Use case ends.
 
@@ -927,25 +917,46 @@ _{More to be added}_
 
 ---
 
-**Use case: Modify an existing student records**
+**Use case: Edit a student's record**
 
 **MSS**
 
-1. User requests to modify an existing student record in a class.
-2. EduTrack responds with a list of categories for user to choose to modify.
-3. User chooses a category to modify.
-4. EduTrack requests for new input in the category.
-5. User enters the new input for the category.
-6. EduTrack updates and displays the new student record.
+1. User requests to view the students from a particular class.
+2. User requests to edit the details of a specific student in the list based on index.
+3. EduTrack edits the records of the specified student from the specified class.
+4. EduTrack updates and displays the student list of the class.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. EduTrack detects that student or class does not exist.
+- 2a. Not all compulsory parameters are present.
 
-  - 1a1. EduTrack informs the user that the student or the class does not exist.
-  - 1a2. EduTrack terminates the request.
+  - 2a1. EduTrack shows an error message.
+
+    Use case ends.
+
+- 2b. Compulsory parameters are valid but none of the optional parameters are present.
+
+  - 2b1. EduTrack shows an error message.
+
+    Use case ends.
+
+- 2c. Student index is invalid.
+
+  - 2c1. EduTrack informs user that the student index is invalid.
+
+    Use case ends.
+
+- 2d. Class does not exist.
+
+  - 2d1. EduTrack informs user that class does not exist.
+
+    Use case ends.
+
+- 2e. Another identical student is found.
+
+  - 2e1. EduTrack informs user the student already exists.
 
     Use case ends.
 
