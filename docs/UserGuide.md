@@ -634,7 +634,7 @@ edit /s 2 /c CS2103T /id A010193Z
 
 ### Marking a student present : `mark /s`
 
-Marks a student present for your current lesson.
+Marks a student present from your current lesson.
 
 **Command Format:** `mark /s STUDENT_INDEX /c CLASS_NAME`
 
@@ -809,7 +809,7 @@ unmarkall /c 1
 ```
 3. The result box will display the following message:
 ```
-All students in class CS2103T have been marked present!
+Successfully unmarked all students in CS2103T!
 ```
 4. Successfully unmarked all students in "CS2103T"! :tada:
 
