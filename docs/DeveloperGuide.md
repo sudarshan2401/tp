@@ -755,7 +755,7 @@ _{More to be added}_
 
     Use case ends.
 
-- 3b. THe given student index is empty.
+- 3b. The given student index is empty.
 
   - 3b1. EduTrack shows an error message.
 
@@ -813,43 +813,34 @@ _{More to be added}_
 
 ---
 
-**Use case: Removing a lesson from a class schedule**
+**Use case: Start a lesson**
 
 **MSS**
 
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User provides the lesson id to remove it from the class schedule
-4.  EduTrack removes from the Class schedule of that particular class
-5.  EduTrack informs the user that the lesson was removed from the class schedule
+1. User requests to view the list of classes. 
+2. EduTrack shows a list of classes.
+3. User chooses to start a lesson for one of the classes.
+4. EduTrack starts a lesson for the chosen class.
+
+   Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-
-  Use case ends
-
-- 3a. The given class name is invalid.
-
-  - 3a1. EduTrack shows an error message.
+- 1a. EduTrack shows an empty list.
 
     Use case ends.
 
-- 3b. No class name specified.
+- 3a. EduTrack detects that the class name is not specified.
 
-  - 3b1. EduTrack informs the user he should enter a class field
-
-    Use case ends.
-
-- 3c. No lesson id was specified.
-
-  - 3c1. EduTrack informs the user that a lesson id wasn't specified.
+  - 3a1. EduTrack informs user that the class name is not specified.
+  - 3a2. EduTrack terminates the request.
 
     Use case ends.
 
-- 3d. Lesson id is of invalid format or does not exist.
+- 3b. EduTrack detects that the class name is invalid.
 
-  - 3d1. EduTrack informs the user that the lesson does not exist.
+  - 3b1. EduTrack informs user that the class name is invalid.
+  - 3b2. EduTrack terminates the request.
 
     Use case ends.
 
