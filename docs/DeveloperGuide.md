@@ -1079,6 +1079,20 @@ Given below are instructions to test the app manually.
      * Missing class index: `markall /c`
      * Class index larger than class list: `markall /c 100`
 
+### Marking all students in a class absent
+
+1. Marks all students absent for the current class.
+
+  1. Prerequisites: List all classes using the `list` command. The first class has multiple students.
+
+  2. Test case: `unmarkall /c 1`<br>
+     Expected: Marks all the students in the first class of EduTrack absent where display under `Present` changes to `N`. Displays the student list of the class that is marked absent.
+
+  3. Some invalid test cases to try (Error details shown):<br>
+  * Missing `/c` prefix: `unmarkall 1`
+  * Missing class index: `unmarkall /c`
+  * Class index larger than class list: `unmarkall /c 100`
+
 ### Help
 
 1. Showing the help window that contains a link to the User Guide.<br>
