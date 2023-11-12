@@ -14,7 +14,7 @@ The application is optimized for use via a Command Line Interface ([CLI](#glossa
 
 If you are **new** to this user guide, click [here](#about) to learn more.
 
-If you are keen to get started on using EduTrack, click [here](#quick-start) to see the instructions on how to kickstart your EduTrack experience! :rocket:
+If you are a **new user** of EduTrack, click [here](#quick-start) to see the instructions on how to kickstart your EduTrack experience! :rocket:
 
 If you are an **experienced user** of EduTrack, click [here](#command-summary) to see a summary of commands.
 
@@ -61,8 +61,8 @@ If you are an **experienced user** of EduTrack, click [here](#command-summary) t
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
-2. Download the latest `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
+1. Ensure you have `Java 11` or above installed in your computer.
+2. Download the **latest** `EduTrack.jar` from [here](https://github.com/AY2324S1-CS2103T-T15-3/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your EduTrack.
 4. Open a command terminal, `cd` into the folder you placed your `EduTrack.jar` file in, and type `java -jar EduTrack.jar` to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Refer to [EduTrack's Graphical User Interface](#edutrack-s-graphical-user-interface) if you want to learn more about EduTrack's interface.
@@ -72,14 +72,14 @@ If you are an **experienced user** of EduTrack, click [here](#command-summary) t
 <br>
 
 5. Type the command in the command box and press `Enter` to execute it. eg. typing `help` and `Enter` again will open the help window.<br>
-   Some example commands you can try:
+   Below are some sample commands you could try:
    - `list` : Lists all classes.
    - `view /c 1` : Shows the class information and all students of the first class in the class list.
    - `add /c CS2103T` : Adds a class named "CS2103T" to the list of classes.
    - `add /s John /c 1` : Adds a student named "John" to the first class in the class list.
    - `remove /c 1` : Removes the first class in the class list.
    - `exit` : Exits the app.
-6. Refer to the [Features](#features) for more details of each command.
+6. Refer to the [Features](#features) for more details about each command.
 
 ---
 
@@ -115,7 +115,7 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 
 ### Structure of This User Guide
 
-We understand that reading a new user guide can be overwhelming. That is why this user guide is structured to let you find what you need fast and easily. You can refer to the [Table of Contents](#table-of-contents) to jump to various sections of this user guide.
+We understand that reading a new user guide can be overwhelming. That is why our user guide is structured to help you quickly and easily find the information you need. You can refer to the [Table of Contents](#table-of-contents) to jump to various sections of this user guide.
 
 In the following [subsection](#reading-this-user-guide), you can find several tips that could be beneficial when reading this guide. The [next section](#features) documents the _main features_ that EduTrack offers and provides you with instructions on how to use them!
 
@@ -159,10 +159,10 @@ The text displayed in a tip box indicates handy tips to enhance your user experi
 
 These are the common terms you will encounter throughout this user guide.
 
-| Terms         | Meaning                                                                         |
-|---------------|---------------------------------------------------------------------------------|
-| **Command**   | The instruction you enter into the application.                                 |
-| **Parameter** | The additional information you provide for the instruction you intend to enter. |
+| Terms         | Meaning                                                        |
+|---------------|----------------------------------------------------------------|
+| **Command**   | The instruction you enter into command box of the application. |
+| **Parameter** | The additional information you provide alongside the command.  |
 
 #### Command format
 
@@ -178,10 +178,10 @@ These are the common terms you will encounter throughout this user guide.
   
   E.g., if the command specifies `[/n CLASS_NAME] [/m MEMO]`, you can choose to provide them in the following order:`[/m MEMO] [/n CLASS_NAME]`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* **Extraneous parameters** for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
 ignored.<br>
 
-  E.g., you enter the command `help 123`, it will be interpreted as `help`.
+  E.g., the command `help 123`, will be interpreted as `help`.
 
 * If you are using a **PDF version** of this document, be careful when copying and pasting commands that span multiple lines
 as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -215,7 +215,13 @@ The features are broken down into their following subsections:
 2. [Student commands](#student-commands)
 3. [Miscellaneous commands](#miscellaneous-commands)
 
-We highly recommend you to read the [Command format](#command-format) and [Command parameters](#command-parameters) sections to understand their constraints before using our features.
+<box type="tip">
+
+**Tip:**
+
+* We highly recommend you to read the [Command format](#command-format) and [Command parameters](#command-parameters) sections to understand their constraints before using our features.
+
+</box>
 
 ## Class commands :school:
 
