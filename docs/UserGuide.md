@@ -748,7 +748,7 @@ Jamie has been marked absent!
 
 ### Marking all students in a class present : `markall /c`
 
-Marks all students in your class as present. You can use this command if all your students are present for your current lesson.
+Marks all the students in your class as present. You can use this command if all your students are present for your current lesson.
 
 **Command Format:** `markall /c CLASS_INDEX`
 
@@ -766,9 +766,9 @@ markall /c 1
 ```
 3. The result box will display the following message:
 ```
-All students in class CS2103T has been marked present!
+Successfully marked all students in CS2103T!
 ```
-4. Successfully marked all students in "CS2103T". :tada:
+4. You have successfully marked all the students in "CS2103T" as present. :tada:
 
 <box type="info">
 
@@ -783,6 +783,40 @@ All students in class CS2103T has been marked present!
 **Tip:**
 
 * You can use `markall` in conjunction with `unmark` if most of your students are present, you can save more time doing it this way.
+
+</box>
+
+<br>
+
+### Marking all students in a class absent : `unmarkall /c`
+
+Marks all students in your class as absent. You can use this command if all your students are absent for your current lesson.
+
+**Command Format:** `unmarkall /c CLASS_INDEX`
+
+**Examples:**
+* `unmarkall /c 1` : Marks all the students in your first class in the class list as absent.
+* `unmarkall /c 2` : Marks all the students in your second class in the class list as absent.
+
+**Sample Usage:**
+
+1. Assuming you want to mark all the students in your class named "CS2103T", whereby the class is positioned at index "1" in your class list, as absent.
+2. Enter the following commands:
+```
+view /c 1
+unmarkall /c 1
+```
+3. The result box will display the following message:
+```
+All students in class CS2103T has been marked present!
+```
+4. Successfully unmarked all students in "CS2103T"! :tada:
+
+<box type="info">
+
+**Information:**
+
+* Students who have already been marked absent will not be affected by this command.
 
 </box>
 

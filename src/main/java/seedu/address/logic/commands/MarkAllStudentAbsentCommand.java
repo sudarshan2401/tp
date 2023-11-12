@@ -22,7 +22,7 @@ public class MarkAllStudentAbsentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks all students in this class as absent.\n"
             + "Parameters: "
-            + PREFIX_CLASS + " CLASS_NAME"
+            + PREFIX_CLASS + " CLASS_INDEX"
             + "\n"
             + "Example: "
             + COMMAND_WORD + " 1";
