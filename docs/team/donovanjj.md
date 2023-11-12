@@ -8,34 +8,40 @@ title: "Donovan Chan Jia Jun's Project Portfolio Page"
 EduTrack is a desktop app for managing classes designed for tutors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Whether you're juggling multiple students or just need quick access to individual student data, EduTrack empowers you with effortless control and organization
 
+Aside from just being able to have a centralised platform to manage your class and students, you can have the ability to do it anywhere as long as you have your device with EduTrack installed! No hassle is needed to connect to externet networks to access your data.
+
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to remove a class from EduTrack
-  * **What it does:** Allows the user to remove existing classes, which enables the user to ensure that information on EduTrack remains up to date
-  * **Justification:** This feature is a important to the product as it enables the user to correct mistakes made when creating a new class
-  * **Highlights:** This feature is a core feature in the product as it is part of the CRUD of the EduTrack application. To implement this feature well, it requires a good understanding and analysis of the relationship between class and students, where the deletion of a class should result in a cascading effect on the students of this class
+  * **What it does:** Allows the user to remove existing classes, so that information in EduTrack remains up to date
+  * **Justification:** This feature is important to the product as it enables the user to correct mistakes made when creating a new class
+  * **Highlights:** This is a core feature of the product as it is part of the CRUD of EduTrack. To implement this feature well, it requires a good understanding and analysis of the relationship between class and students. After a great deal of analysis, I created a cascading effect where the deletion of a class would result in the deletion of the students of the class as well
 
-* **New Feature**: Added the ability to mark a student present for a class in EduTrack
-  * **What it does:** Allows the user to mark a student present if they were to attend their lesson, this enables the user to keep track of their student's attendance
-  * **Justification:** This feature is important because it serves as the main functionality of our application which enables users with an easy way to track the overall attendance of a student and their attendance for the current lesson
-  * **Highlights:** This feature was challenging as I had to weigh the pros and cons of two different implementation methods. The more challenging solution is the maintain a state of all lessons which would have been difficult to implement and would have moved the project towards a "morph" methodology. Thus I decided to stick with a more simple approach which still requires integration with another feature of the application (Total class attendance)
+* **New Feature**: Added the ability to mark a student present for a lesson in EduTrack
+  * **What it does:** Allows the user to mark a student present if they attended their lesson, this enables the user to keep track of their student's attendance
+  * **Justification:** This feature is important because it serves as the main functionality of our application. Which is to enable users with a convenient way to track the present and overall attendance of their students
+  * **Highlights:** This feature was challenging as I had to weigh the pros and cons of two different implementation methods. The more challenging solution is to maintain a state of all lessons which would have been difficult to implement and moved the project towards a "morph" methodology. Thus I decided to stick with a simpler approach which requires integration with another feature of the application (Total class attendance)
 
 * **New Feature**: Added the ability to mark a student absent for a class in EduTrack
   * **What it does:** Allows the user to mark a student absent if they did not attend their lesson, this enables the user to keep track of their student's attendance
-  * **Justification:** This feature is important because it serves as the main functionality of our application which enables users with an easy way to track the overall attendance of a student and their attendance for the current lesson
-  * **Highlights:** Similar to the previous feature, this feature was challenging as I had to weigh the pros and cons of two different implementation methods. The more challenging solution is the maintain a state of all lessons which would have been difficult to implement and would have moved the project towards a "morph" methodology. Thus I decided to stick with a more simple approach which still requires integration with another feature of the application (Total class attendance).
+  * **Justification:** This feature is important because it serves as the main functionality of our application. Which is to enable users with a convenient way to track the present and overall attendance of a student
+  * **Highlights:** Similar to the previous feature, this feature was challenging as I had to weigh the pros and cons of two different implementation methods. The more challenging solution is to maintain a state of all lessons which would have been difficult to implement and would have moved the project towards a "morph" methodology. Thus I decided to stick with a more simple approach which requires integration with another feature of the application (Total class attendance).
 
 * **New Feature**: Added the ability to mark all students in a class present in EduTrack
   * **What it does:** Allows the user to easily mark all students in their class present for a lesson, which will be very convenient in the event most of all their students attend their class
   * **Justification:** This feature adds a lot of convenience to the user especially when they have many students to mark present
-  * **Highlights:** I was able to build on the mark student present for this command. This greatly reduced code required to implement this feature and makes maintaining and regression testing much simpler.
+  * **Highlights:** I was able to build on the mark student present for this command. This greatly reduced code required and complexity to implement this feature which made the code easier to maintain
+
+* **Non-feature**: Added test cases for the mark all students absent in a class command and its parser in EduTrack
 
 * **Code contributed**: [Code Contributed](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=donovanjj&breakdown=true)
 
 * **Project management**:
-  * Managed releases of `v1.3`, `v1.3.trial` and `v1.2` on Github
-  * Established well-defined internal the deadlines for every milestone, to ensure everyone in the team knows when to do assigned tasks by
+  * Managed releases of `v1.2`, `v1.3`, `v1.3.trial` and `v1.4` on Github
+  * Established well-defined internal deadlines for every milestone, to ensure everyone in the team knows when to do assigned tasks by
   * Managed the milestones and issues for all iterations which helped to ensure that tasks are clearly segregated and defined for each member
+  * Co-led discussions during weekly team meetings
+  * Planned out final product demo video structure
 
 * **Documentation**:
   * User Guide:

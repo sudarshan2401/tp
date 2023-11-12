@@ -12,15 +12,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
- * Unmarks all the student in a class as present.
+ * Marks all the student in a class as absent.
  */
 public class MarkAllStudentAbsentCommand extends Command {
     public static final String COMMAND_WORD = "unmarkall /c";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks all students in this class as being absent.\n"
+            + ": Marks all students in this class as absent.\n"
             + "Parameters: "
             + PREFIX_CLASS + " CLASS_NAME"
             + "\n"
@@ -30,7 +30,7 @@ public class MarkAllStudentAbsentCommand extends Command {
     private Index targetClassIndex;
 
     /**
-     * Creates a MarkAllStudentAbsentCommand to mark all {@code Student}
+     * Creates a MarkAllStudentAbsentCommand to mark all {@code Student} as absent.
      */
     public MarkAllStudentAbsentCommand(Index classIndex) {
         requireNonNull(classIndex);
@@ -46,11 +46,12 @@ public class MarkAllStudentAbsentCommand extends Command {
             Student editedStudent = studentToUnmark.duplicateStudent();
             try {
                 model.markStudentAbsent(studentToUnmark, studentClass, editedStudent);
-                model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-            } catch (StudentAlreadyMarkedPresent e) {
+            } catch (StudentAlreadyMarkedAbsentException e) {
                 continue;
             }
         }
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
+        model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
         return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatClass(studentClass)));
     }

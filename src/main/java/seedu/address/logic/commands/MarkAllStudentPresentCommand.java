@@ -12,8 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.AttendanceDiscrepancy;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresent;
+import seedu.address.model.student.exceptions.AttendanceDiscrepancyException;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedPresentException;
 
 /**
  * Marks all the student in a class as present.
@@ -47,13 +47,14 @@ public class MarkAllStudentPresentCommand extends Command {
             Student editedStudent = studentToMark.duplicateStudent();
             try {
                 model.markStudentPresent(studentToMark, studentClass, editedStudent);
-                model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
-            } catch (StudentAlreadyMarkedPresent e) {
+            } catch (StudentAlreadyMarkedPresentException e) {
                 // do nothing
-            } catch (AttendanceDiscrepancy e) {
+            } catch (AttendanceDiscrepancyException e) {
                 // do nothing
             }
         }
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
+        model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatClass(studentClass)));
     }

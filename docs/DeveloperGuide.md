@@ -284,7 +284,7 @@ Step 5. The result of the command execution is encapsulated as a `CommandResult`
 The scenario is depicted by this sequence diagram. For execution of `cmd`, refer to this [sequence diagram](#execution-of-a-removestudentcommand).
 ##### Remove Student Mechanism
 <puml src="diagrams/RemoveStudentSequenceDiagramPart1.puml" alt="RemoveStudentSequenceDiagramPart1" />
-
+**Note:** The lifeline for `RemoveStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 The mechanism to execute a `RemoveStudentCommand` is elaborated in the below walkthrough.
 This is a list of variables used in the walkthrough for clarity.
 
@@ -333,7 +333,7 @@ The walkthrough can be summarised by this sequence diagram. (Some details are om
 
 ##### Execution of a `RemoveStudentCommand`
 <puml src="diagrams/RemoveStudentSequenceDiagramPart2.puml" alt="RemoveStudentSequenceDiagramPart2" />
-
+**Note:** The lifeline for `Student` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 The following activity diagram summarises what happen when a user removes a Student:
 
 ##### Remove Student Workflow
@@ -367,7 +367,7 @@ The workflow of the View Command feature is outlined below:
 
 2. The command is executed, calling the appropriate methods in the `Model`.
 
-3. The `Model` updates the filtered class list to show all classes.
+3. The `Model` updates the filtered class list to be reset to all classes.
 
 4. The specified class is retrieved using the class index.
 
@@ -463,95 +463,6 @@ The following activity diagram summarizes what happens when a new Class is added
   - Pros: All information are specified by the time the class is created.
   - Cons: Requires the user to provide additional details like class notes or class schedule
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -604,11 +515,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | TA       | find a specific student by using a filter | quickly update their record such as attendance when they are late |
 | `* *`    | new user | see the app populated with sample data    | easily see what the app looks like when it is in use              |
 
-_{More to be added}_
-
 ### Use cases
 
 (For all use cases below, the **System** is the `EduTrack` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: See the app populated with sample data**
+
+**MSS**
+
+1. User launches the app for the first time.
+2. EduTrack populates the app with sample data for a class.
+3. User accesses the sample data to see how the app works.
+
+   Use case ends.
+
+---
 
 **Use case: View all the information about a class**
 
@@ -962,17 +883,6 @@ _{More to be added}_
 
 ---
 
-**Use case: Use auto-save feature**
-
-**MSS**
-
-1. User makes any form of request that alters the database.
-2. EduTrack updates the database directly.
-
-   Use case ends.
-
----
-
 ### Non-Functional Requirements
 
 1.  **Environment requirement:**
@@ -1087,50 +997,6 @@ Given below are instructions to test the app manually.
    2. Test case: `edit /c 1 /n T0`<br>
       Expected: Name of the class is replaced with `T0`. Displays only the edited class and the edited details.
 
-### Marking a student present
-
-1. Marks a student present for the current class.
-
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has not been marked present.
-
-   2. Test case: `mark /s 2 /c CS2103T`<br>
-      Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Student index = 0: `mark /s 0 /c CS2103T`
-      * Student index larger than student list: `mark /s 100 /c CS2103T`
-      * Class name that does not exist: `mark /s 100 /c NOTACLASS`
-      * Marking a student present again: `mark /s 2 /c CS2103T`
-
-### Marking a student absent
-
-1. Marks a student present for the current class.
-
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student in index 2 who has been marked present.
-
-   2. Test case: `unmark /s 2 /c CS2103T`<br>
-     Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Student index = 0: `unmark /s 0 /c CS2103T`
-      * Student index larger than student list: `unmark /s 100 /c CS2103T`
-      * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
-      * Marking a student absent again: `unmark /s 2 /c CS2103T`
-
-### Marking all students in a class present
-
-1. Marks all student present for the current class.
-
-   1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
-
-   2. Test case: `markall /c 1`<br>
-     Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
-
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Missing `/c` prefix: `markall 1`
-      * Missing class index: `markall /c`
-      * Class index larger than class list: `markall /c 100`
-
 ### Starting a lesson
 
 1. Starts the lesson of a class.
@@ -1200,6 +1066,50 @@ Given below are instructions to test the app manually.
    4. Some invalid test cases to try (Error details shown):<br>
       * No optional fields: `edit /s 1 /c CS2103T`
       * Student index larger than number of students in the class: `edit /s 100 /c CS2103T /m Bob`
+
+### Marking a student present
+
+1. Marks a student present for the current class.
+
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has not been marked present.
+
+   2. Test case: `mark /s 2 /c CS2103T`<br>
+      Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+      * Student index = 0: `mark /s 0 /c CS2103T`
+      * Student index larger than student list: `mark /s 100 /c CS2103T`
+      * Class name that does not exist: `mark /s 100 /c NOTACLASS`
+      * Marking a student present again: `mark /s 2 /c CS2103T`
+
+### Marking a student absent
+
+1. Marks a student present for the current class.
+
+   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has been marked present.
+
+   2. Test case: `unmark /s 2 /c CS2103T`<br>
+      Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+     * Student index = 0: `unmark /s 0 /c CS2103T`
+     * Student index larger than student list: `unmark /s 100 /c CS2103T`
+     * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
+     * Marking a student absent again: `unmark /s 2 /c CS2103T`
+
+### Marking all students in a class present
+
+1. Marks all student present for the current class.
+
+   1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
+
+   2. Test case: `markall /c 1`<br>
+      Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
+
+   3. Some invalid test cases to try (Error details shown):<br>
+     * Missing `/c` prefix: `markall 1`
+     * Missing class index: `markall /c`
+     * Class index larger than class list: `markall /c 100`
 
 ### Help
 

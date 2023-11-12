@@ -18,7 +18,7 @@ import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
 
 /**
- * Sets the number of lessons of a Class.
+ * Sets the number of lessons conducted for a Class.
  */
 public class SetLessonCommand extends Command {
     public static final String COMMAND_WORD = "setlesson /c";
@@ -37,7 +37,7 @@ public class SetLessonCommand extends Command {
     private int numLessons;
 
     /**
-     * Command to forcefully set the total number of lessons of a Class.
+     * Command to set the total number of lessons of a Class.
      * @param className Classname to represent the Class.
      */
     public SetLessonCommand(ClassName className, int numLessons) {
@@ -51,9 +51,10 @@ public class SetLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        Class c = null;
+        Class copy = null;
         try {
-            c = model.getClass(className);
+            Class c = model.getClass(className);
+            copy = c;
             model.setClassLesson(c, numLessons);
             // Verify Student's total lessons attended do not exceed the total lessons of Clas
             List<Student> studentList = c.getStudentList();
@@ -66,12 +67,12 @@ public class SetLessonCommand extends Command {
                     model.setStudentLesson(studentToVerify, c, editedStudent, numLessons);
                 }
             }
+            model.updateFilteredClassList((cl) -> cl.isSameClass(c));
         } catch (ClassNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_MISSING_CLASS_NAME, className));
         }
-
         return new CommandResult(String.format(MESSAGE_SET_LESSON_SUCCESS,
-                Messages.formatClass(c), numLessons));
+                Messages.formatClass(copy), numLessons));
     }
 
     @Override

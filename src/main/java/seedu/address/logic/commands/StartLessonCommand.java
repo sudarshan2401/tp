@@ -14,7 +14,7 @@ import seedu.address.model.module.Class;
 import seedu.address.model.module.ClassName;
 import seedu.address.model.module.exceptions.ClassNotFoundException;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsent;
+import seedu.address.model.student.exceptions.StudentAlreadyMarkedAbsentException;
 
 /**
  * Starts a lesson of a Class.
@@ -33,7 +33,8 @@ public class StartLessonCommand extends Command {
     private ClassName className;
 
     /**
-     * Command to simulate starting a lesson of a Class thus increasing total lessons conducted of the Class by one.
+     * Command to start a lesson of a Class. This increases total lessons conducted of the Class by one and
+     * mark all the students as absent to facilitate attendance taking.
      * @param className Classname to represent the Class.
      */
     public StartLessonCommand(ClassName className) {
@@ -57,7 +58,7 @@ public class StartLessonCommand extends Command {
                 try {
                     model.startLessonForStudent(studentToUnmark, c, editedStudent);
                     model.updateFilteredClassList((cl) -> cl.isSameClass(c));
-                } catch (StudentAlreadyMarkedAbsent e) {
+                } catch (StudentAlreadyMarkedAbsentException e) {
                     continue;
                 }
             }
