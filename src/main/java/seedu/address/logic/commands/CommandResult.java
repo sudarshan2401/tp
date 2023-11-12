@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.MarkAllStudentAbsentCommand.MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS;
+import static seedu.address.logic.commands.StartLessonCommand.MESSAGE_START_LESSON_SUCCESS;
 
 import java.util.Objects;
 
@@ -10,6 +12,33 @@ import seedu.address.commons.util.ToStringBuilder;
  * Represents the result of a command execution.
  */
 public class CommandResult {
+    private static final String MESSAGE_CHECK_START_LESSON_SUCCESS = MESSAGE_START_LESSON_SUCCESS.substring(3);
+    //"Successfully marked all students in"
+    private static final String MESSAGE_CHECK_MARKALL_SUCCESS = MarkAllStudentPresentCommand
+            .MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS.substring(0, 30);
+    //"Successfully unmarked all students in"
+    private static final String MESSAGE_CHECK_UNMARKALL_SUCCESS = MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS
+            .substring(0, 32);
+    //"has been marked absent!"
+    private static final String MESSAGE_CHECK_MARKABSENT_SUCCESS = MarkStudentAbsentCommand
+            .MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS
+            .substring(3);
+    //"sucessfully marked present!"
+    private static final String MESSAGE_CHECK_MARKPRESENT_SUCCESS = MarkStudentPresentCommand
+            .MESSAGE_MARK_STUDENT_ATTENDANCE_SUCCESS
+            .substring(3);
+    //"Added New Student:"
+    private static final String MESSAGE_CHECK_ADDSTUDENT_SUCCESS = AddStudentCommand.MESSAGE_ADD_STUDENT_SUCCESS
+            .substring(0, 16);
+    //"has been removed from"
+    private static final String MESSAGE_CHECK_REMOVESTUDENT_SUCCESS = RemoveStudentCommand
+            .MESSAGE_REMOVE_STUDENT_SUCCESS
+            .substring(3, 23);
+    //"Successfully set the number of lessons in"
+    private static final String MESSAGE_CHECK_SETLESSON_SUCCESS = SetLessonCommand.MESSAGE_SET_LESSON_SUCCESS
+            .substring(0, 37);
+
+
 
     private final String feedbackToUser;
 
@@ -93,13 +122,13 @@ public class CommandResult {
 
     public boolean isUpdatedStudent() {
         return this.feedbackToUser.contains("Edited Student:")
-                || this.feedbackToUser.contains("started a new lesson!")
-                || this.feedbackToUser.contains("Successfully marked all students in")
-                || this.feedbackToUser.contains("Successfully unmarked all students in")
-                || this.feedbackToUser.contains("has been marked absent!")
-                || this.feedbackToUser.contains("sucessfully marked present!")
-                || this.feedbackToUser.contains("Added New Student:")
-                || this.feedbackToUser.contains("has been removed from")
-                || this.feedbackToUser.contains("Successfully set the number of lessons in");
+                || this.feedbackToUser.contains(MESSAGE_CHECK_START_LESSON_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_MARKALL_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_UNMARKALL_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_MARKABSENT_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_MARKPRESENT_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_ADDSTUDENT_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_REMOVESTUDENT_SUCCESS)
+                || this.feedbackToUser.contains(MESSAGE_CHECK_SETLESSON_SUCCESS);
     }
 }
