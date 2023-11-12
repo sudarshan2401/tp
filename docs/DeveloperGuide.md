@@ -524,8 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User launches the app for the first time.
-2. EduTrack populates the app with sample data for a class.
-3. User accesses the sample data to see how the app works.
+2. EduTrack populates the app with sample data.
 
    Use case ends.
 
@@ -545,9 +544,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a class and specifies the class name
-2.  EduTrack adds the class to the list of classes
-3.  EduTrack shows the updated list of classes
+1.  User requests to add a class and specifies the class name.
+2.  EduTrack adds the class to the list of classes.
+3.  EduTrack shows the updated list of classes.
 
 **Extensions**
 
@@ -559,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1b. Class name already exists.
 
-  - 1a1. EduTrack informs user that class already exists.
+  - 1b1. EduTrack informs user that class already exists.
 
     Use case ends.
 
@@ -569,13 +568,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User requests to delete a specific class in the list
-4.  EduTrack deletes the class
-5.  EduTrack informs the user that the class is successfully deleted
+1.  User requests to view the list of classes.
+2.  EduTrack shows a list of classes.
+3.  User requests to delete a specific class in the list.
+4.  EduTrack deletes the class.
+   5.  EduTrack informs the user that the class is successfully deleted.
 
-    Use case ends.
+       Use case ends.
 
 **Extensions**
 
@@ -604,18 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: See the app populated with sample data**
-
-**MSS**
-
-1. User launches the app for the first time.
-2. EduTrack populates the app with sample data.
-
-   Use case ends.
-
----
-
-**Use case: Edit a Class**
+**Use case: Edit a class**
 
 **MSS**
 
@@ -655,11 +643,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view the students in a particular class
-2.  EduTrack shows a list of students
-3.  User requests to mark a student present
-4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
-5.  EduTrack informs the user the student was successfully marked present
+1.  User requests to view the students in a particular class.
+2.  EduTrack shows a list of students.
+3.  User requests to mark a student present.
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance.
+5.  EduTrack informs the user the student was successfully marked present.
 
     Use case ends.
 
@@ -667,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list is empty.
 
-  Use case ends
+  Use case ends.
 
 - 3a. The given student index is invalid.
 
@@ -689,13 +677,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3d. No class name specified.
 
-  - 3d1. EduTrack shows an error message
+  - 3d1. EduTrack shows an error message.
 
     Use case ends.
 
 - 3e. Lesson details was of invalid format.
 
-  - 3e1. EduTrack informs the user he should enter a lesson of the correct format
+  - 3e1. EduTrack informs the user he should enter a lesson of the correct format.
 
     Use case ends.
 
@@ -705,11 +693,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view the students in a particular class
-2.  EduTrack shows a list of students
-3.  User requests to mark a student present
-4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance
-5.  EduTrack informs the user the student was successfully marked present
+1.  User requests to view the students in a particular class.
+2.  EduTrack shows a list of students.
+3.  User requests to mark a student present.
+4.  EduTrack marks the student present, updates the student's lessons attended counter and current attendance.
+5.  EduTrack informs the user the student was successfully marked present.
 
     Use case ends.
 
@@ -717,7 +705,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list is empty.
 
-  Use case ends
+  Use case ends.
 
 - 3a. The given class index is invalid.
 
@@ -728,48 +716,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 3b. The given class index is empty.
 
   - 3b1. EduTrack shows an error message.
-
-    **Use case ends.**
-
----
-
-**Use case: Removing a lesson from a class schedule**
-
-**MSS**
-
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User provides the lesson id to remove it from the class schedule
-4.  EduTrack removes from the Class schedule of that particular class
-5.  EduTrack informs the user that the lesson was removed from the class schedule
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends
-
-- 3a. The given class name is invalid.
-
-  - 3a1. EduTrack shows an error message.
-
-    Use case ends.
-
-- 3b. No class name specified.
-
-  - 3b1. EduTrack informs the user he should enter a class field.
-
-    Use case ends.
-
-- 3c. No lesson id was specified.
-
-  - 3c1. EduTrack informs the user that a lesson id wasn't specified.
-
-    Use case ends.
-
-- 3d. Lesson id is of invalid format or does not exist.
-
-  - 3d1. EduTrack informs the user that the lesson does not exist.
 
     Use case ends.
 
@@ -838,7 +784,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Edit a student's record**
+**Use case: Edit a student**
 
 **MSS**
 
