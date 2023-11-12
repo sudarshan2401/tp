@@ -572,9 +572,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  EduTrack shows a list of classes.
 3.  User requests to delete a specific class in the list.
 4.  EduTrack deletes the class.
-   5.  EduTrack informs the user that the class is successfully deleted.
+5.  EduTrack informs the user that the class is successfully deleted.
 
-       Use case ends.
+    Use case ends.
 
 **Extensions**
 
