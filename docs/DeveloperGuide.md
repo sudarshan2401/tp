@@ -463,95 +463,6 @@ The following activity diagram summarizes what happens when a new Class is added
   - Pros: All information are specified by the time the class is created.
   - Cons: Requires the user to provide additional details like class notes or class schedule
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how the undo operation works:
-
-<puml src="diagrams/UndoSequenceDiagram.puml" alt="UndoSequenceDiagram" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -604,11 +515,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | TA       | find a specific student by using a filter | quickly update their record such as attendance when they are late |
 | `* *`    | new user | see the app populated with sample data    | easily see what the app looks like when it is in use              |
 
-_{More to be added}_
-
 ### Use cases
 
 (For all use cases below, the **System** is the `EduTrack` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: See the app populated with sample data**
+
+**MSS**
+
+1. User launches the app for the first time.
+2. EduTrack populates the app with sample data for a class.
+3. User accesses the sample data to see how the app works.
+
+   Use case ends.
+
+---
 
 **Use case: View all the information about a class**
 
@@ -680,18 +601,6 @@ _{More to be added}_
   - 4b2. EduTrack terminates the request.
 
     Use case ends.
-
----
-
-**Use case: See the app populated with sample data**
-
-**MSS**
-
-1. User launches the app for the first time.
-2. EduTrack populates the app with sample data for a class.
-3. User accesses the sample data to see how the app works.
-
-   Use case ends.
 
 ---
 
@@ -813,48 +722,6 @@ _{More to be added}_
 
 ---
 
-**Use case: Removing a lesson from a class schedule**
-
-**MSS**
-
-1.  User requests to view the list of classes
-2.  EduTrack shows a list of classes
-3.  User provides the lesson id to remove it from the class schedule
-4.  EduTrack removes from the Class schedule of that particular class
-5.  EduTrack informs the user that the lesson was removed from the class schedule
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends
-
-- 3a. The given class name is invalid.
-
-  - 3a1. EduTrack shows an error message.
-
-    Use case ends.
-
-- 3b. No class name specified.
-
-  - 3b1. EduTrack informs the user he should enter a class field
-
-    Use case ends.
-
-- 3c. No lesson id was specified.
-
-  - 3c1. EduTrack informs the user that a lesson id wasn't specified.
-
-    Use case ends.
-
-- 3d. Lesson id is of invalid format or does not exist.
-
-  - 3d1. EduTrack informs the user that the lesson does not exist.
-
-    Use case ends.
-
----
-
 **Use case: Add a student**
 
 **MSS**
@@ -948,17 +815,6 @@ _{More to be added}_
   - 1a2. EduTrack terminates the request.
 
     Use case ends.
-
----
-
-**Use case: Use auto-save feature**
-
-**MSS**
-
-1. User makes any form of request that alters the database.
-2. EduTrack updates the database directly.
-
-   Use case ends.
 
 ---
 
