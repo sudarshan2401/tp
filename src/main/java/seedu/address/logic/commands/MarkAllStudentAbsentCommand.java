@@ -46,11 +46,12 @@ public class MarkAllStudentAbsentCommand extends Command {
             Student editedStudent = studentToUnmark.duplicateStudent();
             try {
                 model.markStudentAbsent(studentToUnmark, studentClass, editedStudent);
-                model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
             } catch (StudentAlreadyMarkedAbsentException e) {
                 continue;
             }
         }
+        model.updateFilteredClassList((c) -> c.isSameClass(studentClass));
+        model.updateFilteredStudentList((s) -> studentClass.getStudentList().contains(s));
         return new CommandResult(String.format(MESSAGE_UNMARK_STUDENT_ATTENDANCE_SUCCESS,
                 Messages.formatClass(studentClass)));
     }

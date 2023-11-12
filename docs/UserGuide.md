@@ -109,7 +109,7 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 **Information:**
 
 * The `UI` will refresh upon any changes to the class list or student list.
-* If changes are made to a student in another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students.
+* If changes are made to a student or class information of another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students and class information.
 
 </box>
 
