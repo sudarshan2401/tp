@@ -12,8 +12,6 @@ Whether you find yourself juggling the management of numerous students or simply
 
 The application is optimized for use via a Command Line Interface ([CLI](#glossary)) while still having the benefits of a Graphical User Interface ([GUI](#glossary)).
 
-If you are **new** to this user guide, click [here](#about) to learn more.
-
 If you are a **new user** of EduTrack, click [here](#quick-start) to see the instructions on how to kickstart your EduTrack experience! :rocket:
 
 If you are an **experienced user** of EduTrack, click [here](#command-summary) to see a summary of commands.
