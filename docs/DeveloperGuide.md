@@ -939,216 +939,216 @@ Given below are instructions to test the app manually.
 
 ### List all classes
 
-1. List all the classes that has been added into EduTrack.
+List all the classes that has been added into EduTrack.
 
-   1. Test case: `list`<br>
-      Expected: All the classes that have been added into EduTrack are shown. If the user is previously viewing a class, switches from class's student list to class list display.
+1. Test case: `list`<br>
+   Expected: All the classes that have been added into EduTrack are shown. If the user is previously viewing a class, switches from class's student list to class list display.
 
-   2. Test case: `list 1`<br>
-      Expected: Similar to the previous. Additional invalid parameters are ignored.
+2. Test case: `list 1`<br>
+   Expected: Similar to the previous. Additional invalid parameters are ignored.
 
-   3. Test case: `list /n John`<br>
-      Expected: Similar to the previous.
+3. Test case: `list /n John`<br>
+   Expected: Similar to the previous.
 
 ### Adding a class
 
-1. Adding a class to EduTrack.
+Adding a class to EduTrack.
 
-   1. Test case: `add /c CS2103T`<br>
-      Expected: New class is added.
+1. Test case: `add /c CS2103T`<br>
+   Expected: New class is added.
 
-   2. Test case: `add /c cs2101`<br>
-      Expected: New class is added.
+2. Test case: `add /c cs2101`<br>
+   Expected: New class is added.
 
-   3. Test case: `add /c cs2101`<br>
-      Expected: No class is added. Error details shown.<br>
-      Note: This have to be performed after test case 2.
+3. Test case: `add /c cs2101`<br>
+   Expected: No class is added. Error details shown.<br>
+   Note: This have to be performed after test case 2.
 
 ### Removing a class
 
-1. Removes a class from EduTrack.
+Removes a class from EduTrack.
 
-   1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
+1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
 
-   2. Test case: `remove /c 1`<br>
-      Expected: First class is removed from the list. Class name is shown in delete message.
+2. Test case: `remove /c 1`<br>
+   Expected: First class is removed from the list. Class name is shown in delete message.
 
-   3. Test case: `remove /c 0`<br>
-      Expected: No classes are deleted. Error details shown.
+3. Test case: `remove /c 0`<br>
+   Expected: No classes are deleted. Error details shown.
 
 ### Viewing a class
 
-1. Views the detailed information of a class.
+Views the detailed information of a class.
 
-   1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
+1. Prerequisites: List all classes using the `list` command. Multiple classes in the list.
 
-   2. Test case: `view /c 1`<br>
-      Expected: Displays the student list of the first class as well as the class details in the Class information box.
+2. Test case: `view /c 1`<br>
+   Expected: Displays the student list of the first class as well as the class details in the Class information box.
 
-   3. Test case: `view /c he`<br>
-      Expected: No change in display. Error details shown.
+3. Test case: `view /c he`<br>
+   Expected: No change in display. Error details shown.
 
 ### Editing a class
 
-1. Edits the details of a class in EduTrack.
+Edits the details of a class in EduTrack.
 
-   1. Prerequisites: List all classes using the `list` command. There is a class called `T1` at index 1.
+1. Prerequisites: List all classes using the `list` command. There is a class called `T1` at index 1.
 
-   2. Test case: `edit /c 1 /n T0`<br>
-      Expected: Name of the class is replaced with `T0`. Displays only the edited class and the edited details.
+2. Test case: `edit /c 1 /n T0`<br>
+   Expected: Name of the class is replaced with `T0`. Displays only the edited class and the edited details.
 
 ### Starting a lesson
 
-1. Starts the lesson of a class.
+Starts the lesson of a class.
 
-   1. Prerequisites: List all classes using the `list` command. The first class called `CS2103T` have multiple students.
+1. Prerequisites: List all classes using the `list` command. The first class called `CS2103T` have multiple students.
 
-   2. Test case: `startlesson /c CS2103T`<br>
-      Expected: Starts a new lesson for the class `CS2103T`. Displays the student list of the class and class information. All students total attendance increase by 1 and are now all absent (ie. the `Present` column is all `N`).
+2. Test case: `startlesson /c CS2103T`<br>
+   Expected: Starts a new lesson for the class `CS2103T`. Displays the student list of the class and class information. All students total attendance increase by 1 and are now all absent (ie. the `Present` column is all `N`).
 
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Missing `/c` prefix: `startlesson`
-      * Missing class name: `startlesson /c`
-      * Non-existent class: `startlesson /c NOTACLASS`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Missing `/c` prefix: `startlesson`
+   * Missing class name: `startlesson /c`
+   * Non-existent class: `startlesson /c NOTACLASS`
 
 ### Setting number of lessons of a class
 
-1. Sets the total number of a class.
+Sets the total number of a class.
 
-   1. Prerequisites: List all classes using the `list` command. The first class called `CS2103T` have multiple students. The current total lessons of the class is `5`.
+1. Prerequisites: List all classes using the `list` command. The first class called `CS2103T` have multiple students. The current total lessons of the class is `5`.
 
-   2. Test case: `setlesson /c CS2103T /l 10`<br>
-      Expected: Sets the total lesson to 10 for the class `CS2103T`. Displays the student list and class details of class `CS2103T` and the overall attendance will be out of `10`.
+2. Test case: `setlesson /c CS2103T /l 10`<br>
+   Expected: Sets the total lesson to 10 for the class `CS2103T`. Displays the student list and class details of class `CS2103T` and the overall attendance will be out of `10`.
 
-   3. Test case: `setlesson /c CS2103T /l 0`<br>
-      Expected: Sets the total lesson to 0 for the class `CS2103T`. Displays the student list and class details of class `CS2103T` and the overall attendance will be out of `0`.<br>
-      Note: This command is meant for users to edit the total lessons if they have incorrectly `startlesson`. Thus, no checks are done to ensure `/l` is valid. Do not be alarmed by invalid attendance records if command is used incorrectly.
+3. Test case: `setlesson /c CS2103T /l 0`<br>
+   Expected: Sets the total lesson to 0 for the class `CS2103T`. Displays the student list and class details of class `CS2103T` and the overall attendance will be out of `0`.<br>
+   Note: This command is meant for users to edit the total lessons if they have incorrectly `startlesson`. Thus, no checks are done to ensure `/l` is valid. Do not be alarmed by invalid attendance records if command is used incorrectly.
 
 ### Adding a student
 
-1. Adds a student to a class.
+Adds a student to a class.
 
-    1. Prerequisite: List all classes using the `list` command. There is a class called `T1` at index 1 with no students.
+1. Prerequisite: List all classes using the `list` command. There is a class called `T1` at index 1 with no students.
 
-    2. Test case: `add /s John /c 1`<br>
+2. Test case: `add /s John /c 1`<br>
        Expected: New student called `John` is added to the first class (ie. `T1`). Displays the student list and class information of the class the student is added into (ie. `T1`).
 
-    3. Some invalid test cases to try (Error details shown):<br>
-       * Missing student name: `add /s /c 1`
-       * Class index missing, or it is lesser or equal to 0: `add /s John /c`, `add /s John /c -1`
-       * Class index larger than number of classes: `add /s John /c 100`
-       * Non-alphanumeric Characters used for student name: `Add /s R@chel /c 1`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Missing student name: `add /s /c 1`
+   * Class index missing, or it is lesser or equal to 0: `add /s John /c`, `add /s John /c -1`
+   * Class index larger than number of classes: `add /s John /c 100`
+   * Non-alphanumeric Characters used for student name: `Add /s R@chel /c 1`
 
 ### Removing a student
 
-1. Removes a student from a class.
+Removes a student from a class.
 
-   1. Prerequisite: View the first class called `CS2103T` with multiple students using the `view /c` command. Multiple students in the student list.
+1. Prerequisite: View the first class called `CS2103T` with multiple students using the `view /c` command. Multiple students in the student list.
 
-   2. Test case: `remove /s 2 /c CS2103T`<br>
-      Expected: Second student is deleted from the class `CS2103T`. Displays student list of the class the student is removed from.
+2. Test case: `remove /s 2 /c CS2103T`<br>
+   Expected: Second student is deleted from the class `CS2103T`. Displays student list of the class the student is removed from.
 
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Invalid student index: `remove /s 100 /c CS2103T`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Invalid student index: `remove /s 100 /c CS2103T`
 
 ### Editing a student
 
-1. Edits a student record.
+Edits a student record.
 
-   1. Prerequisite: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student named `Bob` in index 1 of the student list.
+1. Prerequisite: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student named `Bob` in index 1 of the student list.
 
-   2. Test case: `edit /s 1 /c CS2103T /n John /id A0000000U /m Quiet`<br>
-      Expected: Student name is replaced with `John`, id is replaced with `A0000000U`, memo is replaced with `Quiet`. Details of the edited is shown.
+2. Test case: `edit /s 1 /c CS2103T /n John /id A0000000U /m Quiet`<br>
+   Expected: Student name is replaced with `John`, id is replaced with `A0000000U`, memo is replaced with `Quiet`. Details of the edited is shown.
 
-   3. Test case: `edit /s 1 /c CS2103T /p Answered some questions.`<br>
-      Expected: Ui's class participation column is updated to `Answered some questions.` Details of edited student is shown.
+3. Test case: `edit /s 1 /c CS2103T /p Answered some questions.`<br>
+   Expected: Ui's class participation column is updated to `Answered some questions.` Details of edited student is shown.
 
-   4. Some invalid test cases to try (Error details shown):<br>
-      * No optional fields: `edit /s 1 /c CS2103T`
-      * Student index larger than number of students in the class: `edit /s 100 /c CS2103T /m Bob`
+4. Some invalid test cases to try (Error details shown):<br>
+   * No optional fields: `edit /s 1 /c CS2103T`
+   * Student index larger than number of students in the class: `edit /s 100 /c CS2103T /m Bob`
 
 ### Marking a student present
 
-1. Marks a student present for the current class.
+Marks a student present for the current class.
 
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has not been marked present.
+1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has not been marked present.
 
-   2. Test case: `mark /s 2 /c CS2103T`<br>
-      Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
+2. Test case: `mark /s 2 /c CS2103T`<br>
+   Expected: Marks student at index 2 present. Display under `Present` changes from `N` to `Y` and overall attendance increase by 1.
 
-   3. Some invalid test cases to try (Error details shown):<br>
-      * Student index = 0: `mark /s 0 /c CS2103T`
-      * Student index larger than student list: `mark /s 100 /c CS2103T`
-      * Class name that does not exist: `mark /s 100 /c NOTACLASS`
-      * Marking a student present again: `mark /s 2 /c CS2103T`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Student index = 0: `mark /s 0 /c CS2103T`
+   * Student index larger than student list: `mark /s 100 /c CS2103T`
+   * Class name that does not exist: `mark /s 100 /c NOTACLASS`
+   * Marking a student present again: `mark /s 2 /c CS2103T`
 
 ### Marking a student absent
 
-1. Marks a student present for the current class.
+Marks a student present for the current class.
 
-   1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has been marked present.
+1. Prerequisites: View the first class called `CS2103T` with multiple students using the `view /c` command. There is a student at index 2 who has been marked present.
 
-   2. Test case: `unmark /s 2 /c CS2103T`<br>
-      Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
+2. Test case: `unmark /s 2 /c CS2103T`<br>
+   Expected: Marks student at index 2 absent. Display under `Present` changes from `Y` to `N` and overall attendance decrease by 1.
 
-   3. Some invalid test cases to try (Error details shown):<br>
-     * Student index = 0: `unmark /s 0 /c CS2103T`
-     * Student index larger than student list: `unmark /s 100 /c CS2103T`
-     * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
-     * Marking a student absent again: `unmark /s 2 /c CS2103T`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Student index = 0: `unmark /s 0 /c CS2103T`
+   * Student index larger than student list: `unmark /s 100 /c CS2103T`
+   * Class name that does not exist: `unmark /s 100 /c NOTACLASS`
+   * Marking a student absent again: `unmark /s 2 /c CS2103T`
 
 ### Marking all students in a class present
 
-1. Marks all student present for the current class.
+Marks all student present for the current class.
 
-   1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
+1. Prerequisites: List all classes using the `list` command. The first class have multiple students.
 
-   2. Test case: `markall /c 1`<br>
-      Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
+2. Test case: `markall /c 1`<br>
+   Expected: Marks all the students in the first class of EduTrack present where display under `Present` changes to `Y`. Displays the student list of the class that is marked present.
 
-   3. Some invalid test cases to try (Error details shown):<br>
-     * Missing `/c` prefix: `markall 1`
-     * Missing class index: `markall /c`
-     * Class index larger than class list: `markall /c 100`
+3. Some invalid test cases to try (Error details shown):<br>
+   * Missing `/c` prefix: `markall 1`
+   * Missing class index: `markall /c`
+   * Class index larger than class list: `markall /c 100`
 
 ### Help
 
-1. Showing the help window that contains a link to the User Guide.<br>
-   Note: If you minimise the window, using the help command will not do anything. Do look for the minimised window in the taskbar of your computer!
+Showing the help window that contains a link to the User Guide.<br>
+Note: If you minimise the window, using the help command will not do anything. Do look for the minimised window in the taskbar of your computer!
 
-   1. Test case: `help`<br>
-      Expected: Shows the help window successfully.
+1. Test case: `help`<br>
+   Expected: Shows the help window successfully.
 
-   2. Test case: `help 1`<br>
-        Expected: Shows the help window successfully. Additional invalid parameters are ignored.
+2. Test case: `help 1`<br>
+   Expected: Shows the help window successfully. Additional invalid parameters are ignored.
 
 
 ### Clear
 
-1. Clearing all stored data in EduTrack.
+Clearing all stored data in EduTrack.
 
-   1. Prerequisites: NurseyBook is populated with data (classes, students, both, or none).
+1. Prerequisites: EduTrack is populated with data (classes, students, both, or none).
 
-   2. Test case: `clear`<br>
-      Expected: Clears all stored data in EduTrack. Clear will be successful even if EduTrack have no data.
+2. Test case: `clear`<br>
+   Expected: Clears all stored data in EduTrack. Clear will be successful even if EduTrack have no data.
 
-   3. Test case: `clear 1`<br>
-      Expected: Clears all stored data in EduTrack. Additional invalid parameters are ignored.
+3. Test case: `clear 1`<br>
+   Expected: Clears all stored data in EduTrack. Additional invalid parameters are ignored.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+Dealing with missing/corrupted data files
 
-   1. Make sure that there is a `./data/edutrack.json` file. <br>
-      If not, open the application (the jar file) and make some changes (e.g. `add /c T1`) and close the app (by typing in the `exit` command or clicking on the close button).
+1. Make sure that there is a `./data/edutrack.json` file. <br>
+   If not, open the application (the jar file) and make some changes (e.g. `add /c T1`) and close the app (by typing in the `exit` command or clicking on the close button).
 
-   2. Open `./data/edutrack.json` in a text editor or an integrated development environment (IDE).
+2. Open `./data/edutrack.json` in a text editor or an integrated development environment (IDE).
 
-   3. Remove the starting `{` character of the JSON file and save the file.
+3. Remove the starting `{` character of the JSON file and save the file.
 
-   4. Launch the app by running `java -jar edutrack.jar` in the console or double-click the application. <br>
-      Expected: The GUI should pop up with no entries. The console should give warnings about incorrect data format (due to the removal of the `{` character at the start of the `edutrack.json` file). Now, you can start over and add whatever entries you want.<br>
-      Note: If you want to start with populated data, delete the entire `edutrack.json` file and launch the application.
+4. Launch the app by running `java -jar edutrack.jar` in the console or double-click the application. <br>
+   Expected: The GUI should pop up with no entries. The console should give warnings about incorrect data format (due to the removal of the `{` character at the start of the `edutrack.json` file). Now, you can start over and add whatever entries you want.<br>
+   Note: If you want to start with populated data, delete the entire `edutrack.json` file and launch the application.
 
 ## **Appendix: Planned Enhancements**
 
