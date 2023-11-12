@@ -413,11 +413,19 @@ startlesson /c CS2103T
 ```
 3. You can enter `view /c 1` to see what your original class looks like, as shown below:
 
+<br>
+
 ![](images/startlesson_example_before.png)
+
+<br>
 
 4. The result box will display the following message:
 
+<br>
+
 ![](images/startlesson_example_after.png)
+
+<br>
 
 5. You have successfully started a lesson in "CS2103T". :tada:
 
@@ -600,9 +608,13 @@ Edits an existing student from your specified class. You can edit your student's
 view /c 1
 edit /s 2 /c CS2103T /id A010193Z
 ```
-3. The result box will display the following message:<br>
+3. The result box will display the following message:
+
+<br>
 
 ![EditStudentExample.png](images/EditStudentExample.png)
+
+<br>
 
 4. You have successfully edited your student's details. :tada:
 
