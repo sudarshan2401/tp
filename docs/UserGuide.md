@@ -109,7 +109,7 @@ EduTrack's [GUI](#glossary) is designed with simplicity and efficiency in mind, 
 **Information:**
 
 * The `UI` will refresh upon any changes to the class list or student list.
-* If changes are made to a student in another class while you are [viewing a class](#viewing-a-class--view-c), the `UI` will update to show you the other class' students.
+* If changes are made to a student in another class while you are [viewing a class](#viewing-a-class-view-c), the `UI` will update to show you the other class' students.
 
 </box>
 
@@ -395,7 +395,7 @@ edit /c 2 /n cs2040s
 
 ### Starting a lesson : `startlesson /c`
 
-Starts a lesson of your chosen class and enables you to start [attendance taking](#marking-a-student-present--mark-s).
+Starts a lesson of your chosen class and enables you to start [attendance taking](#marking-a-student-present-mark-s).
 
 **Command Format:** `startlesson /c CLASS_NAME`
 
@@ -584,7 +584,7 @@ John has been removed from CS2103T
 <box type="info">
 
 **Information:**
-- You can identify the `STUDENT_INDEX` of a student by using the [viewing a class](#viewing-a-class--view) command.
+- You can identify the `STUDENT_INDEX` of a student by using the [viewing a class](#viewing-a-class-view) command.
 
 </box>
 
