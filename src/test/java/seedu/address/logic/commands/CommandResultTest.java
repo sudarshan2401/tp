@@ -64,117 +64,117 @@ public class CommandResultTest {
     @Test
     public void testViewFeedback() {
         CommandResult commandResult = new CommandResult("Listed all students in CS2103T");
-        assertEquals(commandResult.isView(), true);
-        assertEquals(commandResult.isList(), false);
-        assertEquals(commandResult.isExit(), false);
+        assertTrue(commandResult.isView());
+        assertFalse(commandResult.isList());
+        assertFalse(commandResult.isExit());
     }
 
     @Test
     public void testListFeedback() {
         CommandResult commandResult = new CommandResult("Listed all classes");
-        assertEquals(commandResult.isView(), false);
-        assertEquals(commandResult.isList(), true);
-        assertEquals(commandResult.isExit(), false);
+        assertFalse(commandResult.isView());
+        assertTrue(commandResult.isList());
+        assertFalse(commandResult.isExit());
     }
 
     // Test for edit class feedback "Edited Class: "
     @Test
     public void testEditFeedback() {
         CommandResult commandResult = new CommandResult("Edited Class: CS2103T");
-        assertEquals(commandResult.isView(), false);
-        assertEquals(commandResult.isList(), false);
-        assertEquals(commandResult.isExit(), false);
-        assertEquals(commandResult.isEditClass(), true);
+        assertFalse(commandResult.isView());
+        assertFalse(commandResult.isList());
+        assertFalse(commandResult.isExit());
+        assertTrue(commandResult.isEditClass());
     }
 
     // Test for updated students
     @Test
     public void testUpdatedStudentFeedback() {
         CommandResult commandResultEdit = new CommandResult("Edited Student: CS2103T");
-        assertEquals(commandResultEdit.isView(), false);
-        assertEquals(commandResultEdit.isList(), false);
-        assertEquals(commandResultEdit.isExit(), false);
-        assertEquals(commandResultEdit.isEditClass(), false);
-        assertEquals(commandResultEdit.isUpdatedStudent(), true);
+        assertFalse(commandResultEdit.isView());
+        assertFalse(commandResultEdit.isList());
+        assertFalse(commandResultEdit.isExit());
+        assertFalse(commandResultEdit.isEditClass());
+        assertTrue(commandResultEdit.isUpdatedStudent());
     }
 
     @Test
     public void testAddStudentFeedback() {
         CommandResult commandResultAdd = new CommandResult("Added New Student: John");
-        assertEquals(commandResultAdd.isView(), false);
-        assertEquals(commandResultAdd.isList(), false);
-        assertEquals(commandResultAdd.isExit(), false);
-        assertEquals(commandResultAdd.isEditClass(), false);
-        assertEquals(commandResultAdd.isUpdatedStudent(), true);
+        assertFalse(commandResultAdd.isView());
+        assertFalse(commandResultAdd.isList());
+        assertFalse(commandResultAdd.isExit());
+        assertFalse(commandResultAdd.isEditClass());
+        assertTrue(commandResultAdd.isUpdatedStudent());
     }
 
     @Test
     public void testRemoveStudentFeedback() {
         CommandResult commandResultRemove = new CommandResult("John has been removed from CS2103T");
-        assertEquals(commandResultRemove.isView(), false);
-        assertEquals(commandResultRemove.isList(), false);
-        assertEquals(commandResultRemove.isExit(), false);
-        assertEquals(commandResultRemove.isEditClass(), false);
-        assertEquals(commandResultRemove.isUpdatedStudent(), true);
+        assertFalse(commandResultRemove.isView());
+        assertFalse(commandResultRemove.isList());
+        assertFalse(commandResultRemove.isExit());
+        assertFalse(commandResultRemove.isEditClass());
+        assertTrue(commandResultRemove.isUpdatedStudent());
     }
 
     @Test
     public void testSetLessonFeedback() {
         CommandResult commandResultSetLesson = new CommandResult("Successfully set the number of lessons in CS2103T");
-        assertEquals(commandResultSetLesson.isView(), false);
-        assertEquals(commandResultSetLesson.isList(), false);
-        assertEquals(commandResultSetLesson.isExit(), false);
-        assertEquals(commandResultSetLesson.isEditClass(), false);
-        assertEquals(commandResultSetLesson.isUpdatedStudent(), true);
+        assertFalse(commandResultSetLesson.isView());
+        assertFalse(commandResultSetLesson.isList());
+        assertFalse(commandResultSetLesson.isExit());
+        assertFalse(commandResultSetLesson.isEditClass());
+        assertTrue(commandResultSetLesson.isUpdatedStudent());
     }
 
     @Test
     public void testMarkAllPresentFeedback() {
         CommandResult commandResultMarkAllPresent = new CommandResult("Successfully marked all students in CS2103T");
-        assertEquals(commandResultMarkAllPresent.isView(), false);
-        assertEquals(commandResultMarkAllPresent.isList(), false);
-        assertEquals(commandResultMarkAllPresent.isExit(), false);
-        assertEquals(commandResultMarkAllPresent.isEditClass(), false);
-        assertEquals(commandResultMarkAllPresent.isUpdatedStudent(), true);
+        assertFalse(commandResultMarkAllPresent.isView());
+        assertFalse(commandResultMarkAllPresent.isList());
+        assertFalse(commandResultMarkAllPresent.isExit());
+        assertFalse(commandResultMarkAllPresent.isEditClass());
+        assertTrue(commandResultMarkAllPresent.isUpdatedStudent());
     }
 
     @Test
     public void testMarkAllAbsentFeedback() {
         CommandResult commandResultMarkAllAbsent = new CommandResult("Successfully unmarked all students in CS2103T");
-        assertEquals(commandResultMarkAllAbsent.isView(), false);
-        assertEquals(commandResultMarkAllAbsent.isList(), false);
-        assertEquals(commandResultMarkAllAbsent.isExit(), false);
-        assertEquals(commandResultMarkAllAbsent.isEditClass(), false);
-        assertEquals(commandResultMarkAllAbsent.isUpdatedStudent(), true);
+        assertFalse(commandResultMarkAllAbsent.isView());
+        assertFalse(commandResultMarkAllAbsent.isList());
+        assertFalse(commandResultMarkAllAbsent.isExit());
+        assertFalse(commandResultMarkAllAbsent.isEditClass());
+        assertTrue(commandResultMarkAllAbsent.isUpdatedStudent());
     }
 
     @Test
     public void testMarkStudentAbsentFeedback() {
         CommandResult commandResultMarkStudentAbsent = new CommandResult("John has been marked absent!");
-        assertEquals(commandResultMarkStudentAbsent.isView(), false);
-        assertEquals(commandResultMarkStudentAbsent.isList(), false);
-        assertEquals(commandResultMarkStudentAbsent.isExit(), false);
-        assertEquals(commandResultMarkStudentAbsent.isEditClass(), false);
-        assertEquals(commandResultMarkStudentAbsent.isUpdatedStudent(), true);
+        assertFalse(commandResultMarkStudentAbsent.isView());
+        assertFalse(commandResultMarkStudentAbsent.isList());
+        assertFalse(commandResultMarkStudentAbsent.isExit());
+        assertFalse(commandResultMarkStudentAbsent.isEditClass());
+        assertTrue(commandResultMarkStudentAbsent.isUpdatedStudent());
     }
 
     @Test
     public void testMarkStudentPresentFeedback() {
-        CommandResult commandResultMarkStudentPresent = new CommandResult("John sucessfully marked present!");
-        assertEquals(commandResultMarkStudentPresent.isView(), false);
-        assertEquals(commandResultMarkStudentPresent.isList(), false);
-        assertEquals(commandResultMarkStudentPresent.isExit(), false);
-        assertEquals(commandResultMarkStudentPresent.isEditClass(), false);
-        assertEquals(commandResultMarkStudentPresent.isUpdatedStudent(), true);
+        CommandResult commandResultMarkStudentPresent = new CommandResult("John successfully marked present!");
+        assertFalse(commandResultMarkStudentPresent.isView());
+        assertFalse(commandResultMarkStudentPresent.isList());
+        assertFalse(commandResultMarkStudentPresent.isExit());
+        assertFalse(commandResultMarkStudentPresent.isEditClass());
+        assertTrue(commandResultMarkStudentPresent.isUpdatedStudent());
     }
 
     @Test
     public void testStartLessonFeedback() {
         CommandResult commandResultStartLesson = new CommandResult("CS2103T started a new lesson!");
-        assertEquals(commandResultStartLesson.isView(), false);
-        assertEquals(commandResultStartLesson.isList(), false);
-        assertEquals(commandResultStartLesson.isExit(), false);
-        assertEquals(commandResultStartLesson.isEditClass(), false);
-        assertEquals(commandResultStartLesson.isUpdatedStudent(), true);
+        assertFalse(commandResultStartLesson.isView());
+        assertFalse(commandResultStartLesson.isList());
+        assertFalse(commandResultStartLesson.isExit());
+        assertFalse(commandResultStartLesson.isEditClass());
+        assertTrue(commandResultStartLesson.isUpdatedStudent());
     }
 }
