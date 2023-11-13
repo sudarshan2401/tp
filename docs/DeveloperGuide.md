@@ -463,10 +463,6 @@ The following activity diagram summarizes what happens when a new Class is added
   - Pros: All information are specified by the time the class is created.
   - Cons: Requires the user to provide additional details like class notes or class schedule
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
